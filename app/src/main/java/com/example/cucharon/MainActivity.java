@@ -20,6 +20,7 @@ import Persistencia.UsuarioRepository;
 
 
 public class MainActivity extends AppCompatActivity {
+
     Connection connection;
     Button btnLogin;
     EditText textUsuario, textPassword;
@@ -38,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
 
         //Comprueba el token de inicio de sesion
         SharedPreferences sharedPreferences = getSharedPreferences("MiAppPref", Context.MODE_PRIVATE);
+
+        setContentView(R.layout.login);
 
         // Verificar si existe un token de autenticación
         String token = sharedPreferences.getString("token", "");
