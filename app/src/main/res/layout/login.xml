@@ -33,8 +33,8 @@
     <EditText
         android:id="@+id/editTextPassword"
         android:layout_width="291dp"
-        android:layout_height="39dp"
-        android:layout_marginBottom="280dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="28dp"
         android:background="@drawable/campo_texto"
         android:ems="10"
         android:inputType="textPassword"
@@ -45,7 +45,7 @@
         app:layout_constraintHorizontal_bias="0.417"
         app:layout_constraintStart_toEndOf="@+id/imageView2"
         app:layout_constraintTop_toBottomOf="@+id/editTextUsuario"
-        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintVertical_bias="0.0"
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <TextView
@@ -57,15 +57,15 @@
         android:textColor="#FF0000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.578"
+        app:layout_constraintHorizontal_bias="0.601"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.668" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextPassword"
+        app:layout_constraintVertical_bias="0.047" />
 
     <EditText
         android:id="@+id/editTextUsuario"
         android:layout_width="291dp"
-        android:layout_height="39dp"
+        android:layout_height="48dp"
         android:background="@drawable/campo_texto"
         android:ems="10"
         android:inputType="text"
