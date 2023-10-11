@@ -12,37 +12,29 @@ public class Usuario {
 
 
     @DatabaseField(id = true)
-    private String nombre;
+    private String usuario;
     @DatabaseField
     private String contraseña;
     @DatabaseField
     private String direccion;
     @DatabaseField
-    private int movilNum;
+    private String tlf;
 
     public Usuario() {}
 
-    public Usuario(String nombre, String contraseña, String direccion, int movilNum) {
-        this.nombre = nombre;
+    public Usuario(String usuario, String contraseña, String direccion, String tlf) {
+        this.usuario = usuario;
         this.contraseña = contraseña;
-        this.movilNum = movilNum;
         this.direccion = direccion;
+        this.tlf = tlf;
     }
 
-    public static Usuario getUserByNum(UsuarioRepository usuarioRepository, int num) {
-        List<Usuario> users = usuarioRepository.obtenerTodos();
-        for (Usuario user : users) {
-            if (user.movilNum == num) return user;
-        }
-        return null;
+    public String getUsuario() {
+        return usuario;
     }
 
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
     }
 
     public String getContraseña() {
@@ -53,14 +45,6 @@ public class Usuario {
         this.contraseña = contraseña;
     }
 
-    public int getMovilNum() {
-        return movilNum;
-    }
-
-    public void setMovilNum(int movilNum) {
-        this.movilNum = movilNum;
-    }
-
     public String getDireccion() {
         return direccion;
     }
@@ -69,4 +53,11 @@ public class Usuario {
         this.direccion = direccion;
     }
 
+    public String getTlf() {
+        return tlf;
+    }
+
+    public void setTlf(String tlf) {
+        this.tlf = tlf;
+    }
 }
