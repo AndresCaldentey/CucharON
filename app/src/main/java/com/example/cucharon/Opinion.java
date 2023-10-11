@@ -6,7 +6,7 @@ import com.j256.ormlite.table.DatabaseTable;
 @DatabaseTable
 public class Opinion {
     @DatabaseField(id = true)
-    int idOpinion;
+    int id_opinion;
     @DatabaseField
     String comentario;
     @DatabaseField
@@ -17,20 +17,20 @@ public class Opinion {
     String usuarioDestino;
 
     public Opinion(){}
-    public Opinion(int idOpinion, String comentario, int valoracion, String usuarioOrigen, String usuarioDestino) {
-        this.idOpinion = idOpinion;
+    public Opinion(int id_opinion, String comentario, int valoracion, String usuarioOrigen, String usuarioDestino) {
+        this.id_opinion = id_opinion;
         this.comentario = comentario;
         this.valoracion = valoracion;
         this.usuarioOrigen = usuarioOrigen;
         this.usuarioDestino = usuarioDestino;
     }
 
-    public int getIdOpinion() {
-        return idOpinion;
+    public int getId_opinion() {
+        return id_opinion;
     }
 
-    public void setIdOpinion(int idOpinion) {
-        this.idOpinion = idOpinion;
+    public void setId_opinion(int id_opinion) {
+        this.id_opinion = id_opinion;
     }
 
     public String getComentario() {

@@ -7,8 +7,7 @@ import com.j256.ormlite.table.DatabaseTable;
 public class Producto {
 
     @DatabaseField(id = true)
-    int id_producto;
-
+    int idProducto;
     @DatabaseField
     String nombre;
     @DatabaseField
@@ -31,8 +30,8 @@ public class Producto {
 
     public Producto(){}
 
-    public Producto(int id_producto, String nombre, String contenido, Float precio, String imagen, String direccion_recogida, String usuario_publicador) {
-        this.id_producto = id_producto;
+    public Producto(int idProducto, String nombre, String contenido, Float precio, String imagen, String direccion_recogida, String usuario_publicador) {
+        this.idProducto = idProducto;
         this.nombre = nombre;
         this.contenido = contenido;
         this.precio = precio;
@@ -41,12 +40,12 @@ public class Producto {
         this.usuario_publicador = usuario_publicador;
     }
 
-    public int getId_producto() {
-        return id_producto;
+    public int getIdProducto() {
+        return idProducto;
     }
 
-    public void setId_producto(int id_producto) {
-        this.id_producto = id_producto;
+    public void setIdProducto(int idProducto) {
+        this.idProducto = idProducto;
     }
 
     public String getNombre() {
