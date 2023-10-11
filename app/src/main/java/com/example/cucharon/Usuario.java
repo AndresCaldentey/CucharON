@@ -12,29 +12,35 @@ public class Usuario {
 
 
     @DatabaseField(id = true)
+    private String email;
+    @DatabaseField
     private String nombre;
+    @DatabaseField
+    private String apellido;
     @DatabaseField
     private String contraseña;
     @DatabaseField
     private String direccion;
     @DatabaseField
-    private int movilNum;
+    private int tlf;
 
     public Usuario() {}
 
-    public Usuario(String nombre, String contraseña, String direccion, int movilNum) {
+    public Usuario(String email, String nombre, String apellido, String contraseña, String direccion, int tlf) {
+        this.email = email;
         this.nombre = nombre;
+        this.apellido = apellido;
         this.contraseña = contraseña;
-        this.movilNum = movilNum;
         this.direccion = direccion;
+        this.tlf = tlf;
     }
 
-    public static Usuario getUserByNum(UsuarioRepository usuarioRepository, int num) {
-        List<Usuario> users = usuarioRepository.obtenerTodos();
-        for (Usuario user : users) {
-            if (user.movilNum == num) return user;
-        }
-        return null;
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getNombre() {
@@ -45,20 +51,20 @@ public class Usuario {
         this.nombre = nombre;
     }
 
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
     public String getContraseña() {
         return contraseña;
     }
 
     public void setContraseña(String contraseña) {
         this.contraseña = contraseña;
-    }
-
-    public int getMovilNum() {
-        return movilNum;
-    }
-
-    public void setMovilNum(int movilNum) {
-        this.movilNum = movilNum;
     }
 
     public String getDireccion() {
@@ -69,4 +75,11 @@ public class Usuario {
         this.direccion = direccion;
     }
 
+    public int getTlf() {
+        return tlf;
+    }
+
+    public void setTlf(int tlf) {
+        this.tlf = tlf;
+    }
 }

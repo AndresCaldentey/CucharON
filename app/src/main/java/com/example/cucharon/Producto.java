@@ -23,10 +23,10 @@ public class Producto {
     @DatabaseField
     String direccion_recogida;
 
-    @DatabaseField (foreign = true, foreignAutoRefresh = true, columnName = "usuario")
+    @DatabaseField (foreign = true, foreignAutoRefresh = true, columnName = "email")
     String usuario_publicador;
 
-    @DatabaseField (foreign = true, foreignAutoRefresh = true, columnName = "usuario")
+    @DatabaseField (foreign = true, foreignAutoRefresh = true, columnName = "email")
     String usuario_comprador;
 
     public Producto(){}
