@@ -2,9 +2,7 @@ package Presentation;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Base64;
@@ -15,7 +13,6 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
-import androidx.core.content.ContextCompat;
 
 
 import com.example.cucharon.Producto;
@@ -23,7 +20,7 @@ import com.example.cucharon.R;
 
 import java.io.ByteArrayOutputStream;
 
-public class PosteoProducto extends AppCompatActivity {
+public class IUposteoProducto extends AppCompatActivity {
 
     private static final int REQUEST_IMAGE_CAPTURE=1;
     TextView addPhotoText;
@@ -111,6 +108,17 @@ public class PosteoProducto extends AppCompatActivity {
         producto = new Producto(1,nombre,descripcion,precio,imagenPlatoBase64,direccion,usuarioPublicador);
 
     }
-
+    public void buscarOnClick(View view) {
+        Intent intent = new Intent(IUposteoProducto.this, IUbuscar.class);
+        startActivity(intent);
+    }
+    public void sugerenciasOnClick(View view) {
+        Intent intent = new Intent(IUposteoProducto.this, IUsugerencias.class);
+        startActivity(intent);
+    }
+    public void perfilOnClick(View view) {
+        Intent intent = new Intent(IUposteoProducto.this, IUperfil.class);
+        startActivity(intent);
+    }
 
 }

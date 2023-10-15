@@ -15,7 +15,6 @@ import android.widget.Toast;
 
 import com.example.cucharon.R;
 import com.example.cucharon.RegistroActivity;
-import com.example.cucharon.SugerenciasActivity;
 import com.example.cucharon.Usuario;
 
 import java.sql.Connection;
@@ -37,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.login);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
-        Intent intent = new Intent(MainActivity.this, PosteoProducto.class);
+        Intent intent = new Intent(MainActivity.this, IUsugerencias.class);
         startActivity(intent);
         //finish();
 
@@ -89,8 +88,7 @@ public class MainActivity extends AppCompatActivity {
                 //Actualizar usuario actual y hacer la transicion
                 //Toast.makeText(this, "El usuario y la contraseña es correcto", Toast.LENGTH_SHORT).show();
 
-                Intent intent = new Intent(MainActivity.this, SugerenciasActivity.class);
-                startActivity(intent);
+
             }
 
         });
