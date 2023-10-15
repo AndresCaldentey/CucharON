@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/o"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#93889E">
@@ -20,19 +21,19 @@
         app:layout_constraintVertical_bias="0.057" />
 
     <ImageView
-        android:id="@+id/imageView5"
+        android:id="@+id/fotoPlato"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.314"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.017"
+        app:layout_constraintVertical_bias="0.018"
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/addPhotoText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="+ AÑADIR FOTO"
@@ -41,37 +42,147 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView5"
+        app:layout_constraintTop_toBottomOf="@+id/fotoPlato"
         app:layout_constraintVertical_bias="0.03" />
 
-    <LinearLayout
-        android:layout_width="411dp"
-        android:layout_height="378dp"
-        android:layout_marginTop="1dp"
-        android:orientation="vertical"
+    <ScrollView
+        android:layout_width="407dp"
+        android:layout_height="441dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.944">
 
-        <TextView
-            android:id="@+id/textView10"
-            android:layout_width="392dp"
-            android:layout_height="39dp"
-            android:text="Nombre del plato:"
-            android:textSize="20sp" />
-
-        <EditText
-            android:id="@+id/editTextText7"
-            android:layout_width="347dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:background="@drawable/campo_texto"
-            android:ems="10"
-            android:inputType="text"
-            android:minHeight="48dp"
-            android:paddingLeft="15dp"
-            android:text="Name" />
-    </LinearLayout>
+            android:layout_marginTop="1dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="392dp"
+                android:layout_height="39dp"
+                android:text="Nombre del plato:"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/editTextText7"
+                android:layout_width="347dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="15dp"
+                android:background="@drawable/campo_texto"
+                android:ems="10"
+                android:inputType="text"
+                android:minHeight="48dp"
+                android:paddingLeft="15dp"
+                android:text="Name" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:orientation="horizontal"></LinearLayout>
+
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="392dp"
+                android:layout_height="39dp"
+                android:text="Descripción:"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/editTextText8"
+                android:layout_width="347dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="15dp"
+                android:background="@drawable/campo_texto"
+                android:ems="10"
+                android:inputType="text"
+                android:minHeight="48dp"
+                android:paddingLeft="15dp"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:orientation="horizontal"></LinearLayout>
+
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="392dp"
+                android:layout_height="39dp"
+                android:text="Ingredientes:"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/editTextText9"
+                android:layout_width="347dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="15dp"
+                android:background="@drawable/campo_texto"
+                android:ems="10"
+                android:inputType="text"
+                android:minHeight="48dp"
+                android:paddingLeft="15dp"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:orientation="horizontal"></LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="76dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView13"
+                    android:layout_width="121dp"
+                    android:layout_height="39dp"
+                    android:text="Descripción:"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/editTextText10"
+                    android:layout_width="128dp"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="15dp"
+                    android:background="@drawable/campo_texto"
+                    android:ems="10"
+                    android:inputType="text"
+                    android:minHeight="48dp"
+                    android:paddingLeft="15dp"
+                    tools:ignore="SpeakableTextPresentCheck" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:orientation="horizontal"></LinearLayout>
+
+            <TextView
+                android:id="@+id/textView14"
+                android:layout_width="392dp"
+                android:layout_height="39dp"
+                android:text="Descripción:"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/editTextText11"
+                android:layout_width="347dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="15dp"
+                android:background="@drawable/campo_texto"
+                android:ems="10"
+                android:inputType="text"
+                android:minHeight="48dp"
+                android:paddingLeft="15dp"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
