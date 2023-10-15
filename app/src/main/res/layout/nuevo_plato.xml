@@ -36,6 +36,7 @@
         android:id="@+id/addPhotoText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="clickAddPhoto"
         android:text="+ AÑADIR FOTO"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
