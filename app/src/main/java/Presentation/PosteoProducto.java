@@ -34,6 +34,7 @@ public class PosteoProducto extends AppCompatActivity {
     EditText precioEditText;
     EditText ingredientesEditText;
     Producto producto;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
