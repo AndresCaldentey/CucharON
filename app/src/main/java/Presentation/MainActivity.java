@@ -1,25 +1,23 @@
-package com.example.cucharon;
+package Presentation;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
-import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.os.Build;
 import android.os.Bundle;
-import android.provider.MediaStore;
-import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.ByteArrayOutputStream;
+import com.example.cucharon.R;
+import com.example.cucharon.RegistroActivity;
+import com.example.cucharon.SugerenciasActivity;
+import com.example.cucharon.Usuario;
+
 import java.sql.Connection;
 
 import Persistencia.SingletonConnection;
@@ -39,6 +37,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.login);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
+        Intent intent = new Intent(MainActivity.this, PosteoProducto.class);
+        startActivity(intent);
+        //finish();
+
         btnLogin = findViewById(R.id.btnLogin);
         textUsuario = findViewById(R.id.editTextUsuario);
         textPassword = findViewById(R.id.editTextPassword);
@@ -47,17 +49,17 @@ public class MainActivity extends AppCompatActivity {
         //Comprueba el token de inicio de sesion
         SharedPreferences sharedPreferences = getSharedPreferences("MiAppPref", Context.MODE_PRIVATE);
 
-        setContentView(R.layout.login);
+        //setContentView(R.layout.login);
 
         // Verificar si existe un token de autenticación
         String token = sharedPreferences.getString("token", "");
 
-        if (!token.isEmpty()) {
+        /*if (!token.isEmpty()) {
             // El usuario ha iniciado sesión previamente, puedes permitir el acceso a la aplicación.
             Intent intent = new Intent(MainActivity.this, SugerenciasActivity.class);
-            startActivity(intent);
+            startActivity(intent);*/
         }
-    }
+
 
     public void clickRegister(View view)
     {
