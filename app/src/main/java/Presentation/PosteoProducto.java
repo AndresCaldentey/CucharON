@@ -85,9 +85,9 @@ public class PosteoProducto extends AppCompatActivity {
         return Base64.encodeToString(byteArray, Base64.DEFAULT);
     }
 
-        //PROCESO CONTRARIO PARA CUANDO LO NECESITEMOS AL MOSTRAR LOS PRODUCTOS
+    //PROCESO CONTRARIO PARA CUANDO LO NECESITEMOS AL MOSTRAR LOS PRODUCTOS
 
-    /*private void pasarDeStringAImagen(){
+      /*private void pasarDeStringAImagen(){
         // Supongamos que tienes la cadena Base64 almacenada en la variable "imageBase64"
         String imageBase64 = "tu_cadena_base64"; // Reemplaza con tu cadena Base64
 
