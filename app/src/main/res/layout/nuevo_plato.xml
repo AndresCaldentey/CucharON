@@ -70,7 +70,7 @@
                 android:textSize="20sp" />
 
             <EditText
-                android:id="@+id/editTextText7"
+                android:id="@+id/nombreEditText"
                 android:layout_width="347dp"
                 android:layout_height="50dp"
                 android:layout_marginLeft="15dp"
@@ -94,7 +94,7 @@
                 android:textSize="20sp" />
 
             <EditText
-                android:id="@+id/editTextText8"
+                android:id="@+id/descripcionEditText"
                 android:layout_width="347dp"
                 android:layout_height="50dp"
                 android:layout_marginLeft="15dp"
@@ -118,7 +118,7 @@
                 android:textSize="20sp" />
 
             <EditText
-                android:id="@+id/editTextText9"
+                android:id="@+id/ingredientesEditText"
                 android:layout_width="347dp"
                 android:layout_height="50dp"
                 android:layout_marginLeft="15dp"
@@ -143,11 +143,11 @@
                     android:id="@+id/textView13"
                     android:layout_width="121dp"
                     android:layout_height="39dp"
-                    android:text="Descripción:"
+                    android:text="Precio:"
                     android:textSize="20sp" />
 
                 <EditText
-                    android:id="@+id/editTextText10"
+                    android:id="@+id/precioEditText"
                     android:layout_width="128dp"
                     android:layout_height="50dp"
                     android:layout_marginLeft="15dp"

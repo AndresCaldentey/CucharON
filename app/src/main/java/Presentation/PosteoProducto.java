@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Base64;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -17,6 +18,7 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.ContextCompat;
 
 
+import com.example.cucharon.Producto;
 import com.example.cucharon.R;
 
 import java.io.ByteArrayOutputStream;
@@ -27,6 +29,11 @@ public class PosteoProducto extends AppCompatActivity {
     TextView addPhotoText;
     ImageView fotoPlato;
     String imagenPlatoBase64;
+    EditText nombreEditText;
+    EditText descripcionEditText;
+    EditText precioEditText;
+    EditText ingredientesEditText;
+    Producto producto;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +42,10 @@ public class PosteoProducto extends AppCompatActivity {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         addPhotoText = findViewById(R.id.addPhotoText);
         fotoPlato = findViewById(R.id.fotoPlato);
+        nombreEditText = findViewById(R.id.nombreEditText);
+        descripcionEditText = findViewById(R.id.precioEditText);
+        precioEditText = findViewById(R.id.precioEditText);
+        ingredientesEditText = findViewById(R.id.ingredientesEditText);
     }
 
     public void clickAddPhoto(View view){
@@ -88,6 +99,17 @@ public class PosteoProducto extends AppCompatActivity {
         // Configura el Bitmap en un ImageView (reemplaza "imageView" con tu ImageView)
         imageView.setImageBitmap(decodedImage);
     }*/
+
+    private void clickPostearProducto(View view){
+        String nombre = String.valueOf(nombreEditText.getText());
+        String descripcion = String.valueOf(descripcionEditText.getText());
+        float precio = Float.parseFloat(String.valueOf(precioEditText.getText()));
+        String direccion = "";//CONSEGUIR
+        //INGREDIENTES?????
+        String usuarioPublicador=""; //SETEAR AL ID DEL USUARIO DE LA SESION
+        producto = new Producto(1,nombre,descripcion,precio,imagenPlatoBase64,direccion,usuarioPublicador);
+
+    }
 
 
 }
