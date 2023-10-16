@@ -6,15 +6,44 @@
     android:layout_height="match_parent"
     android:background="#93889E">
 
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:text="Password"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.046"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
     <EditText
-        android:id="@+id/editTextNombre"
+        android:id="@+id/passwordRegistro"
+        android:layout_width="265dp"
+        android:layout_height="39dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/campo_texto"
+        android:ems="10"
+        android:hint="contraseña"
+        android:inputType="text"
+        android:paddingLeft="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView2"
+        app:layout_constraintTop_toBottomOf="@+id/emailRegistro"
+        app:layout_constraintVertical_bias="0.209"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <EditText
+        android:id="@+id/nombreRegistro"
         android:layout_width="265dp"
         android:layout_height="39dp"
         android:background="@drawable/campo_texto"
         android:ems="10"
+        android:hint="Manuel"
         android:inputType="text"
         android:paddingLeft="15dp"
-        android:text="Manuel"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.518"
@@ -24,71 +53,71 @@
         tools:ignore="TouchTargetSizeCheck" />
 
     <EditText
-        android:id="@+id/editTextApellido"
+        android:id="@+id/apellidoRegistro"
         android:layout_width="265dp"
         android:layout_height="39dp"
         android:background="@drawable/campo_texto"
         android:ems="10"
+        android:hint="López"
         android:inputType="text"
         android:paddingLeft="15dp"
-        android:text="López"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.509"
         app:layout_constraintStart_toEndOf="@+id/textView4"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNombre"
+        app:layout_constraintTop_toBottomOf="@+id/nombreRegistro"
         app:layout_constraintVertical_bias="0.057"
         tools:ignore="TouchTargetSizeCheck" />
 
     <EditText
-        android:id="@+id/editTextTelefono"
+        android:id="@+id/telefonoRegistro"
         android:layout_width="265dp"
         android:layout_height="39dp"
         android:background="@drawable/campo_texto"
         android:ems="10"
+        android:hint="1515651651"
         android:inputType="number"
         android:paddingLeft="15dp"
-        android:text="1515651651"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.479"
         app:layout_constraintStart_toEndOf="@+id/textView5"
-        app:layout_constraintTop_toBottomOf="@+id/editTextApellido"
+        app:layout_constraintTop_toBottomOf="@+id/apellidoRegistro"
         app:layout_constraintVertical_bias="0.051"
         tools:ignore="TouchTargetSizeCheck" />
 
     <EditText
-        android:id="@+id/editTextEmail"
+        android:id="@+id/emailRegistro"
         android:layout_width="265dp"
         android:layout_height="39dp"
         android:background="@drawable/campo_texto"
         android:ems="10"
+        android:hint="manuellopez@gmail.com"
         android:inputType="text"
         android:paddingLeft="15dp"
-        android:text="manuellopez@gmail.com"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.653"
         app:layout_constraintStart_toEndOf="@+id/textView6"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTelefono"
+        app:layout_constraintTop_toBottomOf="@+id/telefonoRegistro"
         app:layout_constraintVertical_bias="0.039"
         tools:ignore="TouchTargetSizeCheck" />
 
     <EditText
-        android:id="@+id/editTextDireccion"
+        android:id="@+id/direccionRegistro"
         android:layout_width="265dp"
         android:layout_height="39dp"
         android:layout_marginTop="15dp"
         android:background="@drawable/campo_texto"
         android:ems="10"
+        android:hint="Calle ....."
         android:inputType="text"
         android:paddingLeft="15dp"
-        android:text="Calle ....."
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.458"
         app:layout_constraintStart_toEndOf="@+id/textView7"
-        app:layout_constraintTop_toBottomOf="@+id/editTextEmail"
+        app:layout_constraintTop_toBottomOf="@+id/emailRegistro"
         app:layout_constraintVertical_bias="0.0"
         tools:ignore="TouchTargetSizeCheck" />
 
@@ -186,10 +215,11 @@
         android:id="@+id/btnRegistro"
         android:layout_width="188dp"
         android:layout_height="48dp"
+        android:layout_marginTop="76dp"
         android:onClick="onClickRegistrar"
         android:text="REGISTRARSE"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.587"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextDireccion" />
+        app:layout_constraintTop_toBottomOf="@+id/passwordRegistro" />
 </androidx.constraintlayout.widget.ConstraintLayout>

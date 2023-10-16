@@ -24,7 +24,6 @@ import Persistencia.UsuarioRepository;
 
 public class MainActivity extends AppCompatActivity {
 
-    Connection connection;
     Button btnLogin;
     EditText textUsuario, textPassword;
     TextView linkRegistro;
@@ -46,11 +45,11 @@ public class MainActivity extends AppCompatActivity {
         // Verificar si existe un token de autenticación
         String token = sharedPreferences.getString("token", "");
         System.out.println("El usuario " + token + " ha iniciado sesion anteriormente");
-        /*if (!token.isEmpty()) {
+        if (!token.isEmpty()) {
             // El usuario ha iniciado sesión previamente, puedes permitir el acceso a la aplicación.
             Intent intent = new Intent(MainActivity.this, IUsugerencias.class);
             startActivity(intent);
-        }*/
+        }
 
     }
 
