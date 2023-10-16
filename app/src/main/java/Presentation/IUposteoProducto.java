@@ -26,7 +26,7 @@ import java.io.ByteArrayOutputStream;
 import Persistencia.ProductoRepository;
 import Persistencia.SingletonConnection;
 
-public class PosteoProducto extends AppCompatActivity {
+public class IUPosteoProducto extends AppCompatActivity {
 
     private static final int REQUEST_IMAGE_CAPTURE=1;
     TextView addPhotoText;
@@ -116,6 +116,17 @@ public class PosteoProducto extends AppCompatActivity {
         new ProductoRepository(SingletonConnection.getSingletonInstance()).guardar(producto);
 
     }
-
+    public void buscarOnClick(View view) {
+        Intent intent = new Intent(IUposteoProducto.this, IUbuscar.class);
+        startActivity(intent);
+    }
+    public void sugerenciasOnClick(View view) {
+        Intent intent = new Intent(IUposteoProducto.this, IUsugerencias.class);
+        startActivity(intent);
+    }
+    public void perfilOnClick(View view) {
+        Intent intent = new Intent(IUposteoProducto.this, IUperfil.class);
+        startActivity(intent);
+    }
 
 }
