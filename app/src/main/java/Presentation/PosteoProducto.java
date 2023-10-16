@@ -23,6 +23,9 @@ import com.example.cucharon.R;
 
 import java.io.ByteArrayOutputStream;
 
+import Persistencia.ProductoRepository;
+import Persistencia.SingletonConnection;
+
 public class PosteoProducto extends AppCompatActivity {
 
     private static final int REQUEST_IMAGE_CAPTURE=1;
@@ -109,6 +112,8 @@ public class PosteoProducto extends AppCompatActivity {
         //INGREDIENTES?????
         String usuarioPublicador=""; //SETEAR AL ID DEL USUARIO DE LA SESION
         producto = new Producto(1,nombre,descripcion,precio,imagenPlatoBase64,direccion,usuarioPublicador);
+
+        new ProductoRepository(SingletonConnection.getSingletonInstance()).guardar(producto);
 
     }
 

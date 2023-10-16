@@ -3,6 +3,9 @@ package com.example.cucharon;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @DatabaseTable
 public class Producto {
 
@@ -28,6 +31,8 @@ public class Producto {
     @DatabaseField (foreign = true, foreignAutoRefresh = true, columnName = "email")
     String usuario_comprador;
 
+    List<Ingrediente> ingredientes;
+
     public Producto(){}
 
     public Producto(int idProducto, String nombre, String contenido, Float precio, String imagen, String direccion_recogida, String usuario_publicador) {
@@ -38,6 +43,7 @@ public class Producto {
         this.imagen = imagen;
         this.direccion_recogida = direccion_recogida;
         this.usuario_publicador = usuario_publicador;
+        ingredientes = new ArrayList<>();
     }
 
     public int getIdProducto() {
@@ -102,6 +108,14 @@ public class Producto {
 
     public void setUsuario_comprador(String usuario_comprador) {
         this.usuario_comprador = usuario_comprador;
+    }
+
+    public List<Ingrediente> getIngredientes() {
+        return ingredientes;
+    }
+
+    public void setIngredientes(List<Ingrediente> ingredientes) {
+        this.ingredientes = ingredientes;
     }
 }
 
