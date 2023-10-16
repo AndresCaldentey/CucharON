@@ -36,10 +36,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.login);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
-        Intent intent = new Intent(MainActivity.this, IUsugerencias.class);
-        startActivity(intent);
-        //finish();
-
         btnLogin = findViewById(R.id.btnLogin);
         textUsuario = findViewById(R.id.editTextUsuario);
         textPassword = findViewById(R.id.editTextPassword);
@@ -48,16 +44,16 @@ public class MainActivity extends AppCompatActivity {
         //Comprueba el token de inicio de sesion
         SharedPreferences sharedPreferences = getSharedPreferences("MiAppPref", Context.MODE_PRIVATE);
 
-        //setContentView(R.layout.login);
-
         // Verificar si existe un token de autenticación
         String token = sharedPreferences.getString("token", "");
-
-        /*if (!token.isEmpty()) {
+        System.out.println("El usuario " + token + " ha iniciado sesion anteriormente");
+        if (!token.isEmpty()) {
             // El usuario ha iniciado sesión previamente, puedes permitir el acceso a la aplicación.
-            Intent intent = new Intent(MainActivity.this, SugerenciasActivity.class);
-            startActivity(intent);*/
+            Intent intent = new Intent(MainActivity.this, IUsugerencias.class);
+            startActivity(intent);
         }
+
+    }
 
 
     public void clickRegister(View view)
@@ -81,14 +77,13 @@ public class MainActivity extends AppCompatActivity {
 
                 // Guardar el token de autenticación
                 SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString("token", "tokenLogin");
+                editor.putString("token", textUsuario.getText().toString());
                 editor.apply();
 
 
                 //Actualizar usuario actual y hacer la transicion
-                //Toast.makeText(this, "El usuario y la contraseña es correcto", Toast.LENGTH_SHORT).show();
-
-
+                Intent intent = new Intent(MainActivity.this, IUsugerencias.class);
+                startActivity(intent);
             }
 
         });
