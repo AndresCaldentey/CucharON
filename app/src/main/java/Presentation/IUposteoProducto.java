@@ -26,7 +26,7 @@ import java.io.ByteArrayOutputStream;
 import Persistencia.ProductoRepository;
 import Persistencia.SingletonConnection;
 
-public class IUPosteoProducto extends AppCompatActivity {
+public class IUposteoProducto extends AppCompatActivity {
 
     private static final int REQUEST_IMAGE_CAPTURE=1;
     TextView addPhotoText;
