@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Base64;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -36,6 +37,7 @@ public class IUposteoProducto extends AppCompatActivity {
     EditText descripcionEditText;
     EditText precioEditText;
     EditText ingredientesEditText;
+    Button posteoBtn;
     Producto producto;
 
     @Override
@@ -50,6 +52,7 @@ public class IUposteoProducto extends AppCompatActivity {
         descripcionEditText = findViewById(R.id.precioEditText);
         precioEditText = findViewById(R.id.precioEditText);
         ingredientesEditText = findViewById(R.id.ingredientesEditText);
+        posteoBtn = findViewById(R.id.posteoBtn);
     }
 
     public void clickAddPhoto(View view){
@@ -104,7 +107,7 @@ public class IUposteoProducto extends AppCompatActivity {
         imageView.setImageBitmap(decodedImage);
     }*/
 
-    private void clickPostearProducto(View view){
+    public void clickPostearProducto(View view){
         String nombre = String.valueOf(nombreEditText.getText());
         String descripcion = String.valueOf(descripcionEditText.getText());
         float precio = Float.parseFloat(String.valueOf(precioEditText.getText()));
