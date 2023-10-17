@@ -17,13 +17,13 @@ public class IUregistro extends AppCompatActivity {
 
     EditText nombre, apellido, telefono, email, direccion, password;
     Button btnRegistro;
-
+    UsuarioRepository ur;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signup);
-
+        ur = new UsuarioRepository(SingletonConnection.getSingletonInstance());
         nombre = findViewById(R.id.nombreRegistro);
         apellido = findViewById(R.id.apellidoRegistro);
         telefono = findViewById(R.id.telefonoRegistro);
@@ -39,7 +39,7 @@ public class IUregistro extends AppCompatActivity {
         //Comprobar que no exista un usuario con ese email, etc
         Thread hilo = new Thread(() -> {
 
-            Usuario usuario = new UsuarioRepository(SingletonConnection.getSingletonInstance()).getUserByEmail(email.getText().toString());
+            Usuario usuario = ur.getUserByEmail(email.getText().toString());
             if(usuario == null)
             {
                 //Hay que crear el usuario y añadirlo a la db
@@ -47,7 +47,7 @@ public class IUregistro extends AppCompatActivity {
                         password.getText().toString(), direccion.getText().toString(),
                         Integer.parseInt(telefono.getText().toString()));
 
-                new UsuarioRepository(SingletonConnection.getSingletonInstance()).guardar(nuevoUser);
+                ur.guardar(nuevoUser);
             }
             finish();
 

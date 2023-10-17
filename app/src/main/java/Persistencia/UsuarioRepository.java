@@ -37,4 +37,5 @@ public class UsuarioRepository extends Repository<Usuario>{
         }
     }
 
+
 }
