@@ -2,48 +2,44 @@ package com.example.cucharon;
 
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
-
+import com.j256.ormlite.field.ForeignCollectionField;
 import java.util.ArrayList;
 import java.util.List;
 
 @DatabaseTable
 public class Producto {
 
-    @DatabaseField(id = true)
+    @DatabaseField(generatedId = true)
     int idProducto;
     @DatabaseField
     String nombre;
     @DatabaseField
     String contenido;
-
     @DatabaseField
-    Float precio;
-
+    Double precio;
     @DatabaseField
-    String imagen;
-
+    String imagen = "";
     @DatabaseField
-    String direccion_recogida;
+    String direccionRecogida;
+    @DatabaseField //(foreign = true, canBeNull = false, foreignAutoRefresh = true)
+    String usuarioPublicador;
+    @DatabaseField //(foreign = true, foreignAutoRefresh = true, columnName = "email")
+    String usuarioComprador;
 
-    @DatabaseField (foreign = true, foreignAutoRefresh = true, columnName = "email")
-    String usuario_publicador;
-
-    @DatabaseField (foreign = true, foreignAutoRefresh = true, columnName = "email")
-    String usuario_comprador;
-
-    List<Ingrediente> ingredientes;
+    //List<Ingrediente> ingredientes;
 
     public Producto(){}
 
-    public Producto(int idProducto, String nombre, String contenido, Float precio, String imagen, String direccion_recogida, String usuario_publicador) {
+    public Producto(int idProducto, String nombre, String contenido, Double precio, String imagen, String direccion_recogida, String usuario_publicador) {
         this.idProducto = idProducto;
         this.nombre = nombre;
         this.contenido = contenido;
         this.precio = precio;
         this.imagen = imagen;
-        this.direccion_recogida = direccion_recogida;
-        this.usuario_publicador = usuario_publicador;
-        ingredientes = new ArrayList<>();
+        this.direccionRecogida = direccion_recogida;
+        this.usuarioPublicador = usuario_publicador;
+        this.usuarioComprador = null;
+       // ingredientes = new ArrayList<>();
     }
 
     public int getIdProducto() {
@@ -70,11 +66,11 @@ public class Producto {
         this.contenido = contenido;
     }
 
-    public Float getPrecio() {
+    public Double getPrecio() {
         return precio;
     }
 
-    public void setPrecio(Float precio) {
+    public void setPrecio(Double precio) {
         this.precio = precio;
     }
 
@@ -86,37 +82,37 @@ public class Producto {
         this.imagen = imagen;
     }
 
-    public String getDireccion_recogida() {
-        return direccion_recogida;
+    public String getDireccionRecogida() {
+        return direccionRecogida;
     }
 
-    public void setDireccion_recogida(String direccion_recogida) {
-        this.direccion_recogida = direccion_recogida;
+    public void setDireccionRecogida(String direccion_recogida) {
+        this.direccionRecogida = direccion_recogida;
     }
 
-    public String getUsuario_publicador() {
-        return usuario_publicador;
+    public String getUsuarioPublicador() {
+        return usuarioPublicador;
     }
 
-    public void setUsuario_publicador(String usuario_publicador) {
-        this.usuario_publicador = usuario_publicador;
+    public void setUsuarioPublicador(String usuario_publicador) {
+        this.usuarioPublicador = usuario_publicador;
     }
 
-    public String getUsuario_comprador() {
-        return usuario_comprador;
+    public String getUsuarioComprador() {
+        return usuarioPublicador;
     }
 
-    public void setUsuario_comprador(String usuario_comprador) {
-        this.usuario_comprador = usuario_comprador;
+    public void setUsuarioComprador(String usuario_comprador) {
+        this.usuarioPublicador = usuario_comprador;
     }
-
+/*
     public List<Ingrediente> getIngredientes() {
         return ingredientes;
     }
 
     public void setIngredientes(List<Ingrediente> ingredientes) {
         this.ingredientes = ingredientes;
-    }
+    }*/
 }
 
 

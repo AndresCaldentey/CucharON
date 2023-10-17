@@ -108,15 +108,22 @@ public class IUposteoProducto extends AppCompatActivity {
     }*/
 
     public void clickPostearProducto(View view){
+
         String nombre = String.valueOf(nombreEditText.getText());
         String descripcion = String.valueOf(descripcionEditText.getText());
-        float precio = Float.parseFloat(String.valueOf(precioEditText.getText()));
+        Double precio = Double.parseDouble(String.valueOf(precioEditText.getText()));
         String direccion = "";//CONSEGUIR
         //INGREDIENTES?????
         String usuarioPublicador=""; //SETEAR AL ID DEL USUARIO DE LA SESION
-        producto = new Producto(1,nombre,descripcion,precio,imagenPlatoBase64,direccion,usuarioPublicador);
 
+        Thread hilo = new Thread(() -> {
+        producto = new Producto(1,nombre,descripcion,precio,imagenPlatoBase64,direccion,usuarioPublicador);
+       // Producto producto1 = new Producto(1,"aa","aa",12.0,"aa","pepe","aa");
         new ProductoRepository(SingletonConnection.getSingletonInstance()).guardar(producto);
+
+    });
+        hilo.start();
+
 
     }
     public void buscarOnClick(View view) {
