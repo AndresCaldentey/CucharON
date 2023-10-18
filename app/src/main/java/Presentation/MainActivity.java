@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.example.cucharon.R;
 import com.example.cucharon.Usuario;
 
+import java.net.URISyntaxException;
 import java.sql.Connection;
 
 import Persistencia.SingletonConnection;
@@ -28,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
     Button btnLogin;
     EditText textUsuario, textPassword;
     TextView linkRegistro;
+
+    public static Usuario usuarioActual;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
                 editor.putString("token", textUsuario.getText().toString());
                 editor.apply();
 
-
+                usuarioActual = usuario;
                 //Actualizar usuario actual y hacer la transicion
                 Intent intent = new Intent(MainActivity.this, IUsugerencias.class);
                 startActivity(intent);
@@ -88,5 +91,6 @@ public class MainActivity extends AppCompatActivity {
         hilo.start();
 
     }
+
 
 }

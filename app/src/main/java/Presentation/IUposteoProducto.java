@@ -21,6 +21,7 @@ import androidx.core.content.ContextCompat;
 
 import com.example.cucharon.Producto;
 import com.example.cucharon.R;
+import com.example.cucharon.Usuario;
 
 import java.io.ByteArrayOutputStream;
 
@@ -39,6 +40,7 @@ public class IUposteoProducto extends AppCompatActivity {
     EditText ingredientesEditText;
     Button posteoBtn;
     Producto producto;
+    Usuario usuarioActual;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +55,7 @@ public class IUposteoProducto extends AppCompatActivity {
         precioEditText = findViewById(R.id.precioEditText);
         ingredientesEditText = findViewById(R.id.ingredientesEditText);
         posteoBtn = findViewById(R.id.posteoBtn);
+        usuarioActual = MainActivity.usuarioActual;
     }
 
     public void clickAddPhoto(View view){
@@ -114,7 +117,7 @@ public class IUposteoProducto extends AppCompatActivity {
         Double precio = Double.parseDouble(String.valueOf(precioEditText.getText()));
         String direccion = "";//CONSEGUIR
         //INGREDIENTES?????
-        String usuarioPublicador=""; //SETEAR AL ID DEL USUARIO DE LA SESION
+        String usuarioPublicador=usuarioActual.getEmail();
 
         Thread hilo = new Thread(() -> {
         producto = new Producto(1,nombre,descripcion,precio,imagenPlatoBase64,direccion,usuarioPublicador);
