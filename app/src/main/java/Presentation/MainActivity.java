@@ -26,23 +26,11 @@ import Persistencia.UsuarioRepository;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button btnLogin;
-    EditText textUsuario, textPassword;
-    TextView linkRegistro;
-
     public static Usuario usuarioActual;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.login);
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-
-        btnLogin = findViewById(R.id.btnLogin);
-        textUsuario = findViewById(R.id.editTextUsuario);
-        textPassword = findViewById(R.id.editTextPassword);
-        linkRegistro = findViewById(R.id.textViewRegistro);
 
         //Comprueba el token de inicio de sesion
         SharedPreferences sharedPreferences = getSharedPreferences("MiAppPref", Context.MODE_PRIVATE);
@@ -51,46 +39,20 @@ public class MainActivity extends AppCompatActivity {
         String token = sharedPreferences.getString("token", "");
         System.out.println("El usuario " + token + " ha iniciado sesion anteriormente");
         if (!token.isEmpty()) {
-            // El usuario ha iniciado sesión previamente, puedes permitir el acceso a la aplicación.
+            Thread hilo = new Thread(() -> {
+                usuarioActual = new UsuarioRepository(SingletonConnection.getSingletonInstance()).getUserByEmail(token);
+            });
+            hilo.start();
+
             Intent intent = new Intent(MainActivity.this, IUsugerencias.class);
+            startActivity(intent);
+        } else
+        {
+            //El usuario no ha iniciado sesion previamente y se va a login
+            Intent intent = new Intent(MainActivity.this, IUlogin.class);
             startActivity(intent);
         }
 
     }
-
-
-    public void clickRegister(View view)
-    {
-        Intent intent = new Intent(MainActivity.this, IUregistro.class);
-        startActivity(intent);
-    }
-
-    public void clickLogin(View view)
-    {
-        //Comprobar datos del usuario
-        Thread hilo = new Thread(() -> {
-
-            Usuario usuario = new UsuarioRepository(SingletonConnection.getSingletonInstance()).getUserByEmail(textUsuario.getText().toString());
-            if(usuario != null && usuario.getContraseña().equals(textPassword.getText().toString()))
-            {
-                // Obtener un objeto SharedPreferences
-                SharedPreferences sharedPreferences = getSharedPreferences("MiAppPref", Context.MODE_PRIVATE);
-
-                // Guardar el token de autenticación
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString("token", textUsuario.getText().toString());
-                editor.apply();
-
-                usuarioActual = usuario;
-                //Actualizar usuario actual y hacer la transicion
-                Intent intent = new Intent(MainActivity.this, IUsugerencias.class);
-                startActivity(intent);
-            }
-
-        });
-        hilo.start();
-
-    }
-
 
 }
