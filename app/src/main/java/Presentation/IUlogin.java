@@ -24,8 +24,6 @@ public class IUlogin extends AppCompatActivity {
     EditText textUsuario, textPassword;
     TextView linkRegistro;
 
-    public static Usuario usuarioActual;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,7 +61,7 @@ public class IUlogin extends AppCompatActivity {
                 editor.putString("token", textUsuario.getText().toString());
                 editor.apply();
 
-                usuarioActual = usuario;
+                MainActivity.setUsuarioActual(usuario);
                 //Actualizar usuario actual y hacer la transicion
                 Intent intent = new Intent(IUlogin.this, IUsugerencias.class);
                 startActivity(intent);
