@@ -54,11 +54,11 @@ public class IUregistro extends AppCompatActivity {
                 }
                 else if(!validPassword(password.getText().toString())) {
                     ErrorAlert("La contraseña debe contener al menos 8 caracteres, 1 mayúscula y 1 número");
-                    finish();
+
                 }
                 else if(!passwordMatch(password.getText().toString(), password2.getText().toString())) {
                     ErrorAlert("Las contraseñas no coinciden");
-                    finish();
+
                 }else {
 
                     //Hay que crear el usuario y añadirlo a la db
@@ -67,10 +67,11 @@ public class IUregistro extends AppCompatActivity {
                             Integer.parseInt(telefono.getText().toString()));
 
                     userRepo.guardar(nuevoUser);
+                    finish();
                 }
             }
             else { ErrorAlert("El email está en uso"); }
-            finish();
+
 
         });
         hilo.start();
