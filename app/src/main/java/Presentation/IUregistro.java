@@ -4,6 +4,8 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -42,22 +44,30 @@ public class IUregistro extends AppCompatActivity {
 
     public void onClickRegistrar(View view) {
         //Comprobar que no exista un usuario con ese email, etc
-        Thread hilo = new Thread(() -> {
+        Handler handler = new Handler(Looper.getMainLooper());
+
             if(!validEmail(email.getText().toString())) {
                 ErrorAlert("El email no es válido");
             }
+            Thread hilo = new Thread(() -> {
             Usuario usuario = userRepo.getUserByEmail(email.getText().toString());
             if (usuario == null) {
                 if(!validTel(Integer.parseInt(telefono.getText().toString()))) {
-                    ErrorAlert("El teléfono no tiene 9 dígitos");
+                    handler.post(() -> {
+                        ErrorAlert("El teléfono no tiene 9 dígitos");
+                    });
 
                 }
                 else if(!validPassword(password.getText().toString())) {
-                    ErrorAlert("La contraseña debe contener al menos 8 caracteres, 1 mayúscula y 1 número");
+                    handler.post(() -> {
+                        ErrorAlert("La contraseña debe contener al menos 8 caracteres, 1 mayúscula y 1 número");
+                    });
 
                 }
                 else if(!passwordMatch(password.getText().toString(), password2.getText().toString())) {
-                    ErrorAlert("Las contraseñas no coinciden");
+                    handler.post(() -> {
+                        ErrorAlert("Las contraseñas no coinciden");
+                    });
 
                 }else {
 
@@ -70,7 +80,7 @@ public class IUregistro extends AppCompatActivity {
                     finish();
                 }
             }
-            else { ErrorAlert("El email está en uso"); }
+            else { handler.post(() -> {ErrorAlert("El email está en uso");}); }
 
 
         });
