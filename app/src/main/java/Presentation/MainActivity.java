@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
         //Comprobar datos del usuario
         Thread hilo = new Thread(() -> {
 
-            Usuario usuario = new UsuarioRepository(SingletonConnection.getSingletonInstance()).getUserByName(textUsuario.getText().toString());
+            Usuario usuario = new UsuarioRepository(SingletonConnection.getSingletonInstance()).getUserByEmail(textUsuario.getText().toString());
             if(usuario != null && usuario.getContraseña().equals(textPassword.getText().toString()))
             {
                 // Obtener un objeto SharedPreferences
