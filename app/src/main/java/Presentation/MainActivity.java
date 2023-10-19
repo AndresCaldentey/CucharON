@@ -1,24 +1,13 @@
 package Presentation;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.Context;
-import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.cucharon.R;
 import com.example.cucharon.Usuario;
-
-import java.net.URISyntaxException;
-import java.sql.Connection;
 
 import Persistencia.SingletonConnection;
 import Persistencia.UsuarioRepository;
@@ -44,7 +33,8 @@ public class MainActivity extends AppCompatActivity {
             });
             hilo.start();
 
-            Intent intent = new Intent(MainActivity.this, IUsugerencias.class);
+            //Intent intent = new Intent(MainActivity.this, IUsugerencias.class);
+            Intent intent = new Intent(MainActivity.this, Mapa.class);
             startActivity(intent);
         } else
         {
