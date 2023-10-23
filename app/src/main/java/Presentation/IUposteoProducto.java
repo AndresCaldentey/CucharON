@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -40,7 +41,7 @@ public class IUposteoProducto extends AppCompatActivity {
     EditText ingredientesEditText;
     Button posteoBtn;
     Producto producto;
-    Usuario usuarioActual;
+    public Usuario usuarioActual;
     TextView textoDireccion;
     String ubicacionSeleccionada;
 
@@ -107,19 +108,10 @@ public class IUposteoProducto extends AppCompatActivity {
     }
 
     //PROCESO CONTRARIO PARA CUANDO LO NECESITEMOS AL MOSTRAR LOS PRODUCTOS
-
-      /*private void pasarDeStringAImagen(){
-        // Supongamos que tienes la cadena Base64 almacenada en la variable "imageBase64"
-        String imageBase64 = "tu_cadena_base64"; // Reemplaza con tu cadena Base64
-
-        // Decodifica la cadena Base64 en un arreglo de bytes
-        byte[] imageBytes = Base64.decode(imageBase64, Base64.DEFAULT);
-
-        // Crea un objeto Bitmap a partir de los bytes decodificados
+    /*public void pasarStringAImagen(String img64){
+        byte[] imageBytes = Base64.decode(img64, Base64.DEFAULT);
         Bitmap decodedImage = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
-
-        // Configura el Bitmap en un ImageView (reemplaza "imageView" con tu ImageView)
-        imageView.setImageBitmap(decodedImage);
+        prueba.setImageBitmap(decodedImage);
     }*/
 
     public void clickPostearProducto(View view){
