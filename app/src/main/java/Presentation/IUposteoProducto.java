@@ -30,7 +30,7 @@ import Persistencia.SingletonConnection;
 
 public class IUposteoProducto extends AppCompatActivity {
 
-    private static final int REQUEST_IMAGE_CAPTURE=1;
+    private static final int REQUEST_IMAGE_CAPTURE= 1;
     TextView addPhotoText;
     ImageView fotoPlato;
     String imagenPlatoBase64;
@@ -44,7 +44,7 @@ public class IUposteoProducto extends AppCompatActivity {
     TextView textoDireccion;
     String ubicacionSeleccionada;
 
-    public static final int SELECCIONAR_UBICACION_REQUEST = 1;
+    public static final int SELECCIONAR_UBICACION_REQUEST = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,7 +77,7 @@ public class IUposteoProducto extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        /*
+
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             // La imagen se capturó con éxito, ahora configura la imagen en fotoPlato
             Bundle extras = data.getExtras();
@@ -89,7 +89,7 @@ public class IUposteoProducto extends AppCompatActivity {
 
             //DEBERIAMOS GUARDAR LA IMAGEN EN LA BASE DE DATOS YA
         }
-        */
+
         if (requestCode == SELECCIONAR_UBICACION_REQUEST && resultCode == RESULT_OK) {
             if (data != null) {
                 ubicacionSeleccionada = data.getStringExtra("direccion");
@@ -101,7 +101,7 @@ public class IUposteoProducto extends AppCompatActivity {
     private String imagenToString(Bitmap bitmap){
 
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 40, byteArrayOutputStream);
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 80, byteArrayOutputStream);
         byte[] byteArray = byteArrayOutputStream.toByteArray();
         return Base64.encodeToString(byteArray, Base64.DEFAULT);
     }
