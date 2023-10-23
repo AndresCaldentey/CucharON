@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static Usuario usuarioActual;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,8 +34,8 @@ public class MainActivity extends AppCompatActivity {
             });
             hilo.start();
 
-            //Intent intent = new Intent(MainActivity.this, IUsugerencias.class);
-            Intent intent = new Intent(MainActivity.this, Mapa.class);
+            Intent intent = new Intent(MainActivity.this, IUsugerencias.class);
+            //Intent intent = new Intent(MainActivity.this, Mapa.class);
             startActivity(intent);
         } else
         {
@@ -48,4 +49,8 @@ public class MainActivity extends AppCompatActivity {
     public static void setUsuarioActual(Usuario usuarioActual) {
         MainActivity.usuarioActual = usuarioActual;
     }
+
+
+
+
 }

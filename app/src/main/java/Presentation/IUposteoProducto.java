@@ -41,6 +41,10 @@ public class IUposteoProducto extends AppCompatActivity {
     Button posteoBtn;
     Producto producto;
     Usuario usuarioActual;
+    TextView textoDireccion;
+    String ubicacionSeleccionada;
+
+    public static final int SELECCIONAR_UBICACION_REQUEST = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,10 +55,11 @@ public class IUposteoProducto extends AppCompatActivity {
         addPhotoText = findViewById(R.id.addPhotoText);
         fotoPlato = findViewById(R.id.fotoPlato);
         nombreEditText = findViewById(R.id.nombreEditText);
-        descripcionEditText = findViewById(R.id.precioEditText);
+        descripcionEditText = findViewById(R.id.descripcionEditText);
         precioEditText = findViewById(R.id.precioEditText);
         ingredientesEditText = findViewById(R.id.ingredientesEditText);
         posteoBtn = findViewById(R.id.posteoBtn);
+        textoDireccion = findViewById(R.id.direccionSelecionada);
         usuarioActual = MainActivity.usuarioActual;
     }
 
@@ -72,7 +77,7 @@ public class IUposteoProducto extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
+        /*
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             // La imagen se capturó con éxito, ahora configura la imagen en fotoPlato
             Bundle extras = data.getExtras();
@@ -84,12 +89,19 @@ public class IUposteoProducto extends AppCompatActivity {
 
             //DEBERIAMOS GUARDAR LA IMAGEN EN LA BASE DE DATOS YA
         }
+        */
+        if (requestCode == SELECCIONAR_UBICACION_REQUEST && resultCode == RESULT_OK) {
+            if (data != null) {
+                ubicacionSeleccionada = data.getStringExtra("direccion");
+                textoDireccion.setText(ubicacionSeleccionada);
+            }
+        }
     }
 
     private String imagenToString(Bitmap bitmap){
 
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 40, byteArrayOutputStream);
         byte[] byteArray = byteArrayOutputStream.toByteArray();
         return Base64.encodeToString(byteArray, Base64.DEFAULT);
     }
@@ -115,31 +127,40 @@ public class IUposteoProducto extends AppCompatActivity {
         String nombre = String.valueOf(nombreEditText.getText());
         String descripcion = String.valueOf(descripcionEditText.getText());
         Double precio = Double.parseDouble(String.valueOf(precioEditText.getText()));
-        String direccion = "";//CONSEGUIR
+        //String direccion = "";//CONSEGUIR
         //INGREDIENTES?????
         String usuarioPublicador=usuarioActual.getEmail();
 
         Thread hilo = new Thread(() -> {
-        producto = new Producto(1,nombre,descripcion,precio,imagenPlatoBase64,direccion,usuarioPublicador);
+        producto = new Producto(1,nombre,descripcion,precio,imagenPlatoBase64,ubicacionSeleccionada,usuarioPublicador);
        // Producto producto1 = new Producto(1,"aa","aa",12.0,"aa","pepe","aa");
         new ProductoRepository(SingletonConnection.getSingletonInstance()).guardar(producto);
 
     });
         hilo.start();
+    }
 
+    public void irMapa(View view){
+        Intent intent = new Intent(IUposteoProducto.this, Mapa.class);
+        startActivityForResult(intent, SELECCIONAR_UBICACION_REQUEST);
+        //startActivity(intent);
 
     }
+
     public void buscarOnClick(View view) {
         Intent intent = new Intent(IUposteoProducto.this, IUbuscar.class);
         startActivity(intent);
+        finish();
     }
     public void sugerenciasOnClick(View view) {
         Intent intent = new Intent(IUposteoProducto.this, IUsugerencias.class);
         startActivity(intent);
+        finish();
     }
     public void perfilOnClick(View view) {
         Intent intent = new Intent(IUposteoProducto.this, IUperfil.class);
         startActivity(intent);
+        finish();
     }
 
 }
