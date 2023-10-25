@@ -25,14 +25,17 @@ public class IUperfil extends AppCompatActivity {
     public void buscarOnClick(View view) {
         Intent intent = new Intent(IUperfil.this, IUbuscar.class);
         startActivity(intent);
+        finish();
     }
     public void posteoProductoOnClick(View view) {
         Intent intent = new Intent(IUperfil.this, IUposteoProducto.class);
         startActivity(intent);
+        finish();
     }
     public void sugerenciasOnClick(View view) {
         Intent intent = new Intent(IUperfil.this, IUsugerencias.class);
         startActivity(intent);
+        finish();
     }
 
 

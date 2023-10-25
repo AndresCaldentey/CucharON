@@ -25,14 +25,17 @@ public class IUsugerencias extends AppCompatActivity {
     public void buscarOnClick(View view) {
         Intent intent = new Intent(IUsugerencias.this, IUbuscar.class);
         startActivity(intent);
+        finish();
     }
     public void posteoProductoOnClick(View view) {
         Intent intent = new Intent(IUsugerencias.this, IUposteoProducto.class);
         startActivity(intent);
+        finish();
     }
     public void perfilOnClick(View view) {
         Intent intent = new Intent(IUsugerencias.this, IUperfil.class);
         startActivity(intent);
+        finish();
     }
 
 

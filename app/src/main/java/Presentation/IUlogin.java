@@ -43,6 +43,7 @@ public class IUlogin extends AppCompatActivity {
     {
         Intent intent = new Intent(IUlogin.this, IUregistro.class);
         startActivity(intent);
+        finish();
     }
 
     public void clickLogin(View view)
