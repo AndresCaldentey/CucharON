@@ -29,13 +29,15 @@
             app:layout_constraintVertical_bias="0.108" />
 
         <TextView
-            android:id="@+id/textView15"
+            android:id="@+id/horarioRecogida"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="105dp"
+            android:layout_marginTop="13dp"
             android:text="Horario de recogida: "
             android:textSize="13sp"
-            tools:layout_editor_absoluteX="105dp"
-            tools:layout_editor_absoluteY="102dp" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/nombrePlato" />
 
         <View
             android:id="@+id/divider"
@@ -46,7 +48,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView15"
+            app:layout_constraintTop_toBottomOf="@+id/horarioRecogida"
             app:layout_constraintVertical_bias="0.018" />
 
         <ImageView
@@ -62,7 +64,7 @@
             app:srcCompat="@drawable/user" />
 
         <TextView
-            android:id="@+id/textView16"
+            android:id="@+id/nombreVendedor"
             android:layout_width="146dp"
             android:layout_height="19dp"
             android:layout_marginTop="43dp"
@@ -82,12 +84,12 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.716"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView16"
+            app:layout_constraintTop_toBottomOf="@+id/nombreVendedor"
             app:layout_constraintVertical_bias="0.034"
             app:srcCompat="@android:drawable/star_off" />
 
         <TextView
-            android:id="@+id/textView17"
+            android:id="@+id/textvaloracion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -96,11 +98,11 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.483"
             app:layout_constraintStart_toEndOf="@+id/imageView13"
-            app:layout_constraintTop_toBottomOf="@+id/textView16"
+            app:layout_constraintTop_toBottomOf="@+id/nombreVendedor"
             app:layout_constraintVertical_bias="0.0" />
 
         <TextView
-            android:id="@+id/textView18"
+            android:id="@+id/textPrecio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-condensed-medium"
@@ -111,7 +113,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.89"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView17"
+            app:layout_constraintTop_toBottomOf="@+id/textvaloracion"
             app:layout_constraintVertical_bias="0.893" />
 
         <TextView
@@ -134,16 +136,17 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.051"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView16"
+            app:layout_constraintTop_toBottomOf="@+id/nombreVendedor"
             app:layout_constraintVertical_bias="0.746"
             app:srcCompat="@drawable/lista" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btnReserva"
         android:layout_width="146dp"
         android:layout_height="44dp"
+        android:onClick="clickReserva"
         android:text="RESERVAR"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

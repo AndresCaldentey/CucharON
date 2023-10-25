@@ -21,6 +21,9 @@ public class IUsugerencias extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
+        Intent intent = new Intent(IUsugerencias.this, IUreserva.class);
+        startActivity(intent);
+
     }
     public void buscarOnClick(View view) {
         Intent intent = new Intent(IUsugerencias.this, IUbuscar.class);
