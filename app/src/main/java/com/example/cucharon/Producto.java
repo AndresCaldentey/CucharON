@@ -21,9 +21,9 @@ public class Producto {
     String imagen = "";
     @DatabaseField
     String direccionRecogida;
-    @DatabaseField //(foreign = true, canBeNull = false, foreignAutoRefresh = true)
+    @DatabaseField //(foreign = true/*, canBeNull = false, foreignAutoRefresh = true, /*foreignAutoCreate = true, columnName = "usuarioPublicador"*/)
     String usuarioPublicador;
-    @DatabaseField //(foreign = true, foreignAutoRefresh = true, columnName = "email")
+    @DatabaseField //(foreign = true/*, foreignAutoCreate = true, foreignAutoRefresh = true, columnName = "usuarioComprador"*/)
     String usuarioComprador;
 
     //List<Ingrediente> ingredientes;
@@ -103,7 +103,7 @@ public class Producto {
     }
 
     public void setUsuarioComprador(String usuario_comprador) {
-        this.usuarioPublicador = usuario_comprador;
+        this.usuarioComprador = usuario_comprador;
     }
 /*
     public List<Ingrediente> getIngredientes() {
