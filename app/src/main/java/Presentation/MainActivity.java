@@ -37,11 +37,13 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, IUsugerencias.class);
             //Intent intent = new Intent(MainActivity.this, Mapa.class);
             startActivity(intent);
+            finish();
         } else
         {
             //El usuario no ha iniciado sesion previamente y se va a login
             Intent intent = new Intent(MainActivity.this, IUlogin.class);
             startActivity(intent);
+            finish();
         }
 
     }
