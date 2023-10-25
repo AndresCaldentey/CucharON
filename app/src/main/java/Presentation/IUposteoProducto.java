@@ -19,7 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.ContextCompat;
 
-
+import Negocio.*;
 import com.example.cucharon.Producto;
 import com.example.cucharon.R;
 import com.example.cucharon.Usuario;
@@ -44,6 +44,7 @@ public class IUposteoProducto extends AppCompatActivity {
     public Usuario usuarioActual;
     TextView textoDireccion;
     String ubicacionSeleccionada;
+    IService service;
 
     public static final int SELECCIONAR_UBICACION_REQUEST = 2;
 
@@ -53,6 +54,7 @@ public class IUposteoProducto extends AppCompatActivity {
         setContentView(R.layout.nuevo_plato);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        service = new Servicio();
         addPhotoText = findViewById(R.id.addPhotoText);
         fotoPlato = findViewById(R.id.fotoPlato);
         nombreEditText = findViewById(R.id.nombreEditText);
@@ -86,7 +88,7 @@ public class IUposteoProducto extends AppCompatActivity {
 
             fotoPlato.setImageBitmap(imageBitmap);
             //Pasar imagen a String
-            imagenPlatoBase64 = imagenToString(imageBitmap);
+            imagenPlatoBase64 = service.imagenToString(imageBitmap);
 
             //DEBERIAMOS GUARDAR LA IMAGEN EN LA BASE DE DATOS YA
         }
@@ -99,20 +101,9 @@ public class IUposteoProducto extends AppCompatActivity {
         }
     }
 
-    private String imagenToString(Bitmap bitmap){
 
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 80, byteArrayOutputStream);
-        byte[] byteArray = byteArrayOutputStream.toByteArray();
-        return Base64.encodeToString(byteArray, Base64.DEFAULT);
-    }
 
-    //PROCESO CONTRARIO PARA CUANDO LO NECESITEMOS AL MOSTRAR LOS PRODUCTOS
-    /*public void pasarStringAImagen(String img64){
-        byte[] imageBytes = Base64.decode(img64, Base64.DEFAULT);
-        Bitmap decodedImage = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
-        prueba.setImageBitmap(decodedImage);
-    }*/
+
 
     public void clickPostearProducto(View view){
 
