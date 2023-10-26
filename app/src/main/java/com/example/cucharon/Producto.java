@@ -6,6 +6,9 @@ import com.j256.ormlite.field.ForeignCollectionField;
 import java.util.ArrayList;
 import java.util.List;
 
+import Persistencia.ProductoRepository;
+import Persistencia.SingletonConnection;
+
 @DatabaseTable
 public class Producto {
 
@@ -105,6 +108,7 @@ public class Producto {
     public void setUsuarioComprador(String usuario_comprador) {
         this.usuarioComprador = usuario_comprador;
     }
+
 /*
     public List<Ingrediente> getIngredientes() {
         return ingredientes;

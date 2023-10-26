@@ -7,6 +7,7 @@
     android:background="#93889E">
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="69dp"
         android:background="#36000000"
@@ -19,7 +20,7 @@
 
         <ImageView
             android:id="@+id/imageView5"
-            android:layout_width="135dp"
+            android:layout_width="122dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             app:srcCompat="@drawable/sugerencias_icon" />
@@ -47,5 +48,23 @@
             android:onClick="perfilOnClick"
             app:srcCompat="@drawable/user" />
     </LinearLayout>
+
+    <ScrollView
+        android:layout_width="405dp"
+        android:layout_height="663dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
+        <LinearLayout
+            android:id="@+id/sugerenciasLinearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical" />
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
