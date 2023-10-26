@@ -104,7 +104,6 @@ public class IUposteoProducto extends AppCompatActivity {
 
 
 
-
     public void clickPostearProducto(View view){
 
         String nombre = String.valueOf(nombreEditText.getText());
