@@ -54,11 +54,16 @@ public class IUsugerencias extends AppCompatActivity {
         todosLosPlatos = new ArrayList<>();
         Thread hilo = new Thread(() -> {
             todosLosPlatos = new ProductoRepository(SingletonConnection.getSingletonInstance()).obtenerTodos();
+            //Producto plato = todosLosPlatos.get(1);
             runOnUiThread(() -> { // Ejecuta las operaciones de UI en el hilo principal
                 Context context = getApplicationContext();
+                //ConstraintLayout constraintLayout = createPlato(plato, context);
+                //sugerenciasLinearLayout.addView(constraintLayout);
+                //sugerenciasLinearLayout.addView(createGap(context));
                 for (Producto plato : todosLosPlatos) {
                     ConstraintLayout constraintLayout = createPlato(plato, context);
                     sugerenciasLinearLayout.addView(constraintLayout);
+                    sugerenciasLinearLayout.addView(createGap(context));
                 }
             });
         });
@@ -66,12 +71,22 @@ public class IUsugerencias extends AppCompatActivity {
     }
 
 
+    public LinearLayout createGap(Context context){
+        LinearLayout linearLayout = new LinearLayout(context);
 
+        // Establecer los atributos del LinearLayout
+        linearLayout.setLayoutParams(new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT, // Ancho
+                80 // Alto en dp
+        ));
+        linearLayout.setOrientation(LinearLayout.HORIZONTAL);
+        return linearLayout;
+    }
     public ConstraintLayout createPlato(Producto plato, Context context) {
         ConstraintLayout constraintLayout = new ConstraintLayout(context);
         constraintLayout.setLayoutParams(new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                450
         ));
 
         constraintLayout.setBackground(ContextCompat.getDrawable(context, R.drawable.plato_sugerencias));
@@ -181,7 +196,7 @@ public class IUsugerencias extends AppCompatActivity {
         return constraintLayout;
     }
     public void buscarOnClick(View view) {
-        Intent intent = new Intent(IUsugerencias.this, IUbuscar.class);
+        Intent intent = new Intent( IUsugerencias.this, IUbuscar.class);
         startActivity(intent);
         finish();
     }
