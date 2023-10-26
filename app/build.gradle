@@ -35,7 +35,7 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.room:room-runtime:2.5.2'
     implementation 'com.google.android.gms:play-services-maps:18.2.0'
-    implementation 'com.google.android.gms:play-services-location:21.0.1'
+    implementation 'com.google.android.gms:play-services-location:17.0.0'
     implementation files('libs\\mysql-connector-java-5.1.46.jar')
     implementation files('libs\\ormlite-jdbc-6.1.jar')
     testImplementation 'junit:junit:4.13.2'
