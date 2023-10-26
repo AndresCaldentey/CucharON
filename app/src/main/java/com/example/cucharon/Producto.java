@@ -25,16 +25,19 @@ public class Producto {
     String usuarioPublicador;
     @DatabaseField //(foreign = true, foreignAutoRefresh = true, columnName = "email")
     String usuarioComprador;
+    @DatabaseField
+    String horaRecogida;
 
     //List<Ingrediente> ingredientes;
 
     public Producto(){}
 
-    public Producto(int idProducto, String nombre, String contenido, Double precio, String imagen, String direccion_recogida, String usuario_publicador) {
+    public Producto(int idProducto, String nombre, String contenido, Double precio, String horaRecogia,String imagen, String direccion_recogida, String usuario_publicador) {
         this.idProducto = idProducto;
         this.nombre = nombre;
         this.contenido = contenido;
         this.precio = precio;
+        this.horaRecogida = horaRecogia;
         this.imagen = imagen;
         this.direccionRecogida = direccion_recogida;
         this.usuarioPublicador = usuario_publicador;

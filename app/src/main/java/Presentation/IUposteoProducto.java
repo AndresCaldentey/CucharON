@@ -44,6 +44,7 @@ public class IUposteoProducto extends AppCompatActivity {
     public Usuario usuarioActual;
     TextView textoDireccion;
     String ubicacionSeleccionada;
+    TextView horaRecogidaa;
 
     public static final int SELECCIONAR_UBICACION_REQUEST = 2;
 
@@ -62,6 +63,7 @@ public class IUposteoProducto extends AppCompatActivity {
         posteoBtn = findViewById(R.id.posteoBtn);
         textoDireccion = findViewById(R.id.direccionSelecionada);
         usuarioActual = MainActivity.usuarioActual;
+        horaRecogidaa = findViewById(R.id.horaRecogida);
     }
 
     public void clickAddPhoto(View view){
@@ -119,12 +121,13 @@ public class IUposteoProducto extends AppCompatActivity {
         String nombre = String.valueOf(nombreEditText.getText());
         String descripcion = String.valueOf(descripcionEditText.getText());
         Double precio = Double.parseDouble(String.valueOf(precioEditText.getText()));
+        String hora = String.valueOf(horaRecogidaa.getText());
         //String direccion = "";//CONSEGUIR
         //INGREDIENTES?????
         String usuarioPublicador=usuarioActual.getEmail();
 
         Thread hilo = new Thread(() -> {
-        producto = new Producto(1,nombre,descripcion,precio,imagenPlatoBase64,ubicacionSeleccionada,usuarioPublicador);
+        producto = new Producto(1,nombre,descripcion,precio,hora,imagenPlatoBase64,ubicacionSeleccionada,usuarioPublicador);
        // Producto producto1 = new Producto(1,"aa","aa",12.0,"aa","pepe","aa");
         new ProductoRepository(SingletonConnection.getSingletonInstance()).guardar(producto);
 
