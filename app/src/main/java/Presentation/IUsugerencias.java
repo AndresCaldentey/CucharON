@@ -33,16 +33,16 @@ import androidx.core.content.ContextCompat;
 import java.util.ArrayList;
 import java.util.List;
 
+import Negocio.IService;
 import Negocio.Servicio;
 import Persistencia.ProductoRepository;
 import Persistencia.SingletonConnection;
 import Persistencia.UsuarioRepository;
 
 public class IUsugerencias extends AppCompatActivity {
-
     LinearLayout sugerenciasLinearLayout;
     public static List<Producto> todosLosPlatos;
-    Servicio servicio;
+    IService servicio;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +58,17 @@ public class IUsugerencias extends AppCompatActivity {
     }
 
     public void generarPlatos() {
-        todosLosPlatos = new ArrayList<>();
+        todosLosPlatos = servicio.getAllProducto();
+        Context context = getApplicationContext();
+
+        for (Producto plato : todosLosPlatos) {
+            ConstraintLayout constraintLayout = createPlato(plato, context);
+            sugerenciasLinearLayout.addView(constraintLayout);
+            sugerenciasLinearLayout.addView(createGap(context));
+        }
+
+        /*todosLosPlatos = new ArrayList<>();
+
         Thread hilo = new Thread(() -> {
             todosLosPlatos = new ProductoRepository(SingletonConnection.getSingletonInstance()).obtenerTodos();
             //Producto plato = todosLosPlatos.get(1);
@@ -74,7 +84,7 @@ public class IUsugerencias extends AppCompatActivity {
                 }
             });
         });
-        hilo.start();
+        hilo.start();*/
     }
 
 
@@ -132,11 +142,13 @@ public class IUsugerencias extends AppCompatActivity {
                 (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 60, context.getResources().getDisplayMetrics())
         ));
 
-        Thread hilo = new Thread (()->{
+        Usuario usuario = servicio.getUsuarioByEmail(plato.getUsuarioPublicador());
+        textView1.setText(usuario.getNombre());
+        /*Thread hilo = new Thread (()->{
             Usuario usuario = new UsuarioRepository(SingletonConnection.getSingletonInstance()).getUserByEmail(plato.getUsuarioPublicador());
             textView1.setText(usuario.getNombre());
         });
-        hilo.start();
+        hilo.start();*/
         constraintLayout.addView(textView1);
 
         View divider = new View(context);
@@ -233,6 +245,9 @@ public class IUsugerencias extends AppCompatActivity {
 
         return constraintLayout;
     }
+
+
+
     public void buscarOnClick(View view) {
         Intent intent = new Intent( IUsugerencias.this, IUbuscar.class);
         startActivity(intent);

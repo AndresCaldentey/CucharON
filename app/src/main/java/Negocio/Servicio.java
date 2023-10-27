@@ -15,6 +15,7 @@ import com.example.cucharon.Producto;
 import com.example.cucharon.Usuario;
 
 import java.io.ByteArrayOutputStream;
+import java.util.List;
 
 import Persistencia.ProductoRepository;
 import Persistencia.SingletonConnection;
@@ -32,6 +33,7 @@ public class Servicio implements IService{
     public void crearUsuario(Usuario user) { userRepo.guardar(user); }
     public void crearProducto(Producto producto) { productoRepo.guardar(producto); }
     public Producto getProductoById(int id) { return productoRepo.obtener(id); }
+    public List<Producto> getAllProducto() { return productoRepo.obtenerTodos(); }
     public void actualizarProducto(Producto producto) { productoRepo.actualizar(producto); }
 
 
