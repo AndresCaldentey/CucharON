@@ -11,6 +11,7 @@ import java.util.List;
 public abstract class Repository<T> {
     private static ConnectionSource connectionSource;
     private Dao<T, Integer> dao;
+    private T clase;
 
     public void init(Class myclass, ConnectionSource c) {
         try {
@@ -57,12 +58,23 @@ public abstract class Repository<T> {
         }
 
         public T obtener(int id){
+            clase = null;
+            Thread hilo = new Thread(() -> {
+                try {
+                    clase = this.getDao().queryForId(id);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            });
+            hilo.start();
+
+            //Esperar al hilo
             try {
-                return this.getDao().queryForId(id);
-            } catch (SQLException e) {
+                hilo.join();
+            } catch (InterruptedException e) {
                 e.printStackTrace();
-                return null;
             }
+            return clase;
         }
 
         public void actualizar(T t){

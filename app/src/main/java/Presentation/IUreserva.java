@@ -25,17 +25,16 @@ import com.example.cucharon.Producto;
 import com.example.cucharon.R;
 import com.example.cucharon.Usuario;
 
+import Negocio.IService;
+import Negocio.Servicio;
 import Persistencia.ProductoRepository;
 import Persistencia.SingletonConnection;
 import Persistencia.UsuarioRepository;
 
 public class IUreserva extends AppCompatActivity {
-
+    IService service;
     TextView nombrePlato, nombreVendedor, horarioRecogida, valoracion, precio;
     ImageView imagenProducto;
-    Button btnReserva;
-    ProductoRepository productoRepo;
-    Producto producto;
     Usuario usuarioActual;
 
     @Override
@@ -44,6 +43,7 @@ public class IUreserva extends AppCompatActivity {
         setContentView(R.layout.reserva);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        service = new Servicio();
 
         //productoRepo = new ProductoRepository(SingletonConnection.getSingletonInstance());
         usuarioActual = MainActivity.usuarioActual;
@@ -54,31 +54,18 @@ public class IUreserva extends AppCompatActivity {
         valoracion = findViewById(R.id.textvaloracion);
         precio = findViewById(R.id.textPrecio);
         imagenProducto = findViewById(R.id.imagenProducto);
-        btnReserva = findViewById(R.id.btnReserva);
 
-        Thread hilo = new Thread(() -> {
-            ProductoRepository pRepo = new ProductoRepository(SingletonConnection.getSingletonInstance());
-            Producto producto = pRepo.obtener(11);
+        Producto producto = service.getProductoById(11);
+        nombrePlato.setText(producto.getNombre());
+        nombreVendedor.setText(producto.getUsuarioPublicador());
+        precio.setText(producto.getPrecio() + "");
 
-            runOnUiThread(() -> {
-                nombrePlato.setText(producto.getNombre());
-                nombreVendedor.setText(producto.getUsuarioPublicador());
-                precio.setText(producto.getPrecio() + "");
-
-                byte[] imageBytes = Base64.decode(producto.getImagen(), Base64.DEFAULT);
-                Bitmap decodedImage = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
-                imagenProducto.setImageBitmap(decodedImage);
-            });
-        });
-        hilo.start();
-
+        byte[] imageBytes = Base64.decode(producto.getImagen(), Base64.DEFAULT);
+        Bitmap decodedImage = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
+        imagenProducto.setImageBitmap(decodedImage);
     }
 
-    public void clickReserva(View view)
-    {
-        //Se ha clickado el reserva
-        Alert("¿Seguro que quieres reservar?");
-    }
+    public void clickReserva(View view) { Alert("¿Seguro que quieres reservar?"); }
 
     public void Alert(String mensajeString) {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
@@ -88,13 +75,9 @@ public class IUreserva extends AppCompatActivity {
         alertDialogBuilder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Thread hilo = new Thread(() -> {
-                    ProductoRepository productoRepo2 = new ProductoRepository(SingletonConnection.getSingletonInstance());
-                    Producto producto = productoRepo2.obtener(11);
-                    producto.setUsuarioComprador("pepe");
-                    productoRepo2.actualizar(producto);
-                });
-                hilo.start();
+                Producto producto = service.getProductoById(11);
+                producto.setUsuarioComprador("pepe");
+                service.actualizarProducto(producto);
             }
         });
 

@@ -11,21 +11,28 @@ import android.util.Base64;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.cucharon.Producto;
 import com.example.cucharon.Usuario;
 
 import java.io.ByteArrayOutputStream;
 
+import Persistencia.ProductoRepository;
 import Persistencia.SingletonConnection;
 import Persistencia.UsuarioRepository;
 public class Servicio implements IService{
     private UsuarioRepository userRepo;
+    private ProductoRepository productoRepo;
     public Servicio () {
         userRepo = new UsuarioRepository(SingletonConnection.getSingletonInstance());
+        productoRepo = new ProductoRepository(SingletonConnection.getSingletonInstance());
     }
 
     //PERSISTENCIA
     public Usuario getUsuarioByEmail(String correo) { return userRepo.getUserByEmail(correo); }
     public void crearUsuario(Usuario user) { userRepo.guardar(user); }
+    public void crearProducto(Producto producto) { productoRepo.guardar(producto); }
+    public Producto getProductoById(int id) { return productoRepo.obtener(id); }
+    public void actualizarProducto(Producto producto) { productoRepo.actualizar(producto); }
 
 
     //OTRAS COSAS

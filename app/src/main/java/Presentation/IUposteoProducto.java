@@ -113,13 +113,15 @@ public class IUposteoProducto extends AppCompatActivity {
         //INGREDIENTES?????
         String usuarioPublicador=usuarioActual.getEmail();
 
-        Thread hilo = new Thread(() -> {
-        producto = new Producto(1,nombre,descripcion,precio,imagenPlatoBase64,ubicacionSeleccionada,usuarioPublicador);
-       // Producto producto1 = new Producto(1,"aa","aa",12.0,"aa","pepe","aa");
-        new ProductoRepository(SingletonConnection.getSingletonInstance()).guardar(producto);
+        Producto producto = new Producto(1,nombre,descripcion,precio,imagenPlatoBase64,ubicacionSeleccionada,usuarioPublicador);
+        service.crearProducto(producto);
+        /*Thread hilo = new Thread(() -> {
+            producto = new Producto(1,nombre,descripcion,precio,imagenPlatoBase64,ubicacionSeleccionada,usuarioPublicador);
+            // Producto producto1 = new Producto(1,"aa","aa",12.0,"aa","pepe","aa");
+            new ProductoRepository(SingletonConnection.getSingletonInstance()).guardar(producto);
 
-    });
-        hilo.start();
+        });
+        hilo.start();*/
     }
 
     public void irMapa(View view){
