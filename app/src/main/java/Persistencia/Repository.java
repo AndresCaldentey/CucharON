@@ -31,6 +31,7 @@ public abstract class Repository<T> {
         public ConnectionSource getConnectionSource() {
             return connectionSource;
         }
+
         public void guardar(T entity){
             Thread hilo = new Thread(() -> {
                 try {
@@ -63,11 +64,14 @@ public abstract class Repository<T> {
         }
 
         public void delete(int id){
-            try {
-                this.getDao().deleteById(id);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            Thread hilo = new Thread(() -> {
+                try {
+                    this.getDao().deleteById(id);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            });
+            hilo.start();
         }
 
         public T obtener(int id){
