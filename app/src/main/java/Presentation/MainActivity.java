@@ -9,33 +9,29 @@ import android.os.Bundle;
 
 import com.example.cucharon.Usuario;
 
+import Negocio.IService;
+import Negocio.Servicio;
 import Persistencia.SingletonConnection;
 import Persistencia.UsuarioRepository;
 
 
 public class MainActivity extends AppCompatActivity {
-
     public static Usuario usuarioActual;
-
+    private IService service;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        service = new Servicio();
 
         //Comprueba el token de inicio de sesion
         SharedPreferences sharedPreferences = getSharedPreferences("MiAppPref", Context.MODE_PRIVATE);
+        String correo = sharedPreferences.getString("token", "");
 
-        // Verificar si existe un token de autenticación
-        String token = sharedPreferences.getString("token", "");
-        System.out.println("El usuario " + token + " ha iniciado sesion anteriormente");
-        if (!token.isEmpty()) {
-            Thread hilo = new Thread(() -> {
-                usuarioActual = new UsuarioRepository(SingletonConnection.getSingletonInstance()).getUserByEmail(token);
-            });
-            hilo.start();
+        if (!correo.isEmpty()) {
+            service.getUsuarioByEmail(correo);
 
             Intent intent = new Intent(MainActivity.this, IUsugerencias.class);
-            //Intent intent = new Intent(MainActivity.this, Mapa.class);
             startActivity(intent);
             finish();
         } else

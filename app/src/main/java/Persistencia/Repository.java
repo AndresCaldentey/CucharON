@@ -37,16 +37,8 @@ public abstract class Repository<T> {
                 }
             });
             hilo.start();
-
-
-            /*try {
-                this.getDao().create(entity);
-                return entity;
-            } catch (SQLException e) {
-                e.printStackTrace();
-                return null;
-            }*/
         }
+
         public List<T> obtenerTodos(){
             try {
                 return this.getDao().queryForAll();
@@ -55,6 +47,7 @@ public abstract class Repository<T> {
                 return null;
             }
         }
+
         public void delete(int id){
             try {
                 this.getDao().deleteById(id);
