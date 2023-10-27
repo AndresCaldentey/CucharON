@@ -22,6 +22,13 @@ public class Servicio implements IService{
     public Servicio () {
         userRepo = new UsuarioRepository(SingletonConnection.getSingletonInstance());
     }
+
+    //PERSISTENCIA
+    public Usuario getUsuarioByEmail(String correo) { return userRepo.getUserByEmail(correo); }
+    public void crearUsuario(Usuario user) { userRepo.guardar(user); }
+
+
+    //OTRAS COSAS
     public  boolean validTel(int tel) {
         String numeroComoString = Integer.toString(tel);
         int cantidadDigitos = numeroComoString.length();

@@ -16,13 +16,15 @@ import androidx.appcompat.app.AppCompatDelegate;
 import com.example.cucharon.R;
 import com.example.cucharon.Usuario;
 
+import Negocio.IService;
+import Negocio.Servicio;
 import Persistencia.SingletonConnection;
 import Persistencia.UsuarioRepository;
 
 public class IUlogin extends AppCompatActivity {
-    Button btnLogin;
     EditText textUsuario, textPassword;
     TextView linkRegistro;
+    IService service;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,48 +32,43 @@ public class IUlogin extends AppCompatActivity {
         setContentView(R.layout.login);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        service = new Servicio();
 
-        btnLogin = findViewById(R.id.btnLogin);
         textUsuario = findViewById(R.id.editTextUsuario);
         textPassword = findViewById(R.id.editTextPassword);
         linkRegistro = findViewById(R.id.textViewRegistro);
 
     }
 
-
     public void clickRegister(View view)
     {
         Intent intent = new Intent(IUlogin.this, IUregistro.class);
         startActivity(intent);
-        finish();
     }
 
     public void clickLogin(View view)
     {
-        //Comprobar datos del usuario
-        Thread hilo = new Thread(() -> {
+        Usuario usuario = service.getUsuarioByEmail(textUsuario.getText().toString());
+        if(usuario != null && service.passwordMatch(usuario.getContraseña(), textPassword.getText().toString()) )
+        {
+            guardarToken();
 
-            Usuario usuario = new UsuarioRepository(SingletonConnection.getSingletonInstance()).getUserByEmail(textUsuario.getText().toString());
-            if(usuario != null && usuario.getContraseña().equals(textPassword.getText().toString()))
-            {
-                // Obtener un objeto SharedPreferences
-                SharedPreferences sharedPreferences = getSharedPreferences("MiAppPref", Context.MODE_PRIVATE);
-
-                // Guardar el token de autenticación
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString("token", textUsuario.getText().toString());
-                editor.apply();
-
-                MainActivity.setUsuarioActual(usuario);
-                //Actualizar usuario actual y hacer la transicion
-                Intent intent = new Intent(IUlogin.this, IUsugerencias.class);
-                startActivity(intent);
-            }
-
-
-
-        });
-        hilo.start();
-
+            //Actualizar usuario actual y hacer la transicion
+            Intent intent = new Intent(IUlogin.this, IUsugerencias.class);
+            startActivity(intent);
+            finish();
+        }
     }
+
+    private void guardarToken()
+    {
+        // Obtener un objeto SharedPreferences
+        SharedPreferences sharedPreferences = getSharedPreferences("MiAppPref", Context.MODE_PRIVATE);
+
+        // Guardar el token de autenticación
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("token", textUsuario.getText().toString());
+        editor.apply();
+    }
+
 }

@@ -28,14 +28,24 @@ public abstract class Repository<T> {
         public ConnectionSource getConnectionSource() {
             return connectionSource;
         }
-        public T guardar(T entity){
-            try {
+        public void guardar(T entity){
+            Thread hilo = new Thread(() -> {
+                try {
+                    this.getDao().create(entity);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            });
+            hilo.start();
+
+
+            /*try {
                 this.getDao().create(entity);
                 return entity;
             } catch (SQLException e) {
                 e.printStackTrace();
                 return null;
-            }
+            }*/
         }
         public List<T> obtenerTodos(){
             try {
