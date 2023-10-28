@@ -53,9 +53,11 @@ public class IUsugerencias extends AppCompatActivity {
         Context context = getApplicationContext();
 
         for (Producto plato : todosLosPlatos) {
-            ConstraintLayout constraintLayout = createPlato(plato, context);
-            sugerenciasLinearLayout.addView(constraintLayout);
-            sugerenciasLinearLayout.addView(createGap(context));
+            if(plato.getUsuarioComprador()==null){
+                ConstraintLayout constraintLayout = createPlato(plato, context);
+                sugerenciasLinearLayout.addView(constraintLayout);
+                sugerenciasLinearLayout.addView(createGap(context));
+            }
         }
 
         /*todosLosPlatos = new ArrayList<>();

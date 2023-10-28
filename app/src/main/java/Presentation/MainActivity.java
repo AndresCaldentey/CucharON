@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("MiAppPref", Context.MODE_PRIVATE);
         String correo = sharedPreferences.getString("token", "");
 
-
+        /*
         if (!correo.isEmpty()) {
             service.setLoggedUser(service.getUsuarioByEmail(correo));
             Intent intent = new Intent(MainActivity.this, IUsugerencias.class);
@@ -38,8 +38,10 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, IUlogin.class);
             startActivity(intent);
             finish();
-        }
-
+        }*/
+        Intent intent = new Intent(MainActivity.this, IUlogin.class);
+        startActivity(intent);
+        finish();
 
     }
 
