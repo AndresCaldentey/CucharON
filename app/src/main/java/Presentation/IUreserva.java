@@ -2,6 +2,7 @@ package Presentation;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -79,6 +80,8 @@ public class IUreserva extends AppCompatActivity {
                 producto.setUsuarioComprador(service.getLoggedUser().getEmail());
                 service.actualizarProducto2(producto);
                 finish();
+                Intent intent = new Intent(IUreserva.this, IUsugerencias.class);
+                startActivity(intent);
             }
         });
 

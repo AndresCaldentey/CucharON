@@ -107,7 +107,7 @@ public class Producto implements Serializable {
     }
 
     public String getUsuarioComprador() {
-        return usuarioPublicador;
+        return usuarioComprador;
     }
 
     public void setUsuarioComprador(String usuario_comprador) {

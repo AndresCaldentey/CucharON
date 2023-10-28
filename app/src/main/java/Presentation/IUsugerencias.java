@@ -53,6 +53,7 @@ public class IUsugerencias extends AppCompatActivity {
         Context context = getApplicationContext();
 
         for (Producto plato : todosLosPlatos) {
+            Usuario user = new Usuario();
             if(plato.getUsuarioComprador()==null){
                 ConstraintLayout constraintLayout = createPlato(plato, context);
                 sugerenciasLinearLayout.addView(constraintLayout);
