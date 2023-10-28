@@ -2,13 +2,9 @@ package Presentation;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,17 +13,11 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
-import androidx.core.content.ContextCompat;
 
 import Negocio.*;
 import com.example.cucharon.Producto;
 import com.example.cucharon.R;
 import com.example.cucharon.Usuario;
-
-import java.io.ByteArrayOutputStream;
-
-import Persistencia.ProductoRepository;
-import Persistencia.SingletonConnection;
 
 public class IUposteoProducto extends AppCompatActivity {
 
@@ -54,7 +44,7 @@ public class IUposteoProducto extends AppCompatActivity {
         setContentView(R.layout.nuevo_plato);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-        service = new Servicio();
+        service = Service.getService();
         addPhotoText = findViewById(R.id.addPhotoText);
         fotoPlato = findViewById(R.id.fotoPlato);
         nombreEditText = findViewById(R.id.nombreEditText);

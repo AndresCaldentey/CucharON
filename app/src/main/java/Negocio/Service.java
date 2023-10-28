@@ -9,8 +9,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Base64;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.cucharon.Producto;
 import com.example.cucharon.Usuario;
 
@@ -20,12 +18,27 @@ import java.util.List;
 import Persistencia.ProductoRepository;
 import Persistencia.SingletonConnection;
 import Persistencia.UsuarioRepository;
-public class Servicio implements IService{
+public class Service implements IService{
     private UsuarioRepository userRepo;
     private ProductoRepository productoRepo;
-    public Servicio () {
+    private static Service instancia;
+    private Usuario loggedUser;
+    public UsuarioRepository getUserRepo() { return userRepo; }
+    public void setLoggedUser(Usuario user) {
+        if(loggedUser == null) loggedUser = user;
+    }
+
+    public Usuario getLoggedUser() {
+        return loggedUser;
+    }
+
+    public Service() {
         userRepo = new UsuarioRepository(SingletonConnection.getSingletonInstance());
         productoRepo = new ProductoRepository(SingletonConnection.getSingletonInstance());
+    }
+    public static Service getService() {
+        if(instancia == null) instancia = new Service();
+        return instancia;
     }
 
     //PERSISTENCIA

@@ -10,9 +10,7 @@ import android.os.Bundle;
 import com.example.cucharon.Usuario;
 
 import Negocio.IService;
-import Negocio.Servicio;
-import Persistencia.SingletonConnection;
-import Persistencia.UsuarioRepository;
+import Negocio.Service;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -22,15 +20,14 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        service = new Servicio();
+        service = Service.getService();
 
         //Comprueba el token de inicio de sesion
         SharedPreferences sharedPreferences = getSharedPreferences("MiAppPref", Context.MODE_PRIVATE);
         String correo = sharedPreferences.getString("token", "");
 
         if (!correo.isEmpty()) {
-            service.getUsuarioByEmail(correo);
-
+            service.setLoggedUser(service.getUsuarioByEmail(correo));
             Intent intent = new Intent(MainActivity.this, IUsugerencias.class);
             startActivity(intent);
             finish();

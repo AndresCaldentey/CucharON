@@ -1,13 +1,8 @@
 package Presentation;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,8 +10,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.cucharon.R;
 import com.example.cucharon.Usuario;
 import Negocio.*;
-import Persistencia.SingletonConnection;
-import Persistencia.UsuarioRepository;
 
 public class IUregistro extends AppCompatActivity {
 
@@ -28,7 +21,7 @@ public class IUregistro extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signup);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        service = new Servicio();
+        service = Service.getService();
 
         nombre = findViewById(R.id.nombreRegistro);
         apellido = findViewById(R.id.apellidoRegistro);

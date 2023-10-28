@@ -3,11 +3,8 @@ package Presentation;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.util.Base64;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
@@ -20,24 +17,18 @@ import com.example.cucharon.R;
 import com.example.cucharon.Usuario;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.core.content.ContextCompat;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import Negocio.IService;
-import Negocio.Servicio;
-import Persistencia.ProductoRepository;
-import Persistencia.SingletonConnection;
-import Persistencia.UsuarioRepository;
+import Negocio.Service;
 
 public class IUsugerencias extends AppCompatActivity {
     LinearLayout sugerenciasLinearLayout;
@@ -51,7 +42,7 @@ public class IUsugerencias extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         sugerenciasLinearLayout = findViewById(R.id.sugerenciasLinearLayout);
-        servicio = new Servicio();
+        servicio = Service.getService();
         //Intent intent = new Intent(IUsugerencias.this, IUreserva.class);
         //startActivity(intent);
         generarPlatos();

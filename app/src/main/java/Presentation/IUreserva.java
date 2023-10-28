@@ -1,10 +1,7 @@
 package Presentation;
 
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -13,29 +10,29 @@ import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.constraintlayout.widget.ConstraintSet;
 
 import com.example.cucharon.Producto;
 import com.example.cucharon.R;
 import com.example.cucharon.Usuario;
 
-import Negocio.IService;
-import Negocio.Servicio;
 import Persistencia.ProductoRepository;
 import Persistencia.SingletonConnection;
-import Persistencia.UsuarioRepository;
+import Negocio.*;
 
 public class IUreserva extends AppCompatActivity {
-    IService service;
+
     TextView nombrePlato, nombreVendedor, horarioRecogida, valoracion, precio;
     ImageView imagenProducto;
+    Button btnReserva;
+    ProductoRepository productoRepo;
+    Producto producto;
     Usuario usuarioActual;
+    IService service;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +40,9 @@ public class IUreserva extends AppCompatActivity {
         setContentView(R.layout.reserva);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-        service = new Servicio();
+        service = Service.getService();
+        productoRepo = new ProductoRepository(SingletonConnection.getSingletonInstance());
+
 
         //productoRepo = new ProductoRepository(SingletonConnection.getSingletonInstance());
         usuarioActual = MainActivity.usuarioActual;
@@ -55,7 +54,7 @@ public class IUreserva extends AppCompatActivity {
         precio = findViewById(R.id.textPrecio);
         imagenProducto = findViewById(R.id.imagenProducto);
 
-        Producto producto = service.getProductoById(11);
+        producto = service.getProductoById(2);
         nombrePlato.setText(producto.getNombre());
         nombreVendedor.setText(producto.getUsuarioPublicador());
         precio.setText(producto.getPrecio() + "");
@@ -75,8 +74,8 @@ public class IUreserva extends AppCompatActivity {
         alertDialogBuilder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Producto producto = service.getProductoById(11);
-                producto.setUsuarioComprador("pepe");
+
+                producto.setUsuarioComprador(service.getLoggedUser().getEmail());
                 service.actualizarProducto(producto);
             }
         });

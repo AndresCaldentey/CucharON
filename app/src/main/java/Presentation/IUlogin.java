@@ -6,7 +6,6 @@ import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -17,9 +16,7 @@ import com.example.cucharon.R;
 import com.example.cucharon.Usuario;
 
 import Negocio.IService;
-import Negocio.Servicio;
-import Persistencia.SingletonConnection;
-import Persistencia.UsuarioRepository;
+import Negocio.Service;
 
 public class IUlogin extends AppCompatActivity {
     EditText textUsuario, textPassword;
@@ -32,7 +29,7 @@ public class IUlogin extends AppCompatActivity {
         setContentView(R.layout.login);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-        service = new Servicio();
+        service = Service.getService();
 
         textUsuario = findViewById(R.id.editTextUsuario);
         textPassword = findViewById(R.id.editTextPassword);
@@ -69,6 +66,8 @@ public class IUlogin extends AppCompatActivity {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("token", textUsuario.getText().toString());
         editor.apply();
+        service.setLoggedUser(service.getUsuarioByEmail(textUsuario.getText().toString()));
+
     }
 
 }
