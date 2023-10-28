@@ -18,7 +18,7 @@ public interface IService {
     void crearProducto(Producto producto);
     Producto getProductoById(int id);
     List<Producto> getAllProducto();
-    void actualizarProducto(Producto p);
+    void actualizarProducto2(Producto p);
     public Usuario loggedUser = null;
     boolean validTel(int tel);
     boolean validEmail(String email);

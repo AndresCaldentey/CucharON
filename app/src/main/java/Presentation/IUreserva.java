@@ -76,7 +76,7 @@ public class IUreserva extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
 
                 producto.setUsuarioComprador(service.getLoggedUser().getEmail());
-                service.actualizarProducto(producto);
+                service.actualizarProducto2(producto);
                 finish();
             }
         });

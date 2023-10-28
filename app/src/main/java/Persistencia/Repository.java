@@ -95,11 +95,14 @@ public abstract class Repository<T> {
         }
 
         public void actualizar(T t){
-            try {
-                this.getDao().update(t);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            Thread hilo = new Thread(() -> {
+                try {
+                    this.getDao().update(t);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            });
+            hilo.start();
         }
 
     }
