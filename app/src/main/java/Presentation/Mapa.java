@@ -18,6 +18,7 @@ import androidx.core.app.ActivityCompat;
 
 
 import com.example.cucharon.R;
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -57,7 +58,15 @@ public class Mapa extends AppCompatActivity implements OnMapReadyCallback, Googl
         this.mMap.setOnMapClickListener(this);
         this.mMap.setOnMapLongClickListener(this);
 
-        moveToCurrentLocation();
+       // moveToCurrentLocation();
+
+        float zoomLevel = 15.0f; // Puedes ajustar este valor según tus necesidades
+
+        // Crea una cámara con el nivel de zoom y la ubicación que desees
+        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(39.476802,-0.3468245), zoomLevel);
+
+        // Mueve la cámara al nivel de zoom y ubicación deseados
+        mMap.moveCamera(cameraUpdate);
 
         LatLng españa = new LatLng(39.476802,-0.3468245);
         mMap.addMarker(new MarkerOptions().position(españa).title("UPV")); // Indica la posicion en la que abres el mapa
@@ -95,7 +104,7 @@ public class Mapa extends AppCompatActivity implements OnMapReadyCallback, Googl
 
             if (lastLocation != null) {
                 LatLng currentLatLng = new LatLng(lastLocation.getLatitude(), lastLocation.getLongitude());
-                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 15));
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 50));
             }
         }
     }
