@@ -6,7 +6,6 @@ import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -16,13 +15,13 @@ import androidx.appcompat.app.AppCompatDelegate;
 import com.example.cucharon.R;
 import com.example.cucharon.Usuario;
 
-import Persistencia.SingletonConnection;
-import Persistencia.UsuarioRepository;
+import Negocio.IService;
+import Negocio.Service;
 
 public class IUlogin extends AppCompatActivity {
-    Button btnLogin;
     EditText textUsuario, textPassword;
     TextView linkRegistro;
+    IService service;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,48 +29,45 @@ public class IUlogin extends AppCompatActivity {
         setContentView(R.layout.login);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        service = Service.getService();
 
-        btnLogin = findViewById(R.id.btnLogin);
         textUsuario = findViewById(R.id.editTextUsuario);
         textPassword = findViewById(R.id.editTextPassword);
         linkRegistro = findViewById(R.id.textViewRegistro);
 
     }
 
-
     public void clickRegister(View view)
     {
         Intent intent = new Intent(IUlogin.this, IUregistro.class);
         startActivity(intent);
-        finish();
     }
 
     public void clickLogin(View view)
     {
-        //Comprobar datos del usuario
-        Thread hilo = new Thread(() -> {
+        Usuario usuario = service.getUsuarioByEmail(textUsuario.getText().toString());
+        if(usuario != null && service.passwordMatch(usuario.getContraseña(), textPassword.getText().toString()) )
+        {
+            guardarToken();
 
-            Usuario usuario = new UsuarioRepository(SingletonConnection.getSingletonInstance()).getUserByEmail(textUsuario.getText().toString());
-            if(usuario != null && usuario.getContraseña().equals(textPassword.getText().toString()))
-            {
-                // Obtener un objeto SharedPreferences
-                SharedPreferences sharedPreferences = getSharedPreferences("MiAppPref", Context.MODE_PRIVATE);
+            //Actualizar usuario actual y hacer la transicion
+            Intent intent = new Intent(IUlogin.this, IUsugerencias.class);
+            startActivity(intent);
+            finish();
+        }
+    }
 
-                // Guardar el token de autenticación
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString("token", textUsuario.getText().toString());
-                editor.apply();
+    private void guardarToken()
+    {
+        // Obtener un objeto SharedPreferences
+        SharedPreferences sharedPreferences = getSharedPreferences("MiAppPref", Context.MODE_PRIVATE);
 
-                MainActivity.setUsuarioActual(usuario);
-                //Actualizar usuario actual y hacer la transicion
-                Intent intent = new Intent(IUlogin.this, IUsugerencias.class);
-                startActivity(intent);
-            }
-
-
-
-        });
-        hilo.start();
+        // Guardar el token de autenticación
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("token", textUsuario.getText().toString());
+        editor.apply();
+        service.setLoggedUser(service.getUsuarioByEmail(textUsuario.getText().toString()));
 
     }
+
 }

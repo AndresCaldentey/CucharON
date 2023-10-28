@@ -9,19 +9,48 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Base64;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import com.example.cucharon.Producto;
 import com.example.cucharon.Usuario;
 
 import java.io.ByteArrayOutputStream;
+import java.util.List;
 
+import Persistencia.ProductoRepository;
 import Persistencia.SingletonConnection;
 import Persistencia.UsuarioRepository;
-public class Servicio implements IService{
+public class Service implements IService{
     private UsuarioRepository userRepo;
-    public Servicio () {
-        userRepo = new UsuarioRepository(SingletonConnection.getSingletonInstance());
+    private ProductoRepository productoRepo;
+    private static Service instancia;
+    private Usuario loggedUser;
+    public UsuarioRepository getUserRepo() { return userRepo; }
+    public void setLoggedUser(Usuario user) {
+        if(loggedUser == null) loggedUser = user;
     }
+
+    public Usuario getLoggedUser() {
+        return loggedUser;
+    }
+
+    public Service() {
+        userRepo = new UsuarioRepository(SingletonConnection.getSingletonInstance());
+        productoRepo = new ProductoRepository(SingletonConnection.getSingletonInstance());
+    }
+    public static Service getService() {
+        if(instancia == null) instancia = new Service();
+        return instancia;
+    }
+
+    //PERSISTENCIA
+    public Usuario getUsuarioByEmail(String correo) { return userRepo.getUserByEmail(correo); }
+    public void crearUsuario(Usuario user) { userRepo.guardar(user); }
+    public void crearProducto(Producto producto) { productoRepo.guardar(producto); }
+    public Producto getProductoById(int id) { return productoRepo.obtener(id); }
+    public List<Producto> getAllProducto() { return productoRepo.obtenerTodos(); }
+    public void actualizarProducto2(Producto p) { productoRepo.actualizar(p);}
+
+
+    //OTRAS COSAS
     public  boolean validTel(int tel) {
         String numeroComoString = Integer.toString(tel);
         int cantidadDigitos = numeroComoString.length();

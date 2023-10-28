@@ -2,6 +2,7 @@ package Presentation;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.TypedValue;
@@ -13,8 +14,9 @@ import androidx.appcompat.app.AppCompatDelegate;
 
 import com.example.cucharon.Producto;
 import com.example.cucharon.R;
+import com.example.cucharon.Usuario;
+
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -23,18 +25,15 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.core.content.ContextCompat;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import Persistencia.ProductoRepository;
-import Persistencia.SingletonConnection;
-import Persistencia.UsuarioRepository;
+import Negocio.IService;
+import Negocio.Service;
 
 public class IUsugerencias extends AppCompatActivity {
-
     LinearLayout sugerenciasLinearLayout;
     public static List<Producto> todosLosPlatos;
-
+    IService servicio;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,15 +42,26 @@ public class IUsugerencias extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         sugerenciasLinearLayout = findViewById(R.id.sugerenciasLinearLayout);
-
+        servicio = Service.getService();
         //Intent intent = new Intent(IUsugerencias.this, IUreserva.class);
         //startActivity(intent);
         generarPlatos();
-
     }
 
     public void generarPlatos() {
-        todosLosPlatos = new ArrayList<>();
+        todosLosPlatos = servicio.getAllProducto();
+        Context context = getApplicationContext();
+
+        for (Producto plato : todosLosPlatos) {
+            if(plato.getUsuarioComprador()==null){
+                ConstraintLayout constraintLayout = createPlato(plato, context);
+                sugerenciasLinearLayout.addView(constraintLayout);
+                sugerenciasLinearLayout.addView(createGap(context));
+            }
+        }
+
+        /*todosLosPlatos = new ArrayList<>();
+
         Thread hilo = new Thread(() -> {
             todosLosPlatos = new ProductoRepository(SingletonConnection.getSingletonInstance()).obtenerTodos();
             //Producto plato = todosLosPlatos.get(1);
@@ -67,7 +77,7 @@ public class IUsugerencias extends AppCompatActivity {
                 }
             });
         });
-        hilo.start();
+        hilo.start();*/
     }
 
 
@@ -82,6 +92,7 @@ public class IUsugerencias extends AppCompatActivity {
         linearLayout.setOrientation(LinearLayout.HORIZONTAL);
         return linearLayout;
     }
+
     public ConstraintLayout createPlato(Producto plato, Context context) {
         ConstraintLayout constraintLayout = new ConstraintLayout(context);
         constraintLayout.setLayoutParams(new LinearLayout.LayoutParams(
@@ -92,109 +103,154 @@ public class IUsugerencias extends AppCompatActivity {
         constraintLayout.setBackground(ContextCompat.getDrawable(context, R.drawable.plato_sugerencias));
 
 
-        ImageView imageView = new ImageView(context);
-        imageView.setId(View.generateViewId());
-        imageView.setLayoutParams(new ViewGroup.LayoutParams(
-                (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 39, context.getResources().getDisplayMetrics()),
-                (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 37, context.getResources().getDisplayMetrics())
+        ImageView imageViewUsuario = new ImageView(context);
+        imageViewUsuario.setId(View.generateViewId());
+        imageViewUsuario.setLayoutParams(new ViewGroup.LayoutParams(
+                (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 35, context.getResources().getDisplayMetrics()),
+                (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 100, context.getResources().getDisplayMetrics())
+        ));
+        imageViewUsuario.setImageResource(R.drawable.user);
+        constraintLayout.addView(imageViewUsuario);
+
+        ImageView imageViewPlato = new ImageView(context);
+        imageViewPlato.setId(View.generateViewId());
+        imageViewPlato.setLayoutParams(new ViewGroup.LayoutParams(
+                (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 300, context.getResources().getDisplayMetrics()),
+                (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 100, context.getResources().getDisplayMetrics())
         ));
 
-        imageView.setImageResource(R.drawable.dish);
-        constraintLayout.addView(imageView);
+        //Obtiene la imagen
+        Bitmap bitmap = servicio.pasarStringAImagen(plato.getImagen());
 
+        // Establece el Bitmap en el ImageView
+        imageViewPlato.setImageBitmap(bitmap);
+
+        constraintLayout.addView(imageViewPlato);
+
+        //TEXTO NOMBRE USUARIO PUBLICADOR
         TextView textView1 = new TextView(context);
         textView1.setId(View.generateViewId());
         textView1.setLayoutParams(new ViewGroup.LayoutParams(
-                (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 150, context.getResources().getDisplayMetrics()),
-                (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 19, context.getResources().getDisplayMetrics())
+                (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 100, context.getResources().getDisplayMetrics()),
+                (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 60, context.getResources().getDisplayMetrics())
         ));
-        textView1.setText(plato.getNombre());
+
+        Usuario usuario = servicio.getUsuarioByEmail(plato.getUsuarioPublicador());
+        textView1.setText(usuario.getNombre());
+        /*Thread hilo = new Thread (()->{
+            Usuario usuario = new UsuarioRepository(SingletonConnection.getSingletonInstance()).getUserByEmail(plato.getUsuarioPublicador());
+            textView1.setText(usuario.getNombre());
+        });
+        hilo.start();*/
         constraintLayout.addView(textView1);
 
         View divider = new View(context);
         divider.setId(View.generateViewId());
         divider.setLayoutParams(new ViewGroup.LayoutParams(
-                (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 332, context.getResources().getDisplayMetrics()),
-                (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 1, context.getResources().getDisplayMetrics())
+                (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 304, context.getResources().getDisplayMetrics()),
+                (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 2, context.getResources().getDisplayMetrics())
         ));
-        //divider.setBackgroundResource(android.R.attr.listDivider);
+        divider.setBackgroundColor(getResources().getColor(android.R.color.black));
         constraintLayout.addView(divider);
 
-        TextView textView2 = new TextView(context);
-        textView2.setId(View.generateViewId());
-        textView2.setLayoutParams(new ViewGroup.LayoutParams(
-                (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 165, context.getResources().getDisplayMetrics()),
-                (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 24, context.getResources().getDisplayMetrics())
+        //TEXTO NOMBRE PLATO
+        TextView textViewNombrePlato = new TextView(context);
+        textViewNombrePlato.setId(View.generateViewId());
+        textViewNombrePlato.setLayoutParams(new ViewGroup.LayoutParams(
+                (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 305, context.getResources().getDisplayMetrics()),
+                (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 80, context.getResources().getDisplayMetrics())
         ));
-        textView2.setText("TextView");
-        textView2.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
-        textView2.setGravity(Gravity.CENTER);
-        constraintLayout.addView(textView2);
 
-        TextView textView3 = new TextView(context);
-        textView3.setId(View.generateViewId());
-        textView3.setLayoutParams(new ViewGroup.LayoutParams(
-                (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 205, context.getResources().getDisplayMetrics()),
+        textViewNombrePlato.setText(plato.getNombre());
+        textViewNombrePlato.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+        textViewNombrePlato.setGravity(Gravity.CENTER);
+        constraintLayout.addView(textViewNombrePlato);
+
+        //TEXTO DIRECCION RECOGIDA
+        TextView textViewDirRecogida = new TextView(context);
+        textViewDirRecogida.setId(View.generateViewId());
+        textViewDirRecogida.setLayoutParams(new ViewGroup.LayoutParams(
+                (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 500, context.getResources().getDisplayMetrics()),
                 (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 14, context.getResources().getDisplayMetrics())
         ));
-        textView3.setText("TextView");
-        textView3.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12);
-        constraintLayout.addView(textView3);
+        textViewDirRecogida.setText(plato.getDireccionRecogida());
+        textViewDirRecogida.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12);
+        constraintLayout.addView(textViewDirRecogida);
 
-        TextView textView4 = new TextView(context);
-        textView4.setId(View.generateViewId());
-        textView4.setLayoutParams(new ViewGroup.LayoutParams(
-                ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT
+        //TEXTO PRECIO PLATO
+        TextView textViewPrecio = new TextView(context);
+        textViewPrecio.setId(View.generateViewId());
+        textViewPrecio.setLayoutParams(new ViewGroup.LayoutParams(
+                (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 100, context.getResources().getDisplayMetrics()),
+                (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 500, context.getResources().getDisplayMetrics())
         ));
-        textView4.setText("TextView");
-        textView4.setTypeface(Typeface.create("sans-serif-condensed-light", Typeface.NORMAL));
-        textView4.setTypeface(Typeface.DEFAULT_BOLD);
-        constraintLayout.addView(textView4);
+        textViewPrecio.setText(plato.getPrecio().toString()+"€");
+        textViewPrecio.setTypeface(Typeface.create("sans-serif-condensed-light", Typeface.NORMAL));
+        textViewPrecio.setTypeface(Typeface.DEFAULT_BOLD);
+        constraintLayout.addView(textViewPrecio);
 
         // Crear un ConstraintSet para configurar las restricciones
         ConstraintSet constraintSet = new ConstraintSet();
         constraintSet.clone(constraintLayout);
 
         // Restricciones para la imagen
-        constraintSet.connect(imageView.getId(), ConstraintSet.TOP, constraintLayout.getId(), ConstraintSet.TOP);
-        constraintSet.connect(imageView.getId(), ConstraintSet.BOTTOM, constraintLayout.getId(), ConstraintSet.BOTTOM);
-        constraintSet.connect(imageView.getId(), ConstraintSet.START, constraintLayout.getId(), ConstraintSet.START);
-        constraintSet.connect(imageView.getId(), ConstraintSet.END, constraintLayout.getId(), ConstraintSet.END);
+        constraintSet.connect(imageViewPlato.getId(), ConstraintSet.TOP, constraintLayout.getId(), ConstraintSet.TOP);
+        constraintSet.connect(imageViewPlato.getId(), ConstraintSet.BOTTOM, divider.getId(), ConstraintSet.BOTTOM);
+        constraintSet.connect(imageViewPlato.getId(), ConstraintSet.START, constraintLayout.getId(), ConstraintSet.START);
+        constraintSet.connect(imageViewPlato.getId(), ConstraintSet.END, constraintLayout.getId(), ConstraintSet.END);
 
-        // Restricciones para el primer TextView
+        constraintSet.connect(imageViewUsuario.getId(), ConstraintSet.TOP, constraintLayout.getId(), ConstraintSet.TOP);
+        constraintSet.connect(imageViewUsuario.getId(), ConstraintSet.BOTTOM, divider.getId(), ConstraintSet.BOTTOM);
+        constraintSet.connect(imageViewUsuario.getId(), ConstraintSet.START, constraintLayout.getId(), ConstraintSet.START);
+        constraintSet.connect(imageViewUsuario.getId(), ConstraintSet.END, constraintLayout.getId(), ConstraintSet.END);
+
+        // Restricciones para el primer TextView NOMBRE PUBLICADOR
         constraintSet.connect(textView1.getId(), ConstraintSet.TOP, constraintLayout.getId(), ConstraintSet.TOP);
         constraintSet.connect(textView1.getId(), ConstraintSet.BOTTOM, divider.getId(), ConstraintSet.TOP);
-        constraintSet.connect(textView1.getId(), ConstraintSet.START, imageView.getId(), ConstraintSet.END);
+        constraintSet.connect(textView1.getId(), ConstraintSet.START, imageViewUsuario.getId(), ConstraintSet.END);
         constraintSet.connect(textView1.getId(), ConstraintSet.END, constraintLayout.getId(), ConstraintSet.END);
 
-        constraintSet.connect(divider.getId(), ConstraintSet.TOP, textView1.getId(), ConstraintSet.BOTTOM);
-        constraintSet.connect(divider.getId(), ConstraintSet.BOTTOM, textView2.getId(), ConstraintSet.TOP);
+        constraintSet.connect(divider.getId(), ConstraintSet.TOP, textViewNombrePlato.getId(), ConstraintSet.BOTTOM);
+        constraintSet.connect(divider.getId(), ConstraintSet.BOTTOM, textViewDirRecogida.getId(), ConstraintSet.TOP);
         constraintSet.connect(divider.getId(), ConstraintSet.START, constraintLayout.getId(), ConstraintSet.START);
         constraintSet.connect(divider.getId(), ConstraintSet.END, constraintLayout.getId(), ConstraintSet.END);
 
-        // Restricciones para el segundo TextView
-        constraintSet.connect(textView2.getId(), ConstraintSet.TOP, divider.getId(), ConstraintSet.BOTTOM);
-        constraintSet.connect(textView2.getId(), ConstraintSet.BOTTOM, constraintLayout.getId(), ConstraintSet.BOTTOM);
-        constraintSet.connect(textView2.getId(), ConstraintSet.START, constraintLayout.getId(), ConstraintSet.START);
-        constraintSet.connect(textView2.getId(), ConstraintSet.END, constraintLayout.getId(), ConstraintSet.END);
+        // Restricciones para el segundo TextView NOMBRE PLATO
+        constraintSet.connect(textViewNombrePlato.getId(), ConstraintSet.TOP, constraintLayout.getId(), ConstraintSet.BOTTOM);
+        constraintSet.connect(textViewNombrePlato.getId(), ConstraintSet.BOTTOM, constraintLayout.getId(), ConstraintSet.BOTTOM);
+        constraintSet.connect(textViewNombrePlato.getId(), ConstraintSet.START, constraintLayout.getId(), ConstraintSet.START);
+        constraintSet.connect(textViewNombrePlato.getId(), ConstraintSet.END, divider.getId(), ConstraintSet.END);
 
-        // Restricciones para el tercer TextView
-        constraintSet.connect(textView3.getId(), ConstraintSet.TOP, textView2.getId(), ConstraintSet.BOTTOM);
-        constraintSet.connect(textView3.getId(), ConstraintSet.BOTTOM, constraintLayout.getId(), ConstraintSet.BOTTOM);
-        constraintSet.connect(textView3.getId(), ConstraintSet.START, constraintLayout.getId(), ConstraintSet.START);
-        constraintSet.connect(textView3.getId(), ConstraintSet.END, constraintLayout.getId(), ConstraintSet.END);
+        // Restricciones para el tercer TextView DIRECCION RECOGIDA
+        constraintSet.connect(textViewDirRecogida.getId(), ConstraintSet.TOP, textViewNombrePlato.getId(), ConstraintSet.BOTTOM);
+        constraintSet.connect(textViewDirRecogida.getId(), ConstraintSet.BOTTOM, constraintLayout.getId(), ConstraintSet.BOTTOM);
+        constraintSet.connect(textViewDirRecogida.getId(), ConstraintSet.START, constraintLayout.getId(), ConstraintSet.START);
+        constraintSet.connect(textViewDirRecogida.getId(), ConstraintSet.END, constraintLayout.getId(), ConstraintSet.END);
 
-        // Restricciones para el cuarto TextView
-        constraintSet.connect(textView4.getId(), ConstraintSet.TOP, textView2.getId(), ConstraintSet.BOTTOM);
-        constraintSet.connect(textView4.getId(), ConstraintSet.BOTTOM, constraintLayout.getId(), ConstraintSet.BOTTOM);
-        constraintSet.connect(textView4.getId(), ConstraintSet.START, constraintLayout.getId(), ConstraintSet.START);
-        constraintSet.connect(textView4.getId(), ConstraintSet.END, constraintLayout.getId(), ConstraintSet.END);
+        // Restricciones para el cuarto TextView PRECIO PLATO
+        constraintSet.connect(textViewPrecio.getId(), ConstraintSet.TOP, textViewDirRecogida.getId(), ConstraintSet.BOTTOM);
+        constraintSet.connect(textViewPrecio.getId(), ConstraintSet.BOTTOM, constraintLayout.getId(), ConstraintSet.BOTTOM);
+        constraintSet.connect(textViewPrecio.getId(), ConstraintSet.START, constraintLayout.getId(), ConstraintSet.START);
+        constraintSet.connect(textViewPrecio.getId(), ConstraintSet.END, constraintLayout.getId(), ConstraintSet.END);
 
         constraintSet.applyTo(constraintLayout);
 
+        constraintLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Aquí puedes manejar el evento de clic en el ConstraintLayout
+                IUreserva reserva = new IUreserva();
+                Intent intent = new Intent(IUsugerencias.this,IUreserva.class);
+                intent.putExtra("producto",plato);
+                startActivity(intent);
+            }
+        });
 
         return constraintLayout;
     }
+
+
+
     public void buscarOnClick(View view) {
         Intent intent = new Intent( IUsugerencias.this, IUbuscar.class);
         startActivity(intent);

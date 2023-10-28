@@ -3,6 +3,8 @@ package com.example.cucharon;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 import com.j256.ormlite.field.ForeignCollectionField;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +12,7 @@ import Persistencia.ProductoRepository;
 import Persistencia.SingletonConnection;
 
 @DatabaseTable
-public class Producto {
+public class Producto implements Serializable {
 
     @DatabaseField(generatedId = true)
     int idProducto;
