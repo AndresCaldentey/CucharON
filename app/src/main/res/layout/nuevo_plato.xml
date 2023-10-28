@@ -47,10 +47,12 @@
         app:layout_constraintVertical_bias="0.03" />
 
     <ScrollView
-        android:layout_width="313dp"
-        android:layout_height="394dp"
+        android:layout_width="318dp"
+        android:layout_height="430dp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
-        tools:layout_editor_absoluteX="57dp">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fotoPlato">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -147,7 +149,7 @@
 
                 <EditText
                     android:id="@+id/precioEditText"
-                    android:layout_width="35dp"
+                    android:layout_width="77dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
                     android:ems="10"

@@ -93,6 +93,7 @@ public class IUsugerencias extends AppCompatActivity {
         return linearLayout;
     }
 
+
     public ConstraintLayout createPlato(Producto plato, Context context) {
         ConstraintLayout constraintLayout = new ConstraintLayout(context);
         constraintLayout.setLayoutParams(new LinearLayout.LayoutParams(
@@ -101,7 +102,6 @@ public class IUsugerencias extends AppCompatActivity {
         ));
 
         constraintLayout.setBackground(ContextCompat.getDrawable(context, R.drawable.plato_sugerencias));
-
 
         ImageView imageViewUsuario = new ImageView(context);
         imageViewUsuario.setId(View.generateViewId());
