@@ -54,7 +54,7 @@ public class IUreserva extends AppCompatActivity {
         precio = findViewById(R.id.textPrecio);
         imagenProducto = findViewById(R.id.imagenProducto);
 
-        producto = service.getProductoById(2);
+        producto = service.getProductoById(1);
         nombrePlato.setText(producto.getNombre());
         nombreVendedor.setText(producto.getUsuarioPublicador());
         precio.setText(producto.getPrecio() + "");

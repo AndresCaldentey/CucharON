@@ -47,7 +47,14 @@ public class Service implements IService{
     public void crearProducto(Producto producto) { productoRepo.guardar(producto); }
     public Producto getProductoById(int id) { return productoRepo.obtener(id); }
     public List<Producto> getAllProducto() { return productoRepo.obtenerTodos(); }
-    public void actualizarProducto(Producto producto) { productoRepo.actualizar(producto); }
+    public void actualizarProducto(Producto producto) {
+        Thread miHilo = new Thread(new Runnable() {
+        public void run() {
+            productoRepo.actualizar(producto);
+        }
+    });
+
+        miHilo.start(); }
 
 
     //OTRAS COSAS
