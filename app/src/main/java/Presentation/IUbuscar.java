@@ -37,7 +37,7 @@ public class IUbuscar extends AppCompatActivity {
     public void perfilOnClick(View view) {
         Intent intent = new Intent(IUbuscar.this, IUreserva.class);
         startActivity(intent);
-        finish();
+
     }
 
 

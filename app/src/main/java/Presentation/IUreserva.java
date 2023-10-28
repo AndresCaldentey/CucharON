@@ -77,6 +77,7 @@ public class IUreserva extends AppCompatActivity {
 
                 producto.setUsuarioComprador(service.getLoggedUser().getEmail());
                 service.actualizarProducto(producto);
+                finish();
             }
         });
 
