@@ -233,6 +233,16 @@ public class IUsugerencias extends AppCompatActivity {
 
         constraintSet.applyTo(constraintLayout);
 
+        constraintLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Aquí puedes manejar el evento de clic en el ConstraintLayout
+                IUreserva reserva = new IUreserva();
+                reserva.setProducto(plato);
+                Intent intent = new Intent(IUsugerencias.this,reserva.getClass());
+                startActivity(intent);
+            }
+        });
 
         return constraintLayout;
     }

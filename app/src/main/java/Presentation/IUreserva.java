@@ -34,6 +34,7 @@ public class IUreserva extends AppCompatActivity {
     IService service;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,7 +55,7 @@ public class IUreserva extends AppCompatActivity {
         precio = findViewById(R.id.textPrecio);
         imagenProducto = findViewById(R.id.imagenProducto);
 
-        producto = service.getProductoById(1);
+        //producto = service.getProductoById(1);
         nombrePlato.setText(producto.getNombre());
         nombreVendedor.setText(producto.getUsuarioPublicador());
         precio.setText(producto.getPrecio() + "");
@@ -92,5 +93,11 @@ public class IUreserva extends AppCompatActivity {
         alertDialog.show();
     }
 
+    public Producto getProducto() {
+        return producto;
+    }
 
+    public void setProducto(Producto producto) {
+        this.producto = producto;
+    }
 }
