@@ -113,7 +113,7 @@ public class IUsugerencias extends AppCompatActivity {
         imageViewUsuario.setImageResource(R.drawable.user);
         constraintLayout.addView(imageViewUsuario);
 
-        ImageView imageViewPlato = new ImageView(context);
+        /*ImageView imageViewPlato = new ImageView(context);
         imageViewPlato.setId(View.generateViewId());
         imageViewPlato.setLayoutParams(new ViewGroup.LayoutParams(
                 (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 300, context.getResources().getDisplayMetrics()),
@@ -126,7 +126,7 @@ public class IUsugerencias extends AppCompatActivity {
         // Establece el Bitmap en el ImageView
         imageViewPlato.setImageBitmap(bitmap);
 
-        constraintLayout.addView(imageViewPlato);
+        constraintLayout.addView(imageViewPlato);*/
 
         //TEXTO NOMBRE USUARIO PUBLICADOR
         TextView textView1 = new TextView(context);
@@ -148,7 +148,7 @@ public class IUsugerencias extends AppCompatActivity {
         View divider = new View(context);
         divider.setId(View.generateViewId());
         divider.setLayoutParams(new ViewGroup.LayoutParams(
-                (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 304, context.getResources().getDisplayMetrics()),
+                (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 302, context.getResources().getDisplayMetrics()),
                 (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 2, context.getResources().getDisplayMetrics())
         ));
         divider.setBackgroundColor(getResources().getColor(android.R.color.black));
@@ -162,32 +162,36 @@ public class IUsugerencias extends AppCompatActivity {
                 (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 80, context.getResources().getDisplayMetrics())
         ));
 
-        textViewNombrePlato.setText(plato.getNombre());
+        textViewNombrePlato.setText(plato.getNombre().toUpperCase());
         textViewNombrePlato.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
-        textViewNombrePlato.setGravity(Gravity.CENTER);
+        textViewNombrePlato.setGravity(Gravity.BOTTOM | Gravity.CENTER);
         constraintLayout.addView(textViewNombrePlato);
 
         //TEXTO DIRECCION RECOGIDA
         TextView textViewDirRecogida = new TextView(context);
         textViewDirRecogida.setId(View.generateViewId());
         textViewDirRecogida.setLayoutParams(new ViewGroup.LayoutParams(
-                (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 500, context.getResources().getDisplayMetrics()),
-                (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 14, context.getResources().getDisplayMetrics())
+                (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 303, context.getResources().getDisplayMetrics()),
+                (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 40, context.getResources().getDisplayMetrics())
         ));
         textViewDirRecogida.setText(plato.getDireccionRecogida());
         textViewDirRecogida.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12);
+        textViewDirRecogida.setGravity(Gravity.CENTER_VERTICAL);
         constraintLayout.addView(textViewDirRecogida);
+
+
 
         //TEXTO PRECIO PLATO
         TextView textViewPrecio = new TextView(context);
         textViewPrecio.setId(View.generateViewId());
         textViewPrecio.setLayoutParams(new ViewGroup.LayoutParams(
-                (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 100, context.getResources().getDisplayMetrics()),
-                (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 500, context.getResources().getDisplayMetrics())
+                (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 290, context.getResources().getDisplayMetrics()),
+                (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 30, context.getResources().getDisplayMetrics())
         ));
         textViewPrecio.setText(plato.getPrecio().toString()+"€");
         textViewPrecio.setTypeface(Typeface.create("sans-serif-condensed-light", Typeface.NORMAL));
         textViewPrecio.setTypeface(Typeface.DEFAULT_BOLD);
+        textViewPrecio.setGravity(Gravity.BOTTOM | Gravity.RIGHT);
         constraintLayout.addView(textViewPrecio);
 
         // Crear un ConstraintSet para configurar las restricciones
@@ -195,10 +199,10 @@ public class IUsugerencias extends AppCompatActivity {
         constraintSet.clone(constraintLayout);
 
         // Restricciones para la imagen
-        constraintSet.connect(imageViewPlato.getId(), ConstraintSet.TOP, constraintLayout.getId(), ConstraintSet.TOP);
+        /*constraintSet.connect(imageViewPlato.getId(), ConstraintSet.TOP, constraintLayout.getId(), ConstraintSet.TOP);
         constraintSet.connect(imageViewPlato.getId(), ConstraintSet.BOTTOM, divider.getId(), ConstraintSet.BOTTOM);
         constraintSet.connect(imageViewPlato.getId(), ConstraintSet.START, constraintLayout.getId(), ConstraintSet.START);
-        constraintSet.connect(imageViewPlato.getId(), ConstraintSet.END, constraintLayout.getId(), ConstraintSet.END);
+        constraintSet.connect(imageViewPlato.getId(), ConstraintSet.END, constraintLayout.getId(), ConstraintSet.END);*/
 
         constraintSet.connect(imageViewUsuario.getId(), ConstraintSet.TOP, constraintLayout.getId(), ConstraintSet.TOP);
         constraintSet.connect(imageViewUsuario.getId(), ConstraintSet.BOTTOM, divider.getId(), ConstraintSet.BOTTOM);

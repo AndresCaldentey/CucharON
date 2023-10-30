@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#93889E">
+    android:background="#CDCBCB">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="341dp"
@@ -142,7 +142,8 @@
             app:layout_constraintVertical_bias="0.746"
             app:srcCompat="@drawable/lista" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout><![CDATA[=======
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <![CDATA[=======
             android:layout_marginStart="105dp"
             android:layout_marginTop="13dp"
             android:text="Horario de recogida: "

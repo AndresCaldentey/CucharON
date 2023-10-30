@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#93889E">
+    android:background="#DADADA">
 
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="69dp"
-        android:background="#36000000"
+        android:background="@drawable/common_google_signin_btn_icon_dark_normal_background"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -20,26 +20,26 @@
 
         <ImageView
             android:id="@+id/imageView5"
-            android:layout_width="122dp"
-            android:layout_height="wrap_content"
+            android:layout_width="84dp"
+            android:layout_height="52dp"
             android:layout_weight="1"
-            app:srcCompat="@drawable/sugerencias_icon" />
+            app:srcCompat="@drawable/lupa2" />
 
         <ImageView
             android:id="@+id/imageView7"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="67dp"
+            android:layout_height="57dp"
             android:layout_weight="1"
             android:onClick="buscarOnClick"
-            app:srcCompat="@drawable/shop_2" />
+            app:srcCompat="@drawable/mapa1" />
 
         <ImageView
             android:id="@+id/imageView6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="57dp"
+            android:layout_height="58dp"
             android:layout_weight="1"
             android:onClick="posteoProductoOnClick"
-            app:srcCompat="@drawable/dish" />
+            app:srcCompat="@drawable/plato1" />
 
         <ImageView
             android:id="@+id/imageView9"
