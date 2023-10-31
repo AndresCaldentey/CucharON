@@ -34,7 +34,8 @@ public class IUposteoProducto extends AppCompatActivity {
     Usuario usuarioActual;
     TextView textoDireccion;
     String ubicacionSeleccionada;
-    TextView horaRecogidaa;
+    TextView horaRecogida1;
+    TextView horaRecogida2;
     IService service;
 
     public static final int SELECCIONAR_UBICACION_REQUEST = 2;
@@ -54,7 +55,8 @@ public class IUposteoProducto extends AppCompatActivity {
         ingredientesEditText = findViewById(R.id.ingredientesEditText);
         posteoBtn = findViewById(R.id.posteoBtn);
         textoDireccion = findViewById(R.id.direccionSelecionada);
-        horaRecogidaa = findViewById(R.id.horaRecogida);
+        horaRecogida1 = findViewById(R.id.horaRecogida1);
+        horaRecogida2 = findViewById(R.id.horaRecogida2);
 
         Service service = Service.getService();
     }
@@ -103,11 +105,11 @@ public class IUposteoProducto extends AppCompatActivity {
         String nombre = String.valueOf(nombreEditText.getText());
         String descripcion = String.valueOf(descripcionEditText.getText());
         Double precio = Double.parseDouble(String.valueOf(precioEditText.getText()));
-        String hora = String.valueOf(horaRecogidaa.getText());
+        String hora = String.valueOf(horaRecogida1.getText() +" - " + horaRecogida2.getText());
         //String direccion = "";//CONSEGUIR
         //INGREDIENTES?????
         String usuarioPublicador=service.getLoggedUser().getEmail();
-
+        System.out.println("-----------------------------------------------"+hora);
         Producto producto = new Producto(1,nombre,descripcion,precio,hora,imagenPlatoBase64,ubicacionSeleccionada,usuarioPublicador);
         service.crearProducto(producto);
         /*Thread hilo = new Thread(() -> {
