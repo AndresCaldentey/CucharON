@@ -281,6 +281,7 @@
             android:layout_width="75dp"
             android:layout_height="56dp"
             android:layout_weight="1"
+            android:onClick="buscarOnClick"
             app:srcCompat="@drawable/mapa1" />
 
         <ImageView
