@@ -60,7 +60,8 @@ public class IUreserva extends AppCompatActivity {
         nombrePlato.setText(producto.getNombre());
         nombreVendedor.setText(producto.getUsuarioPublicador());
         precio.setText(producto.getPrecio() + "");
-        textoHora.setText(producto.getHoraRecogida());
+        horarioRecogida.setText(producto.getHoraRecogida());
+        textoHora.setText("Valoración");
 
         byte[] imageBytes = Base64.decode(producto.getImagen(), Base64.DEFAULT);
         Bitmap decodedImage = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);

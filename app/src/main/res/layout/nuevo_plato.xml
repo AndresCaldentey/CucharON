@@ -214,7 +214,7 @@
                     android:layout_weight="1"
                     android:background="@drawable/campo_texto"
                     android:ems="10"
-                    android:inputType="text"
+                    android:inputType="datetime|time"
                     android:paddingStart="10dp" />
 
             </LinearLayout>
