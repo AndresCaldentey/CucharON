@@ -26,7 +26,7 @@ import Negocio.*;
 
 public class IUreserva extends AppCompatActivity {
 
-    TextView nombrePlato, nombreVendedor, horarioRecogida, valoracion, precio;
+    TextView nombrePlato, nombreVendedor, horarioRecogida, valoracion, precio, textoHora;
     ImageView imagenProducto;
     Button btnReserva;
     ProductoRepository productoRepo;
@@ -48,11 +48,11 @@ public class IUreserva extends AppCompatActivity {
 
         //productoRepo = new ProductoRepository(SingletonConnection.getSingletonInstance());
         usuarioActual = MainActivity.usuarioActual;
-
+        //-------------Cambie valoracion por la hora!!!!-----------------(Volver a poner la valoracion)
         nombrePlato = findViewById(R.id.nombrePlato);
         nombreVendedor = findViewById(R.id.nombreVendedor);
         horarioRecogida = findViewById(R.id.horarioRecogida);
-        valoracion = findViewById(R.id.textvaloracion);
+        textoHora = findViewById(R.id.textoHora);
         precio = findViewById(R.id.textPrecio);
         imagenProducto = findViewById(R.id.imagenProducto);
         producto = (Producto) getIntent().getSerializableExtra("producto");
@@ -60,6 +60,7 @@ public class IUreserva extends AppCompatActivity {
         nombrePlato.setText(producto.getNombre());
         nombreVendedor.setText(producto.getUsuarioPublicador());
         precio.setText(producto.getPrecio() + "");
+        textoHora.setText(producto.getHoraRecogida());
 
         byte[] imageBytes = Base64.decode(producto.getImagen(), Base64.DEFAULT);
         Bitmap decodedImage = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
