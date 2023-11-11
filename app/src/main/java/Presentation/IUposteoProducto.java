@@ -207,16 +207,14 @@ public class IUposteoProducto extends AppCompatActivity {
     }
 
     public void añadirCategoriasPrincipalOnClick(View view){
-        popupCategorias.setVisibility(View.VISIBLE);
         categoriasProducto.clear();
+        popupCategorias.setVisibility(View.VISIBLE);
         mostrarCategoriasEnPopup();
-
 
     }
 
     public void añadirCategoriasPopupOnClick(View view){
         int count = linearLayoutCategorias.getChildCount();
-
         for (int i = 0; i < count; i++) {
             View child = linearLayoutCategorias.getChildAt(i);
             // Verificar si el primer hijo es un CheckBox
@@ -247,6 +245,7 @@ public class IUposteoProducto extends AppCompatActivity {
     }
 
     public void mostrarCategoriasEnPrincipal(){
+        linLayCategoriasSeleccionadas.removeAllViews();
         Context context = getApplicationContext();
         for (Categoria categoria : categoriasProducto) {
            mostrarCategoriaSeleccionada(categoria,context);
