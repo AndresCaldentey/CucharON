@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -37,6 +38,9 @@ public class IUposteoProducto extends AppCompatActivity {
     Button posteoBtn;
     Button addBtn;
     Button subsBtn;
+    Button añadirCategoriasBtnPopup;
+    Button añadirCategoriasBtnPrincipal;
+    RelativeLayout popupCategorias;
     Producto producto;
     Usuario usuarioActual;
     TextView textoDireccion;
@@ -63,6 +67,10 @@ public class IUposteoProducto extends AppCompatActivity {
         cantidadPlatosEditText = findViewById(R.id.cantidadEditText);
         ingredientesEditText = findViewById(R.id.ingredientesEditText);
         horaPreparacionEditText = findViewById(R.id.horaPreparacionEditText);
+        popupCategorias = findViewById(R.id.categoriasPopup);
+        añadirCategoriasBtnPopup = findViewById(R.id.añadirCategoriasBtn);
+        añadirCategoriasBtnPrincipal = findViewById(R.id.buttonAñadirCategorias);
+        //popupCategorias.setVisibility(View.INVISIBLE);
         posteoBtn = findViewById(R.id.posteoBtn);
         addBtn = findViewById(R.id.btnAdd);
         subsBtn = findViewById(R.id.btnSubs);
@@ -179,6 +187,14 @@ public class IUposteoProducto extends AppCompatActivity {
         numRacionesActuales--;
         cantidadPlatosEditText.setText(""+numRacionesActuales);
         }
+    }
+
+    public void añadirCategoriasPrincipalOnClick(View view){
+        popupCategorias.setVisibility(View.VISIBLE);
+    }
+
+    public void añadirCategoriasPopupOnClick(View view){
+        popupCategorias.setVisibility(View.INVISIBLE);
     }
 
     public void buscarOnClick(View view) {
