@@ -19,6 +19,9 @@ import com.example.cucharon.Producto;
 import com.example.cucharon.R;
 import com.example.cucharon.Usuario;
 
+import java.time.LocalDate;
+import java.util.Date;
+
 public class IUposteoProducto extends AppCompatActivity {
 
     private static final int REQUEST_IMAGE_CAPTURE= 1;
@@ -30,6 +33,7 @@ public class IUposteoProducto extends AppCompatActivity {
     EditText precioEditText;
     EditText ingredientesEditText;
     EditText cantidadPlatosEditText;
+    EditText horaPreparacionEditText;
     Button posteoBtn;
     Button addBtn;
     Button subsBtn;
@@ -58,6 +62,7 @@ public class IUposteoProducto extends AppCompatActivity {
         precioEditText = findViewById(R.id.precioEditText);
         cantidadPlatosEditText = findViewById(R.id.cantidadEditText);
         ingredientesEditText = findViewById(R.id.ingredientesEditText);
+        horaPreparacionEditText = findViewById(R.id.horaPreparacionEditText);
         posteoBtn = findViewById(R.id.posteoBtn);
         addBtn = findViewById(R.id.btnAdd);
         subsBtn = findViewById(R.id.btnSubs);
@@ -115,6 +120,7 @@ public class IUposteoProducto extends AppCompatActivity {
         String precioStr = String.valueOf(precioEditText.getText());
         String hora1 = String.valueOf(horaRecogida1.getText());
         String hora2 = String.valueOf(horaRecogida2.getText());
+        String horaPreparacion = String.valueOf(horaPreparacionEditText.getText());
         String raciones = String.valueOf(cantidadPlatosEditText.getText());
         if(nombre.isEmpty() ){
             service.ErrorAlert("El producto ha de tener un nombre", this);
@@ -126,6 +132,10 @@ public class IUposteoProducto extends AppCompatActivity {
             service.ErrorAlert("El numero de raciones ha de ser entero", this);
         }else if(!service.validPrecio(precioStr)){
             service.ErrorAlert("El precio ha de ser un numero positivo y los decimales se han de indicar con un punto", this);
+        }else if ( horaPreparacion.isEmpty()) {
+            service.ErrorAlert("Se ha de especificar la hora de preparación", this);
+        }else if(!service.validTime(horaPreparacion)){
+            service.ErrorAlert("Asegúrese de que la hora de preparación es correcta y tiene el formato HH:mm", this);
         }else if ( hora1.isEmpty()) {
             service.ErrorAlert("Se ha de especificar la franja temprana de la hora de recogida", this);
         }else if(!service.validTime(hora1)){
@@ -144,7 +154,7 @@ public class IUposteoProducto extends AppCompatActivity {
         }else{
             // Resto del código para crear y guardar el producto
             String usuarioPublicador = service.getLoggedUser().getEmail();
-            Producto producto = new Producto(1,nombre,descripcion,Double.parseDouble(precioStr),hora1+" - "+hora2,imagenPlatoBase64,ubicacionSeleccionada,numRacionesActuales,usuarioPublicador);
+            Producto producto = new Producto(1,nombre,descripcion,Double.parseDouble(precioStr),hora1+" - "+hora2,horaPreparacion,imagenPlatoBase64,ubicacionSeleccionada,numRacionesActuales, new Date(),usuarioPublicador);
             service.crearProducto(producto);
         }
 

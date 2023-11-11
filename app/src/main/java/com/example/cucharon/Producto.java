@@ -5,7 +5,9 @@ import com.j256.ormlite.table.DatabaseTable;
 import com.j256.ormlite.field.ForeignCollectionField;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import Persistencia.ProductoRepository;
@@ -32,23 +34,28 @@ public class Producto implements Serializable {
     String usuarioComprador;
     @DatabaseField
     String horaRecogida;
-
+    @DatabaseField
+    String horaPreparacion;
     @DatabaseField
     int numRaciones;
+    @DatabaseField
+    Date diaPreparacion;
 
     //List<Ingrediente> ingredientes;
 
     public Producto(){}
 
-    public Producto(int idProducto, String nombre, String contenido, Double precio, String horaRecogia,String imagen, String direccion_recogida,int numRaciones, String usuario_publicador) {
+    public Producto(int idProducto, String nombre, String contenido, Double precio, String horaRecogida,String horaPreparacion,String imagen, String direccion_recogida,int numRaciones, Date diaPreparacion,String usuario_publicador) {
         this.idProducto = idProducto;
         this.nombre = nombre;
         this.contenido = contenido;
         this.precio = precio;
-        this.horaRecogida = horaRecogia;
+        this.horaRecogida = horaRecogida;
         this.imagen = imagen;
         this.direccionRecogida = direccion_recogida;
+        this.horaPreparacion = horaPreparacion;
         this.numRaciones = numRaciones;
+        this.diaPreparacion = diaPreparacion;
         this.usuarioPublicador = usuario_publicador;
         this.usuarioComprador = null;
        // ingredientes = new ArrayList<>();
@@ -132,6 +139,14 @@ public class Producto implements Serializable {
 
     public void setNumRaciones(int numRaciones) {
         this.numRaciones = numRaciones;
+    }
+
+    public String getHoraPreparacion() {
+        return horaPreparacion;
+    }
+
+    public void setHoraPreparacion(String horaPreparacion) {
+        this.horaPreparacion = horaPreparacion;
     }
     /*
     public List<Ingrediente> getIngredientes() {

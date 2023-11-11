@@ -213,7 +213,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="22dp"
                 android:gravity="center"
-                android:orientation="horizontal"></LinearLayout>
+                android:orientation="horizontal">
+
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -241,46 +243,96 @@
 
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/TextoHora"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Hora de recogida: (hh:mm)" />
-
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="66dp"
+                android:layout_height="65dp"
+                android:layout_marginBottom="15dp"
                 android:gravity="center"
                 android:orientation="horizontal">
 
-                <EditText
-                    android:id="@+id/horaRecogida1"
-                    android:layout_width="136dp"
-                    android:layout_height="36dp"
-                    android:background="@drawable/campo_texto"
-                    android:ems="10"
-                    android:gravity="center"
-                    android:inputType="time" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/textView15"
-                    android:layout_width="269dp"
+                    <TextView
+                        android:id="@+id/textView16"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="15dp"
+                        android:layout_weight="1"
+                        android:text="Hora de preparación: (hh:mm)"
+                        android:textSize="15sp" />
+
+                    <EditText
+                        android:id="@+id/horaPreparacionEditText"
+                        android:layout_width="154dp"
+                        android:layout_height="36dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/campo_texto"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:inputType="time" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="-"
-                    android:textSize="34sp" />
+                    android:orientation="vertical">
 
-                <EditText
-                    android:id="@+id/horaRecogida2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="39dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/campo_texto"
-                    android:ems="10"
-                    android:inputType="time"
-                    android:paddingStart="10dp" />
+                    <TextView
+                        android:id="@+id/TextoHora"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Hora de recogida: (hh:mm)"
+                        android:textSize="15sp" />
 
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="66dp"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <EditText
+                            android:id="@+id/horaRecogida1"
+                            android:layout_width="154dp"
+                            android:layout_height="36dp"
+                            android:background="@drawable/campo_texto"
+                            android:ems="10"
+                            android:gravity="center"
+                            android:inputType="time" />
+
+                        <TextView
+                            android:id="@+id/textView15"
+                            android:layout_width="269dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="-"
+                            android:textSize="34sp" />
+
+                        <EditText
+                            android:id="@+id/horaRecogida2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="39dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/campo_texto"
+                            android:ems="10"
+                            android:inputType="time"
+                            android:paddingStart="10dp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
             </LinearLayout>
 
             <TextView
