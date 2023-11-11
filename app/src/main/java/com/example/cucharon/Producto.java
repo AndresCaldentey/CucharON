@@ -33,11 +33,14 @@ public class Producto implements Serializable {
     @DatabaseField
     String horaRecogida;
 
+    @DatabaseField
+    int numRaciones;
+
     //List<Ingrediente> ingredientes;
 
     public Producto(){}
 
-    public Producto(int idProducto, String nombre, String contenido, Double precio, String horaRecogia,String imagen, String direccion_recogida, String usuario_publicador) {
+    public Producto(int idProducto, String nombre, String contenido, Double precio, String horaRecogia,String imagen, String direccion_recogida,int numRaciones, String usuario_publicador) {
         this.idProducto = idProducto;
         this.nombre = nombre;
         this.contenido = contenido;
@@ -45,6 +48,7 @@ public class Producto implements Serializable {
         this.horaRecogida = horaRecogia;
         this.imagen = imagen;
         this.direccionRecogida = direccion_recogida;
+        this.numRaciones = numRaciones;
         this.usuarioPublicador = usuario_publicador;
         this.usuarioComprador = null;
        // ingredientes = new ArrayList<>();
@@ -121,7 +125,15 @@ public class Producto implements Serializable {
     public void setHoraRecogida(String horaRecogida) {
         this.horaRecogida = horaRecogida;
     }
-/*
+
+    public int getNumRaciones() {
+        return numRaciones;
+    }
+
+    public void setNumRaciones(int numRaciones) {
+        this.numRaciones = numRaciones;
+    }
+    /*
     public List<Ingrediente> getIngredientes() {
         return ingredientes;
     }

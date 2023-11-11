@@ -116,6 +116,14 @@ public class Service implements IService{
             return false; // Si hay una excepción, las horas no están en el formato esperado
         }
     }
+    public boolean validRaciones(String raciones){
+        try {
+            int racionesInt = Integer.parseInt(raciones);
+            return racionesInt >= 0; // El número de raciones debe ser un entero no negativo
+        } catch (NumberFormatException e) {
+            return false; // Si hay una excepción, la cadena no representa un número entero válido
+        }
+    }
 
     public void ErrorAlert(String errorString, Context contexto) {
         AlertDialog.Builder alert = new AlertDialog.Builder(contexto);

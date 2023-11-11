@@ -115,12 +115,15 @@ public class IUposteoProducto extends AppCompatActivity {
         String precioStr = String.valueOf(precioEditText.getText());
         String hora1 = String.valueOf(horaRecogida1.getText());
         String hora2 = String.valueOf(horaRecogida2.getText());
+        String raciones = String.valueOf(cantidadPlatosEditText.getText());
         if(nombre.isEmpty() ){
             service.ErrorAlert("El producto ha de tener un nombre", this);
         }else if(ubicacionSeleccionada==null){
             service.ErrorAlert("Se ha de especificar una dirección de recogida", this);
         } else if (precioStr.isEmpty()) {
             service.ErrorAlert("El producto ha de tener un precio", this);
+        }else if(!service.validRaciones(raciones)){
+            service.ErrorAlert("El numero de raciones ha de ser entero", this);
         }else if(!service.validPrecio(precioStr)){
             service.ErrorAlert("El precio ha de ser un numero positivo y los decimales se han de indicar con un punto", this);
         }else if ( hora1.isEmpty()) {
@@ -141,7 +144,7 @@ public class IUposteoProducto extends AppCompatActivity {
         }else{
             // Resto del código para crear y guardar el producto
             String usuarioPublicador = service.getLoggedUser().getEmail();
-            Producto producto = new Producto(1,nombre,descripcion,Double.parseDouble(precioStr),hora1+" - "+hora2,imagenPlatoBase64,ubicacionSeleccionada,usuarioPublicador);
+            Producto producto = new Producto(1,nombre,descripcion,Double.parseDouble(precioStr),hora1+" - "+hora2,imagenPlatoBase64,ubicacionSeleccionada,numRacionesActuales,usuarioPublicador);
             service.crearProducto(producto);
         }
 

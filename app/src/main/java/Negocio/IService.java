@@ -28,6 +28,7 @@ public interface IService {
     boolean validTime(String hora);
     boolean validPrecio(String precio);
     boolean validTimeRange(String hora1, String hora2);
+    boolean validRaciones(String raciones);
     void ErrorAlert(String errorString, Context contexto);
     String imagenToString(Bitmap bitmap);
     Bitmap pasarStringAImagen(String img64);
