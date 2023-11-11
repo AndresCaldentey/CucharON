@@ -24,6 +24,10 @@ public interface IService {
     boolean validEmail(String email);
     boolean validPassword(String password);
     boolean passwordMatch(String password1, String password2);
+    boolean existeEnPlato(String campo);
+    boolean validTime(String hora);
+    boolean validPrecio(String precio);
+    boolean validTimeRange();
     void ErrorAlert(String errorString, Context contexto);
     String imagenToString(Bitmap bitmap);
     Bitmap pasarStringAImagen(String img64);

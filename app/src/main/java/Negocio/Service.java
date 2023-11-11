@@ -13,6 +13,9 @@ import com.example.cucharon.Producto;
 import com.example.cucharon.Usuario;
 
 import java.io.ByteArrayOutputStream;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import Persistencia.ProductoRepository;
@@ -74,8 +77,35 @@ public class Service implements IService{
         return password.matches(".*\\d.*") && password.chars().anyMatch(Character::isUpperCase) &&
                 password.length() >= 8;
     }
-
     public boolean passwordMatch(String password1, String password2) { return password1.equals(password2); }
+
+    public boolean existeEnPlato(String campo){
+        return campo != "";
+    }
+    public boolean validTime(String hora){
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+        sdf.setLenient(false); // No permitir valores inválidos (por ejemplo, 25:70 sería inválido)
+
+        try {
+            // Intentar parsear la cadena a un objeto Date
+            Date parsedDate = sdf.parse(hora);
+            return true; // Si no se lanza una excepción, la hora es válida
+        } catch (ParseException e) {
+            return false; // Si se lanza una excepción, la hora es inválida
+        }
+    }
+    public boolean validPrecio(String precio){
+        try {
+            double parsedPrecio = Double.parseDouble(precio);
+            return parsedPrecio > 0; // El precio debe ser un número positivo
+        } catch (NumberFormatException e) {
+            return false; // Si hay una excepción, la cadena no representa un número válido
+        }
+    }
+    public boolean validTimeRange() {
+        return false;
+    }
+
     public void ErrorAlert(String errorString, Context contexto) {
         AlertDialog.Builder alert = new AlertDialog.Builder(contexto);
         alert.setMessage(errorString)

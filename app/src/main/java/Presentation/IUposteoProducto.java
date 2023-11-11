@@ -1,5 +1,6 @@
 package Presentation;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
@@ -11,6 +12,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
@@ -94,29 +96,37 @@ public class IUposteoProducto extends AppCompatActivity {
         }
     }
 
-
-
-
-
-    public void clickPostearProducto(View view){
-
+    public void clickPostearProducto(View view) {
+        // Obtener los valores de los campos
         String nombre = String.valueOf(nombreEditText.getText());
         String descripcion = String.valueOf(descripcionEditText.getText());
-        Double precio = Double.parseDouble(String.valueOf(precioEditText.getText()));
+        String precioStr = String.valueOf(precioEditText.getText());
         String hora = String.valueOf(horaRecogidaa.getText());
-        //String direccion = "";//CONSEGUIR
-        //INGREDIENTES?????
-        String usuarioPublicador=service.getLoggedUser().getEmail();
 
-        Producto producto = new Producto(1,nombre,descripcion,precio,hora,imagenPlatoBase64,ubicacionSeleccionada,usuarioPublicador);
-        service.crearProducto(producto);
-        /*Thread hilo = new Thread(() -> {
-            producto = new Producto(1,nombre,descripcion,precio,imagenPlatoBase64,ubicacionSeleccionada,usuarioPublicador);
-            // Producto producto1 = new Producto(1,"aa","aa",12.0,"aa","pepe","aa");
-            new ProductoRepository(SingletonConnection.getSingletonInstance()).guardar(producto);
+        if(nombre.isEmpty() ){
+            service.ErrorAlert("El producto ha de tener un nombre", this);
+        }else if(ubicacionSeleccionada==null){
+            service.ErrorAlert("Se ha de especificar una dirección de recogida", this);
+        } else if (precioStr.isEmpty()) {
+            service.ErrorAlert("El producto ha de tener un precio", this);
+        }else if(!service.validPrecio(precioStr)){
+            service.ErrorAlert("El precio ha de ser un numero positivo y los decimales se han de indicar con un punto", this);
+        }else if(descripcion.isEmpty()){
+            service.ErrorAlert("El producto ha de tener una descripción", this);
+        }else if ( hora.isEmpty()) {
+            service.ErrorAlert("Se ha de especificar la hora de recogida", this);
+        }else if(!service.validTime(hora)){
+            service.ErrorAlert("Asegúrese de que la hora introducida es correcta y tiene el formato HH:mm", this);
+        }else if(imagenPlatoBase64 == null){
+            service.ErrorAlert("Haga una foto al producto", this);
 
-        });
-        hilo.start();*/
+        }else{
+            // Resto del código para crear y guardar el producto
+            String usuarioPublicador = service.getLoggedUser().getEmail();
+            Producto producto = new Producto(1,nombre,descripcion,Double.parseDouble(precioStr),hora,imagenPlatoBase64,ubicacionSeleccionada,usuarioPublicador);
+            service.crearProducto(producto);
+        }
+
     }
 
     public void irMapa(View view){
