@@ -102,8 +102,19 @@ public class Service implements IService{
             return false; // Si hay una excepción, la cadena no representa un número válido
         }
     }
-    public boolean validTimeRange() {
-        return false;
+    public boolean validTimeRange(String hora1, String hora2) {
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+            sdf.setLenient(false);
+
+            Date parsedHora1 = sdf.parse(hora1);
+            Date parsedHora2 = sdf.parse(hora2);
+
+            // Verificar que hora1 sea menor que hora2
+            return parsedHora1.before(parsedHora2);
+        } catch (ParseException e) {
+            return false; // Si hay una excepción, las horas no están en el formato esperado
+        }
     }
 
     public void ErrorAlert(String errorString, Context contexto) {

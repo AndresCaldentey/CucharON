@@ -105,8 +105,8 @@ public class IUposteoProducto extends AppCompatActivity {
         String nombre = String.valueOf(nombreEditText.getText());
         String descripcion = String.valueOf(descripcionEditText.getText());
         String precioStr = String.valueOf(precioEditText.getText());
-        String hora = String.valueOf(horaRecogida1.getText());
-
+        String hora1 = String.valueOf(horaRecogida1.getText());
+        String hora2 = String.valueOf(horaRecogida2.getText());
         if(nombre.isEmpty() ){
             service.ErrorAlert("El producto ha de tener un nombre", this);
         }else if(ubicacionSeleccionada==null){
@@ -115,19 +115,25 @@ public class IUposteoProducto extends AppCompatActivity {
             service.ErrorAlert("El producto ha de tener un precio", this);
         }else if(!service.validPrecio(precioStr)){
             service.ErrorAlert("El precio ha de ser un numero positivo y los decimales se han de indicar con un punto", this);
+        }else if ( hora1.isEmpty()) {
+            service.ErrorAlert("Se ha de especificar la franja temprana de la hora de recogida", this);
+        }else if(!service.validTime(hora1)){
+            service.ErrorAlert("Asegúrese de que la hora de la franja temprana introducida es correcta y tiene el formato HH:mm", this);
+        }else if ( hora2.isEmpty()) {
+            service.ErrorAlert("Se ha de especificar la franja tardía de la hora de recogida", this);
+        }else if(!service.validTime(hora2)){
+            service.ErrorAlert("Asegúrese de que la hora de la franja tardía introducida es correcta y tiene el formato HH:mm", this);
+        }else if(!service.validTimeRange(hora1,hora2)){
+            service.ErrorAlert("La franja superior horaria ha de ser mayor que la inferior", this);
         }else if(descripcion.isEmpty()){
             service.ErrorAlert("El producto ha de tener una descripción", this);
-        }else if ( hora.isEmpty()) {
-            service.ErrorAlert("Se ha de especificar la hora de recogida", this);
-        }else if(!service.validTime(hora)){
-            service.ErrorAlert("Asegúrese de que la hora introducida es correcta y tiene el formato HH:mm", this);
         }else if(imagenPlatoBase64 == null){
             service.ErrorAlert("Haga una foto al producto", this);
 
         }else{
             // Resto del código para crear y guardar el producto
             String usuarioPublicador = service.getLoggedUser().getEmail();
-            Producto producto = new Producto(1,nombre,descripcion,Double.parseDouble(precioStr),hora,imagenPlatoBase64,ubicacionSeleccionada,usuarioPublicador);
+            Producto producto = new Producto(1,nombre,descripcion,Double.parseDouble(precioStr),hora1+" - "+hora2,imagenPlatoBase64,ubicacionSeleccionada,usuarioPublicador);
             service.crearProducto(producto);
         }
 

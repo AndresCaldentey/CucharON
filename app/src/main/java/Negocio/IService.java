@@ -27,7 +27,7 @@ public interface IService {
     boolean existeEnPlato(String campo);
     boolean validTime(String hora);
     boolean validPrecio(String precio);
-    boolean validTimeRange();
+    boolean validTimeRange(String hora1, String hora2);
     void ErrorAlert(String errorString, Context contexto);
     String imagenToString(Bitmap bitmap);
     Bitmap pasarStringAImagen(String img64);
