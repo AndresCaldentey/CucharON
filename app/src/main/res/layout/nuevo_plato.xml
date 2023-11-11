@@ -190,7 +190,7 @@
                 android:orientation="horizontal">
 
                 <EditText
-                    android:id="@+id/horaRecogida"
+                    android:id="@+id/horaRecogida1"
                     android:layout_width="136dp"
                     android:layout_height="36dp"
                     android:background="@drawable/campo_texto"
@@ -208,13 +208,13 @@
                     android:textSize="34sp" />
 
                 <EditText
-                    android:id="@+id/editTextText"
+                    android:id="@+id/horaRecogida2"
                     android:layout_width="wrap_content"
                     android:layout_height="39dp"
                     android:layout_weight="1"
                     android:background="@drawable/campo_texto"
                     android:ems="10"
-                    android:inputType="text"
+                    android:inputType="datetime|time"
                     android:paddingStart="10dp" />
 
             </LinearLayout>

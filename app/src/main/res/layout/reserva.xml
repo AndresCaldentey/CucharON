@@ -91,7 +91,7 @@
             app:srcCompat="@android:drawable/star_off" />
 
         <TextView
-            android:id="@+id/textvaloracion"
+            android:id="@+id/textoHora"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -115,7 +115,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.89"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textvaloracion"
+            app:layout_constraintTop_toBottomOf="@+id/textoHora"
             app:layout_constraintVertical_bias="0.893" />
 
         <TextView

@@ -114,6 +114,13 @@ public class Producto implements Serializable {
         this.usuarioComprador = usuario_comprador;
     }
 
+    public String getHoraRecogida() {
+        return horaRecogida;
+    }
+
+    public void setHoraRecogida(String horaRecogida) {
+        this.horaRecogida = horaRecogida;
+    }
 /*
     public List<Ingrediente> getIngredientes() {
         return ingredientes;

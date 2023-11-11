@@ -1,6 +1,5 @@
 package Presentation;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
@@ -12,7 +11,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
@@ -36,7 +34,8 @@ public class IUposteoProducto extends AppCompatActivity {
     Usuario usuarioActual;
     TextView textoDireccion;
     String ubicacionSeleccionada;
-    TextView horaRecogidaa;
+    TextView horaRecogida1;
+    TextView horaRecogida2;
     IService service;
 
     public static final int SELECCIONAR_UBICACION_REQUEST = 2;
@@ -56,7 +55,8 @@ public class IUposteoProducto extends AppCompatActivity {
         ingredientesEditText = findViewById(R.id.ingredientesEditText);
         posteoBtn = findViewById(R.id.posteoBtn);
         textoDireccion = findViewById(R.id.direccionSelecionada);
-        horaRecogidaa = findViewById(R.id.horaRecogida);
+        horaRecogida1 = findViewById(R.id.horaRecogida1);
+        horaRecogida2 = findViewById(R.id.horaRecogida2);
 
         Service service = Service.getService();
     }
@@ -96,12 +96,16 @@ public class IUposteoProducto extends AppCompatActivity {
         }
     }
 
-    public void clickPostearProducto(View view) {
-        // Obtener los valores de los campos
+
+
+
+
+    public void clickPostearProducto(View view){
+
         String nombre = String.valueOf(nombreEditText.getText());
         String descripcion = String.valueOf(descripcionEditText.getText());
         String precioStr = String.valueOf(precioEditText.getText());
-        String hora = String.valueOf(horaRecogidaa.getText());
+        String hora = String.valueOf(horaRecogida1.getText());
 
         if(nombre.isEmpty() ){
             service.ErrorAlert("El producto ha de tener un nombre", this);
@@ -126,6 +130,7 @@ public class IUposteoProducto extends AppCompatActivity {
             Producto producto = new Producto(1,nombre,descripcion,Double.parseDouble(precioStr),hora,imagenPlatoBase64,ubicacionSeleccionada,usuarioPublicador);
             service.crearProducto(producto);
         }
+
 
     }
 
