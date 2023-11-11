@@ -1,27 +1,36 @@
 package Presentation;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import Negocio.*;
+
+import com.example.cucharon.Categoria;
 import com.example.cucharon.Producto;
 import com.example.cucharon.R;
 import com.example.cucharon.Usuario;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class IUposteoProducto extends AppCompatActivity {
 
@@ -41,6 +50,7 @@ public class IUposteoProducto extends AppCompatActivity {
     Button añadirCategoriasBtnPopup;
     Button añadirCategoriasBtnPrincipal;
     RelativeLayout popupCategorias;
+    LinearLayout linearLayoutCategorias;
     Producto producto;
     Usuario usuarioActual;
     TextView textoDireccion;
@@ -49,7 +59,10 @@ public class IUposteoProducto extends AppCompatActivity {
     TextView horaRecogida2;
     IService service;
     int numRacionesActuales;
-
+    List<Categoria> categoriasProducto;
+    public static List<Categoria> todasLasCategorias;
+    public List<Integer> indexesCategorias;
+    LinearLayout linLayCategoriasSeleccionadas;
     public static final int SELECCIONAR_UBICACION_REQUEST = 2;
 
     @Override
@@ -70,6 +83,8 @@ public class IUposteoProducto extends AppCompatActivity {
         popupCategorias = findViewById(R.id.categoriasPopup);
         añadirCategoriasBtnPopup = findViewById(R.id.añadirCategoriasBtn);
         añadirCategoriasBtnPrincipal = findViewById(R.id.buttonAñadirCategorias);
+        linearLayoutCategorias = findViewById(R.id.linLayoutCategorias);
+        linLayCategoriasSeleccionadas = findViewById(R.id.linearLayCategoriasPrincipal);
         //popupCategorias.setVisibility(View.INVISIBLE);
         posteoBtn = findViewById(R.id.posteoBtn);
         addBtn = findViewById(R.id.btnAdd);
@@ -78,6 +93,8 @@ public class IUposteoProducto extends AppCompatActivity {
         horaRecogida1 = findViewById(R.id.horaRecogida1);
         horaRecogida2 = findViewById(R.id.horaRecogida2);
         numRacionesActuales = 1;
+        categoriasProducto = new ArrayList<>();
+        indexesCategorias = new ArrayList<>();
 
         Service service = Service.getService();
     }
@@ -191,10 +208,63 @@ public class IUposteoProducto extends AppCompatActivity {
 
     public void añadirCategoriasPrincipalOnClick(View view){
         popupCategorias.setVisibility(View.VISIBLE);
+        categoriasProducto.clear();
+        mostrarCategoriasEnPopup();
+
+
     }
 
     public void añadirCategoriasPopupOnClick(View view){
+        int count = linearLayoutCategorias.getChildCount();
+
+        for (int i = 0; i < count; i++) {
+            View child = linearLayoutCategorias.getChildAt(i);
+            // Verificar si el primer hijo es un CheckBox
+            if (child instanceof CheckBox) {
+                CheckBox checkBox = (CheckBox) child;
+                // Ahora puedes verificar si el CheckBox está seleccionado
+                if (checkBox.isChecked()) {
+                    indexesCategorias.add(i);
+
+                    categoriasProducto.add(todasLasCategorias.get(i));
+                    System.out.print("---------------------"+categoriasProducto.size()+"-----------------------");
+                }
+            }
+        }
         popupCategorias.setVisibility(View.INVISIBLE);
+        System.out.print("---------------------"+categoriasProducto+"-----------------------");
+        mostrarCategoriasEnPrincipal();
+
+    }
+
+    public void mostrarCategoriasEnPopup(){
+        todasLasCategorias = service.getAllCategorias();
+        Context context = getApplicationContext();
+
+        for (Categoria categoria : todasLasCategorias) {
+            crearCategoria(categoria,context);
+        }
+    }
+
+    public void mostrarCategoriasEnPrincipal(){
+        Context context = getApplicationContext();
+        for (Categoria categoria : categoriasProducto) {
+           mostrarCategoriaSeleccionada(categoria,context);
+        }
+    }
+    public void mostrarCategoriaSeleccionada(Categoria categoria, Context context){
+        Button categoriaSeleccionadaBtn = new Button(context);
+        categoriaSeleccionadaBtn.setText(categoria.getNombre());
+        linLayCategoriasSeleccionadas.addView(categoriaSeleccionadaBtn);
+    }
+
+    public void crearCategoria(Categoria categoria,Context context){
+
+        CheckBox categoriaCheckBox = new CheckBox(context);
+        categoriaCheckBox.setText(categoria.getNombre());
+
+        linearLayoutCategorias.addView(categoriaCheckBox);
+
     }
 
     public void buscarOnClick(View view) {

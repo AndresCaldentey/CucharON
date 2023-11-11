@@ -3,6 +3,7 @@ package Negocio;
 import android.content.Context;
 import android.graphics.Bitmap;
 
+import com.example.cucharon.Categoria;
 import com.example.cucharon.Producto;
 import com.example.cucharon.Usuario;
 
@@ -17,7 +18,9 @@ public interface IService {
     void crearUsuario(Usuario user);
     void crearProducto(Producto producto);
     Producto getProductoById(int id);
+    public Categoria getCategoriaByName(String nombre);
     List<Producto> getAllProducto();
+    public List<Categoria> getAllCategorias();
     void actualizarProducto2(Producto p);
     public Usuario loggedUser = null;
     boolean validTel(int tel);

@@ -9,6 +9,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Base64;
 
+import com.example.cucharon.Categoria;
 import com.example.cucharon.Producto;
 import com.example.cucharon.Usuario;
 
@@ -18,12 +19,14 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import Persistencia.CategoriaRepository;
 import Persistencia.ProductoRepository;
 import Persistencia.SingletonConnection;
 import Persistencia.UsuarioRepository;
 public class Service implements IService{
     private UsuarioRepository userRepo;
     private ProductoRepository productoRepo;
+    private CategoriaRepository categoriaRepo;
     private static Service instancia;
     private Usuario loggedUser;
     public UsuarioRepository getUserRepo() { return userRepo; }
@@ -38,6 +41,7 @@ public class Service implements IService{
     public Service() {
         userRepo = new UsuarioRepository(SingletonConnection.getSingletonInstance());
         productoRepo = new ProductoRepository(SingletonConnection.getSingletonInstance());
+        categoriaRepo = new CategoriaRepository(SingletonConnection.getSingletonInstance());
     }
     public static Service getService() {
         if(instancia == null) instancia = new Service();
@@ -49,7 +53,9 @@ public class Service implements IService{
     public void crearUsuario(Usuario user) { userRepo.guardar(user); }
     public void crearProducto(Producto producto) { productoRepo.guardar(producto); }
     public Producto getProductoById(int id) { return productoRepo.obtener(id); }
+    public Categoria getCategoriaByName(String nombre) { return categoriaRepo.getCategoriaByName(nombre); }
     public List<Producto> getAllProducto() { return productoRepo.obtenerTodos(); }
+    public List<Categoria> getAllCategorias() {return categoriaRepo.obtenerTodos();}
     public void actualizarProducto2(Producto p) { productoRepo.actualizar(p);}
 
 
