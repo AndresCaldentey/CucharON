@@ -61,7 +61,6 @@ public class IUposteoProducto extends AppCompatActivity {
     int numRacionesActuales;
     List<Categoria> categoriasProducto;
     public static List<Categoria> todasLasCategorias;
-    public List<Integer> indexesCategorias;
     LinearLayout linLayCategoriasSeleccionadas;
     public static final int SELECCIONAR_UBICACION_REQUEST = 2;
 
@@ -94,7 +93,6 @@ public class IUposteoProducto extends AppCompatActivity {
         horaRecogida2 = findViewById(R.id.horaRecogida2);
         numRacionesActuales = 1;
         categoriasProducto = new ArrayList<>();
-        indexesCategorias = new ArrayList<>();
 
         Service service = Service.getService();
     }
@@ -222,8 +220,6 @@ public class IUposteoProducto extends AppCompatActivity {
                 CheckBox checkBox = (CheckBox) child;
                 // Ahora puedes verificar si el CheckBox está seleccionado
                 if (checkBox.isChecked()) {
-                    indexesCategorias.add(i);
-
                     categoriasProducto.add(todasLasCategorias.get(i));
                     System.out.print("---------------------"+categoriasProducto.size()+"-----------------------");
                 }
