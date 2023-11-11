@@ -29,7 +29,10 @@ public class IUposteoProducto extends AppCompatActivity {
     EditText descripcionEditText;
     EditText precioEditText;
     EditText ingredientesEditText;
+    EditText cantidadPlatosEditText;
     Button posteoBtn;
+    Button addBtn;
+    Button subsBtn;
     Producto producto;
     Usuario usuarioActual;
     TextView textoDireccion;
@@ -37,6 +40,7 @@ public class IUposteoProducto extends AppCompatActivity {
     TextView horaRecogida1;
     TextView horaRecogida2;
     IService service;
+    int numRacionesActuales;
 
     public static final int SELECCIONAR_UBICACION_REQUEST = 2;
 
@@ -52,11 +56,15 @@ public class IUposteoProducto extends AppCompatActivity {
         nombreEditText = findViewById(R.id.nombreEditText);
         descripcionEditText = findViewById(R.id.descripcionEditText);
         precioEditText = findViewById(R.id.precioEditText);
+        cantidadPlatosEditText = findViewById(R.id.cantidadEditText);
         ingredientesEditText = findViewById(R.id.ingredientesEditText);
         posteoBtn = findViewById(R.id.posteoBtn);
+        addBtn = findViewById(R.id.btnAdd);
+        subsBtn = findViewById(R.id.btnSubs);
         textoDireccion = findViewById(R.id.direccionSelecionada);
         horaRecogida1 = findViewById(R.id.horaRecogida1);
         horaRecogida2 = findViewById(R.id.horaRecogida2);
+        numRacionesActuales = 1;
 
         Service service = Service.getService();
     }
@@ -145,6 +153,19 @@ public class IUposteoProducto extends AppCompatActivity {
         startActivityForResult(intent, SELECCIONAR_UBICACION_REQUEST);
         //startActivity(intent);
 
+    }
+
+    public void sumarRacionPlato(View view){
+        numRacionesActuales = Integer.parseInt(cantidadPlatosEditText.getText().toString());
+        numRacionesActuales++;
+        cantidadPlatosEditText.setText(""+numRacionesActuales);
+    }
+    public void restarRacionPlato(View view){
+        numRacionesActuales = Integer.parseInt(cantidadPlatosEditText.getText().toString());
+        if(numRacionesActuales>1){
+        numRacionesActuales--;
+        cantidadPlatosEditText.setText(""+numRacionesActuales);
+        }
     }
 
     public void buscarOnClick(View view) {
