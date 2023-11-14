@@ -11,6 +11,7 @@ import android.util.Base64;
 
 import com.example.cucharon.Categoria;
 import com.example.cucharon.Producto;
+import com.example.cucharon.ProductoCategoria;
 import com.example.cucharon.Usuario;
 
 import java.io.ByteArrayOutputStream;
@@ -20,6 +21,7 @@ import java.util.Date;
 import java.util.List;
 
 import Persistencia.CategoriaRepository;
+import Persistencia.ProductoCategoriaRepository;
 import Persistencia.ProductoRepository;
 import Persistencia.SingletonConnection;
 import Persistencia.UsuarioRepository;
@@ -27,6 +29,7 @@ public class Service implements IService{
     private UsuarioRepository userRepo;
     private ProductoRepository productoRepo;
     private CategoriaRepository categoriaRepo;
+    private ProductoCategoriaRepository productoCategoriaRepo;
     private static Service instancia;
     private Usuario loggedUser;
     public UsuarioRepository getUserRepo() { return userRepo; }
@@ -42,6 +45,7 @@ public class Service implements IService{
         userRepo = new UsuarioRepository(SingletonConnection.getSingletonInstance());
         productoRepo = new ProductoRepository(SingletonConnection.getSingletonInstance());
         categoriaRepo = new CategoriaRepository(SingletonConnection.getSingletonInstance());
+        productoCategoriaRepo = new ProductoCategoriaRepository(SingletonConnection.getSingletonInstance());
     }
     public static Service getService() {
         if(instancia == null) instancia = new Service();
@@ -51,12 +55,13 @@ public class Service implements IService{
     //PERSISTENCIA
     public Usuario getUsuarioByEmail(String correo) { return userRepo.getUserByEmail(correo); }
     public void crearUsuario(Usuario user) { userRepo.guardar(user); }
-    public void crearProducto(Producto producto) { productoRepo.guardar(producto); }
+    public void crearProducto(Producto producto) { productoRepo.guardar2(producto); }
     public Producto getProductoById(int id) { return productoRepo.obtener(id); }
     public Categoria getCategoriaByName(String nombre) { return categoriaRepo.getCategoriaByName(nombre); }
     public List<Producto> getAllProducto() { return productoRepo.obtenerTodos(); }
     public List<Categoria> getAllCategorias() {return categoriaRepo.obtenerTodos();}
     public void actualizarProducto2(Producto p) { productoRepo.actualizar(p);}
+    public void guardarProductoCategoria(ProductoCategoria productoCategoria){productoCategoriaRepo.guardar(productoCategoria);}
 
 
     //OTRAS COSAS

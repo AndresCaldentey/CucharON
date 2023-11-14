@@ -32,7 +32,7 @@ public abstract class Repository<T> {
             return connectionSource;
         }
 
-        public void guardar(T entity){
+        public void guardar(T entity) {
             Thread hilo = new Thread(() -> {
                 try {
                     this.getDao().create(entity);
@@ -41,6 +41,24 @@ public abstract class Repository<T> {
                 }
             });
             hilo.start();
+        }
+
+        public void guardar2(T entity){
+            Thread hilo = new Thread(() -> {
+                try {
+                    this.getDao().create(entity);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            });
+            hilo.start();
+
+            //Esperar al hilo
+            try {
+                hilo.join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
 
         public List<T> obtenerTodos(){

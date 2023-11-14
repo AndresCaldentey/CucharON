@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 
 import com.example.cucharon.Categoria;
 import com.example.cucharon.Producto;
+import com.example.cucharon.ProductoCategoria;
 import com.example.cucharon.Usuario;
 
 import java.util.List;
@@ -38,4 +39,5 @@ public interface IService {
     void setLoggedUser(Usuario user);
     Usuario getLoggedUser();
     UsuarioRepository getUserRepo();
+    void guardarProductoCategoria(ProductoCategoria productoCategoria);
 }

@@ -24,9 +24,11 @@ import Negocio.*;
 
 import com.example.cucharon.Categoria;
 import com.example.cucharon.Producto;
+import com.example.cucharon.ProductoCategoria;
 import com.example.cucharon.R;
 import com.example.cucharon.Usuario;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
@@ -178,7 +180,18 @@ public class IUposteoProducto extends AppCompatActivity {
             // Resto del código para crear y guardar el producto
             String usuarioPublicador = service.getLoggedUser().getEmail();
             Producto producto = new Producto(1,nombre,descripcion,Double.parseDouble(precioStr),hora1+" - "+hora2,horaPreparacion,imagenPlatoBase64,ubicacionSeleccionada,numRacionesActuales, new Date(),usuarioPublicador);
+           // Producto prueba  = new Producto(0,"prueba","prueba",12.5,"01:00 - 02:00", "12:00", "imagen", "prueba", 2, new Date(), usuarioPublicador);
             service.crearProducto(producto);
+
+        Producto productoPosteado =  service.getProductoById(producto.getIdProducto());
+
+        for(Categoria categoria :  categoriasProducto){
+            ProductoCategoria productoCategoria = new ProductoCategoria(productoPosteado.getIdProducto(), categoria.getNombre());
+            service.guardarProductoCategoria(productoCategoria);
+
+        }
+
+
         }
 
 
