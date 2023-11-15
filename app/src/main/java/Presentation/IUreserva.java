@@ -58,7 +58,7 @@ public class IUreserva extends AppCompatActivity {
         producto = (Producto) getIntent().getSerializableExtra("producto");
         //producto = service.getProductoById(1);
         nombrePlato.setText(producto.getNombre());
-        nombreVendedor.setText(producto.getUsuarioPublicador());
+        nombreVendedor.setText(producto.getUsuarioPublicador().getNombre());
         precio.setText(producto.getPrecio() + "");
         horarioRecogida.setText(producto.getHoraRecogida());
         textoHora.setText("Valoración");
@@ -79,7 +79,7 @@ public class IUreserva extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
-                producto.setUsuarioComprador(service.getLoggedUser().getEmail());
+                producto.setUsuarioComprador(service.getLoggedUser());
                 service.actualizarProducto2(producto);
                 finish();
                 Intent intent = new Intent(IUreserva.this, IUsugerencias.class);

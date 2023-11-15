@@ -136,13 +136,9 @@ public class IUsugerencias extends AppCompatActivity {
                 (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 60, context.getResources().getDisplayMetrics())
         ));
 
-        Usuario usuario = servicio.getUsuarioByEmail(plato.getUsuarioPublicador());
+        Usuario usuario = plato.getUsuarioPublicador();
         textView1.setText(usuario.getNombre());
-        /*Thread hilo = new Thread (()->{
-            Usuario usuario = new UsuarioRepository(SingletonConnection.getSingletonInstance()).getUserByEmail(plato.getUsuarioPublicador());
-            textView1.setText(usuario.getNombre());
-        });
-        hilo.start();*/
+
         constraintLayout.addView(textView1);
 
         View divider = new View(context);

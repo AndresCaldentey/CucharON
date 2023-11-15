@@ -28,10 +28,10 @@ public class Producto implements Serializable {
     String imagen = "";
     @DatabaseField
     String direccionRecogida;
-    @DatabaseField //(foreign = true/*, canBeNull = false, foreignAutoRefresh = true, /*foreignAutoCreate = true, columnName = "usuarioPublicador"*/)
-    String usuarioPublicador;
-    @DatabaseField //(foreign = true/*, foreignAutoCreate = true, foreignAutoRefresh = true, columnName = "usuarioComprador"*/)
-    String usuarioComprador;
+    @DatabaseField(foreign = true, foreignAutoCreate = true, foreignAutoRefresh = true, columnName = "usuarioPublicador")
+    Usuario usuarioPublicador;
+    @DatabaseField (foreign = true, foreignAutoCreate = true, foreignAutoRefresh = true, columnName = "usuarioComprador")
+    Usuario usuarioComprador;
     @DatabaseField
     String horaRecogida;
     @DatabaseField
@@ -45,7 +45,8 @@ public class Producto implements Serializable {
 
     public Producto(){}
 
-    public Producto(int idProducto, String nombre, String contenido, Double precio, String horaRecogida,String horaPreparacion,String imagen, String direccion_recogida,int numRaciones, Date diaPreparacion,String usuario_publicador) {
+    public Producto(int idProducto, String nombre, String contenido, Double precio, String horaRecogida,String horaPreparacion,
+                    String imagen, String direccion_recogida,int numRaciones, Date diaPreparacion, Usuario usuario_publicador) {
         this.idProducto = idProducto;
         this.nombre = nombre;
         this.contenido = contenido;
@@ -109,19 +110,19 @@ public class Producto implements Serializable {
         this.direccionRecogida = direccion_recogida;
     }
 
-    public String getUsuarioPublicador() {
+    public Usuario getUsuarioPublicador() {
         return usuarioPublicador;
     }
 
-    public void setUsuarioPublicador(String usuario_publicador) {
+    public void setUsuarioPublicador(Usuario usuario_publicador) {
         this.usuarioPublicador = usuario_publicador;
     }
 
-    public String getUsuarioComprador() {
+    public Usuario getUsuarioComprador() {
         return usuarioComprador;
     }
 
-    public void setUsuarioComprador(String usuario_comprador) {
+    public void setUsuarioComprador(Usuario usuario_comprador) {
         this.usuarioComprador = usuario_comprador;
     }
 

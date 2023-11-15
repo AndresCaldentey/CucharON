@@ -11,18 +11,16 @@ public class Receta {
     String nombre;
     @DatabaseField
     String descripcion;
-
     @DatabaseField
     String imagen;
-
     @DatabaseField
     String instrucciones;
-    @DatabaseField (foreign = true, foreignAutoRefresh = true, columnName = "email")
-    String usuario_chef;
+    @DatabaseField (foreign = true, foreignAutoCreate = true, foreignAutoRefresh = true, columnName = "usuario_chef")
+    Usuario usuario_chef;
 
     public Receta(){}
 
-    public Receta(int id_receta, String nombre, String descripcion, String imagen, String instrucciones, String usuario_chef) {
+    public Receta(int id_receta, String nombre, String descripcion, String imagen, String instrucciones, Usuario usuario_chef) {
         this.id_receta = id_receta;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -71,11 +69,11 @@ public class Receta {
         this.instrucciones = instrucciones;
     }
 
-    public String getUsuario_chef() {
+    public Usuario getUsuario_chef() {
         return usuario_chef;
     }
 
-    public void setUsuario_chef(String usuario_chef) {
+    public void setUsuario_chef(Usuario usuario_chef) {
         this.usuario_chef = usuario_chef;
     }
 }

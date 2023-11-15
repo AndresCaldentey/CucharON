@@ -5,30 +5,32 @@ import com.j256.ormlite.table.DatabaseTable;
 
 @DatabaseTable
 public class ProductoIngrediente {
-    @DatabaseField(id = true,foreign = true, foreignAutoRefresh = true, columnName = "idProducto")
-    int idProducto;
-    @DatabaseField(id = true,foreign = true, foreignAutoRefresh = true, columnName = "nombre")
-    String nombre_ingrediente;
+    @DatabaseField(generatedId = true)
+    private int id;
+    @DatabaseField(foreign = true, foreignAutoCreate = true, foreignAutoRefresh = true, columnName = "producto")
+    Producto producto;
+    @DatabaseField(foreign = true, foreignAutoCreate = true, foreignAutoRefresh = true, columnName = "ingrediente")
+    Ingrediente ingrediente;
 
     public ProductoIngrediente(){}
-    public ProductoIngrediente(int idProducto, String nombre_ingrediente) {
-        this.idProducto = idProducto;
-        this.nombre_ingrediente = nombre_ingrediente;
+    public ProductoIngrediente(Producto producto, Ingrediente ingrediente) {
+        this.producto = producto;
+        this.ingrediente = ingrediente;
     }
 
-    public int getIdProducto() {
-        return idProducto;
+    public Producto getProducto() {
+        return producto;
     }
 
-    public void setIdProducto(int idProducto) {
-        this.idProducto = idProducto;
+    public void setProducto(Producto producto) {
+        this.producto = producto;
     }
 
-    public String getNombre_ingrediente() {
-        return nombre_ingrediente;
+    public Ingrediente getIngrediente() {
+        return ingrediente;
     }
 
-    public void setNombre_ingrediente(String nombre_ingrediente) {
-        this.nombre_ingrediente = nombre_ingrediente;
+    public void setIngrediente(Ingrediente ingrediente) {
+        this.ingrediente = ingrediente;
     }
 }

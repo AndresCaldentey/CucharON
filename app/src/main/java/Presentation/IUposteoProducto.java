@@ -178,20 +178,17 @@ public class IUposteoProducto extends AppCompatActivity {
 
         }else{
             // Resto del código para crear y guardar el producto
-            String usuarioPublicador = service.getLoggedUser().getEmail();
-            Producto producto = new Producto(1,nombre,descripcion,Double.parseDouble(precioStr),hora1+" - "+hora2,horaPreparacion,imagenPlatoBase64,ubicacionSeleccionada,numRacionesActuales, new Date(),usuarioPublicador);
-           // Producto prueba  = new Producto(0,"prueba","prueba",12.5,"01:00 - 02:00", "12:00", "imagen", "prueba", 2, new Date(), usuarioPublicador);
+            Producto producto = new Producto(1,nombre,descripcion,Double.parseDouble(precioStr),
+                    hora1+" - "+hora2,horaPreparacion,imagenPlatoBase64,ubicacionSeleccionada,numRacionesActuales,
+                    new Date(), service.getLoggedUser());
             service.crearProducto(producto);
 
-        Producto productoPosteado =  service.getProductoById(producto.getIdProducto());
+            Producto productoPosteado =  service.getProductoById(producto.getIdProducto());
 
-        for(Categoria categoria :  categoriasProducto){
-            ProductoCategoria productoCategoria = new ProductoCategoria(productoPosteado, categoria);
-            service.guardarProductoCategoria(productoCategoria);
-
-        }
-
-
+            for(Categoria categoria :  categoriasProducto){
+                ProductoCategoria productoCategoria = new ProductoCategoria(productoPosteado, categoria);
+                service.guardarProductoCategoria(productoCategoria);
+            }
         }
 
 

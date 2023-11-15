@@ -11,13 +11,13 @@ public class Opinion {
     String comentario;
     @DatabaseField
     int valoracion;
-    @DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = "email")
-    String usuarioOrigen;
-    @DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = "email")
-    String usuarioDestino;
+    @DatabaseField(foreign = true, foreignAutoCreate = true, foreignAutoRefresh = true, columnName = "usuario_origen")
+    Usuario usuarioOrigen;
+    @DatabaseField(foreign = true, foreignAutoCreate = true, foreignAutoRefresh = true, columnName = "usuario_destino")
+    Usuario usuarioDestino;
 
     public Opinion(){}
-    public Opinion(int id_opinion, String comentario, int valoracion, String usuarioOrigen, String usuarioDestino) {
+    public Opinion(int id_opinion, String comentario, int valoracion, Usuario usuarioOrigen, Usuario usuarioDestino) {
         this.id_opinion = id_opinion;
         this.comentario = comentario;
         this.valoracion = valoracion;
@@ -49,19 +49,19 @@ public class Opinion {
         this.valoracion = valoracion;
     }
 
-    public String getUsuarioOrigen() {
+    public Usuario getUsuarioOrigen() {
         return usuarioOrigen;
     }
 
-    public void setUsuarioOrigen(String usuarioOrigen) {
+    public void setUsuarioOrigen(Usuario usuarioOrigen) {
         this.usuarioOrigen = usuarioOrigen;
     }
 
-    public String getUsuarioDestino() {
+    public Usuario getUsuarioDestino() {
         return usuarioDestino;
     }
 
-    public void setUsuarioDestino(String usuarioDestino) {
+    public void setUsuarioDestino(Usuario usuarioDestino) {
         this.usuarioDestino = usuarioDestino;
     }
 }
