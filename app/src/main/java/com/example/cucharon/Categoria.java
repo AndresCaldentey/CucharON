@@ -7,7 +7,6 @@ import com.j256.ormlite.table.DatabaseTable;
 public class Categoria {
     @DatabaseField(id = true)
     private String nombre;
-
     @DatabaseField
     private String descripcion;
 

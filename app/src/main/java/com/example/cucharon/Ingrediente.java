@@ -5,11 +5,10 @@ import com.j256.ormlite.table.DatabaseTable;
 
 @DatabaseTable
 public class Ingrediente {
-
     @DatabaseField(id = true)
-    String nombre;
+    private String nombre;
     @DatabaseField
-    String cantidad;
+    private String cantidad;
 
     public Ingrediente(){}
 

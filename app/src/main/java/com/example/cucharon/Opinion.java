@@ -6,15 +6,15 @@ import com.j256.ormlite.table.DatabaseTable;
 @DatabaseTable
 public class Opinion {
     @DatabaseField(id = true)
-    int id_opinion;
+    private int id_opinion;
     @DatabaseField
-    String comentario;
+    private String comentario;
     @DatabaseField
-    int valoracion;
+    private int valoracion;
     @DatabaseField(foreign = true, foreignAutoCreate = true, foreignAutoRefresh = true, columnName = "usuario_origen")
-    Usuario usuarioOrigen;
+    private Usuario usuarioOrigen;
     @DatabaseField(foreign = true, foreignAutoCreate = true, foreignAutoRefresh = true, columnName = "usuario_destino")
-    Usuario usuarioDestino;
+    private Usuario usuarioDestino;
 
     public Opinion(){}
     public Opinion(int id_opinion, String comentario, int valoracion, Usuario usuarioOrigen, Usuario usuarioDestino) {

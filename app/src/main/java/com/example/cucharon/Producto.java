@@ -17,31 +17,29 @@ import Persistencia.SingletonConnection;
 public class Producto implements Serializable {
 
     @DatabaseField(generatedId = true)
-    int idProducto;
+    private int idProducto;
     @DatabaseField
-    String nombre;
+    private String nombre;
     @DatabaseField
-    String contenido;
+    private String contenido;
     @DatabaseField
-    Double precio;
+    private Double precio;
     @DatabaseField
-    String imagen = "";
+    private String imagen = "";
     @DatabaseField
-    String direccionRecogida;
+    private String direccionRecogida;
     @DatabaseField(foreign = true, foreignAutoCreate = true, foreignAutoRefresh = true, columnName = "usuarioPublicador")
-    Usuario usuarioPublicador;
+    private Usuario usuarioPublicador;
     @DatabaseField (foreign = true, foreignAutoCreate = true, foreignAutoRefresh = true, columnName = "usuarioComprador")
-    Usuario usuarioComprador;
+    private Usuario usuarioComprador;
     @DatabaseField
-    String horaRecogida;
+    private String horaRecogida;
     @DatabaseField
-    String horaPreparacion;
+    private String horaPreparacion;
     @DatabaseField
-    int numRaciones;
+    private int numRaciones;
     @DatabaseField
-    Date diaPreparacion;
-
-    //List<Ingrediente> ingredientes;
+    private Date diaPreparacion;
 
     public Producto(){}
 

@@ -6,17 +6,17 @@ import com.j256.ormlite.table.DatabaseTable;
 @DatabaseTable
 public class Receta {
     @DatabaseField(id = true)
-    int id_receta;
+    private int id_receta;
     @DatabaseField
-    String nombre;
+    private String nombre;
     @DatabaseField
-    String descripcion;
+    private String descripcion;
     @DatabaseField
-    String imagen;
+    private String imagen;
     @DatabaseField
-    String instrucciones;
+    private String instrucciones;
     @DatabaseField (foreign = true, foreignAutoCreate = true, foreignAutoRefresh = true, columnName = "usuario_chef")
-    Usuario usuario_chef;
+    private Usuario usuario_chef;
 
     public Receta(){}
 

@@ -8,9 +8,9 @@ public class ProductoIngrediente {
     @DatabaseField(generatedId = true)
     private int id;
     @DatabaseField(foreign = true, foreignAutoCreate = true, foreignAutoRefresh = true, columnName = "producto")
-    Producto producto;
+    private Producto producto;
     @DatabaseField(foreign = true, foreignAutoCreate = true, foreignAutoRefresh = true, columnName = "ingrediente")
-    Ingrediente ingrediente;
+    private Ingrediente ingrediente;
 
     public ProductoIngrediente(){}
     public ProductoIngrediente(Producto producto, Ingrediente ingrediente) {

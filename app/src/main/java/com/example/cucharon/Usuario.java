@@ -9,8 +9,6 @@ import Persistencia.UsuarioRepository;
 
 @DatabaseTable
 public class Usuario {
-
-
     @DatabaseField(id = true)
     private String email;
     @DatabaseField
