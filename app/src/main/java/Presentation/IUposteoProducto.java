@@ -186,7 +186,7 @@ public class IUposteoProducto extends AppCompatActivity {
         Producto productoPosteado =  service.getProductoById(producto.getIdProducto());
 
         for(Categoria categoria :  categoriasProducto){
-            ProductoCategoria productoCategoria = new ProductoCategoria(productoPosteado.getIdProducto(), categoria.getNombre());
+            ProductoCategoria productoCategoria = new ProductoCategoria(productoPosteado, categoria);
             service.guardarProductoCategoria(productoCategoria);
 
         }

@@ -3,32 +3,34 @@ package com.example.cucharon;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
-@DatabaseTable
+@DatabaseTable(tableName = "producto_categoria")
 public class ProductoCategoria {
-    @DatabaseField(id = true,foreign = true, foreignAutoRefresh = true, columnName = "idProducto")
-    int idProducto;
-    @DatabaseField(id = true,foreign = true, foreignAutoRefresh = true, columnName = "nombre")
-    String nombre_categoria;
+    @DatabaseField(generatedId = true)
+    private int id;
+    @DatabaseField(foreign = true, foreignAutoCreate = true, foreignAutoRefresh = true, columnName = "producto")
+    Producto producto;
+    @DatabaseField(foreign = true, foreignAutoCreate = true, foreignAutoRefresh = true, columnName = "categoria")
+    Categoria categoria;
 
     public ProductoCategoria(){}
-    public ProductoCategoria(int idProducto, String nombre_categoria) {
-        this.idProducto = idProducto;
-        this.nombre_categoria = nombre_categoria;
+    public ProductoCategoria(Producto producto, Categoria categoria) {
+        this.producto = producto;
+        this.categoria = categoria;
     }
 
-    public int getIdProducto() {
-        return idProducto;
+    public Producto getProducto() {
+        return producto;
     }
 
-    public void setIdProducto(int idProducto) {
-        this.idProducto = idProducto;
+    public void setProducto(Producto producto) {
+        this.producto = producto;
     }
 
-    public String getNombre_categoria() {
-        return nombre_categoria;
+    public Categoria getCategoria() {
+        return categoria;
     }
 
-    public void setNombre_categoria(String nombre_categoria) {
-        this.nombre_categoria = nombre_categoria;
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
     }
 }
