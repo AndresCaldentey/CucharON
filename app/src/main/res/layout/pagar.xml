@@ -100,7 +100,7 @@
                 android:textSize="20sp" />
 
             <EditText
-                android:id="@+id/ingredientesEditText"
+                android:id="@+id/caducaEditText"
                 android:layout_width="276dp"
                 android:layout_height="50dp"
                 android:layout_marginLeft="15dp"
@@ -149,7 +149,7 @@
                     android:orientation="vertical">
 
                     <EditText
-                        android:id="@+id/ingredientesEditText2"
+                        android:id="@+id/cvcEditText"
                         android:layout_width="86dp"
                         android:layout_height="50dp"
                         android:layout_marginLeft="15dp"
@@ -180,13 +180,13 @@
                 android:textSize="20sp" />
 
             <EditText
-                android:id="@+id/ingredientesEditText3"
+                android:id="@+id/titularEditText"
                 android:layout_width="259dp"
                 android:layout_height="50dp"
                 android:layout_marginLeft="15dp"
                 android:background="@drawable/campo_texto"
                 android:ems="10"
-                android:hint="10/24"
+                android:hint="Patricio Letelier"
                 android:inputType="text"
                 android:minHeight="48dp"
                 android:paddingLeft="15dp"
@@ -207,6 +207,7 @@
                     android:id="@+id/button2"
                     android:layout_width="153dp"
                     android:layout_height="wrap_content"
+                    android:onClick="clickPagar"
                     android:text="Pagar" />
             </LinearLayout>
 

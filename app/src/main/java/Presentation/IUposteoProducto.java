@@ -75,7 +75,7 @@ public class IUposteoProducto extends AppCompatActivity {
         descripcionEditText = findViewById(R.id.descripcionEditText);
         precioEditText = findViewById(R.id.precioEditText);
         cantidadPlatosEditText = findViewById(R.id.cantidadEditText);
-        ingredientesEditText = findViewById(R.id.ingredientesEditText);
+        ingredientesEditText = findViewById(R.id.caducaEditText);
         horaPreparacionEditText = findViewById(R.id.horaPreparacionEditText);
         popupCategorias = findViewById(R.id.categoriasPopup);
         añadirCategoriasBtnPopup = findViewById(R.id.añadirCategoriasBtn);
