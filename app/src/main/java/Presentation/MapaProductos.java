@@ -47,15 +47,6 @@ public class MapaProductos extends AppCompatActivity implements OnMapReadyCallba
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-
-        for(Producto p : servicio.getAllProducto())
-        {
-            System.out.println("Hugo mira aqui: " + p.getNombre());
-            LatLng posicion = getCoordinatesFromAddress(this, p.getDireccionRecogida());
-            //Marker m = mMap.addMarker(new MarkerOptions().position(posicion).title(p.getNombre()));
-            //m.setTag(p.getDireccionRecogida());
-        }
-
     }
 
     @Override

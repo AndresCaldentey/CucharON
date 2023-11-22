@@ -40,6 +40,10 @@ public class Producto implements Serializable {
     private int numRaciones;
     @DatabaseField
     private Date diaPreparacion;
+    @DatabaseField
+    private double direccionLongitud;
+    @DatabaseField
+    private double direccionLatitud;
 
     public Producto(){}
 
@@ -146,6 +150,30 @@ public class Producto implements Serializable {
 
     public void setHoraPreparacion(String horaPreparacion) {
         this.horaPreparacion = horaPreparacion;
+    }
+
+    public Date getDiaPreparacion() {
+        return diaPreparacion;
+    }
+
+    public void setDiaPreparacion(Date diaPreparacion) {
+        this.diaPreparacion = diaPreparacion;
+    }
+
+    public double getDireccionLongitud() {
+        return direccionLongitud;
+    }
+
+    public void setDireccionLongitud(double direccionLongitud) {
+        this.direccionLongitud = direccionLongitud;
+    }
+
+    public double getDireccionLatitud() {
+        return direccionLatitud;
+    }
+
+    public void setDireccionLatitud(double direccionLatitud) {
+        this.direccionLatitud = direccionLatitud;
     }
     /*
     public List<Ingrediente> getIngredientes() {
