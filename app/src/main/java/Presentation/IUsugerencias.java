@@ -61,24 +61,6 @@ public class IUsugerencias extends AppCompatActivity {
             }
         }
 
-        /*todosLosPlatos = new ArrayList<>();
-
-        Thread hilo = new Thread(() -> {
-            todosLosPlatos = new ProductoRepository(SingletonConnection.getSingletonInstance()).obtenerTodos();
-            //Producto plato = todosLosPlatos.get(1);
-            runOnUiThread(() -> { // Ejecuta las operaciones de UI en el hilo principal
-                Context context = getApplicationContext();
-                //ConstraintLayout constraintLayout = createPlato(plato, context);
-                //sugerenciasLinearLayout.addView(constraintLayout);
-                //sugerenciasLinearLayout.addView(createGap(context));
-                for (Producto plato : todosLosPlatos) {
-                    ConstraintLayout constraintLayout = createPlato(plato, context);
-                    sugerenciasLinearLayout.addView(constraintLayout);
-                    sugerenciasLinearLayout.addView(createGap(context));
-                }
-            });
-        });
-        hilo.start();*/
     }
 
 

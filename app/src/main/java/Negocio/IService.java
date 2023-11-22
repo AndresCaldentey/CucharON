@@ -19,6 +19,7 @@ public interface IService {
     void crearUsuario(Usuario user);
     void crearProducto(Producto producto);
     Producto getProductoById(int id);
+    List<Producto> getProductosByDireccion(String direccion);
     public Categoria getCategoriaByName(String nombre);
     List<Producto> getAllProducto();
     public List<Categoria> getAllCategorias();
