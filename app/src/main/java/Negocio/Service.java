@@ -64,7 +64,7 @@ public class Service implements IService{
     public List<Categoria> getAllCategorias() {return categoriaRepo.obtenerTodos();}
     public void actualizarProducto2(Producto p) { productoRepo.actualizar(p);}
     public void guardarProductoCategoria(ProductoCategoria productoCategoria){productoCategoriaRepo.guardar(productoCategoria);}
-
+    public List<ProductoCategoria> getAllProductoCategoria(){return productoCategoriaRepo.obtenerTodos(); }
 
     //OTRAS COSAS
     public  boolean validTel(int tel) {

@@ -56,6 +56,10 @@
             android:screenOrientation="portrait"
             android:exported="true" />
         <activity
+            android:name="Presentation.PantallaDeCargaLogin"
+            android:screenOrientation="portrait"
+            android:exported="true" />
+        <activity
             android:name="Presentation.MainActivity"
             android:exported="true">
             <intent-filter>

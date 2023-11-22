@@ -1,5 +1,6 @@
 package Presentation;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
@@ -9,22 +10,32 @@ import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
+import com.example.cucharon.Categoria;
 import com.example.cucharon.Producto;
+import com.example.cucharon.ProductoCategoria;
 import com.example.cucharon.R;
 import com.example.cucharon.Usuario;
 
 import android.content.Context;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListAdapter;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.core.content.ContextCompat;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import Negocio.IService;
@@ -34,6 +45,12 @@ public class IUsugerencias extends AppCompatActivity {
     LinearLayout sugerenciasLinearLayout;
     public static List<Producto> todosLosPlatos;
     IService servicio;
+    List<Categoria> categoriasProducto = new ArrayList<>();
+    List<Categoria> todasLasCategorias = new ArrayList<>();
+    RelativeLayout popupCategorias;
+    LinearLayout linearLayoutCategorias;
+    Button botonFiltro;
+    final Categoria[] categoriaEscogida = {null};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,25 +60,127 @@ public class IUsugerencias extends AppCompatActivity {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         sugerenciasLinearLayout = findViewById(R.id.sugerenciasLinearLayout);
         servicio = Service.getService();
+        popupCategorias = findViewById(R.id.categoriasPopup);
+        linearLayoutCategorias = findViewById(R.id.linLayoutCategorias);
+        botonFiltro = findViewById(R.id.botonFiltro);
+
+        todasLasCategorias = servicio.getAllCategorias();
+
+        final String[] categoria = new String[0];
         //Intent intent = new Intent(IUsugerencias.this, IUreserva.class);
         //startActivity(intent);
+
+
+        final int[] defaultPosition = {0};
+         // Inicializamos con null, ya que aún no se ha seleccionado ninguna categoría
+
+        botonFiltro.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Creamos un nuevo array de categorías que incluye la opción "Todas las categorías"
+                List<Categoria> categoriasConTodas = new ArrayList<>(todasLasCategorias);
+                categoriasConTodas.add(0, new Categoria("Todas las categorías","no tiene")); // Ajusta esto según la estructura de tu clase Categoria
+
+                // Creamos un array de nombres de categorías que incluye la opción "Todas las categorías"
+                CharSequence[] categoriaNames = getCategoriaNames(categoriasConTodas);
+
+                AlertDialog.Builder builderSingle = new AlertDialog.Builder(IUsugerencias.this);
+                builderSingle.setTitle("Filtra por categoría");
+                builderSingle.setPositiveButton(getString(android.R.string.ok), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Al hacer clic en "OK", se guarda la categoría seleccionada en categoriaEscogida
+                        categoriaEscogida[0] = categoriasConTodas.get(defaultPosition[0]); // Usar categoriasConTodas en lugar de todasLasCategorias
+                        limpiarYGenerarPlatos();
+                        dialog.dismiss();
+
+
+                    }
+                });
+
+                builderSingle.setSingleChoiceItems(categoriaNames, defaultPosition[0], new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Al hacer clic en un elemento, actualizamos la posición seleccionada
+                        defaultPosition[0] = which;
+                    }
+                });
+
+                builderSingle.show();
+            }
+        });
+
         generarPlatos();
+
+    }
+
+    private CharSequence[] getCategoriaNames(List<Categoria> categorias) {
+        CharSequence[] names = new CharSequence[categorias.size()];
+        for (int i = 0; i < categorias.size(); i++) {
+            names[i] = categorias.get(i).getNombre(); // Asumiendo que hay un método getNombre() en la clase Categoria
+        }
+        return names;
     }
 
     public void generarPlatos() {
+
         todosLosPlatos = servicio.getAllProducto();
         Context context = getApplicationContext();
 
-        for (Producto plato : todosLosPlatos) {
-            Usuario user = new Usuario();
-           if(plato.getUsuarioComprador()==null){
-                ConstraintLayout constraintLayout = createPlato(plato, context);
-                sugerenciasLinearLayout.addView(constraintLayout);
-                sugerenciasLinearLayout.addView(createGap(context));
-            }
-        }
+        if(categoriaEscogida[0]== null || categoriaEscogida[0].getNombre() == "Todas las categorías") {
 
+            for (Producto plato : todosLosPlatos) {
+                Usuario user = new Usuario();
+                if (plato.getUsuarioComprador() == null) {
+                    ConstraintLayout constraintLayout = createPlato(plato, context);
+                    sugerenciasLinearLayout.addView(constraintLayout);
+                    sugerenciasLinearLayout.addView(createGap(context));
+                }
+            }
+        }else {
+
+            List<Producto>  lista = new ProductoCategoria().getProductosByCategoria(categoriaEscogida[0].getNombre());
+
+            if(lista.isEmpty()){
+                Toast.makeText(this, "No hay productos con esta categoría", Toast.LENGTH_LONG).show(); // Escoger entre uno de estos
+                showAlertDialog("Prueba con otra opción", "No hay productos con esta categoría"); // Escoger entre uno de estos
+                categoriaEscogida[0] = null;
+                generarPlatos();
+            }
+
+            for (Producto plato : lista) {
+
+                if (plato.getUsuarioComprador() == null) {
+                    ConstraintLayout constraintLayout = createPlato(plato, context);
+                    sugerenciasLinearLayout.addView(constraintLayout);
+                    sugerenciasLinearLayout.addView(createGap(context));
+                }
+            }
+
+        }
     }
+
+
+
+        /*todosLosPlatos = new ArrayList<>();
+
+        Thread hilo = new Thread(() -> {
+            todosLosPlatos = new ProductoRepository(SingletonConnection.getSingletonInstance()).obtenerTodos();
+            //Producto plato = todosLosPlatos.get(1);
+            runOnUiThread(() -> { // Ejecuta las operaciones de UI en el hilo principal
+                Context context = getApplicationContext();
+                //ConstraintLayout constraintLayout = createPlato(plato, context);
+                //sugerenciasLinearLayout.addView(constraintLayout);
+                //sugerenciasLinearLayout.addView(createGap(context));
+                for (Producto plato : todosLosPlatos) {
+                    ConstraintLayout constraintLayout = createPlato(plato, context);
+                    sugerenciasLinearLayout.addView(constraintLayout);
+                    sugerenciasLinearLayout.addView(createGap(context));
+                }
+            });
+        });
+        hilo.start();*/
+   // }
 
 
     public LinearLayout createGap(Context context){
@@ -232,6 +351,13 @@ public class IUsugerencias extends AppCompatActivity {
         return constraintLayout;
     }
 
+    public void limpiarYGenerarPlatos() {
+        // Limpia todas las vistas dentro del ConstraintLayout
+        sugerenciasLinearLayout.removeAllViews();
+
+        // Genera los nuevos platos
+        generarPlatos();
+    }
 
 
     public void buscarOnClick(View view) {
@@ -251,6 +377,24 @@ public class IUsugerencias extends AppCompatActivity {
        /* */
         finish();
     }
+
+    private void showAlertDialog(String title, String message) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(title)
+                .setMessage(message)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // Código a ejecutar cuando se hace clic en OK
+                        dialog.dismiss(); // Cierra el cuadro de diálogo
+                    }
+                });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
+
+
+
+
 
 
 }

@@ -3,6 +3,11 @@ package com.example.cucharon;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import Negocio.Service;
+
 @DatabaseTable(tableName = "producto_categoria")
 public class ProductoCategoria {
     @DatabaseField(generatedId = true)
@@ -30,7 +35,19 @@ public class ProductoCategoria {
         return categoria;
     }
 
+
     public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
+    }
+
+    public List<Producto> getProductosByCategoria(String nombre){
+        List<Producto> lista = new ArrayList<>();
+        List<ProductoCategoria> listProductoCategorias = Service.getService().getAllProductoCategoria();
+        for(ProductoCategoria productoCategoria: listProductoCategorias)
+            if(nombre.equals(productoCategoria.getCategoria().getNombre())){
+                lista.add(productoCategoria.getProducto());
+            }
+
+        return lista;
     }
 }

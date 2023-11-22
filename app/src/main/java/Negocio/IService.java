@@ -42,5 +42,6 @@ public interface IService {
     Usuario getLoggedUser();
     UsuarioRepository getUserRepo();
     void guardarProductoCategoria(ProductoCategoria productoCategoria);
+    List<ProductoCategoria> getAllProductoCategoria();
     List<Producto> getProductosPubPorUser(Usuario user);
 }
