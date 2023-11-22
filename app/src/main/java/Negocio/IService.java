@@ -15,6 +15,7 @@ import com.example.cucharon.Usuario;
 import Persistencia.UsuarioRepository;
 
 public interface IService {
+    static final int SELECT_IMAGE = 1;
     Usuario getUsuarioByEmail(String correo);
     void crearUsuario(Usuario user);
     void crearProducto(Producto producto);
@@ -40,4 +41,5 @@ public interface IService {
     Usuario getLoggedUser();
     UsuarioRepository getUserRepo();
     void guardarProductoCategoria(ProductoCategoria productoCategoria);
+    List<Producto> getProductosPubPorUser(Usuario user);
 }

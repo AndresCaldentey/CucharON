@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
@@ -26,6 +27,7 @@ import com.example.cucharon.ProductoCategoria;
 import com.example.cucharon.R;
 import com.example.cucharon.Usuario;
 
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -100,24 +102,27 @@ public class IUposteoProducto extends AppCompatActivity {
     }
 
     private void disparchTakePictureIntent() {
-        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        if(takePictureIntent.resolveActivity(getPackageManager())!=null){
-            startActivityForResult(takePictureIntent,REQUEST_IMAGE_CAPTURE);
-        }
+        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(intent, service.SELECT_IMAGE);
+        //Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        //if(takePictureIntent.resolveActivity(getPackageManager())!=null){
+        //    startActivityForResult(takePictureIntent,REQUEST_IMAGE_CAPTURE);
+       // }
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK && data != null) {
             // La imagen se capturó con éxito, ahora configura la imagen en fotoPlato
-            Bundle extras = data.getExtras();
-            Bitmap imageBitmap = (Bitmap) extras.get("data");
+            Uri selectedImageUri = data.getData();
+            //Bundle extras = data.getExtras();
+            //Bitmap imageBitmap = (Bitmap) extras.get("data");
 
-            fotoPlato.setImageBitmap(imageBitmap);
+            fotoPlato.setImageURI(selectedImageUri);
             //Pasar imagen a String
-            imagenPlatoBase64 = service.imagenToString(imageBitmap);
+
 
             //DEBERIAMOS GUARDAR LA IMAGEN EN LA BASE DE DATOS YA
         }

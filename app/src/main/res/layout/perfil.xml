@@ -207,7 +207,7 @@
         android:id="@+id/mis_platos"
         android:layout_width="351dp"
         android:layout_height="609dp"
-        android:background="@drawable/fondo_reserva"
+        android:background="@drawable/ic_launcher_background"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/linearLayout2"
         app:layout_constraintEnd_toEndOf="parent"
