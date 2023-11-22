@@ -55,7 +55,9 @@ public class IUreserva extends AppCompatActivity {
         textoHora = findViewById(R.id.textoHora);
         precio = findViewById(R.id.textPrecio);
         imagenProducto = findViewById(R.id.imagenProducto);
-        producto = (Producto) getIntent().getSerializableExtra("producto");
+        //producto = (Producto) getIntent().getSerializableExtra("Producto");
+        int idProducto = (int) getIntent().getSerializableExtra("Producto");
+        producto = service.getProductoById(idProducto);
         //producto = service.getProductoById(1);
         nombrePlato.setText(producto.getNombre());
         nombreVendedor.setText(producto.getUsuarioPublicador().getNombre());
