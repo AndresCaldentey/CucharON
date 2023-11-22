@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
-import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
@@ -18,7 +18,6 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
-import androidx.constraintlayout.widget.ConstraintLayout;
 
 import Negocio.*;
 
@@ -28,8 +27,7 @@ import com.example.cucharon.ProductoCategoria;
 import com.example.cucharon.R;
 import com.example.cucharon.Usuario;
 
-import java.sql.SQLException;
-import java.time.LocalDate;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -75,11 +73,11 @@ public class IUposteoProducto extends AppCompatActivity {
         service = Service.getService();
         addPhotoText = findViewById(R.id.addPhotoText);
         fotoPlato = findViewById(R.id.fotoPlato);
-        nombreEditText = findViewById(R.id.nombreEditText);
+        nombreEditText = findViewById(R.id.tarjetaEditText);
         descripcionEditText = findViewById(R.id.descripcionEditText);
         precioEditText = findViewById(R.id.precioEditText);
         cantidadPlatosEditText = findViewById(R.id.cantidadEditText);
-        ingredientesEditText = findViewById(R.id.ingredientesEditText);
+        ingredientesEditText = findViewById(R.id.caducaEditText);
         horaPreparacionEditText = findViewById(R.id.horaPreparacionEditText);
         popupCategorias = findViewById(R.id.categoriasPopup);
         añadirCategoriasBtnPopup = findViewById(R.id.añadirCategoriasBtn);
@@ -104,24 +102,27 @@ public class IUposteoProducto extends AppCompatActivity {
     }
 
     private void disparchTakePictureIntent() {
-        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        if(takePictureIntent.resolveActivity(getPackageManager())!=null){
-            startActivityForResult(takePictureIntent,REQUEST_IMAGE_CAPTURE);
-        }
+        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(intent, service.SELECT_IMAGE);
+        //Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        //if(takePictureIntent.resolveActivity(getPackageManager())!=null){
+        //    startActivityForResult(takePictureIntent,REQUEST_IMAGE_CAPTURE);
+       // }
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK && data != null) {
             // La imagen se capturó con éxito, ahora configura la imagen en fotoPlato
-            Bundle extras = data.getExtras();
-            Bitmap imageBitmap = (Bitmap) extras.get("data");
+            Uri selectedImageUri = data.getData();
+            //Bundle extras = data.getExtras();
+            //Bitmap imageBitmap = (Bitmap) extras.get("data");
 
-            fotoPlato.setImageBitmap(imageBitmap);
+            fotoPlato.setImageURI(selectedImageUri);
             //Pasar imagen a String
-            imagenPlatoBase64 = service.imagenToString(imageBitmap);
+
 
             //DEBERIAMOS GUARDAR LA IMAGEN EN LA BASE DE DATOS YA
         }

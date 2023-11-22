@@ -73,7 +73,7 @@ public class IUbuscar extends AppCompatActivity implements OnMapReadyCallback {
         finish();
     }
     public void perfilOnClick(View view) {
-        Intent intent = new Intent(IUbuscar.this, IUreserva.class);
+        Intent intent = new Intent(IUbuscar.this, IUperfil.class);
         startActivity(intent);
 
     }

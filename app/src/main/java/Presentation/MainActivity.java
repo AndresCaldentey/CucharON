@@ -16,7 +16,6 @@ import Negocio.Service;
 public class MainActivity extends AppCompatActivity {
     public static Usuario usuarioActual;
     private IService service;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

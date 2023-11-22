@@ -31,6 +31,7 @@ public class Service implements IService{
     private CategoriaRepository categoriaRepo;
     private ProductoCategoriaRepository productoCategoriaRepo;
     private static Service instancia;
+    private static final int SELECT_IMAGE = 1;
     private Usuario loggedUser;
     public UsuarioRepository getUserRepo() { return userRepo; }
     public void setLoggedUser(Usuario user) {
@@ -161,6 +162,10 @@ public class Service implements IService{
         byte[] imageBytes = Base64.decode(img64, Base64.DEFAULT);
         Bitmap imageResult = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
         return imageResult;
+    }
+
+    public List<Producto> getProductosPubPorUser(Usuario user) {
+        return productoRepo.getProductosPorUsuario(user);
     }
 
 }
