@@ -84,12 +84,11 @@ public class IUbuscar extends AppCompatActivity implements OnMapReadyCallback {
             layoutPlatos.removeAllViews();  // Se borran los productos de la selección anterior
             scrollPlatos.fullScroll(View.FOCUS_LEFT);   // Se recorre el scroll hasta el inicio
 
-            // Se cargan los productos posteado en la posición seleccionada
+            // Se cargan los productos posteados en la posición seleccionada
             if(marker.getTag() != null)
             {
                 String[] s = marker.getTag().toString().split("h");
                 List<Producto> lProducts = servicio.getProductosByPosicion(Double.parseDouble(s[0]), Double.parseDouble(s[1]));
-
                 for (Producto p : lProducts) { crearInfoPlato(p); } //Se crea el layout de información de cada producto
             }
 
@@ -140,11 +139,8 @@ public class IUbuscar extends AppCompatActivity implements OnMapReadyCallback {
     private LinearLayout crearDescripcion(Producto producto)
     {
         LinearLayout panelDescripcion = new LinearLayout(this);
-
-        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
-                500,
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                1);
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(500,
+                LinearLayout.LayoutParams.MATCH_PARENT, 1);
         panelDescripcion.setLayoutParams(layoutParams);
         panelDescripcion.setOrientation(LinearLayout.VERTICAL);
 
@@ -164,10 +160,8 @@ public class IUbuscar extends AppCompatActivity implements OnMapReadyCallback {
     private TextView crearTextView(String texto, int size, boolean esBold, int textAlgiment)
     {
         TextView textView = new TextView(this);
-        LinearLayout.LayoutParams layoutParamsPrecio = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT,
-                0);
+        LinearLayout.LayoutParams layoutParamsPrecio = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT, 0);
         textView.setLayoutParams(layoutParamsPrecio);
         textView.setTextAlignment(textAlgiment);
         textView.setText(texto);
@@ -190,7 +184,7 @@ public class IUbuscar extends AppCompatActivity implements OnMapReadyCallback {
     public void perfilOnClick(View view) {
         Intent intent = new Intent(IUbuscar.this, IUperfil.class);
         startActivity(intent);
-
+        finish();
     }
 
 

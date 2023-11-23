@@ -7,24 +7,19 @@ import android.content.SharedPreferences;
 import android.content.Context;
 import android.os.Bundle;
 
-import com.example.cucharon.Usuario;
-
 import Negocio.IService;
 import Negocio.Service;
 
 
 public class MainActivity extends AppCompatActivity {
-    public static Usuario usuarioActual;
-    private IService service;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        service = Service.getService();
+        IService service = Service.getService();
 
         //Comprueba el token de inicio de sesion
         SharedPreferences sharedPreferences = getSharedPreferences("MiAppPref", Context.MODE_PRIVATE);
         String correo = sharedPreferences.getString("token", "");
-
 
         if (!correo.isEmpty()) {
             service.setLoggedUser(service.getUsuarioByEmail(correo));
@@ -40,12 +35,5 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
-
-    public static void setUsuarioActual(Usuario usuarioActual) {
-        MainActivity.usuarioActual = usuarioActual;
-    }
-
-
-
 
 }
