@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.content.SharedPreferences;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
@@ -83,6 +84,20 @@ public class IUperfil extends AppCompatActivity {
     }
     public void sugerenciasOnClick(View view) {
         Intent intent = new Intent(IUperfil.this, IUsugerencias.class);
+        startActivity(intent);
+        finish();
+    }
+    public void cerrarSesionOnClick(View view) {
+        SharedPreferences sharedPreferences = getSharedPreferences("MiAppPref", Context.MODE_PRIVATE);
+
+        // Guardar el token de autenticación
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("token", null);
+        editor.apply();
+        service.setLoggedUser(null);
+
+
+        Intent intent = new Intent(IUperfil.this, IUlogin.class);
         startActivity(intent);
         finish();
     }
