@@ -35,19 +35,19 @@ public class IUregistro extends AppCompatActivity {
 
     public void onClickRegistrar(View view) {
         if(!service.validEmail(email.getText().toString())) {
-            service.ErrorAlert("El email no es válido", this);
+            service.CrearAlerta("El email no es válido", this);
         }
         Usuario usuario = service.getUsuarioByEmail(email.getText().toString());
 
         if(usuario == null)
         {
             if(!service.validTel(Integer.parseInt(telefono.getText().toString()))) {
-                    service.ErrorAlert("El teléfono no tiene 9 dígitos", this);
+                    service.CrearAlerta("El teléfono no tiene 9 dígitos", this);
             }else if(!service.validPassword(password.getText().toString())) {
-                service.ErrorAlert("La contraseña debe contener al menos 8 caracteres, 1 mayúscula y 1 número", this);
+                service.CrearAlerta("La contraseña debe contener al menos 8 caracteres, 1 mayúscula y 1 número", this);
             }
             else if(!service.passwordMatch(password.getText().toString(), password2.getText().toString())) {
-                service.ErrorAlert("Las contraseñas no coinciden", this);
+                service.CrearAlerta("Las contraseñas no coinciden", this);
             } else {
                 //Hay que crear el usuario y añadirlo a la db
                 Usuario nuevoUser = new Usuario(email.getText().toString(), nombre.getText().toString(), apellido.getText().toString(),

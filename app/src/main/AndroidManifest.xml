@@ -32,6 +32,10 @@
             android:screenOrientation="portrait"
             android:exported="true" />
         <activity
+            android:name="Presentation.IUModificarPerfil"
+            android:screenOrientation="portrait"
+            android:exported="true" />
+        <activity
             android:name="Presentation.IUperfil"
             android:screenOrientation="portrait"
             android:exported="true" />

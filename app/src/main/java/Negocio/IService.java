@@ -10,8 +10,6 @@ import com.example.cucharon.Usuario;
 
 import java.util.List;
 
-import com.example.cucharon.Usuario;
-
 import Persistencia.UsuarioRepository;
 
 public interface IService {
@@ -35,7 +33,7 @@ public interface IService {
     boolean validPrecio(String precio);
     boolean validTimeRange(String hora1, String hora2);
     boolean validRaciones(String raciones);
-    void ErrorAlert(String errorString, Context contexto);
+    void CrearAlerta(String errorString, Context contexto);
     String imagenToString(Bitmap bitmap);
     Bitmap pasarStringAImagen(String img64);
     void setLoggedUser(Usuario user);
@@ -44,4 +42,5 @@ public interface IService {
     void guardarProductoCategoria(ProductoCategoria productoCategoria);
     List<ProductoCategoria> getAllProductoCategoria();
     List<Producto> getProductosPubPorUser(Usuario user);
+    List<Producto> getProductosSinComprar();
 }

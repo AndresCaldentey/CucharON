@@ -138,7 +138,7 @@ public class Service implements IService{
         }
     }
 
-    public void ErrorAlert(String errorString, Context contexto) {
+    public void CrearAlerta(String errorString, Context contexto) {
         AlertDialog.Builder alert = new AlertDialog.Builder(contexto);
         alert.setMessage(errorString)
                 .setCancelable(true)
@@ -166,6 +166,9 @@ public class Service implements IService{
 
     public List<Producto> getProductosPubPorUser(Usuario user) {
         return productoRepo.getProductosPorUsuario(user);
+    }
+    public List<Producto> getProductosSinComprar(){
+        return productoRepo.getProductosSinComprador();
     }
 
 }
