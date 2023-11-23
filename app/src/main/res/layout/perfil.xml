@@ -203,26 +203,6 @@
         app:layout_constraintTop_toBottomOf="@+id/platos"
         app:layout_constraintVertical_bias="0.0" />
 
-    <ScrollView
-        android:id="@+id/mis_platos"
-        android:layout_width="351dp"
-        android:layout_height="609dp"
-        android:background="@drawable/ic_launcher_background"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@+id/linearLayout2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.245"
-        tools:visibility="gone">
-
-        <LinearLayout
-            android:id="@+id/mis_platos_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" />
-    </ScrollView>
-
     <TextView
         android:id="@+id/nombrePerfil"
         android:layout_width="wrap_content"
@@ -235,5 +215,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fotoDPerfil" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/mis_platos"
+        android:layout_width="wrap_content"
+        android:layout_height="609dp"
+        android:background="@drawable/ic_launcher_background"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayout2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.245"
+        tools:visibility="visible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

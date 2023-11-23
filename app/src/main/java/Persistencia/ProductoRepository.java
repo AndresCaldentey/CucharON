@@ -5,6 +5,8 @@ import com.example.cucharon.Usuario;
 import com.j256.ormlite.stmt.PreparedQuery;
 import com.j256.ormlite.stmt.QueryBuilder;
 import com.j256.ormlite.stmt.Where;
+import com.j256.ormlite.stmt.PreparedQuery;
+import com.j256.ormlite.stmt.QueryBuilder;
 import com.j256.ormlite.support.ConnectionSource;
 
 import java.sql.SQLException;
@@ -92,13 +94,41 @@ public class ProductoRepository extends Repository<Producto>{
         return listaProductos;
     }*/
 
-    List<Producto> productos;
+    private List<Producto> productos;
     public List<Producto> getProductosPorUsuario(Usuario user){
 
         Thread hilo = new Thread(() ->
         {
             try {
                 productos = this.getDao().queryForEq("usuarioPublicador", user);
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        });
+        hilo.start();
+
+        //Esperar al hilo
+        try {
+            hilo.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return productos;
+    }
+
+    public List<Producto> getProductosSinComprador(){
+        Thread hilo = new Thread(() ->
+        {
+
+            try {
+                QueryBuilder<Producto, ?> queryBuilder = getDao().queryBuilder();
+                queryBuilder.where().isNull("usuarioComprador");
+                PreparedQuery<Producto> preparedQuery = queryBuilder.prepare();
+
+                // Ejecutar la consulta
+                productos = getDao().query(preparedQuery);
+
 
             } catch (SQLException e) {
                 e.printStackTrace();

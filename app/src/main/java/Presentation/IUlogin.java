@@ -13,7 +13,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
 import com.example.cucharon.R;
-import com.example.cucharon.Usuario;
 
 import Negocio.IService;
 import Negocio.Service;
@@ -45,7 +44,13 @@ public class IUlogin extends AppCompatActivity {
 
     public void clickLogin(View view)
     {
-        Usuario usuario = service.getUsuarioByEmail(textUsuario.getText().toString());
+        Intent intent = new Intent(IUlogin.this, PantallaDeCargaLogin.class);
+        intent.putExtra("usuario",textUsuario.getText().toString());
+        intent.putExtra("contraseña",textPassword.getText().toString());
+        startActivity(intent);
+        finish();
+
+       /* Usuario usuario = service.getUsuarioByEmail(textUsuario.getText().toString());
         if(usuario != null && service.passwordMatch(usuario.getContraseña(), textPassword.getText().toString()) )
         {
             guardarToken();
@@ -54,7 +59,7 @@ public class IUlogin extends AppCompatActivity {
             Intent intent = new Intent(IUlogin.this, IUsugerencias.class);
             startActivity(intent);
             finish();
-        }
+        }*/
     }
 
     private void guardarToken()

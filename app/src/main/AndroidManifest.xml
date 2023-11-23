@@ -32,6 +32,10 @@
             android:screenOrientation="portrait"
             android:exported="true" />
         <activity
+            android:name="Presentation.IUModificarPerfil"
+            android:screenOrientation="portrait"
+            android:exported="true" />
+        <activity
             android:name="Presentation.IUperfil"
             android:screenOrientation="portrait"
             android:exported="true" />
@@ -53,6 +57,10 @@
             android:exported="true" />
         <activity
             android:name="Presentation.Mapa"
+            android:screenOrientation="portrait"
+            android:exported="true" />
+        <activity
+            android:name="Presentation.PantallaDeCargaLogin"
             android:screenOrientation="portrait"
             android:exported="true" />
         <activity

@@ -3,7 +3,6 @@ package Presentation;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -27,7 +26,6 @@ import com.example.cucharon.ProductoCategoria;
 import com.example.cucharon.R;
 import com.example.cucharon.Usuario;
 
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -149,33 +147,33 @@ public class IUposteoProducto extends AppCompatActivity {
         String horaPreparacion = String.valueOf(horaPreparacionEditText.getText());
         String raciones = String.valueOf(cantidadPlatosEditText.getText());
         if(nombre.isEmpty() ){
-            service.ErrorAlert("El producto ha de tener un nombre", this);
+            service.CrearAlerta("El producto ha de tener un nombre", this);
         }else if(ubicacionSeleccionada==null){
-            service.ErrorAlert("Se ha de especificar una dirección de recogida", this);
+            service.CrearAlerta("Se ha de especificar una dirección de recogida", this);
         } else if (precioStr.isEmpty()) {
-            service.ErrorAlert("El producto ha de tener un precio", this);
+            service.CrearAlerta("El producto ha de tener un precio", this);
         }else if(!service.validRaciones(raciones)){
-            service.ErrorAlert("El numero de raciones ha de ser entero", this);
+            service.CrearAlerta("El numero de raciones ha de ser entero", this);
         }else if(!service.validPrecio(precioStr)){
-            service.ErrorAlert("El precio ha de ser un numero positivo y los decimales se han de indicar con un punto", this);
+            service.CrearAlerta("El precio ha de ser un numero positivo y los decimales se han de indicar con un punto", this);
         }else if ( horaPreparacion.isEmpty()) {
-            service.ErrorAlert("Se ha de especificar la hora de preparación", this);
+            service.CrearAlerta("Se ha de especificar la hora de preparación", this);
         }else if(!service.validTime(horaPreparacion)){
-            service.ErrorAlert("Asegúrese de que la hora de preparación es correcta y tiene el formato HH:mm", this);
+            service.CrearAlerta("Asegúrese de que la hora de preparación es correcta y tiene el formato HH:mm", this);
         }else if ( hora1.isEmpty()) {
-            service.ErrorAlert("Se ha de especificar la franja temprana de la hora de recogida", this);
+            service.CrearAlerta("Se ha de especificar la franja temprana de la hora de recogida", this);
         }else if(!service.validTime(hora1)){
-            service.ErrorAlert("Asegúrese de que la hora de la franja temprana introducida es correcta y tiene el formato HH:mm", this);
+            service.CrearAlerta("Asegúrese de que la hora de la franja temprana introducida es correcta y tiene el formato HH:mm", this);
         }else if ( hora2.isEmpty()) {
-            service.ErrorAlert("Se ha de especificar la franja tardía de la hora de recogida", this);
+            service.CrearAlerta("Se ha de especificar la franja tardía de la hora de recogida", this);
         }else if(!service.validTime(hora2)){
-            service.ErrorAlert("Asegúrese de que la hora de la franja tardía introducida es correcta y tiene el formato HH:mm", this);
+            service.CrearAlerta("Asegúrese de que la hora de la franja tardía introducida es correcta y tiene el formato HH:mm", this);
         }else if(!service.validTimeRange(hora1,hora2)){
-            service.ErrorAlert("La franja superior horaria ha de ser mayor que la inferior", this);
+            service.CrearAlerta("La franja superior horaria ha de ser mayor que la inferior", this);
         }else if(descripcion.isEmpty()){
-            service.ErrorAlert("El producto ha de tener una descripción", this);
+            service.CrearAlerta("El producto ha de tener una descripción", this);
         }else if(imagenPlatoBase64 == null){
-            service.ErrorAlert("Haga una foto al producto", this);
+            service.CrearAlerta("Haga una foto al producto", this);
 
         }else{
             // Resto del código para crear y guardar el producto

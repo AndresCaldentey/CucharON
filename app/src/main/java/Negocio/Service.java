@@ -65,7 +65,7 @@ public class Service implements IService{
     public List<Categoria> getAllCategorias() {return categoriaRepo.obtenerTodos();}
     public void actualizarProducto2(Producto p) { productoRepo.actualizar(p);}
     public void guardarProductoCategoria(ProductoCategoria productoCategoria){productoCategoriaRepo.guardar(productoCategoria);}
-
+    public List<ProductoCategoria> getAllProductoCategoria(){return productoCategoriaRepo.obtenerTodos(); }
 
     //OTRAS COSAS
     public  boolean validTel(int tel) {
@@ -139,7 +139,7 @@ public class Service implements IService{
         }
     }
 
-    public void ErrorAlert(String errorString, Context contexto) {
+    public void CrearAlerta(String errorString, Context contexto) {
         AlertDialog.Builder alert = new AlertDialog.Builder(contexto);
         alert.setMessage(errorString)
                 .setCancelable(true)
@@ -167,6 +167,9 @@ public class Service implements IService{
 
     public List<Producto> getProductosPubPorUser(Usuario user) {
         return productoRepo.getProductosPorUsuario(user);
+    }
+    public List<Producto> getProductosSinComprar(){
+        return productoRepo.getProductosSinComprador();
     }
 
 }

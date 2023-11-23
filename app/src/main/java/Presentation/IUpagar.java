@@ -10,8 +10,6 @@ import androidx.appcompat.app.AppCompatDelegate;
 
 import com.example.cucharon.R;
 
-import java.util.ArrayList;
-
 import Negocio.IService;
 import Negocio.Service;
 
@@ -42,16 +40,16 @@ public class IUpagar  extends AppCompatActivity {
         String cvc = String.valueOf(caducaEditText.getText());
         String titular = String.valueOf(titularEditText.getText());
         if(tarjeta.isEmpty() ){
-            service.ErrorAlert("Se ha de introducir la tarjeta de crédito ", this);
+            service.CrearAlerta("Se ha de introducir la tarjeta de crédito ", this);
         }
         if(fechaCad.isEmpty() ){
-            service.ErrorAlert("Se ha de introducir la fecha de caducidad de la tarjeta", this);
+            service.CrearAlerta("Se ha de introducir la fecha de caducidad de la tarjeta", this);
         }
         if(cvc.isEmpty() ){
-            service.ErrorAlert("Se ha de introducir el CVC de la tarjeta", this);
+            service.CrearAlerta("Se ha de introducir el CVC de la tarjeta", this);
         }
         if(titular.isEmpty() ){
-            service.ErrorAlert("Se ha de intruducir el nombre del titular", this);
+            service.CrearAlerta("Se ha de intruducir el nombre del titular", this);
         }
     }
 }

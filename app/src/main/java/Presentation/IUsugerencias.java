@@ -1,30 +1,40 @@
 package Presentation;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
+import com.example.cucharon.Categoria;
 import com.example.cucharon.Producto;
+import com.example.cucharon.ProductoCategoria;
 import com.example.cucharon.R;
 import com.example.cucharon.Usuario;
 
 import android.content.Context;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import Negocio.IService;
@@ -33,7 +43,16 @@ import Negocio.Service;
 public class IUsugerencias extends AppCompatActivity {
     LinearLayout sugerenciasLinearLayout;
     public static List<Producto> todosLosPlatos;
+    List<Producto> platos;
     IService servicio;
+    List<Categoria> categoriasProducto = new ArrayList<>();
+    List<Categoria> todasLasCategorias = new ArrayList<>();
+    RelativeLayout popupCategorias;
+    LinearLayout linearLayoutCategorias;
+    Button botonFiltro;
+    final Categoria[] categoriaEscogida = {null};
+    RecyclerView rv1;
+    AdaptadorPlato platosAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,196 +60,111 @@ public class IUsugerencias extends AppCompatActivity {
         setContentView(R.layout.sugerencias);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-        sugerenciasLinearLayout = findViewById(R.id.sugerenciasLinearLayout);
+
+        //relacionado con la muestra del plato
+        platos = new ArrayList<>();
+        rv1 = findViewById(R.id.rv1);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        rv1.setLayoutManager(linearLayoutManager);
+        platosAdapter = new AdaptadorPlato(IUreserva.class);
+        rv1.setAdapter(platosAdapter);
+        //--------------------------------------------------------------------------------
+
         servicio = Service.getService();
+        popupCategorias = findViewById(R.id.categoriasPopup);
+        linearLayoutCategorias = findViewById(R.id.linLayoutCategorias);
+        botonFiltro = findViewById(R.id.botonFiltro);
+        todosLosPlatos = servicio.getProductosSinComprar();
+        todasLasCategorias = servicio.getAllCategorias();
+
+        final String[] categoria = new String[0];
         //Intent intent = new Intent(IUsugerencias.this, IUreserva.class);
         //startActivity(intent);
-        generarPlatos();
-    }
-
-    public void generarPlatos() {
-        todosLosPlatos = servicio.getAllProducto();
-        Context context = getApplicationContext();
-
-        for (Producto plato : todosLosPlatos) {
-            Usuario user = new Usuario();
-           if(plato.getUsuarioComprador()==null){
-                ConstraintLayout constraintLayout = createPlato(plato, context);
-                sugerenciasLinearLayout.addView(constraintLayout);
-                sugerenciasLinearLayout.addView(createGap(context));
-            }
-        }
-
-    }
 
 
-    public LinearLayout createGap(Context context){
-        LinearLayout linearLayout = new LinearLayout(context);
+        final int[] defaultPosition = {0};
+         // Inicializamos con null, ya que aún no se ha seleccionado ninguna categoría
 
-        // Establecer los atributos del LinearLayout
-        linearLayout.setLayoutParams(new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT, // Ancho
-                80 // Alto en dp
-        ));
-        linearLayout.setOrientation(LinearLayout.HORIZONTAL);
-        return linearLayout;
-    }
-
-
-    public ConstraintLayout createPlato(Producto plato, Context context) {
-        ConstraintLayout constraintLayout = new ConstraintLayout(context);
-        constraintLayout.setLayoutParams(new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                450
-        ));
-
-        constraintLayout.setBackground(ContextCompat.getDrawable(context, R.drawable.plato_sugerencias));
-
-        ImageView imageViewUsuario = new ImageView(context);
-        imageViewUsuario.setId(View.generateViewId());
-        imageViewUsuario.setLayoutParams(new ViewGroup.LayoutParams(
-                (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 35, context.getResources().getDisplayMetrics()),
-                (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 100, context.getResources().getDisplayMetrics())
-        ));
-        imageViewUsuario.setImageResource(R.drawable.user);
-        constraintLayout.addView(imageViewUsuario);
-
-        /*ImageView imageViewPlato = new ImageView(context);
-        imageViewPlato.setId(View.generateViewId());
-        imageViewPlato.setLayoutParams(new ViewGroup.LayoutParams(
-                (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 300, context.getResources().getDisplayMetrics()),
-                (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 100, context.getResources().getDisplayMetrics())
-        ));
-
-        //Obtiene la imagen
-        Bitmap bitmap = servicio.pasarStringAImagen(plato.getImagen());
-
-        // Establece el Bitmap en el ImageView
-        imageViewPlato.setImageBitmap(bitmap);
-
-        constraintLayout.addView(imageViewPlato);*/
-
-        //TEXTO NOMBRE USUARIO PUBLICADOR
-        TextView textView1 = new TextView(context);
-        textView1.setId(View.generateViewId());
-        textView1.setLayoutParams(new ViewGroup.LayoutParams(
-                (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 100, context.getResources().getDisplayMetrics()),
-                (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 60, context.getResources().getDisplayMetrics())
-        ));
-
-        Usuario usuario = plato.getUsuarioPublicador();
-        textView1.setText(usuario.getNombre());
-
-        constraintLayout.addView(textView1);
-
-        View divider = new View(context);
-        divider.setId(View.generateViewId());
-        divider.setLayoutParams(new ViewGroup.LayoutParams(
-                (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 302, context.getResources().getDisplayMetrics()),
-                (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 2, context.getResources().getDisplayMetrics())
-        ));
-        divider.setBackgroundColor(getResources().getColor(android.R.color.black));
-        constraintLayout.addView(divider);
-
-        //TEXTO NOMBRE PLATO
-        TextView textViewNombrePlato = new TextView(context);
-        textViewNombrePlato.setId(View.generateViewId());
-        textViewNombrePlato.setLayoutParams(new ViewGroup.LayoutParams(
-                (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 305, context.getResources().getDisplayMetrics()),
-                (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 80, context.getResources().getDisplayMetrics())
-        ));
-
-        textViewNombrePlato.setText(plato.getNombre().toUpperCase());
-        textViewNombrePlato.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
-        textViewNombrePlato.setGravity(Gravity.BOTTOM | Gravity.CENTER);
-        constraintLayout.addView(textViewNombrePlato);
-
-        //TEXTO DIRECCION RECOGIDA
-        TextView textViewDirRecogida = new TextView(context);
-        textViewDirRecogida.setId(View.generateViewId());
-        textViewDirRecogida.setLayoutParams(new ViewGroup.LayoutParams(
-                (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 303, context.getResources().getDisplayMetrics()),
-                (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 40, context.getResources().getDisplayMetrics())
-        ));
-        textViewDirRecogida.setText(plato.getDireccionRecogida());
-        textViewDirRecogida.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12);
-        textViewDirRecogida.setGravity(Gravity.CENTER_VERTICAL);
-        constraintLayout.addView(textViewDirRecogida);
-
-
-
-        //TEXTO PRECIO PLATO
-        TextView textViewPrecio = new TextView(context);
-        textViewPrecio.setId(View.generateViewId());
-        textViewPrecio.setLayoutParams(new ViewGroup.LayoutParams(
-                (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 290, context.getResources().getDisplayMetrics()),
-                (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 30, context.getResources().getDisplayMetrics())
-        ));
-        textViewPrecio.setText(plato.getPrecio().toString()+"€");
-        textViewPrecio.setTypeface(Typeface.create("sans-serif-condensed-light", Typeface.NORMAL));
-        textViewPrecio.setTypeface(Typeface.DEFAULT_BOLD);
-        textViewPrecio.setGravity(Gravity.BOTTOM | Gravity.RIGHT);
-        constraintLayout.addView(textViewPrecio);
-
-        // Crear un ConstraintSet para configurar las restricciones
-        ConstraintSet constraintSet = new ConstraintSet();
-        constraintSet.clone(constraintLayout);
-
-        // Restricciones para la imagen
-        /*constraintSet.connect(imageViewPlato.getId(), ConstraintSet.TOP, constraintLayout.getId(), ConstraintSet.TOP);
-        constraintSet.connect(imageViewPlato.getId(), ConstraintSet.BOTTOM, divider.getId(), ConstraintSet.BOTTOM);
-        constraintSet.connect(imageViewPlato.getId(), ConstraintSet.START, constraintLayout.getId(), ConstraintSet.START);
-        constraintSet.connect(imageViewPlato.getId(), ConstraintSet.END, constraintLayout.getId(), ConstraintSet.END);*/
-
-        constraintSet.connect(imageViewUsuario.getId(), ConstraintSet.TOP, constraintLayout.getId(), ConstraintSet.TOP);
-        constraintSet.connect(imageViewUsuario.getId(), ConstraintSet.BOTTOM, divider.getId(), ConstraintSet.BOTTOM);
-        constraintSet.connect(imageViewUsuario.getId(), ConstraintSet.START, constraintLayout.getId(), ConstraintSet.START);
-        constraintSet.connect(imageViewUsuario.getId(), ConstraintSet.END, constraintLayout.getId(), ConstraintSet.END);
-
-        // Restricciones para el primer TextView NOMBRE PUBLICADOR
-        constraintSet.connect(textView1.getId(), ConstraintSet.TOP, constraintLayout.getId(), ConstraintSet.TOP);
-        constraintSet.connect(textView1.getId(), ConstraintSet.BOTTOM, divider.getId(), ConstraintSet.TOP);
-        constraintSet.connect(textView1.getId(), ConstraintSet.START, imageViewUsuario.getId(), ConstraintSet.END);
-        constraintSet.connect(textView1.getId(), ConstraintSet.END, constraintLayout.getId(), ConstraintSet.END);
-
-        constraintSet.connect(divider.getId(), ConstraintSet.TOP, textViewNombrePlato.getId(), ConstraintSet.BOTTOM);
-        constraintSet.connect(divider.getId(), ConstraintSet.BOTTOM, textViewDirRecogida.getId(), ConstraintSet.TOP);
-        constraintSet.connect(divider.getId(), ConstraintSet.START, constraintLayout.getId(), ConstraintSet.START);
-        constraintSet.connect(divider.getId(), ConstraintSet.END, constraintLayout.getId(), ConstraintSet.END);
-
-        // Restricciones para el segundo TextView NOMBRE PLATO
-        constraintSet.connect(textViewNombrePlato.getId(), ConstraintSet.TOP, constraintLayout.getId(), ConstraintSet.BOTTOM);
-        constraintSet.connect(textViewNombrePlato.getId(), ConstraintSet.BOTTOM, constraintLayout.getId(), ConstraintSet.BOTTOM);
-        constraintSet.connect(textViewNombrePlato.getId(), ConstraintSet.START, constraintLayout.getId(), ConstraintSet.START);
-        constraintSet.connect(textViewNombrePlato.getId(), ConstraintSet.END, divider.getId(), ConstraintSet.END);
-
-        // Restricciones para el tercer TextView DIRECCION RECOGIDA
-        constraintSet.connect(textViewDirRecogida.getId(), ConstraintSet.TOP, textViewNombrePlato.getId(), ConstraintSet.BOTTOM);
-        constraintSet.connect(textViewDirRecogida.getId(), ConstraintSet.BOTTOM, constraintLayout.getId(), ConstraintSet.BOTTOM);
-        constraintSet.connect(textViewDirRecogida.getId(), ConstraintSet.START, constraintLayout.getId(), ConstraintSet.START);
-        constraintSet.connect(textViewDirRecogida.getId(), ConstraintSet.END, constraintLayout.getId(), ConstraintSet.END);
-
-        // Restricciones para el cuarto TextView PRECIO PLATO
-        constraintSet.connect(textViewPrecio.getId(), ConstraintSet.TOP, textViewDirRecogida.getId(), ConstraintSet.BOTTOM);
-        constraintSet.connect(textViewPrecio.getId(), ConstraintSet.BOTTOM, constraintLayout.getId(), ConstraintSet.BOTTOM);
-        constraintSet.connect(textViewPrecio.getId(), ConstraintSet.START, constraintLayout.getId(), ConstraintSet.START);
-        constraintSet.connect(textViewPrecio.getId(), ConstraintSet.END, constraintLayout.getId(), ConstraintSet.END);
-
-        constraintSet.applyTo(constraintLayout);
-
-        constraintLayout.setOnClickListener(new View.OnClickListener() {
+        botonFiltro.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                // Aquí puedes manejar el evento de clic en el ConstraintLayout
-                IUreserva reserva = new IUreserva();
-                Intent intent = new Intent(IUsugerencias.this,IUreserva.class);
-                intent.putExtra("Producto",plato.getIdProducto());
-                startActivity(intent);
+            public void onClick(View v) {
+                // Creamos un nuevo array de categorías que incluye la opción "Todas las categorías"
+                List<Categoria> categoriasConTodas = new ArrayList<>(todasLasCategorias);
+                categoriasConTodas.add(0, new Categoria("Todas las categorías","no tiene")); // Ajusta esto según la estructura de tu clase Categoria
+
+                // Creamos un array de nombres de categorías que incluye la opción "Todas las categorías"
+                CharSequence[] categoriaNames = getCategoriaNames(categoriasConTodas);
+
+                AlertDialog.Builder builderSingle = new AlertDialog.Builder(IUsugerencias.this);
+                builderSingle.setTitle("Filtra por categoría");
+                builderSingle.setPositiveButton(getString(android.R.string.ok), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Al hacer clic en "OK", se guarda la categoría seleccionada en categoriaEscogida
+                        categoriaEscogida[0] = categoriasConTodas.get(defaultPosition[0]); // Usar categoriasConTodas en lugar de todasLasCategorias
+                        generarPlatos();
+                        dialog.dismiss();
+
+
+                    }
+                });
+
+                builderSingle.setSingleChoiceItems(categoriaNames, defaultPosition[0], new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Al hacer clic en un elemento, actualizamos la posición seleccionada
+                        defaultPosition[0] = which;
+                    }
+                });
+
+                builderSingle.show();
             }
         });
 
-        return constraintLayout;
+        generarPlatos();
+
     }
+
+    private CharSequence[] getCategoriaNames(List<Categoria> categorias) {
+        CharSequence[] names = new CharSequence[categorias.size()];
+        for (int i = 0; i < categorias.size(); i++) {
+            names[i] = categorias.get(i).getNombre(); // Asumiendo que hay un método getNombre() en la clase Categoria
+        }
+        return names;
+    }
+
+    public void generarPlatos() {
+
+        if(categoriaEscogida[0]== null || categoriaEscogida[0].getNombre() == "Todas las categorías") {
+
+            platos = todosLosPlatos;
+            actualizarPlatos(todosLosPlatos);
+
+        }else {
+
+            platos = new ProductoCategoria().getProductosByCategoria(categoriaEscogida[0].getNombre());
+
+            if(platos.isEmpty()){
+                Toast.makeText(this, "No hay productos con esta categoría", Toast.LENGTH_LONG).show(); // Escoger entre uno de estos
+                showAlertDialog("Prueba con otra opción", "No hay productos con esta categoría"); // Escoger entre uno de estos
+                categoriaEscogida[0] = null;
+                actualizarPlatos(todosLosPlatos);
+            }
+
+            else {
+                actualizarPlatos(platos);
+            }
+
+        }
+    }
+
+
+
+    public void actualizarPlatos(List<Producto> platos) {
+        platosAdapter.setPlatos(platos);
+        platosAdapter.notifyDataSetChanged();
+    }
+
 
 
 
@@ -251,6 +185,24 @@ public class IUsugerencias extends AppCompatActivity {
        /* */
         finish();
     }
+
+    private void showAlertDialog(String title, String message) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(title)
+                .setMessage(message)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // Código a ejecutar cuando se hace clic en OK
+                        dialog.dismiss(); // Cierra el cuadro de diálogo
+                    }
+                });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
+
+
+
+
 
 
 }

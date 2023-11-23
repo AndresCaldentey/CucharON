@@ -49,22 +49,84 @@
             app:srcCompat="@drawable/user" />
     </LinearLayout>
 
-    <ScrollView
-        android:layout_width="302dp"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv1"
+        android:layout_width="wrap_content"
         android:layout_height="607dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.342">
+        app:layout_constraintVertical_bias="0.342" />
+
+    <RelativeLayout
+        android:id="@+id/categoriasPopup"
+        android:layout_width="297dp"
+        android:layout_height="415dp"
+        android:background="@drawable/fondo_reserva"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="gone">
 
         <LinearLayout
-            android:id="@+id/sugerenciasLinearLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="vertical" />
-    </ScrollView>
+            android:layout_height="244dp"
+            android:layout_below="@+id/scrollCategorias"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="-48dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginBottom="0dp"
+            android:orientation="horizontal"
+            android:paddingLeft="25dp"
+            android:paddingRight="25dp">
+
+            <Button
+                android:id="@+id/añadirCategoriasBtn"
+                android:layout_width="201dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="añadirCategoriasPopupOnClick"
+                android:text="Añadir categorias" />
+
+            <ScrollView
+                android:id="@+id/scrollCategorias"
+                android:layout_width="match_parent"
+                android:layout_height="335dp"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginEnd="0dp"
+                android:layout_marginBottom="48dp"
+                android:paddingLeft="50dp"
+                android:paddingTop="20dp"
+                android:paddingRight="50dp">
+
+                <LinearLayout
+                    android:id="@+id/linLayoutCategorias"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" />
+            </ScrollView>
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/botonFiltro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="filtrar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.978"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
