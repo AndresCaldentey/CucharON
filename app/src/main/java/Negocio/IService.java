@@ -21,6 +21,7 @@ public interface IService {
     void crearProducto(Producto producto);
     Producto getProductoById(int id);
     List<Producto> getProductosByDireccion(String direccion);
+    List<Producto> getProductosByPosicion(double lat, double lon);
     public Categoria getCategoriaByName(String nombre);
     List<Producto> getAllProducto();
     public List<Categoria> getAllCategorias();
