@@ -9,7 +9,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="359dp"
-        android:layout_height="130dp"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="30dp"
         android:background="@drawable/itemplato"
         app:layout_constraintBottom_toTopOf="@+id/divider3"
@@ -64,5 +64,21 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/nomP"
             app:layout_constraintVertical_bias="0.824" />
+
+        <ImageView
+            android:id="@+id/platoI"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="11dp"
+            android:layout_marginEnd="51dp"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toTopOf="@+id/recP"
+            app:layout_constraintEnd_toStartOf="@+id/nomP"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/dish" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>
