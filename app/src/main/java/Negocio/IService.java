@@ -39,6 +39,7 @@ public interface IService {
     Bitmap pasarStringAImagen(String img64);
     void setLoggedUser(Usuario user);
     Usuario getLoggedUser();
+    void clearLoggedUser() ;
     UsuarioRepository getUserRepo();
     void guardarProductoCategoria(ProductoCategoria productoCategoria);
     List<ProductoCategoria> getAllProductoCategoria();

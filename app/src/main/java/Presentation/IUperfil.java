@@ -94,7 +94,7 @@ public class IUperfil extends AppCompatActivity {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("token", null);
         editor.apply();
-        service.setLoggedUser(null);
+        service.clearLoggedUser();
 
 
         Intent intent = new Intent(IUperfil.this, IUlogin.class);

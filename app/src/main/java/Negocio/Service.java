@@ -41,6 +41,7 @@ public class Service implements IService{
     public Usuario getLoggedUser() {
         return loggedUser;
     }
+    public void clearLoggedUser() { loggedUser = null; }
 
     public Service() {
         userRepo = new UsuarioRepository(SingletonConnection.getSingletonInstance());
