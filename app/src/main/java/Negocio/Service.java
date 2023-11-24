@@ -31,7 +31,6 @@ public class Service implements IService{
     private CategoriaRepository categoriaRepo;
     private ProductoCategoriaRepository productoCategoriaRepo;
     private static Service instancia;
-    private static final int SELECT_IMAGE = 1;
     private Usuario loggedUser;
     public UsuarioRepository getUserRepo() { return userRepo; }
     public void setLoggedUser(Usuario user) {
@@ -154,9 +153,9 @@ public class Service implements IService{
         dialog.show();
     }
     public String imagenToString(Bitmap bitmap){
-
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 40, byteArrayOutputStream);
+
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 80, byteArrayOutputStream);
         byte[] byteArray = byteArrayOutputStream.toByteArray();
         return Base64.encodeToString(byteArray, Base64.DEFAULT);
     }

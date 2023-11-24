@@ -32,84 +32,48 @@ import java.util.List;
 import java.util.Locale;
 
 public class Mapa extends AppCompatActivity implements OnMapReadyCallback, GoogleMap.OnMapClickListener, GoogleMap.OnMapLongClickListener {
-
-    GoogleMap mMap;
+    private GoogleMap mMap;
     public static String direccion = "";
-
+    public static double latitud, longitud;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mapa2);
 
-
-
-
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-
-
     }
 
     @Override
     public void onMapReady(@NonNull GoogleMap googleMap) {
-
         mMap = googleMap;
         this.mMap.setOnMapClickListener(this);
         this.mMap.setOnMapLongClickListener(this);
 
-       // moveToCurrentLocation();
-
-        float zoomLevel = 15.0f; // Puedes ajustar este valor según tus necesidades
-
-        // Crea una cámara con el nivel de zoom y la ubicación que desees
-        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(39.476802,-0.3468245), zoomLevel);
-
-        // Mueve la cámara al nivel de zoom y ubicación deseados
+        //Ajustar camara inicial
+        float zoomLevel = 15.0f;
+        LatLng posicionInicial = new LatLng(39.476802,-0.3468245);
+        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(posicionInicial, zoomLevel);
         mMap.moveCamera(cameraUpdate);
-
-        LatLng españa = new LatLng(39.476802,-0.3468245);
-        mMap.addMarker(new MarkerOptions().position(españa).title("UPV")); // Indica la posicion en la que abres el mapa
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(españa)); // Añade una marca en el mapa
     }
 
     @Override
     public void onMapClick(@NonNull LatLng latLng) {
-        mMap.clear();
-        LatLng puntoSelecionado = new LatLng(latLng.latitude,latLng.longitude);
-        mMap.addMarker(new MarkerOptions().position(puntoSelecionado));
+        mMap.clear();   //Borra antigua seleccion de posicion
 
-
+        mMap.addMarker(new MarkerOptions().position(latLng));
         direccion = getAddressFromCoordinates(this,latLng.latitude,latLng.longitude);
-
-        System.out.println("-------------------- " + direccion);
-
+        latitud = latLng.latitude;
+        longitud = latLng.longitude;
     }
 
     @Override
     public void onMapLongClick(@NonNull LatLng latLng) {
 
-
-
     }
 
-
-
-    private void moveToCurrentLocation() {
-        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
-                locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-            Location lastLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-
-            if (lastLocation != null) {
-                LatLng currentLatLng = new LatLng(lastLocation.getLatitude(), lastLocation.getLongitude());
-                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 50));
-            }
-        }
-    }
-
-    public String getAddressFromCoordinates(Context context, double latitude, double longitude) {
+    private String getAddressFromCoordinates(Context context, double latitude, double longitude) {
         Geocoder geocoder = new Geocoder(context, Locale.getDefault());
 
         try {
@@ -147,6 +111,8 @@ public class Mapa extends AppCompatActivity implements OnMapReadyCallback, Googl
     public void onBackPressed(View view) {
         Intent resultIntent = new Intent();
         resultIntent.putExtra("direccion", direccion); // Supongamos que "ubicacionSeleccionada" es el dato que deseas enviar de vuelta
+        resultIntent.putExtra("latitud" , latitud);
+        resultIntent.putExtra("longitud" , longitud);
         setResult(RESULT_OK, resultIntent);
         super.onBackPressed();
         finish(); // Cierra la actividad actual y vuelve a la anterior

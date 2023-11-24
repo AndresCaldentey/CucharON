@@ -3,7 +3,8 @@ package Presentation;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.net.Uri;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
@@ -24,43 +25,23 @@ import com.example.cucharon.Categoria;
 import com.example.cucharon.Producto;
 import com.example.cucharon.ProductoCategoria;
 import com.example.cucharon.R;
-import com.example.cucharon.Usuario;
+import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 public class IUposteoProducto extends AppCompatActivity {
-
-    private static final int REQUEST_IMAGE_CAPTURE= 1;
-    TextView addPhotoText;
-    ImageView fotoPlato;
-    String imagenPlatoBase64;
-    EditText nombreEditText;
-    EditText descripcionEditText;
-    EditText precioEditText;
-    EditText ingredientesEditText;
-    EditText cantidadPlatosEditText;
-    EditText horaPreparacionEditText;
-    Button posteoBtn;
-    Button addBtn;
-    Button subsBtn;
-    Button añadirCategoriasBtnPopup;
-    Button añadirCategoriasBtnPrincipal;
-    RelativeLayout popupCategorias;
-    LinearLayout linearLayoutCategorias;
-    Producto producto;
-    Usuario usuarioActual;
-    TextView textoDireccion;
-    String ubicacionSeleccionada;
-    TextView horaRecogida1;
-    TextView horaRecogida2;
-    IService service;
-    int numRacionesActuales;
-    List<Categoria> categoriasProducto;
-    public static List<Categoria> todasLasCategorias;
-    LinearLayout linLayCategoriasSeleccionadas;
-    public static final int SELECCIONAR_UBICACION_REQUEST = 2;
+    private static final int REQUEST_IMAGE_CAPTURE= 1, SELECCIONAR_UBICACION_REQUEST = 2;
+    private static List<Categoria> todasLasCategorias;
+    private IService service;
+    private RelativeLayout popupCategorias;
+    private LinearLayout linearLayoutCategorias, linLayCategoriasSeleccionadas;
+    private EditText nombreEditText, descripcionEditText, precioEditText, cantidadPlatosEditText, horaPreparacionEditText;
+    private TextView textoDireccion, horaRecogida1, horaRecogida2;
+    private ImageView fotoPlato;
+    private LatLng posicionProducto;
+    private List<Categoria> categoriasProducto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,207 +49,186 @@ public class IUposteoProducto extends AppCompatActivity {
         setContentView(R.layout.nuevo_plato);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+
         service = Service.getService();
-        addPhotoText = findViewById(R.id.addPhotoText);
         fotoPlato = findViewById(R.id.fotoPlato);
         nombreEditText = findViewById(R.id.tarjetaEditText);
         descripcionEditText = findViewById(R.id.descripcionEditText);
         precioEditText = findViewById(R.id.precioEditText);
         cantidadPlatosEditText = findViewById(R.id.cantidadEditText);
-        ingredientesEditText = findViewById(R.id.caducaEditText);
         horaPreparacionEditText = findViewById(R.id.horaPreparacionEditText);
         popupCategorias = findViewById(R.id.categoriasPopup);
-        añadirCategoriasBtnPopup = findViewById(R.id.añadirCategoriasBtn);
-        añadirCategoriasBtnPrincipal = findViewById(R.id.buttonAñadirCategorias);
         linearLayoutCategorias = findViewById(R.id.linLayoutCategorias);
         linLayCategoriasSeleccionadas = findViewById(R.id.linearLayCategoriasPrincipal);
-        //popupCategorias.setVisibility(View.INVISIBLE);
-        posteoBtn = findViewById(R.id.posteoBtn);
-        addBtn = findViewById(R.id.btnAdd);
-        subsBtn = findViewById(R.id.btnSubs);
         textoDireccion = findViewById(R.id.direccionSelecionada);
         horaRecogida1 = findViewById(R.id.horaRecogida1);
         horaRecogida2 = findViewById(R.id.horaRecogida2);
-        numRacionesActuales = 1;
+
         categoriasProducto = new ArrayList<>();
-
-        Service service = Service.getService();
-    }
-
-    public void clickAddPhoto(View view){
-        disparchTakePictureIntent();
-    }
-
-    private void disparchTakePictureIntent() {
-        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        startActivityForResult(intent, service.SELECT_IMAGE);
-        //Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        //if(takePictureIntent.resolveActivity(getPackageManager())!=null){
-        //    startActivityForResult(takePictureIntent,REQUEST_IMAGE_CAPTURE);
-       // }
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+        //Se ha obtenido resultado de la actividad seleccionar imagen
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK && data != null) {
-            // La imagen se capturó con éxito, ahora configura la imagen en fotoPlato
-            Uri selectedImageUri = data.getData();
-            //Bundle extras = data.getExtras();
-            //Bitmap imageBitmap = (Bitmap) extras.get("data");
+            Bundle extras = data.getExtras();
+            Bitmap imageBitmap = (Bitmap) extras.get("data");
 
-            fotoPlato.setImageURI(selectedImageUri);
-            //Pasar imagen a String
-
-
-            //DEBERIAMOS GUARDAR LA IMAGEN EN LA BASE DE DATOS YA
+            fotoPlato.setImageBitmap(imageBitmap);
         }
 
-        if (requestCode == SELECCIONAR_UBICACION_REQUEST && resultCode == RESULT_OK) {
-            if (data != null) {
-                ubicacionSeleccionada = data.getStringExtra("direccion");
-                textoDireccion.setText(ubicacionSeleccionada);
-            }
+        //Se ha obtenido resultado de la actividad seleccionar ubicacion
+        if (requestCode == SELECCIONAR_UBICACION_REQUEST && resultCode == RESULT_OK && data != null) {
+            textoDireccion.setText(data.getStringExtra("direccion"));
+            double lat = data.getDoubleExtra("latitud", 2);
+            double lon = data.getDoubleExtra("longitud", 2);
+            posicionProducto = new LatLng(lat, lon);
         }
     }
 
-
-
-
+    public void clickAddPhoto(View view){
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if(takePictureIntent.resolveActivity(getPackageManager())!=null){
+            startActivityForResult(takePictureIntent,REQUEST_IMAGE_CAPTURE);
+        }
+    }
 
     public void clickPostearProducto(View view){
-
+        //Se recogen la informacion proporcionada para el nuevo producto
         String nombre = String.valueOf(nombreEditText.getText());
         String descripcion = String.valueOf(descripcionEditText.getText());
-        String precioStr = String.valueOf(precioEditText.getText());
+        double precio = Double.parseDouble(precioEditText.getText().toString());
         String hora1 = String.valueOf(horaRecogida1.getText());
         String hora2 = String.valueOf(horaRecogida2.getText());
         String horaPreparacion = String.valueOf(horaPreparacionEditText.getText());
-        String raciones = String.valueOf(cantidadPlatosEditText.getText());
-        if(nombre.isEmpty() ){
-            service.CrearAlerta("El producto ha de tener un nombre", this);
-        }else if(ubicacionSeleccionada==null){
-            service.CrearAlerta("Se ha de especificar una dirección de recogida", this);
-        } else if (precioStr.isEmpty()) {
-            service.CrearAlerta("El producto ha de tener un precio", this);
-        }else if(!service.validRaciones(raciones)){
-            service.CrearAlerta("El numero de raciones ha de ser entero", this);
-        }else if(!service.validPrecio(precioStr)){
-            service.CrearAlerta("El precio ha de ser un numero positivo y los decimales se han de indicar con un punto", this);
-        }else if ( horaPreparacion.isEmpty()) {
-            service.CrearAlerta("Se ha de especificar la hora de preparación", this);
-        }else if(!service.validTime(horaPreparacion)){
-            service.CrearAlerta("Asegúrese de que la hora de preparación es correcta y tiene el formato HH:mm", this);
-        }else if ( hora1.isEmpty()) {
-            service.CrearAlerta("Se ha de especificar la franja temprana de la hora de recogida", this);
-        }else if(!service.validTime(hora1)){
-            service.CrearAlerta("Asegúrese de que la hora de la franja temprana introducida es correcta y tiene el formato HH:mm", this);
-        }else if ( hora2.isEmpty()) {
-            service.CrearAlerta("Se ha de especificar la franja tardía de la hora de recogida", this);
-        }else if(!service.validTime(hora2)){
-            service.CrearAlerta("Asegúrese de que la hora de la franja tardía introducida es correcta y tiene el formato HH:mm", this);
-        }else if(!service.validTimeRange(hora1,hora2)){
-            service.CrearAlerta("La franja superior horaria ha de ser mayor que la inferior", this);
-        }else if(descripcion.isEmpty()){
-            service.CrearAlerta("El producto ha de tener una descripción", this);
-        }else if(imagenPlatoBase64 == null){
-            service.CrearAlerta("Haga una foto al producto", this);
+        int raciones = Integer.parseInt(cantidadPlatosEditText.getText().toString());
+        String imagen = service.imagenToString(((BitmapDrawable) fotoPlato.getDrawable()).getBitmap());
+        String direccion = textoDireccion.getText().toString();
 
-        }else{
-            // Resto del código para crear y guardar el producto
-            Producto producto = new Producto(1,nombre,descripcion,Double.parseDouble(precioStr),
-                    hora1+" - "+hora2,horaPreparacion,imagenPlatoBase64,ubicacionSeleccionada,numRacionesActuales,
-                    new Date(), service.getLoggedUser());
-            service.crearProducto(producto);
+        //Se crea el producto
+        Producto producto = new Producto(98,nombre,descripcion,precio, hora1+" - "+hora2,horaPreparacion, imagen,
+                direccion, raciones, new Date(), service.getLoggedUser(), posicionProducto.latitude, posicionProducto.longitude);
 
+        //Si se valida el producto se guarda en la BD
+        if(validarProducto(producto, hora1, hora2))
+        {
+            service.crearProducto(producto);    //Guarda en la bd el nuevo producto
             Producto productoPosteado =  service.getProductoById(producto.getIdProducto());
 
+            //Agrega tambien a la bd todas las categorias del producto
             for(Categoria categoria :  categoriasProducto){
                 ProductoCategoria productoCategoria = new ProductoCategoria(productoPosteado, categoria);
                 service.guardarProductoCategoria(productoCategoria);
             }
         }
-
-
     }
 
-    public void irMapa(View view){
+    private boolean validarProducto(Producto producto, String hora1, String hora2) {
+        if(producto.getNombre().isEmpty() ){
+            service.CrearAlerta("El producto ha de tener un nombre", this);
+            return false;
+        }else if(producto.getDireccionRecogida() == null){
+            service.CrearAlerta("Se ha de especificar una dirección de recogida", this);
+            return false;
+        } else if (producto.getPrecio() == null) {
+            service.CrearAlerta("El producto ha de tener un precio", this);
+            return false;
+        }else if(!service.validRaciones(producto.getNumRaciones()+"")){
+            service.CrearAlerta("El numero de raciones ha de ser entero", this);
+            return false;
+        }else if(!service.validPrecio(producto.getPrecio()+"")){
+            service.CrearAlerta("El precio ha de ser un numero positivo y los decimales se han de indicar con un punto", this);
+            return false;
+        }else if ( producto.getHoraPreparacion().isEmpty()) {
+            service.CrearAlerta("Se ha de especificar la hora de preparación", this);
+            return false;
+        }else if(!service.validTime(producto.getHoraPreparacion())){
+            service.CrearAlerta("Asegúrese de que la hora de preparación es correcta y tiene el formato HH:mm", this);
+            return false;
+        }else if ( hora1.isEmpty()) {
+            service.CrearAlerta("Se ha de especificar la franja temprana de la hora de recogida", this);
+            return false;
+        }else if(!service.validTime(hora1)){
+            service.CrearAlerta("Asegúrese de que la hora de la franja temprana introducida es correcta y tiene el formato HH:mm", this);
+            return false;
+        }else if ( hora2.isEmpty()) {
+            service.CrearAlerta("Se ha de especificar la franja tardía de la hora de recogida", this);
+            return false;
+        }else if(!service.validTime(hora2)){
+            service.CrearAlerta("Asegúrese de que la hora de la franja tardía introducida es correcta y tiene el formato HH:mm", this);
+            return false;
+        }else if(!service.validTimeRange(hora1,hora2)){
+            service.CrearAlerta("La franja superior horaria ha de ser mayor que la inferior", this);
+            return false;
+        }else if(producto.getContenido().isEmpty()){
+            service.CrearAlerta("El producto ha de tener una descripción", this);
+            return false;
+        }else if(producto.getImagen().isEmpty()){
+            service.CrearAlerta("Haga una foto al producto", this);
+            return false;
+        }
+
+        return true;
+    }
+
+    public void irMapa(View view) {
         Intent intent = new Intent(IUposteoProducto.this, Mapa.class);
         startActivityForResult(intent, SELECCIONAR_UBICACION_REQUEST);
         //startActivity(intent);
-
     }
 
-    public void sumarRacionPlato(View view){
-        numRacionesActuales = Integer.parseInt(cantidadPlatosEditText.getText().toString());
-        numRacionesActuales++;
-        cantidadPlatosEditText.setText(""+numRacionesActuales);
+    public void sumarRacionPlato(View view) {
+        int racionesActuales = Integer.parseInt(cantidadPlatosEditText.getText().toString());
+        racionesActuales++;
+        cantidadPlatosEditText.setText(racionesActuales);
     }
-    public void restarRacionPlato(View view){
-        numRacionesActuales = Integer.parseInt(cantidadPlatosEditText.getText().toString());
-        if(numRacionesActuales>1){
-        numRacionesActuales--;
-        cantidadPlatosEditText.setText(""+numRacionesActuales);
+
+    public void restarRacionPlato(View view) {
+        int racionesActuales = Integer.parseInt(cantidadPlatosEditText.getText().toString());
+        if(racionesActuales > 1){
+        racionesActuales--;
+        cantidadPlatosEditText.setText(racionesActuales);
         }
     }
 
-    public void añadirCategoriasPrincipalOnClick(View view){
+    public void añadirCategoriasPrincipalOnClick(View view) {
         categoriasProducto.clear();
         popupCategorias.setVisibility(View.VISIBLE);
-        mostrarCategoriasEnPopup();
-
-    }
-
-    public void añadirCategoriasPopupOnClick(View view){
-        int count = linearLayoutCategorias.getChildCount();
-        for (int i = 0; i < count; i++) {
-            View child = linearLayoutCategorias.getChildAt(i);
-            // Verificar si el primer hijo es un CheckBox
-            if (child instanceof CheckBox) {
-                CheckBox checkBox = (CheckBox) child;
-                // Ahora puedes verificar si el CheckBox está seleccionado
-                if (checkBox.isChecked()) {
-                    categoriasProducto.add(todasLasCategorias.get(i));
-                    System.out.print("---------------------"+categoriasProducto.size()+"-----------------------");
-                }
-            }
-        }
-        popupCategorias.setVisibility(View.INVISIBLE);
-        System.out.print("---------------------"+categoriasProducto+"-----------------------");
-        mostrarCategoriasEnPrincipal();
-
-    }
-
-    public void mostrarCategoriasEnPopup(){
+        //mostrarCategoriasEnPopup();
         todasLasCategorias = service.getAllCategorias();
         Context context = getApplicationContext();
 
         for (Categoria categoria : todasLasCategorias) {
-            crearCategoria(categoria,context);
+            CheckBox categoriaCheckBox = new CheckBox(context);
+            categoriaCheckBox.setText(categoria.getNombre());
+
+            linearLayoutCategorias.addView(categoriaCheckBox);
         }
     }
 
-    public void mostrarCategoriasEnPrincipal(){
+    public void añadirCategoriasPopupOnClick(View view){
+        for (int i = 0; i < linearLayoutCategorias.getChildCount(); i++) {
+            View child = linearLayoutCategorias.getChildAt(i);
+
+            if (child instanceof CheckBox) {    // Verificar si el primer hijo es un CheckBox
+                CheckBox checkBox = (CheckBox) child;
+
+                if (checkBox.isChecked()) {     // Ahora puedes verificar si el CheckBox está seleccionado
+                    categoriasProducto.add(todasLasCategorias.get(i));
+                }
+            }
+        }
+        popupCategorias.setVisibility(View.INVISIBLE);
         linLayCategoriasSeleccionadas.removeAllViews();
+
         Context context = getApplicationContext();
         for (Categoria categoria : categoriasProducto) {
-           mostrarCategoriaSeleccionada(categoria,context);
+            Button categoriaSeleccionadaBtn = new Button(context);
+            categoriaSeleccionadaBtn.setText(categoria.getNombre());
+            linLayCategoriasSeleccionadas.addView(categoriaSeleccionadaBtn);
         }
-    }
-    public void mostrarCategoriaSeleccionada(Categoria categoria, Context context){
-        Button categoriaSeleccionadaBtn = new Button(context);
-        categoriaSeleccionadaBtn.setText(categoria.getNombre());
-        linLayCategoriasSeleccionadas.addView(categoriaSeleccionadaBtn);
-    }
-
-    public void crearCategoria(Categoria categoria,Context context){
-
-        CheckBox categoriaCheckBox = new CheckBox(context);
-        categoriaCheckBox.setText(categoria.getNombre());
-
-        linearLayoutCategorias.addView(categoriaCheckBox);
-
     }
 
     public void buscarOnClick(View view) {

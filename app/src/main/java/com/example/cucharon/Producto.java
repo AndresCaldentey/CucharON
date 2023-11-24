@@ -48,7 +48,8 @@ public class Producto implements Serializable {
     public Producto(){}
 
     public Producto(int idProducto, String nombre, String contenido, Double precio, String horaRecogida,String horaPreparacion,
-                    String imagen, String direccion_recogida,int numRaciones, Date diaPreparacion, Usuario usuario_publicador) {
+                    String imagen, String direccion_recogida,int numRaciones, Date diaPreparacion, Usuario usuario_publicador,
+                    double lat, double lon) {
         this.idProducto = idProducto;
         this.nombre = nombre;
         this.contenido = contenido;
@@ -61,6 +62,8 @@ public class Producto implements Serializable {
         this.diaPreparacion = diaPreparacion;
         this.usuarioPublicador = usuario_publicador;
         this.usuarioComprador = null;
+        this.direccionLatitud = lat;
+        this.direccionLongitud = lon;
        // ingredientes = new ArrayList<>();
     }
 
