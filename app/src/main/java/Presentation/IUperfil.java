@@ -113,7 +113,11 @@ public class IUperfil extends AppCompatActivity {
         platosAdapter.notifyDataSetChanged();
 
         }
+    public void modificarPerfil(View v){
+        Intent intent = new Intent(IUperfil.this, IUModificarPerfil.class);
+        startActivity(intent);
 
+    }
 
     @Override
     public void onBackPressed() {

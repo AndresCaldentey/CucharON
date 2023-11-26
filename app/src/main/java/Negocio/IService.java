@@ -45,4 +45,5 @@ public interface IService {
     List<ProductoCategoria> getAllProductoCategoria();
     List<Producto> getProductosPubPorUser(Usuario user);
     List<Producto> getProductosSinComprar();
+    void actualizarUser(Usuario user);
 }

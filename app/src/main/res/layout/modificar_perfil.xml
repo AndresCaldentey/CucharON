@@ -85,22 +85,22 @@
         app:layout_constraintVertical_bias="0.289"
         tools:ignore="TouchTargetSizeCheck" />
 
-    <EditText
+    <TextView
         android:id="@+id/emailRegistro"
         android:layout_width="265dp"
-        android:layout_height="39dp"
-        android:background="@drawable/campo_texto"
+        android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="manuellopez@gmail.com"
         android:inputType="text"
-        android:paddingLeft="15dp"
+        android:paddingLeft="0dp"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.8"
+        app:layout_constraintHorizontal_bias="0.786"
         app:layout_constraintStart_toEndOf="@+id/textView6"
         app:layout_constraintTop_toBottomOf="@+id/telefonoRegistro"
-        app:layout_constraintVertical_bias="0.042"
-        tools:ignore="TouchTargetSizeCheck" />
+        app:layout_constraintVertical_bias="0.049"
+        tools:ignore="TouchTargetSizeCheck"
+        tools:text="mskadmsaodkmsapdmsapdkamdpskmda" />
 
     <EditText
         android:id="@+id/telefonoRegistro"
@@ -140,17 +140,18 @@
         android:id="@+id/direccionRegistro"
         android:layout_width="265dp"
         android:layout_height="39dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="429dp"
+        android:layout_marginBottom="134dp"
         android:background="@drawable/campo_texto"
         android:ems="10"
         android:hint="Calle ....."
         android:inputType="text"
         android:paddingLeft="15dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/errorTv"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.675"
         app:layout_constraintStart_toEndOf="@+id/textView7"
-        app:layout_constraintTop_toBottomOf="@+id/emailRegistro"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
         tools:ignore="TouchTargetSizeCheck" />
 
@@ -249,11 +250,22 @@
         android:layout_width="188dp"
         android:layout_height="48dp"
         android:layout_marginTop="116dp"
-        android:onClick="onClickRegistrar"
+        android:onClick="modificar"
         android:text="MODIFICAR"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.475"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/passwordRegistro" />
+
+    <TextView
+        android:id="@+id/errorTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="110dp"
+        android:textColor="#FF0000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/passwordRegistro2"
+        app:layout_constraintTop_toBottomOf="@+id/direccionRegistro"
+        tools:text="TextView" />
 </androidx.constraintlayout.widget.ConstraintLayout>

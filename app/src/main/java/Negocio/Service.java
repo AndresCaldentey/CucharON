@@ -172,4 +172,8 @@ public class Service implements IService{
         return productoRepo.getProductosSinComprador();
     }
 
+    public void actualizarUser(Usuario user) {
+        userRepo.actualizar(user);
+    }
+
 }
