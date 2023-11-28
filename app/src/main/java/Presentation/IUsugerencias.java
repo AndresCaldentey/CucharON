@@ -31,6 +31,7 @@ import android.widget.Toast;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -64,8 +65,8 @@ public class IUsugerencias extends AppCompatActivity {
         //relacionado con la muestra del plato
         platos = new ArrayList<>();
         rv1 = findViewById(R.id.rv1);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        rv1.setLayoutManager(linearLayoutManager);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2);
+        rv1.setLayoutManager(gridLayoutManager);
         platosAdapter = new AdaptadorPlato(IUreserva.class);
         rv1.setAdapter(platosAdapter);
         //--------------------------------------------------------------------------------
