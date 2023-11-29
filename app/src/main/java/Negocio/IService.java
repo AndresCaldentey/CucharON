@@ -43,6 +43,7 @@ public interface IService {
     void crearOpinion(Opinion opinion);
     Opinion getOpinionById(int id);
     List<Opinion> getOpinionByUsuarioEvaluado(Usuario usuario);
+    List<Opinion> getOpinionByEvaluador(Usuario usuario);
     void actualizarOpinion(Opinion opinion);
 
     /*GESTION DE SESIONES*/

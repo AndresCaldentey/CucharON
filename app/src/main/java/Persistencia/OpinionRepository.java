@@ -34,4 +34,25 @@ public class OpinionRepository extends Repository<Opinion>{
         }
         return listaOpiniones;
     }
+
+    public List<Opinion> getOpinionByEvaluador(Usuario usuario){
+        listaOpiniones = new ArrayList<>();
+        Thread hilo = new Thread(() ->
+        {
+            try {
+                listaOpiniones = this.getDao().queryForEq("evaluador", usuario.getEmail());
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        });
+        hilo.start();
+
+        //Esperar al hilo
+        try {
+            hilo.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return listaOpiniones;
+    }
 }

@@ -82,6 +82,7 @@ public class Service implements IService{
     public void crearOpinion(Opinion opinion) { opinionRepo.guardar(opinion); }
     public Opinion getOpinionById(int id) { return opinionRepo.obtener(id); }
     public List<Opinion> getOpinionByUsuarioEvaluado(Usuario usuario) { return opinionRepo.getOpinionByUsuarioEvaluado(usuario); }
+    public List<Opinion> getOpinionByEvaluador(Usuario usuario) { return opinionRepo.getOpinionByEvaluador(usuario); }
     public void actualizarOpinion(Opinion opinion) { opinionRepo.actualizar(opinion); }
 
     /*VALIDACIONES*/
