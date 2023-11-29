@@ -40,7 +40,7 @@ public class OpinionRepository extends Repository<Opinion>{
         Thread hilo = new Thread(() ->
         {
             try {
-                listaOpiniones = this.getDao().queryForEq("evaluador", usuario.getEmail());
+                listaOpiniones = this.getDao().queryForEq("evaluador", usuario);
             } catch (SQLException e) {
                 e.printStackTrace();
             }

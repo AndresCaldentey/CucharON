@@ -7,6 +7,7 @@ import com.example.cucharon.Categoria;
 import com.example.cucharon.Opinion;
 import com.example.cucharon.Producto;
 import com.example.cucharon.ProductoCategoria;
+import com.example.cucharon.Receta;
 import com.example.cucharon.Usuario;
 
 import java.util.List;
@@ -45,6 +46,13 @@ public interface IService {
     List<Opinion> getOpinionByUsuarioEvaluado(Usuario usuario);
     List<Opinion> getOpinionByEvaluador(Usuario usuario);
     void actualizarOpinion(Opinion opinion);
+
+    /*PERSISTENCIA RECETAS*/
+    void crearReceta(Receta receta);
+    Receta getRecetaById(int id);
+    List<Receta> getRecetaByChef(Usuario usuario);
+    void actualizarReceta(Receta receta);
+    void borrarReceta(Receta receta);
 
     /*GESTION DE SESIONES*/
     public Usuario loggedUser = null;

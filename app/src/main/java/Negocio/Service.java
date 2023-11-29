@@ -11,6 +11,7 @@ import com.example.cucharon.Categoria;
 import com.example.cucharon.Opinion;
 import com.example.cucharon.Producto;
 import com.example.cucharon.ProductoCategoria;
+import com.example.cucharon.Receta;
 import com.example.cucharon.Usuario;
 
 import java.io.ByteArrayOutputStream;
@@ -23,14 +24,16 @@ import Persistencia.CategoriaRepository;
 import Persistencia.OpinionRepository;
 import Persistencia.ProductoCategoriaRepository;
 import Persistencia.ProductoRepository;
+import Persistencia.RecetaRepository;
 import Persistencia.SingletonConnection;
 import Persistencia.UsuarioRepository;
 public class Service implements IService{
-    private UsuarioRepository userRepo;
-    private ProductoRepository productoRepo;
-    private CategoriaRepository categoriaRepo;
-    private ProductoCategoriaRepository productoCategoriaRepo;
-    private OpinionRepository opinionRepo;
+    private final UsuarioRepository userRepo;
+    private final ProductoRepository productoRepo;
+    private final CategoriaRepository categoriaRepo;
+    private final ProductoCategoriaRepository productoCategoriaRepo;
+    private final OpinionRepository opinionRepo;
+    private final RecetaRepository recetaRepo;
     private static Service instancia;
     private Usuario loggedUser;
 
@@ -40,6 +43,7 @@ public class Service implements IService{
         categoriaRepo = new CategoriaRepository(SingletonConnection.getSingletonInstance());
         productoCategoriaRepo = new ProductoCategoriaRepository(SingletonConnection.getSingletonInstance());
         opinionRepo = new OpinionRepository(SingletonConnection.getSingletonInstance());
+        recetaRepo = new RecetaRepository(SingletonConnection.getSingletonInstance());
     }
     public static Service getService() {
         if(instancia == null) instancia = new Service();
@@ -85,6 +89,13 @@ public class Service implements IService{
     public List<Opinion> getOpinionByEvaluador(Usuario usuario) { return opinionRepo.getOpinionByEvaluador(usuario); }
     public void actualizarOpinion(Opinion opinion) { opinionRepo.actualizar(opinion); }
 
+    /*PERSISTENCIA RECETAS*/
+    public void crearReceta(Receta receta) { recetaRepo.guardar(receta); }
+    public Receta getRecetaById(int id) { return recetaRepo.obtener(id); }
+    public List<Receta> getRecetaByChef(Usuario usuario) { return recetaRepo.getRecetaByChef(usuario); }
+    public void actualizarReceta(Receta receta) { recetaRepo.actualizar(receta); }
+    public void borrarReceta(Receta receta) { recetaRepo.delete(receta.getId_receta()); }
+
     /*VALIDACIONES*/
     public  boolean validTel(int tel) {
         String numeroComoString = Integer.toString(tel);
@@ -112,7 +123,7 @@ public class Service implements IService{
     public boolean passwordMatch(String password1, String password2) { return password1.equals(password2); }
 
     public boolean existeEnPlato(String campo){
-        return campo != "";
+        return (!campo.equals("") );
     }
     public boolean validTime(String hora){
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
@@ -120,7 +131,7 @@ public class Service implements IService{
 
         try {
             // Intentar parsear la cadena a un objeto Date
-            Date parsedDate = sdf.parse(hora);
+            sdf.parse(hora);
             return true; // Si no se lanza una excepción, la hora es válida
         } catch (ParseException e) {
             return false; // Si se lanza una excepción, la hora es inválida
@@ -182,8 +193,7 @@ public class Service implements IService{
     }
     public Bitmap pasarStringAImagen(String img64){
         byte[] imageBytes = Base64.decode(img64, Base64.DEFAULT);
-        Bitmap imageResult = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
-        return imageResult;
+        return BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
     }
 
 }
