@@ -21,6 +21,8 @@ public class Usuario {
     private String direccion;
     @DatabaseField
     private int tlf;
+    @DatabaseField
+    private String foto;
 
     public Usuario() {}
 
@@ -79,5 +81,13 @@ public class Usuario {
 
     public void setTlf(int tlf) {
         this.tlf = tlf;
+    }
+
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
     }
 }
