@@ -65,7 +65,7 @@ public class IUreserva extends AppCompatActivity {
         // Agregar botón Aceptar
         alertDialogBuilder.setPositiveButton("Aceptar", (dialog, which) -> {
             producto.setUsuarioComprador(service.getLoggedUser());
-            service.actualizarProducto2(producto);
+            service.actualizarProducto(producto);
             finish();
             Intent intent = new Intent(IUreserva.this, IUsugerencias.class);
             startActivity(intent);

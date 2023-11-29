@@ -1,7 +1,5 @@
 package Negocio;
 
-
-
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -10,6 +8,7 @@ import android.graphics.BitmapFactory;
 import android.util.Base64;
 
 import com.example.cucharon.Categoria;
+import com.example.cucharon.Opinion;
 import com.example.cucharon.Producto;
 import com.example.cucharon.ProductoCategoria;
 import com.example.cucharon.Usuario;
@@ -21,6 +20,7 @@ import java.util.Date;
 import java.util.List;
 
 import Persistencia.CategoriaRepository;
+import Persistencia.OpinionRepository;
 import Persistencia.ProductoCategoriaRepository;
 import Persistencia.ProductoRepository;
 import Persistencia.SingletonConnection;
@@ -30,9 +30,23 @@ public class Service implements IService{
     private ProductoRepository productoRepo;
     private CategoriaRepository categoriaRepo;
     private ProductoCategoriaRepository productoCategoriaRepo;
+    private OpinionRepository opinionRepo;
     private static Service instancia;
     private Usuario loggedUser;
-    public UsuarioRepository getUserRepo() { return userRepo; }
+
+    public Service() {
+        userRepo = new UsuarioRepository(SingletonConnection.getSingletonInstance());
+        productoRepo = new ProductoRepository(SingletonConnection.getSingletonInstance());
+        categoriaRepo = new CategoriaRepository(SingletonConnection.getSingletonInstance());
+        productoCategoriaRepo = new ProductoCategoriaRepository(SingletonConnection.getSingletonInstance());
+        opinionRepo = new OpinionRepository(SingletonConnection.getSingletonInstance());
+    }
+    public static Service getService() {
+        if(instancia == null) instancia = new Service();
+        return instancia;
+    }
+
+    /*GESTION DE SESIONES*/
     public void setLoggedUser(Usuario user) {
         if(loggedUser == null) loggedUser = user;
     }
@@ -42,32 +56,36 @@ public class Service implements IService{
     }
     public void clearLoggedUser() { loggedUser = null; }
 
-    public Service() {
-        userRepo = new UsuarioRepository(SingletonConnection.getSingletonInstance());
-        productoRepo = new ProductoRepository(SingletonConnection.getSingletonInstance());
-        categoriaRepo = new CategoriaRepository(SingletonConnection.getSingletonInstance());
-        productoCategoriaRepo = new ProductoCategoriaRepository(SingletonConnection.getSingletonInstance());
-    }
-    public static Service getService() {
-        if(instancia == null) instancia = new Service();
-        return instancia;
-    }
-
-    //PERSISTENCIA
-    public Usuario getUsuarioByEmail(String correo) { return userRepo.getUserByEmail(correo); }
+    /*PERSISTENCIA USUARIO*/
     public void crearUsuario(Usuario user) { userRepo.guardar(user); }
+    public Usuario getUsuarioByEmail(String correo) { return userRepo.getUserByEmail(correo); }
+    public void actualizarUser(Usuario user) { userRepo.actualizar(user); }
+
+    /*PERSISTENCIA PRODUCTO*/
     public void crearProducto(Producto producto) { productoRepo.guardar2(producto); }
     public Producto getProductoById(int id) { return productoRepo.obtener(id); }
     public List<Producto> getProductosByDireccion(String direccion) {return productoRepo.getProductosByDireccion(direccion);}
     public List<Producto> getProductosByPosicion(double lat, double lon) { return productoRepo.getProductosByPosicion(lat, lon);}
-    public Categoria getCategoriaByName(String nombre) { return categoriaRepo.getCategoriaByName(nombre); }
+    public List<Producto> getProductosPubPorUser(Usuario user) { return productoRepo.getProductosPorUsuario(user); }
+    public List<Producto> getProductosSinComprar(){ return productoRepo.getProductosSinComprador(); }
     public List<Producto> getAllProducto() { return productoRepo.obtenerTodos(); }
+    public void actualizarProducto(Producto p) { productoRepo.actualizar(p);}
+
+    /*PERSISTENCIA CATEGORIA*/
+    public Categoria getCategoriaByName(String nombre) { return categoriaRepo.getCategoriaByName(nombre); }
     public List<Categoria> getAllCategorias() {return categoriaRepo.obtenerTodos();}
-    public void actualizarProducto2(Producto p) { productoRepo.actualizar(p);}
+
+    /*PERSISTENCIA PRODUCTO-CATEGORIA*/
     public void guardarProductoCategoria(ProductoCategoria productoCategoria){productoCategoriaRepo.guardar(productoCategoria);}
     public List<ProductoCategoria> getAllProductoCategoria(){return productoCategoriaRepo.obtenerTodos(); }
 
-    //OTRAS COSAS
+    /*PERSISTENCIA OPINIONES*/
+    public void crearOpinion(Opinion opinion) { opinionRepo.guardar(opinion); }
+    public Opinion getOpinionById(int id) { return opinionRepo.obtener(id); }
+    //public List<Opinion> getOpinionByUsuarioEvaluado(Usuario usuario) { }
+    public void actualizarOpinion(Opinion opinion) { opinionRepo.actualizar(opinion); }
+
+    /*VALIDACIONES*/
     public  boolean validTel(int tel) {
         String numeroComoString = Integer.toString(tel);
         int cantidadDigitos = numeroComoString.length();
@@ -139,6 +157,7 @@ public class Service implements IService{
         }
     }
 
+    /*GESTION ALERTAS*/
     public void CrearAlerta(String errorString, Context contexto) {
         AlertDialog.Builder alert = new AlertDialog.Builder(contexto);
         alert.setMessage(errorString)
@@ -152,6 +171,8 @@ public class Service implements IService{
         AlertDialog dialog = alert.create();
         dialog.show();
     }
+
+    /*GESTION IMAGENES*/
     public String imagenToString(Bitmap bitmap){
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
 
@@ -163,17 +184,6 @@ public class Service implements IService{
         byte[] imageBytes = Base64.decode(img64, Base64.DEFAULT);
         Bitmap imageResult = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
         return imageResult;
-    }
-
-    public List<Producto> getProductosPubPorUser(Usuario user) {
-        return productoRepo.getProductosPorUsuario(user);
-    }
-    public List<Producto> getProductosSinComprar(){
-        return productoRepo.getProductosSinComprador();
-    }
-
-    public void actualizarUser(Usuario user) {
-        userRepo.actualizar(user);
     }
 
 }

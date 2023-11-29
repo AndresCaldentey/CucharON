@@ -14,17 +14,37 @@ import Persistencia.UsuarioRepository;
 
 public interface IService {
     static final int SELECT_IMAGE = 1;
-    Usuario getUsuarioByEmail(String correo);
+
+    /*PERSISTENCIA USUARIO*/
     void crearUsuario(Usuario user);
+    Usuario getUsuarioByEmail(String correo);
+    void actualizarUser(Usuario user);
+
+    /*PERSISTENCIA PRODUCTO*/
     void crearProducto(Producto producto);
     Producto getProductoById(int id);
     List<Producto> getProductosByDireccion(String direccion);
     List<Producto> getProductosByPosicion(double lat, double lon);
-    public Categoria getCategoriaByName(String nombre);
+    List<Producto> getProductosPubPorUser(Usuario usuario);
+    List<Producto> getProductosSinComprar();
     List<Producto> getAllProducto();
-    public List<Categoria> getAllCategorias();
-    void actualizarProducto2(Producto p);
+    void actualizarProducto(Producto p);
+
+    /*PERSISTENCIA CATEGORIA*/
+    Categoria getCategoriaByName(String nombre);
+    List<Categoria> getAllCategorias();
+
+    /*PERSISTENCIA PRODUCTO-CATEGORIA*/
+    void guardarProductoCategoria(ProductoCategoria productoCategoria);
+    List<ProductoCategoria> getAllProductoCategoria();
+
+    /*GESTION DE SESIONES*/
     public Usuario loggedUser = null;
+    void setLoggedUser(Usuario user);
+    Usuario getLoggedUser();
+    void clearLoggedUser() ;
+
+    /*VALIDACIONES*/
     boolean validTel(int tel);
     boolean validEmail(String email);
     boolean validPassword(String password);
@@ -34,16 +54,11 @@ public interface IService {
     boolean validPrecio(String precio);
     boolean validTimeRange(String hora1, String hora2);
     boolean validRaciones(String raciones);
+
+    /*GESTION DE MENSAJES*/
     void CrearAlerta(String errorString, Context contexto);
+
+    /*GESTION DE IMAGENES*/
     String imagenToString(Bitmap bitmap);
     Bitmap pasarStringAImagen(String img64);
-    void setLoggedUser(Usuario user);
-    Usuario getLoggedUser();
-    void clearLoggedUser() ;
-    UsuarioRepository getUserRepo();
-    void guardarProductoCategoria(ProductoCategoria productoCategoria);
-    List<ProductoCategoria> getAllProductoCategoria();
-    List<Producto> getProductosPubPorUser(Usuario user);
-    List<Producto> getProductosSinComprar();
-    void actualizarUser(Usuario user);
 }
