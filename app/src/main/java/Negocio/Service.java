@@ -50,7 +50,6 @@ public class Service implements IService{
     public void setLoggedUser(Usuario user) {
         if(loggedUser == null) loggedUser = user;
     }
-
     public Usuario getLoggedUser() {
         return loggedUser;
     }
@@ -64,12 +63,12 @@ public class Service implements IService{
     /*PERSISTENCIA PRODUCTO*/
     public void crearProducto(Producto producto) { productoRepo.guardar2(producto); }
     public Producto getProductoById(int id) { return productoRepo.obtener(id); }
-    public List<Producto> getProductosByDireccion(String direccion) {return productoRepo.getProductosByDireccion(direccion);}
     public List<Producto> getProductosByPosicion(double lat, double lon) { return productoRepo.getProductosByPosicion(lat, lon);}
     public List<Producto> getProductosPubPorUser(Usuario user) { return productoRepo.getProductosPorUsuario(user); }
     public List<Producto> getProductosSinComprar(){ return productoRepo.getProductosSinComprador(); }
     public List<Producto> getAllProducto() { return productoRepo.obtenerTodos(); }
     public void actualizarProducto(Producto p) { productoRepo.actualizar(p);}
+    public void borrarProducto(Producto producto) { productoRepo.delete(producto.getIdProducto());}
 
     /*PERSISTENCIA CATEGORIA*/
     public Categoria getCategoriaByName(String nombre) { return categoriaRepo.getCategoriaByName(nombre); }
@@ -82,7 +81,7 @@ public class Service implements IService{
     /*PERSISTENCIA OPINIONES*/
     public void crearOpinion(Opinion opinion) { opinionRepo.guardar(opinion); }
     public Opinion getOpinionById(int id) { return opinionRepo.obtener(id); }
-    //public List<Opinion> getOpinionByUsuarioEvaluado(Usuario usuario) { }
+    public List<Opinion> getOpinionByUsuarioEvaluado(Usuario usuario) { return opinionRepo.getOpinionByUsuarioEvaluado(usuario); }
     public void actualizarOpinion(Opinion opinion) { opinionRepo.actualizar(opinion); }
 
     /*VALIDACIONES*/

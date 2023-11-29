@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 
 import com.example.cucharon.Categoria;
+import com.example.cucharon.Opinion;
 import com.example.cucharon.Producto;
 import com.example.cucharon.ProductoCategoria;
 import com.example.cucharon.Usuario;
@@ -23,12 +24,12 @@ public interface IService {
     /*PERSISTENCIA PRODUCTO*/
     void crearProducto(Producto producto);
     Producto getProductoById(int id);
-    List<Producto> getProductosByDireccion(String direccion);
     List<Producto> getProductosByPosicion(double lat, double lon);
     List<Producto> getProductosPubPorUser(Usuario usuario);
     List<Producto> getProductosSinComprar();
     List<Producto> getAllProducto();
     void actualizarProducto(Producto p);
+    void borrarProducto(Producto producto);
 
     /*PERSISTENCIA CATEGORIA*/
     Categoria getCategoriaByName(String nombre);
@@ -37,6 +38,12 @@ public interface IService {
     /*PERSISTENCIA PRODUCTO-CATEGORIA*/
     void guardarProductoCategoria(ProductoCategoria productoCategoria);
     List<ProductoCategoria> getAllProductoCategoria();
+
+    /*PERSISTENCIA OPINIONES*/
+    void crearOpinion(Opinion opinion);
+    Opinion getOpinionById(int id);
+    List<Opinion> getOpinionByUsuarioEvaluado(Usuario usuario);
+    void actualizarOpinion(Opinion opinion);
 
     /*GESTION DE SESIONES*/
     public Usuario loggedUser = null;

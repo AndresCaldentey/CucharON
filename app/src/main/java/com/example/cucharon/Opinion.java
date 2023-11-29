@@ -11,18 +11,18 @@ public class Opinion {
     private String comentario;
     @DatabaseField
     private int valoracion;
-    @DatabaseField(foreign = true, foreignAutoCreate = true, foreignAutoRefresh = true, columnName = "usuario_origen")
-    private Usuario usuarioOrigen;
-    @DatabaseField(foreign = true, foreignAutoCreate = true, foreignAutoRefresh = true, columnName = "usuario_destino")
-    private Usuario usuarioDestino;
+    @DatabaseField(foreign = true, foreignAutoCreate = true, foreignAutoRefresh = true, columnName = "evaluador")
+    private Usuario evaluador;
+    @DatabaseField(foreign = true, foreignAutoCreate = true, foreignAutoRefresh = true, columnName = "usuarioEvaluado")
+    private Usuario usuarioEvaluado;
 
     public Opinion(){}
-    public Opinion(int id_opinion, String comentario, int valoracion, Usuario usuarioOrigen, Usuario usuarioDestino) {
+    public Opinion(int id_opinion, String comentario, int valoracion, Usuario evaluador, Usuario usuarioEvaluado) {
         this.id_opinion = id_opinion;
         this.comentario = comentario;
         this.valoracion = valoracion;
-        this.usuarioOrigen = usuarioOrigen;
-        this.usuarioDestino = usuarioDestino;
+        this.evaluador = evaluador;
+        this.usuarioEvaluado = usuarioEvaluado;
     }
 
     public int getId_opinion() {
@@ -50,18 +50,16 @@ public class Opinion {
     }
 
     public Usuario getUsuarioOrigen() {
-        return usuarioOrigen;
+        return evaluador;
     }
 
-    public void setUsuarioOrigen(Usuario usuarioOrigen) {
-        this.usuarioOrigen = usuarioOrigen;
+    public void setUsuarioOrigen(Usuario evaluador) {
+        this.evaluador = evaluador;
     }
 
     public Usuario getUsuarioDestino() {
-        return usuarioDestino;
+        return usuarioEvaluado;
     }
 
-    public void setUsuarioDestino(Usuario usuarioDestino) {
-        this.usuarioDestino = usuarioDestino;
-    }
+    public void setUsuarioDestino(Usuario usuarioEvaluado) { this.usuarioEvaluado = usuarioEvaluado; }
 }
