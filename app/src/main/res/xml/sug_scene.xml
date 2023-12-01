@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        motion:constraintSetEnd="@+id/end"
+        motion:constraintSetStart="@id/start"
+        motion:duration="1000">
+       <KeyFrameSet>
+       </KeyFrameSet>
+    </Transition>
+
+    <ConstraintSet android:id="@+id/start">
+        <Constraint
+            android:layout_height="226dp"
+            android:layout_width="390dp"
+            android:id="@+id/imageView17"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintHorizontal_bias="0.75"
+            motion:layout_constraintBottom_toTopOf="@+id/imageView19"
+            motion:layout_constraintTop_toBottomOf="@+id/imageView18" />
+        <Constraint
+            motion:layout_editor_absoluteY="139dp"
+            android:layout_height="130dp"
+            android:layout_width="100dp"
+            android:id="@+id/imageView18"
+            motion:layout_constraintEnd_toEndOf="parent" />
+        <Constraint
+            motion:layout_editor_absoluteY="449dp"
+            android:layout_height="133dp"
+            android:layout_width="104dp"
+            android:id="@+id/imageView19"
+            motion:layout_constraintEnd_toEndOf="parent" />
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
+        <Constraint
+            android:layout_height="162dp"
+            android:layout_width="164dp"
+            android:id="@+id/imageView17"
+            motion:layout_editor_absoluteY="274dp"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="260dp"
+            android:layout_marginRight="260dp" />
+        <Constraint
+            motion:layout_editor_absoluteY="512dp"
+            android:layout_height="204dp"
+            android:layout_width="132dp"
+            android:id="@+id/imageView18"
+            motion:layout_editor_absoluteX="139dp" />
+        <Constraint
+            android:layout_height="194dp"
+            android:layout_width="0dp"
+            motion:layout_constraintTop_toBottomOf="@+id/imageView17"
+            android:id="@+id/imageView19"
+            android:layout_marginTop="308dp"
+            motion:layout_editor_absoluteX="89dp" />
+    </ConstraintSet>
+</MotionScene>

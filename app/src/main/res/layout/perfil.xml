@@ -124,6 +124,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@android:drawable/list_selector_background"
+            android:onClick="modificar"
             android:text="Modificar perfil" />
 
         <ImageView
