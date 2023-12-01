@@ -60,12 +60,14 @@ public class Service implements IService{
     public void clearLoggedUser() { loggedUser = null; }
 
     /*PERSISTENCIA USUARIO*/
-    public void crearUsuario(Usuario user) { userRepo.guardar(user); }
+    public void crearUsuario(Usuario user) { userRepo.guardar2(user); }
     public Usuario getUsuarioByEmail(String correo) { return userRepo.getUserByEmail(correo); }
     public void actualizarUser(Usuario user) { userRepo.actualizar(user); }
 
+
     /*PERSISTENCIA PRODUCTO*/
-    public void crearProducto(Producto producto) { productoRepo.guardar2(producto); }
+    public Producto crearProducto(Producto producto) { productoRepo.guardar2(producto);
+                                                        return producto;}
     public Producto getProductoById(int id) { return productoRepo.obtener(id); }
     public List<Producto> getProductosByPosicion(double lat, double lon) { return productoRepo.getProductosByPosicion(lat, lon);}
     public List<Producto> getProductosPubPorUser(Usuario user) { return productoRepo.getProductosPorUsuario(user); }

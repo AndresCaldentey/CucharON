@@ -9,7 +9,7 @@ public class SingletonConnection {
     private static JdbcConnectionSource connectionSource;
     public SingletonConnection() {
         try {
-            String url = "jdbc:mysql://cucharoon.mysql.database.azure.com:3306/cucharoon";
+            String url = "jdbc:mysql://cucharoon.mysql.database.azure.com:3306/cucharoon?useSSL=true";
             String username = "LosCucharones";
             String password = "Cucharon123";
             connectionSource = new JdbcConnectionSource(url, username, password);

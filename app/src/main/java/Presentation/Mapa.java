@@ -33,8 +33,8 @@ import java.util.Locale;
 
 public class Mapa extends AppCompatActivity implements OnMapReadyCallback, GoogleMap.OnMapClickListener, GoogleMap.OnMapLongClickListener {
     private GoogleMap mMap;
-    public static String direccion = "";
-    public static double latitud, longitud;
+    public static String direccion = "Universitat Politècnica de València (UPV)";
+    public static double latitud = 39.484512, longitud = 0.3748757;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

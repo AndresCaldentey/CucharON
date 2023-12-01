@@ -108,7 +108,7 @@ public class IUposteoProducto extends AppCompatActivity {
         String direccion = textoDireccion.getText().toString();
 
         //Se crea el producto
-        Producto producto = new Producto(98,nombre,descripcion,precio, hora1+" - "+hora2,horaPreparacion, imagen,
+        Producto producto = new Producto(98,nombre,descripcion,precio, hora1+" - "+hora2,horaPreparacion, "prueba",//imagen,
                 direccion, raciones, new Date(), service.getLoggedUser(), posicionProducto.latitude, posicionProducto.longitude);
 
         //Si se valida el producto se guarda en la BD
@@ -123,6 +123,7 @@ public class IUposteoProducto extends AppCompatActivity {
                 service.guardarProductoCategoria(productoCategoria);
             }
         }
+
     }
 
     private boolean validarProducto(Producto producto, String hora1, String hora2) {
@@ -245,6 +246,37 @@ public class IUposteoProducto extends AppCompatActivity {
         Intent intent = new Intent(IUposteoProducto.this, IUperfil.class);
         startActivity(intent);
         finish();
+    }
+
+    public void testPosteo(View view){
+        //Se recogen la informacion proporcionada para el nuevo producto
+        String nombre = String.valueOf(nombreEditText.getText());
+        String descripcion = String.valueOf(descripcionEditText.getText());
+        double precio = Double.parseDouble(precioEditText.getText().toString());
+        String hora1 = String.valueOf(horaRecogida1.getText());
+        String hora2 = String.valueOf(horaRecogida2.getText());
+        String horaPreparacion = String.valueOf(horaPreparacionEditText.getText());
+        int raciones = Integer.parseInt(cantidadPlatosEditText.getText().toString());
+        String imagen = service.imagenToString(((BitmapDrawable) fotoPlato.getDrawable()).getBitmap());
+        String direccion = textoDireccion.getText().toString();
+
+        //Se crea el producto
+        Producto producto = new Producto(98,nombre,descripcion,precio, hora1+" - "+hora2,horaPreparacion, "prueba",//imagen,
+                direccion, raciones, new Date(), service.getLoggedUser(), posicionProducto.latitude, posicionProducto.longitude);
+
+        //Si se valida el producto se guarda en la BD
+        if(validarProducto(producto, hora1, hora2))
+        {
+            service.crearProducto(producto);    //Guarda en la bd el nuevo producto
+            Producto productoPosteado =  service.getProductoById(producto.getIdProducto());
+
+            //Agrega tambien a la bd todas las categorias del producto
+            for(Categoria categoria :  categoriasProducto){
+                ProductoCategoria productoCategoria = new ProductoCategoria(productoPosteado, categoria);
+                service.guardarProductoCategoria(productoCategoria);
+            }
+        }
+
     }
 
 }

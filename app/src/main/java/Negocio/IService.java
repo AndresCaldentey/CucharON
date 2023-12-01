@@ -23,7 +23,7 @@ public interface IService {
     void actualizarUser(Usuario user);
 
     /*PERSISTENCIA PRODUCTO*/
-    void crearProducto(Producto producto);
+    Producto crearProducto(Producto producto);
     Producto getProductoById(int id);
     List<Producto> getProductosByPosicion(double lat, double lon);
     List<Producto> getProductosPubPorUser(Usuario usuario);
