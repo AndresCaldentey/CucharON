@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
+import java.text.DecimalFormat;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
@@ -60,23 +60,30 @@ public class AdaptadorPlato extends RecyclerView.Adapter<AdaptadorPlato.Adaptado
         return platos.size();
     }
 
+    public String convertirAFormato(double numero) {
+        DecimalFormat df = new DecimalFormat("#.##");
+        return df.format(numero);
+    }
+
     class AdaptadorPlatoHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         //inicializar las variables :)
-        TextView nomP, recP, precioP;
-        ImageView platoI;
+        TextView nomP, recP, precioP, puntuacionPerfil;
+        ImageView platoI, fotoDPerfil;
         public AdaptadorPlatoHolder(@NonNull View itemView) {
             super(itemView);
             nomP = itemView.findViewById(R.id.nomP);
             recP = itemView.findViewById(R.id.recP);
             precioP = itemView.findViewById(R.id.precioP);
             platoI = itemView.findViewById(R.id.platoI);
+            fotoDPerfil = itemView.findViewById(R.id.fotoDPerfil);
+            puntuacionPerfil = itemView.findViewById(R.id.puntuacionPerfil);
             itemView.setOnClickListener(this);
         }
         public void imprimir(int position) {
             //Este método se encarga de imprimir el plato
             nomP.setText(platos.get(position).getNombre());
             recP.setText(platos.get(position).getHoraRecogida());
-            precioP.setText("" + platos.get(position).getPrecio());
+            precioP.setText(convertirAFormato(platos.get(position).getPrecio()) + "€");
             Bitmap image = service.pasarStringAImagen(platos.get(position).getImagen());
             platoI.setImageBitmap(image);
         }
