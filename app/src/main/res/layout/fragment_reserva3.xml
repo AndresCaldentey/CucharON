@@ -204,7 +204,6 @@
                             android:layout_width="match_parent"
                             android:layout_height="19dp"
                             android:layout_weight="1"
-                            android:src="@tools:sample/avatars"
                             tools:srcCompat="@drawable/img_8" />
                     </LinearLayout>
 
@@ -215,7 +214,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="240dp"
-                    android:src="@tools:sample/avatars"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.896"

@@ -318,7 +318,6 @@
                     android:id="@+id/imageView28"
                     android:layout_width="137dp"
                     android:layout_height="wrap_content"
-                    android:src="@tools:sample/avatars"
                     app:srcCompat="@drawable/cat_asia" />
 
             </LinearLayout>
@@ -365,7 +364,6 @@
                     android:id="@+id/imageView418"
                     android:layout_width="137dp"
                     android:layout_height="wrap_content"
-                    android:src="@tools:sample/avatars"
                     app:srcCompat="@drawable/cat_oriente" />
 
             </LinearLayout>

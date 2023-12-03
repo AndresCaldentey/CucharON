@@ -22,14 +22,14 @@
             android:orientation="vertical">
 
             <RelativeLayout
+                android:id="@+id/principal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/textView26"
+                    android:id="@+id/textoNombre"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_above="@+id/null"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentEnd="true"
                     android:layout_marginTop="94dp"
@@ -38,7 +38,8 @@
                     android:layout_weight="1"
                     android:fontFamily="@font/manrope"
                     android:text="NOMBRE"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    tools:ignore="NotSibling" />
 
                 <LinearLayout
                     android:layout_width="256dp"
@@ -59,7 +60,6 @@
                         android:layout_width="266dp"
                         android:layout_height="43dp"
                         android:layout_weight="1"
-                        android:src="@tools:sample/avatars"
                         app:srcCompat="@drawable/img_6" />
 
                 </LinearLayout>
@@ -67,7 +67,6 @@
                 <LinearLayout
                     android:layout_width="366dp"
                     android:layout_height="57dp"
-                    android:layout_below="@+id/null"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentBottom="true"
@@ -77,7 +76,8 @@
                     android:layout_marginBottom="350dp"
                     android:background="@drawable/img_4"
                     android:orientation="horizontal"
-                    android:paddingLeft="8dp">
+                    android:paddingLeft="8dp"
+                    tools:ignore="NotSibling">
 
                     <EditText
                         android:id="@+id/editTextText"
@@ -95,7 +95,7 @@
                 <LinearLayout
                     android:layout_width="366dp"
                     android:layout_height="57dp"
-                    android:layout_below="@+id/null"
+                    android:layout_below="@+id/principal"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentBottom="true"
@@ -105,7 +105,8 @@
                     android:layout_marginBottom="251dp"
                     android:background="@drawable/img_4"
                     android:orientation="horizontal"
-                    android:paddingLeft="8dp">
+                    android:paddingLeft="8dp"
+                    tools:ignore="NotSibling">
 
                     <EditText
                         android:id="@+id/editTextDate"
@@ -122,7 +123,7 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="119dp"
-                    android:layout_below="@+id/null"
+                    android:layout_below="@+id/principal"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentBottom="true"
@@ -131,7 +132,8 @@
                     android:layout_marginEnd="23dp"
                     android:layout_marginBottom="98dp"
                     android:background="@drawable/img_5"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    tools:ignore="NotSibling">
 
                     <EditText
                         android:id="@+id/editTextTextMultiLine"
@@ -146,7 +148,7 @@
                 <LinearLayout
                     android:layout_width="277dp"
                     android:layout_height="53dp"
-                    android:layout_below="@+id/null"
+                    android:layout_below="@+id/principal"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentBottom="true"
@@ -156,7 +158,8 @@
                     android:layout_marginBottom="28dp"
                     android:background="@drawable/img_2"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    tools:ignore="NotSibling">
 
                     <TextView
                         android:id="@+id/textView24"
@@ -172,7 +175,7 @@
                     android:id="@+id/textView26"
                     android:layout_width="91dp"
                     android:layout_height="wrap_content"
-                    android:layout_above="@+id/null"
+                    android:layout_above="@+id/principal"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentEnd="true"
                     android:layout_marginTop="191dp"
@@ -181,13 +184,14 @@
                     android:layout_weight="1"
                     android:fontFamily="@font/manrope"
                     android:text="EDAD"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    tools:ignore="NotSibling" />
 
                 <TextView
                     android:id="@+id/textView27"
                     android:layout_width="91dp"
                     android:layout_height="wrap_content"
-                    android:layout_above="@+id/null"
+                    android:layout_above="@+id/principal"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentEnd="true"
                     android:layout_marginTop="283dp"
@@ -196,7 +200,8 @@
                     android:layout_weight="1"
                     android:fontFamily="@font/manrope"
                     android:text="BIOGRAFÍA"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    tools:ignore="NotSibling" />
 
             </RelativeLayout>
 
