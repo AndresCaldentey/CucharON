@@ -50,8 +50,8 @@
 
     <LinearLayout
         android:id="@+id/linearLayout8"
-        android:layout_width="292dp"
-        android:layout_height="289dp"
+        android:layout_width="206dp"
+        android:layout_height="181dp"
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -61,13 +61,13 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.391">
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/fotoPerfil"
-            android:layout_width="195dp"
-            android:layout_height="289dp"
-            android:layout_margin="6dp"
+        <ImageView
+            android:id="@+id/imagenPlato"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:src="@drawable/añadir_plato" />
+            android:src="@tools:sample/avatars"
+            app:srcCompat="@drawable/img_18" />
 
     </LinearLayout>
 
@@ -83,7 +83,7 @@
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout8"
-        app:layout_constraintVertical_bias="0.038" />
+        app:layout_constraintVertical_bias="0.112" />
 
     <EditText
         android:id="@+id/editTextText4"
