@@ -27,6 +27,11 @@ public class Navegacion extends AppCompatActivity {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         barraNav = findViewById(R.id.barraNav);
         mainFragmentContainer = findViewById(R.id.mainFragmentContainer);
-
+        barraNav.setOnItemSelectedListener(new ChipNavigationBar.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(int i) {
+                if(i == R.id.home) getSupportFragmentManager().beginTransaction().add(R.id.mainFragmentContainer, new Examinar()).commit();
+            }
+        });
     }
 }

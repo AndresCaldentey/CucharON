@@ -2,6 +2,6 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="negroDis">#34322E</color>
-    <color name="azulDis">#C4E8E6</color>
+    <color name="negroDis">#FF34322E</color>
+    <color name="azulDis">#FFC4E8E6</color>
 </resources>
