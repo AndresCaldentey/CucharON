@@ -62,7 +62,17 @@ public class Service implements IService{
     /*PERSISTENCIA USUARIO*/
     public void crearUsuario(Usuario user) { userRepo.guardar2(user); }
     public Usuario getUsuarioByEmail(String correo) { return userRepo.getUserByEmail(correo); }
-    public void actualizarUser(Usuario user) { userRepo.actualizar(user); }
+    public void actualizarUser(Usuario user) { userRepo.actualizar(user);}
+    public boolean cancelarReserva(Producto producto, Usuario user) {
+        if(producto.getUsuarioComprador() == user) {
+            producto.setUsuarioComprador(null);
+            productoRepo.actualizar(producto);
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
 
 
     /*PERSISTENCIA PRODUCTO*/

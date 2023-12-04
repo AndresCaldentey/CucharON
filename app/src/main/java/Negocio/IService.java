@@ -21,6 +21,7 @@ public interface IService {
     void crearUsuario(Usuario user);
     Usuario getUsuarioByEmail(String correo);
     void actualizarUser(Usuario user);
+    boolean cancelarReserva(Producto producto, Usuario user);
 
     /*PERSISTENCIA PRODUCTO*/
     Producto crearProducto(Producto producto);

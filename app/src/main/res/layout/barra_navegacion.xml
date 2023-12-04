@@ -6,7 +6,7 @@
     android:orientation="vertical">
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragmentContainerView"
+        android:id="@+id/mainFragmentContainer"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />
@@ -19,6 +19,7 @@
         app:cardCornerRadius="50dp">
 
         <com.ismaeldivita.chipnavigation.ChipNavigationBar
+            android:id="@+id/barraNav"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:background="@color/negroDis"
