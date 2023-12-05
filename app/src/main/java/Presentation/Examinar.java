@@ -51,6 +51,8 @@ public class Examinar extends Fragment {
                     saborB.setBackground(botonSinPulsar);
                     procedenciaPress = !procedenciaPress;
                     procedenciaB.setBackground(botonPulsado);
+                    getFragmentManager().beginTransaction().replace(R.id.contenedorExaminar, new ListaDesplegables()).commit();
+
                 }
             }
         });
@@ -63,6 +65,7 @@ public class Examinar extends Fragment {
                     procedenciaPress = !procedenciaPress;
                     saborB.setBackground(botonPulsado);
                     procedenciaB.setBackground(botonSinPulsar);
+                    getFragmentManager().beginTransaction().replace(R.id.contenedorExaminar, new SaboresFragment()).commit();
                 }
             }
         });

@@ -81,7 +81,7 @@
                     android:layout_width="160dp"
                     android:layout_height="35dp"
                     android:background="@drawable/boton_verde_borde"
-                    android:text="Button"
+                    android:text="Sabor"
                     android:textAppearance="@style/ManropeRegular"
                     tools:text="Sabor" />
             </LinearLayout>
