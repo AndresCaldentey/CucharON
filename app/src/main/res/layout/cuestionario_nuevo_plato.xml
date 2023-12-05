@@ -6,17 +6,32 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <ImageView
+        android:id="@+id/imageView30"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="146dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.072"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.063"
+        app:srcCompat="@drawable/cerrar" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/como"
         android:layout_width="413dp"
         android:layout_height="726dp"
         android:layout_marginStart="1dp"
         android:layout_marginEnd="1dp"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.558">
+        app:layout_constraintVertical_bias="0.558"
+        tools:visibility="gone">
 
         <ImageView
             android:id="@+id/imageView26"
@@ -185,19 +200,6 @@
             </LinearLayout>
         </HorizontalScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <ImageView
-        android:id="@+id/imageView30"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="146dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.072"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.063"
-        app:srcCompat="@drawable/cerrar" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/donde"
@@ -430,5 +432,156 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.96"
         app:srcCompat="@drawable/segunda_pantalla" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/detalles"
+        android:layout_width="413dp"
+        android:layout_height="726dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="1dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.558">
+
+        <ImageView
+            android:id="@+id/imageView31"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="52dp"
+            android:layout_marginTop="36dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/detalles_plato" />
+
+        <TextView
+            android:id="@+id/textView28"
+            android:layout_width="83dp"
+            android:layout_height="29dp"
+            android:fontFamily="@font/manrope"
+            android:text="Título"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.157"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.219" />
+
+        <EditText
+            android:id="@+id/editTextText2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/campo_texto"
+            android:ems="10"
+            android:fontFamily="@font/manrope"
+            android:inputType="text"
+            android:paddingStart="20dp"
+            android:text="NOODLES DE POLLO Y VERDURAS"
+            android:textColor="#A8A7A7"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.59"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView28"
+            app:layout_constraintVertical_bias="0.017" />
+
+        <TextView
+            android:id="@+id/textView35"
+            android:layout_width="165dp"
+            android:layout_height="28dp"
+            android:layout_marginStart="52dp"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/manrope"
+            android:text="Descripción"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextText2" />
+
+        <EditText
+            android:id="@+id/editTextText3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="335dp"
+            android:layout_marginBottom="154dp"
+            android:background="@drawable/campo_texto"
+            android:ems="10"
+            android:fontFamily="@font/manrope"
+            android:inputType="text"
+            android:paddingLeft="20dp"
+            android:text="CON PIMIENTO Y CEBOLLA"
+            android:textColor="#ABAAAA"
+            app:layout_constraintBottom_toTopOf="@+id/editTextNumber"
+            app:layout_constraintStart_toStartOf="@+id/textView35"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView36"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="52dp"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/manrope"
+            android:text="Estado"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextText3" />
+
+        <EditText
+            android:id="@+id/editTextText5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="52dp"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/campo_texto"
+            android:ems="10"
+            android:fontFamily="@font/manrope"
+            android:inputType="text"
+            android:paddingLeft="20dp"
+            android:text="HECHAS AYER PARA CENAR"
+            android:textColor="#ABAAAA"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView36" />
+
+        <TextView
+            android:id="@+id/textView37"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="52dp"
+            android:layout_marginTop="35dp"
+            android:layout_marginEnd="39dp"
+            android:fontFamily="@font/manrope"
+            android:text="Precio"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/editTextNumber"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextText5" />
+
+        <EditText
+            android:id="@+id/editTextNumber"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="151dp"
+            android:layout_marginBottom="146dp"
+            android:background="@drawable/campo_precio"
+            android:ems="10"
+            android:gravity="center|right"
+            android:inputType="number"
+            android:paddingRight="10dp"
+            android:text="1"
+            android:textColor="#ACABAB"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView37"
+            app:layout_constraintTop_toBottomOf="@+id/editTextText3" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

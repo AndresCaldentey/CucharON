@@ -59,6 +59,8 @@ public class IUposteoProductoTest extends TestCase {
         String precio = "12.4";
         onView(withId(R.id.precioEditText)).perform(ViewActions.typeText(precio));
 
+          
+
         String hora1 = "12:00";
         onView(withId(R.id.horaRecogida1)).perform(ViewActions.typeText(hora1));
 
