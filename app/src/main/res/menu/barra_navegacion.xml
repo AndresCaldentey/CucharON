@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/home"
+        android:title="Home"
+        android:icon="@drawable/home"
+        app:cnb_iconColor="@color/negroDis"
+        app:cnb_textColor="@color/negroDis"
+        app:cnb_backgroundColor="@color/azulDis"
+        />
+    <item
+        android:id="@+id/search"
+        android:title="Examinar"
+        android:icon="@drawable/search"
+        app:cnb_iconColor="@color/negroDis"
+        app:cnb_textColor="@color/negroDis"
+        app:cnb_backgroundColor="@color/azulDis"
+        />
+    <item
+        android:id="@+id/add"
+        android:title="Publicar"
+        android:icon="@drawable/add"
+        app:cnb_iconColor="@color/negroDis"
+        app:cnb_textColor="@color/negroDis"
+        app:cnb_backgroundColor="@color/azulDis"
+        />
+    <item
+        android:id="@+id/cesta"
+        android:title="Cesta"
+        android:icon="@drawable/cesta"
+        app:cnb_iconColor="@color/negroDis"
+        app:cnb_textColor="@color/negroDis"
+        app:cnb_backgroundColor="@color/azulDis"
+        />
+</menu>

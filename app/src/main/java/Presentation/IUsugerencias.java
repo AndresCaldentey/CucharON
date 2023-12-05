@@ -3,10 +3,7 @@ package Presentation;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.graphics.Typeface;
 import android.os.Bundle;
-import android.util.TypedValue;
-import android.view.Gravity;
 import android.view.View;
 
 import androidx.appcompat.app.AlertDialog;
@@ -17,22 +14,13 @@ import com.example.cucharon.Categoria;
 import com.example.cucharon.Producto;
 import com.example.cucharon.ProductoCategoria;
 import com.example.cucharon.R;
-import com.example.cucharon.Usuario;
 
-import android.content.Context;
-import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.constraintlayout.widget.ConstraintSet;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -40,6 +28,7 @@ import java.util.List;
 
 import Negocio.IService;
 import Negocio.Service;
+import Presentation.Adapters.AdaptadorPlato;
 
 public class IUsugerencias extends AppCompatActivity {
     LinearLayout sugerenciasLinearLayout;
@@ -181,6 +170,7 @@ public class IUsugerencias extends AppCompatActivity {
     }
     public void perfilOnClick(View view) {
         Intent intent = new Intent(IUsugerencias.this, IUperfil.class);
+        //Intent intent = new Intent(IUsugerencias.this, Navegacion.class);
         startActivity(intent);
         // Restricciones para el divisor
        /* */

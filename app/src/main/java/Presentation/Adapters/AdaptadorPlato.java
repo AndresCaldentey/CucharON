@@ -1,5 +1,4 @@
-package Presentation;
-import static androidx.core.content.ContextCompat.startActivity;
+package Presentation.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,7 +10,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import java.text.DecimalFormat;
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cucharon.Producto;
@@ -22,6 +20,7 @@ import java.util.List;
 
 import Negocio.IService;
 import Negocio.Service;
+import Presentation.IUreserva;
 
 //El Adaptador es donde se almacena cada instancia de mostrar un plato y el holder es como se define cada instancia de mostrar plato.
 public class AdaptadorPlato extends RecyclerView.Adapter<AdaptadorPlato.AdaptadorPlatoHolder>{
