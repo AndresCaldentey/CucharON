@@ -4,4 +4,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="negroDis">#FF34322E</color>
     <color name="azulDis">#FFC4E8E6</color>
+    <color name="naranjaDis">#FFFF8B30</color>
+    <color name="verdeOlivaDis">#FFD5C331</color>
 </resources>

@@ -1,13 +1,10 @@
 package Presentation;
 
 import android.os.Bundle;
-import android.os.PersistableBundle;
-import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
-import androidx.fragment.app.FragmentContainer;
 import androidx.fragment.app.FragmentContainerView;
 
 import com.example.cucharon.R;
@@ -30,7 +27,8 @@ public class Navegacion extends AppCompatActivity {
         barraNav.setOnItemSelectedListener(new ChipNavigationBar.OnItemSelectedListener() {
             @Override
             public void onItemSelected(int i) {
-                if(i == R.id.home) getSupportFragmentManager().beginTransaction().add(R.id.mainFragmentContainer, new Examinar()).commit();
+                if(i == R.id.search) getSupportFragmentManager().beginTransaction().replace(R.id.mainFragmentContainer, new Examinar()).commit();
+
             }
         });
     }

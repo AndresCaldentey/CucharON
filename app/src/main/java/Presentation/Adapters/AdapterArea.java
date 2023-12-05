@@ -1,6 +1,5 @@
 package Presentation.Adapters;
 
-import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,27 +17,25 @@ import com.example.cucharon.R;
 
 import java.util.List;
 
-import de.hdodenhof.circleimageview.CircleImageView;
-
 public class AdapterArea extends RecyclerView.Adapter<AdapterArea.AdapterViewHolder> {
     List<Area> areas;
     List<Pais> paises;
-    private Activity activity;
 
-    public AdapterArea(Activity activity, List<Area> areas, List<Pais> paises) {
+
+    public AdapterArea(List<Area> areas, List<Pais> paises) {
         this.areas = areas;
         this.paises = paises;
-        this.activity = activity;
     }
 
     @NonNull
     @Override
     public AdapterViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new AdapterArea.AdapterViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.examinar_f, parent,false));
+        return new AdapterArea.AdapterViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.desplegable_item, parent,false));
     }
 
     @Override
     public void onBindViewHolder(@NonNull AdapterViewHolder holder, int position) {
+        holder.funcionalidadExpandir(areas.get(position));
         holder.imprimir(areas.get(position));
 
 
@@ -60,14 +57,16 @@ public class AdapterArea extends RecyclerView.Adapter<AdapterArea.AdapterViewHol
             slidePaises = itemView.findViewById(R.id.slidePaises);
             desplegable = itemView.findViewById(R.id.desplegable);
             flecha = itemView.findViewById(R.id.flecha);
+
         }
         public void imprimir(Area area) {
             nombreArea.setText(area.getNombreArea());
-            slidePaises.setAdapter(new SlidePais(paises));
+            slidePaises.setAdapter(new SlidePais(area.getPaises()));
             slidePaises.setClipToPadding(false);
             slidePaises.setClipChildren(false);
             slidePaises.setOffscreenPageLimit(3);
             slidePaises.getChildAt(0).setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
+
 
             CompositePageTransformer compositePageTransformer = new CompositePageTransformer();
             compositePageTransformer.addTransformer(new MarginPageTransformer(40));
@@ -75,25 +74,31 @@ public class AdapterArea extends RecyclerView.Adapter<AdapterArea.AdapterViewHol
                 @Override
                 public void transformPage(@NonNull View page, float position) {
                     float r = 1 - Math.abs(position);
-                    page.setScaleY(0.95f + r * 0.05f);
+                    page.setScaleY(0.85f + r * 0.15f);
                 }
             });
 
             slidePaises.setPageTransformer(compositePageTransformer);
-            slidePaises.setCurrentItem(2);
+            slidePaises.setCurrentItem(1);
+
+            if(area.visible) {
+                slidePaises.setVisibility(View.VISIBLE);
+                flecha.setRotation(0);
+                
+            } else {
+                slidePaises.setVisibility(View.GONE);
+                flecha.setRotation(180);
+
+            }
+        }
+        public void funcionalidadExpandir(Area area){
             desplegable.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     area.setVisible(!area.isVisible());
+                    notifyItemChanged(getLayoutPosition());
                 }
             });
-            if(area.visible) {
-                slidePaises.setVisibility(View.VISIBLE);
-                flecha.setRotation(0);
-            } else {
-                slidePaises.setVisibility(View.GONE);
-                flecha.setRotation(180);
-            }
         }
 
 

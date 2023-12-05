@@ -169,8 +169,8 @@ public class IUsugerencias extends AppCompatActivity {
         finish();
     }
     public void perfilOnClick(View view) {
-        Intent intent = new Intent(IUsugerencias.this, IUperfil.class);
-        //Intent intent = new Intent(IUsugerencias.this, Navegacion.class);
+        //Intent intent = new Intent(IUsugerencias.this, IUperfil.class);
+        Intent intent = new Intent(IUsugerencias.this, Navegacion.class);
         startActivity(intent);
         // Restricciones para el divisor
        /* */

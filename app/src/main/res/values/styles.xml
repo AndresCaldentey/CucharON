@@ -5,4 +5,10 @@
         <item name="android:fontFamily">@font/manrope</item>
         <item name="android:textSize">12sp</item>
     </style>
+
+    <style name= "ManropeRegular" parent="TextAppearance.AppCompat">
+        <item name="android:textStyle">normal</item>
+        <item name="android:fontFamily">@font/manrope</item>
+        <item name="android:textSize">15sp</item>
+    </style>
 </resources>

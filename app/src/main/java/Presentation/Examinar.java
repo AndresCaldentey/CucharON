@@ -1,30 +1,32 @@
 package Presentation;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager2.widget.CompositePageTransformer;
-import androidx.viewpager2.widget.MarginPageTransformer;
-import androidx.viewpager2.widget.ViewPager2;
+import androidx.fragment.app.FragmentContainerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.example.cucharon.R;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import Presentation.Adapters.Area;
-import Presentation.Adapters.Pais;
-import Presentation.Adapters.SlidePais;
-
+/**
+ * A simple {@link Fragment} subclass.
+ * Use the {@link Examinar#newInstance} factory method to
+ * create an instance of this fragment.
+ */
 public class Examinar extends Fragment {
-    private ViewPager2 slidePaises;
+
+    Button procedenciaB, saborB;
+    boolean procedenciaPress, saborPress;
+
+    Drawable botonPulsado, botonSinPulsar;
+    FragmentContainerView contenedorExaminar;
 
     public Examinar() {
         // Required empty public constructor
@@ -34,15 +36,37 @@ public class Examinar extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        slidePaises = view.findViewById(R.id.slidePaises);
-        List<Pais> paises = new ArrayList<>();
-        List<Area> areas = new ArrayList<>();
-        paises.add(new Pais(R.drawable.platochina, "China"));
-        paises.add(new Pais(R.drawable.platoindia, "India"));
-        paises.add(new Pais(R.drawable.platojapon, "Japón"));
-        areas.add(new Area("Asia",false));
+        procedenciaB = view.findViewById(R.id.procedenciaB);
+        saborB = view.findViewById(R.id.saborB);
+        botonPulsado = view.getResources().getDrawable(R.drawable.boton_naranja);
+        botonSinPulsar = view.getResources().getDrawable(R.drawable.boton_verde_borde);
+        saborPress = false;
+        procedenciaPress = true;
+        contenedorExaminar = view.findViewById(R.id.contenedorExaminar);
+        procedenciaB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(saborPress){
+                    saborPress = !saborPress;
+                    saborB.setBackground(botonSinPulsar);
+                    procedenciaPress = !procedenciaPress;
+                    procedenciaB.setBackground(botonPulsado);
+                }
+            }
+        });
 
-
+        saborB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(procedenciaPress){
+                    saborPress = !saborPress;
+                    procedenciaPress = !procedenciaPress;
+                    saborB.setBackground(botonPulsado);
+                    procedenciaB.setBackground(botonSinPulsar);
+                }
+            }
+        });
+        getFragmentManager().beginTransaction().replace(R.id.contenedorExaminar, new ListaDesplegables()).commit();
 
     }
 
@@ -50,7 +74,7 @@ public class Examinar extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.examinar_f, container, false);
+        return inflater.inflate(R.layout.fragment_examinar, container, false);
 
     }
 }

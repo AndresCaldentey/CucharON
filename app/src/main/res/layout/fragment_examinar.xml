@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="Presentation.Examinar">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0">
+
+            <ImageView
+                android:id="@+id/imageView33"
+                android:layout_width="220dp"
+                android:layout_height="239dp"
+                android:paddingStart="36dp"
+                android:paddingBottom="7dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/bocadillo" />
+
+            <ImageView
+                android:id="@+id/imageView31"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="28dp"
+                android:layout_marginTop="64dp"
+                android:layout_marginEnd="131dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/imageView34"
+                app:layout_constraintHorizontal_bias="0.112"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/del_movil_a_la_mesa" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imageView34"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="64dp"
+                android:layout_marginEnd="20dp"
+                android:elevation="2dp"
+                android:src="@drawable/abuela"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imageView31"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                android:id="@+id/linearLayout12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="175dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <Button
+                    android:id="@+id/procedenciaB"
+                    android:layout_width="160dp"
+                    android:layout_height="35dp"
+                    android:layout_marginRight="15dp"
+
+                    android:background="@drawable/boton_naranja"
+                    android:text="Procedencia"
+                    android:textAppearance="@style/ManropeRegular"
+                    app:cornerRadius="34dp"
+                    tools:text="Procedencia" />
+
+                <Button
+                    android:id="@+id/saborB"
+                    android:layout_width="160dp"
+                    android:layout_height="35dp"
+                    android:background="@drawable/boton_verde_borde"
+                    android:text="Button"
+                    android:textAppearance="@style/ManropeRegular"
+                    tools:text="Sabor" />
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/contenedorExaminar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+    </LinearLayout>
+</FrameLayout>
