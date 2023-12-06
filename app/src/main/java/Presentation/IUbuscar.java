@@ -21,6 +21,8 @@ import androidx.appcompat.app.AppCompatDelegate;
 
 import com.example.cucharon.Producto;
 import com.example.cucharon.R;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -35,36 +37,99 @@ import java.util.List;
 
 import Negocio.IService;
 import Negocio.Service;
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.os.Bundle;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 public class IUbuscar extends AppCompatActivity implements OnMapReadyCallback {
+    private static final int REQUEST_CODE_LOCATION_PERMISSION = 123;
 
     private IService servicio;
     private LinearLayout layoutPlatos;
     private HorizontalScrollView scrollPlatos;
+    private GoogleMap mMap;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.map);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-
+        if (ContextCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_FINE_LOCATION
+        ) == PackageManager.PERMISSION_GRANTED) {
+            // Ya se tienen los permisos
+            // Puedes iniciar la lógica de ubicación aquí
+        } else {
+            // Solicitar permisos
+            ActivityCompat.requestPermissions(
+                    this,
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                    REQUEST_CODE_LOCATION_PERMISSION
+            );
+        }
         servicio = Service.getService();
         scrollPlatos = findViewById(R.id.vistaInfoPlatos);
         layoutPlatos = findViewById(R.id.layoutPlatos);
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
+        if (mapFragment != null) {
+            mapFragment.getMapAsync(this);
+        }
+
+        layoutPlatos.removeAllViews();
+
         if(mapFragment != null) { mapFragment.getMapAsync(this); }
 
         layoutPlatos.removeAllViews();  //Borra las vistas de platos de prueba que hay para ver en el xml
+
+
     }
 
+    @Override
+    public void onRequestPermissionsResult(
+            int requestCode,
+            @NonNull String[] permissions,
+            @NonNull int[] grantResults
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
+        if (requestCode == REQUEST_CODE_LOCATION_PERMISSION) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // Permiso concedido
+                // Puedes iniciar la lógica de ubicación aquí
+            } else {
+                // Permiso denegado
+                // Puedes informar al usuario o intentar solicitar los permisos nuevamente
+            }
+        }
+    }
     @Override
     public void onMapReady(@NonNull GoogleMap mMap) {
         //Ajustar camara inicial
+        this.mMap = mMap;
         float zoomLevel = 15.0f; // Puedes ajustar este valor según tus necesidades
-        LatLng posicionInicial = new LatLng(39.476802,-0.3468245);
-        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(posicionInicial, zoomLevel);
-        mMap.moveCamera(cameraUpdate);
+        if (ContextCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_FINE_LOCATION
+        ) == PackageManager.PERMISSION_GRANTED) {
+            FusedLocationProviderClient fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+            fusedLocationClient.getLastLocation()
+                    .addOnSuccessListener(this, location -> {
+                        if (location != null) {
+                            LatLng myLocation = new LatLng(location.getLatitude(), location.getLongitude());
+                            mMap.moveCamera(CameraUpdateFactory.newLatLng(myLocation));
+                            mMap.animateCamera(CameraUpdateFactory.zoomTo(15.0f));
+                        }
+                    });
+        }
+        //LatLng posicionInicial = new LatLng(39.476802,-0.3468245);
+       // CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(posicionInicial, zoomLevel);
+       // mMap.moveCamera(cameraUpdate);
 
         //Carga las posiciones de posteo de productos y agrega los marcadores en el mapa
         List<LatLng> posiciones = new ArrayList<>();
@@ -94,6 +159,7 @@ public class IUbuscar extends AppCompatActivity implements OnMapReadyCallback {
 
             return false; // Devuelve 'true' si consumes el evento, 'false' si no.
         });
+
     }
 
     private void crearInfoPlato(Producto producto)
