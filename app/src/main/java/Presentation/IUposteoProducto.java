@@ -25,6 +25,7 @@ import com.example.cucharon.Categoria;
 import com.example.cucharon.Producto;
 import com.example.cucharon.ProductoCategoria;
 import com.example.cucharon.R;
+import com.example.cucharon.Usuario;
 import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
@@ -32,7 +33,7 @@ import java.util.Date;
 import java.util.List;
 
 public class IUposteoProducto extends AppCompatActivity {
-    private static final int REQUEST_IMAGE_CAPTURE= 1, SELECCIONAR_UBICACION_REQUEST = 2;
+    private static final int REQUEST_IMAGE_CAPTURE = 1, SELECCIONAR_UBICACION_REQUEST = 2;
     private static List<Categoria> todasLasCategorias;
     private IService service;
     private RelativeLayout popupCategorias;
@@ -88,14 +89,14 @@ public class IUposteoProducto extends AppCompatActivity {
         }
     }
 
-    public void clickAddPhoto(View view){
+    public void clickAddPhoto(View view) {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        if(takePictureIntent.resolveActivity(getPackageManager())!=null){
-            startActivityForResult(takePictureIntent,REQUEST_IMAGE_CAPTURE);
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
         }
     }
 
-    public void clickPostearProducto(View view){
+    public void clickPostearProducto(View view) {
         //Se recogen la informacion proporcionada para el nuevo producto
         String nombre = String.valueOf(nombreEditText.getText());
         String descripcion = String.valueOf(descripcionEditText.getText());
@@ -108,17 +109,16 @@ public class IUposteoProducto extends AppCompatActivity {
         String direccion = textoDireccion.getText().toString();
 
         //Se crea el producto
-        Producto producto = new Producto(98,nombre,descripcion,precio, hora1+" - "+hora2,horaPreparacion, "prueba",//imagen,
+        Producto producto = new Producto(98, nombre, descripcion, precio, hora1 + " - " + hora2, horaPreparacion, "prueba",//imagen,
                 direccion, raciones, new Date(), service.getLoggedUser(), posicionProducto.latitude, posicionProducto.longitude);
 
         //Si se valida el producto se guarda en la BD
-        if(validarProducto(producto, hora1, hora2))
-        {
+        if (validarProducto(producto, hora1, hora2)) {
             service.crearProducto(producto);    //Guarda en la bd el nuevo producto
-            Producto productoPosteado =  service.getProductoById(producto.getIdProducto());
+            Producto productoPosteado = service.getProductoById(producto.getIdProducto());
 
             //Agrega tambien a la bd todas las categorias del producto
-            for(Categoria categoria :  categoriasProducto){
+            for (Categoria categoria : categoriasProducto) {
                 ProductoCategoria productoCategoria = new ProductoCategoria(productoPosteado, categoria);
                 service.guardarProductoCategoria(productoCategoria);
             }
@@ -127,46 +127,46 @@ public class IUposteoProducto extends AppCompatActivity {
     }
 
     private boolean validarProducto(Producto producto, String hora1, String hora2) {
-        if(producto.getNombre().isEmpty() ){
+        if (producto.getNombre().isEmpty()) {
             service.CrearAlerta("El producto ha de tener un nombre", this);
             return false;
-        }else if(producto.getDireccionRecogida() == null){
+        } else if (producto.getDireccionRecogida() == null) {
             service.CrearAlerta("Se ha de especificar una dirección de recogida", this);
             return false;
         } else if (producto.getPrecio() == null) {
             service.CrearAlerta("El producto ha de tener un precio", this);
             return false;
-        }else if(!service.validRaciones(producto.getNumRaciones()+"")){
+        } else if (!service.validRaciones(producto.getNumRaciones() + "")) {
             service.CrearAlerta("El numero de raciones ha de ser entero", this);
             return false;
-        }else if(!service.validPrecio(producto.getPrecio()+"")){
+        } else if (!service.validPrecio(producto.getPrecio() + "")) {
             service.CrearAlerta("El precio ha de ser un numero positivo y los decimales se han de indicar con un punto", this);
             return false;
-        }else if ( producto.getHoraPreparacion().isEmpty()) {
+        } else if (producto.getHoraPreparacion().isEmpty()) {
             service.CrearAlerta("Se ha de especificar la hora de preparación", this);
             return false;
-        }else if(!service.validTime(producto.getHoraPreparacion())){
+        } else if (!service.validTime(producto.getHoraPreparacion())) {
             service.CrearAlerta("Asegúrese de que la hora de preparación es correcta y tiene el formato HH:mm", this);
             return false;
-        }else if ( hora1.isEmpty()) {
+        } else if (hora1.isEmpty()) {
             service.CrearAlerta("Se ha de especificar la franja temprana de la hora de recogida", this);
             return false;
-        }else if(!service.validTime(hora1)){
+        } else if (!service.validTime(hora1)) {
             service.CrearAlerta("Asegúrese de que la hora de la franja temprana introducida es correcta y tiene el formato HH:mm", this);
             return false;
-        }else if ( hora2.isEmpty()) {
+        } else if (hora2.isEmpty()) {
             service.CrearAlerta("Se ha de especificar la franja tardía de la hora de recogida", this);
             return false;
-        }else if(!service.validTime(hora2)){
+        } else if (!service.validTime(hora2)) {
             service.CrearAlerta("Asegúrese de que la hora de la franja tardía introducida es correcta y tiene el formato HH:mm", this);
             return false;
-        }else if(!service.validTimeRange(hora1,hora2)){
+        } else if (!service.validTimeRange(hora1, hora2)) {
             service.CrearAlerta("La franja superior horaria ha de ser mayor que la inferior", this);
             return false;
-        }else if(producto.getContenido().isEmpty()){
+        } else if (producto.getContenido().isEmpty()) {
             service.CrearAlerta("El producto ha de tener una descripción", this);
             return false;
-        }else if(producto.getImagen().isEmpty()){
+        } else if (producto.getImagen().isEmpty()) {
             service.CrearAlerta("Haga una foto al producto", this);
             return false;
         }
@@ -188,9 +188,9 @@ public class IUposteoProducto extends AppCompatActivity {
 
     public void restarRacionPlato(View view) {
         int racionesActuales = Integer.parseInt(cantidadPlatosEditText.getText().toString());
-        if(racionesActuales > 1){
-        racionesActuales--;
-        cantidadPlatosEditText.setText(racionesActuales);
+        if (racionesActuales > 1) {
+            racionesActuales--;
+            cantidadPlatosEditText.setText(racionesActuales);
         }
     }
 
@@ -209,7 +209,7 @@ public class IUposteoProducto extends AppCompatActivity {
         }
     }
 
-    public void añadirCategoriasPopupOnClick(View view){
+    public void añadirCategoriasPopupOnClick(View view) {
         for (int i = 0; i < linearLayoutCategorias.getChildCount(); i++) {
             View child = linearLayoutCategorias.getChildAt(i);
 
@@ -237,18 +237,20 @@ public class IUposteoProducto extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
+
     public void sugerenciasOnClick(View view) {
         Intent intent = new Intent(IUposteoProducto.this, IUsugerencias.class);
         startActivity(intent);
         finish();
     }
+
     public void perfilOnClick(View view) {
         Intent intent = new Intent(IUposteoProducto.this, IUperfil.class);
         startActivity(intent);
         finish();
     }
 
-    public void testPosteo(View view){
+    public Producto posteoSinImagenNiMapa(View view) {
         //Se recogen la informacion proporcionada para el nuevo producto
         String nombre = String.valueOf(nombreEditText.getText());
         String descripcion = String.valueOf(descripcionEditText.getText());
@@ -257,26 +259,51 @@ public class IUposteoProducto extends AppCompatActivity {
         String hora2 = String.valueOf(horaRecogida2.getText());
         String horaPreparacion = String.valueOf(horaPreparacionEditText.getText());
         int raciones = Integer.parseInt(cantidadPlatosEditText.getText().toString());
-        String imagen = service.imagenToString(((BitmapDrawable) fotoPlato.getDrawable()).getBitmap());
         String direccion = textoDireccion.getText().toString();
 
         //Se crea el producto
-        Producto producto = new Producto(98,nombre,descripcion,precio, hora1+" - "+hora2,horaPreparacion, "prueba",//imagen,
-                direccion, raciones, new Date(), service.getLoggedUser(), posicionProducto.latitude, posicionProducto.longitude);
 
-        //Si se valida el producto se guarda en la BD
-        if(validarProducto(producto, hora1, hora2))
-        {
-            service.crearProducto(producto);    //Guarda en la bd el nuevo producto
-            Producto productoPosteado =  service.getProductoById(producto.getIdProducto());
+        Usuario user = new Usuario("a@gmail.com", "usuarioPureba", "apellido", "contraseña", "direccion", 123);
 
-            //Agrega tambien a la bd todas las categorias del producto
-            for(Categoria categoria :  categoriasProducto){
-                ProductoCategoria productoCategoria = new ProductoCategoria(productoPosteado, categoria);
-                service.guardarProductoCategoria(productoCategoria);
-            }
+        service.crearUsuario(user);
+        Producto producto = new Producto(98, nombre, descripcion, precio, hora1 + " - " + hora2, horaPreparacion, "prueba", "direccion prueba", raciones, new Date(), user, 0.000, 0.000);
+
+        if (producto.getNombre().isEmpty()) {
+            return null;
+        } else if (producto.getDireccionRecogida() == null) {
+            return null;
+        } else if (producto.getPrecio() == null) {
+            return null;
+        } else if (!service.validRaciones(producto.getNumRaciones() + "")) {
+            return null;
+        } else if (!service.validPrecio(producto.getPrecio() + "")) {
+            return null;
+        } else if (producto.getHoraPreparacion().isEmpty()) {
+            return null;
+        } else if (!service.validTime(producto.getHoraPreparacion())) {
+            return null;
+        } else if (hora1.isEmpty()) {
+            return null;
+        } else if (!service.validTime(hora1)) {
+            return null;
+        } else if (hora2.isEmpty()) {
+            return null;
+        } else if (!service.validTime(hora2)) {
+            return null;
+        } else if (!service.validTimeRange(hora1, hora2)) {
+            return null;
+        } else if (producto.getContenido().isEmpty()) {
+            return null;
+        } else if (producto.getImagen().isEmpty()) {
+            return null;
         }
 
+        service.crearProducto(producto);    //Guarda en la bd el nuevo producto
+        Producto productoPosteado = service.getProductoById(producto.getIdProducto());
+
+
+        return producto;
     }
+
 
 }

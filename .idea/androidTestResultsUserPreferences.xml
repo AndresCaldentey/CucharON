@@ -12,6 +12,20 @@
                   <entry key="Resizable_Experimental_API_UpsideDownCake" value="120" />
                   <entry key="Resizable_Experimental_API_UpsideDownCake_2" value="120" />
                   <entry key="Tests" value="360" />
+                  <entry key="Xiaomi 2201116TG" value="120" />
+                </map>
+              </option>
+            </AndroidTestResultsTableState>
+          </value>
+        </entry>
+        <entry key="-1361747147">
+          <value>
+            <AndroidTestResultsTableState>
+              <option name="preferredColumnWidths">
+                <map>
+                  <entry key="Duration" value="90" />
+                  <entry key="Resizable_Experimental_API_UpsideDownCake" value="120" />
+                  <entry key="Tests" value="360" />
                 </map>
               </option>
             </AndroidTestResultsTableState>
@@ -25,6 +39,32 @@
                   <entry key="Duration" value="90" />
                   <entry key="Resizable_Experimental_API_UpsideDownCake" value="120" />
                   <entry key="Resizable_Experimental_API_UpsideDownCake_2" value="120" />
+                  <entry key="Tests" value="360" />
+                </map>
+              </option>
+            </AndroidTestResultsTableState>
+          </value>
+        </entry>
+        <entry key="-971278201">
+          <value>
+            <AndroidTestResultsTableState>
+              <option name="preferredColumnWidths">
+                <map>
+                  <entry key="Duration" value="90" />
+                  <entry key="Resizable_Experimental_API_UpsideDownCake" value="120" />
+                  <entry key="Tests" value="360" />
+                </map>
+              </option>
+            </AndroidTestResultsTableState>
+          </value>
+        </entry>
+        <entry key="1490863560">
+          <value>
+            <AndroidTestResultsTableState>
+              <option name="preferredColumnWidths">
+                <map>
+                  <entry key="Duration" value="90" />
+                  <entry key="Resizable_Experimental_API_UpsideDownCake" value="120" />
                   <entry key="Tests" value="360" />
                 </map>
               </option>
