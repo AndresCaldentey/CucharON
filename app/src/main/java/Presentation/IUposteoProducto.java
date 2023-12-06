@@ -116,7 +116,7 @@ public class IUposteoProducto extends AppCompatActivity {
         String direccion = textoDireccion.getText().toString();
 
         //Se crea el producto
-        Producto producto = new Producto(98, nombre, descripcion, precio, hora1 + " - " + hora2, horaPreparacion, "prueba",//imagen,
+        Producto producto = new Producto(98, nombre, descripcion, precio, hora1 + " - " + hora2, horaPreparacion, imagen,
                 direccion, raciones, new Date(), service.getLoggedUser(), posicionProducto.latitude, posicionProducto.longitude);
 
         //Si se valida el producto se guarda en la BD

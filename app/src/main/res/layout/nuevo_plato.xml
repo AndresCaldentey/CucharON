@@ -429,7 +429,7 @@
                     android:id="@+id/posteoBtn"
                     android:layout_width="178dp"
                     android:layout_height="wrap_content"
-                    android:onClick="posteoSinImagenNiMapa"
+                    android:onClick="clickPostearProducto"
                     android:text="AÑADIR" />
             </LinearLayout>
 
