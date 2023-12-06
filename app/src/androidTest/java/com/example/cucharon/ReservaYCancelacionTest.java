@@ -44,8 +44,13 @@ public class ReservaYCancelacionTest {
         producto.setUsuarioComprador(user);
         service.actualizarProducto(producto);
 
-        assertNotNull(producto);
-        assertNotNull(producto.getUsuarioComprador());
+        Producto productoGuardado = service.getProductoById(producto.getIdProducto());
+
+        assertNotNull(productoGuardado);
+        assertNotNull(productoGuardado.getUsuarioComprador());
+
+        producto.setUsuarioComprador(null);
+        service.actualizarProducto(producto);
 
     }
 
@@ -69,6 +74,8 @@ public class ReservaYCancelacionTest {
         producto.setUsuarioComprador(null);
         service.actualizarProducto(producto);
 
+        Producto productoGuardado = service.getProductoById(producto.getIdProducto());
+        assertNotNull(productoGuardado);
         assertNull(producto.getUsuarioComprador());
 
 
