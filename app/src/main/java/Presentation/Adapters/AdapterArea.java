@@ -20,11 +20,11 @@ import java.util.List;
 public class AdapterArea extends RecyclerView.Adapter<AdapterArea.AdapterViewHolder> {
     List<Area> areas;
     List<Pais> paises;
-
-
-    public AdapterArea(List<Area> areas, List<Pais> paises) {
+    ClickCategoria logicaBusqueda;
+    public AdapterArea(List<Area> areas, List<Pais> paises, ClickCategoria buscar) {
         this.areas = areas;
         this.paises = paises;
+        this.logicaBusqueda = buscar;
     }
 
     @NonNull
@@ -61,7 +61,7 @@ public class AdapterArea extends RecyclerView.Adapter<AdapterArea.AdapterViewHol
         }
         public void imprimir(Area area) {
             nombreArea.setText(area.getNombreArea());
-            slidePaises.setAdapter(new SlidePais(area.getPaises()));
+            slidePaises.setAdapter(new SlidePais(area.getPaises(), logicaBusqueda));
             slidePaises.setClipToPadding(false);
             slidePaises.setClipChildren(false);
             slidePaises.setOffscreenPageLimit(3);
@@ -75,6 +75,7 @@ public class AdapterArea extends RecyclerView.Adapter<AdapterArea.AdapterViewHol
                 public void transformPage(@NonNull View page, float position) {
                     float r = 1 - Math.abs(position);
                     page.setScaleY(0.85f + r * 0.15f);
+                    page.setScaleX(0.85f + r * 0.15f);
                 }
             });
 

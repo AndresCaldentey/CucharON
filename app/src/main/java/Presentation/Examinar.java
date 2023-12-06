@@ -15,6 +15,9 @@ import android.widget.Button;
 
 import com.example.cucharon.R;
 
+import Presentation.Adapters.ClickCategoria;
+import Presentation.Adapters.Pais;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link Examinar#newInstance} factory method to
@@ -43,6 +46,15 @@ public class Examinar extends Fragment {
         saborPress = false;
         procedenciaPress = true;
         contenedorExaminar = view.findViewById(R.id.contenedorExaminar);
+        ClickCategoria logicaBusqueda = new ClickCategoria() {
+            @Override
+            public void buscar(Pais pais) {
+                Bundle bundle = new Bundle();
+                bundle.putString("categoria", pais.getNombre());
+                getParentFragmentManager().setFragmentResult("datos", bundle);
+                getParentFragmentManager().beginTransaction().replace(R.id.mainFragmentContainer, new verBusqueda()).commit();
+            }
+        };
         procedenciaB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -51,7 +63,7 @@ public class Examinar extends Fragment {
                     saborB.setBackground(botonSinPulsar);
                     procedenciaPress = !procedenciaPress;
                     procedenciaB.setBackground(botonPulsado);
-                    getFragmentManager().beginTransaction().replace(R.id.contenedorExaminar, new ListaDesplegables()).commit();
+                    getFragmentManager().beginTransaction().replace(R.id.contenedorExaminar, new ListaDesplegables(logicaBusqueda)).commit();
 
                 }
             }
@@ -69,7 +81,8 @@ public class Examinar extends Fragment {
                 }
             }
         });
-        getFragmentManager().beginTransaction().replace(R.id.contenedorExaminar, new ListaDesplegables()).commit();
+
+        getFragmentManager().beginTransaction().replace(R.id.contenedorExaminar, new ListaDesplegables(logicaBusqueda)).commit();
 
     }
 

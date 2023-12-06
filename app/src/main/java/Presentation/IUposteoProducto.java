@@ -28,6 +28,7 @@ import com.example.cucharon.R;
 import com.example.cucharon.Usuario;
 import com.google.android.gms.maps.model.LatLng;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -74,10 +75,16 @@ public class IUposteoProducto extends AppCompatActivity {
 
         //Se ha obtenido resultado de la actividad seleccionar imagen
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK && data != null) {
-            Bundle extras = data.getExtras();
-            Bitmap imageBitmap = (Bitmap) extras.get("data");
+            Bitmap bitmap = null;
+            try {
+                bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), data.getData());
+                // Ahora 'bitmap' contiene la imagen en formato Bitmap y puedes usarlo como desees.
+            } catch (IOException e) {
+                e.printStackTrace();
+                // Maneja la excepción apropiadamente
+            }
 
-            fotoPlato.setImageBitmap(imageBitmap);
+            fotoPlato.setImageBitmap(bitmap);
         }
 
         //Se ha obtenido resultado de la actividad seleccionar ubicacion
@@ -90,9 +97,9 @@ public class IUposteoProducto extends AppCompatActivity {
     }
 
     public void clickAddPhoto(View view) {
-        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+        Intent pickImageIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        if (pickImageIntent.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(pickImageIntent, REQUEST_IMAGE_CAPTURE);
         }
     }
 

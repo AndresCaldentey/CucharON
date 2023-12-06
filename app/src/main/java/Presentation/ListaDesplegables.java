@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -19,15 +20,20 @@ import java.util.List;
 
 import Presentation.Adapters.AdapterArea;
 import Presentation.Adapters.Area;
+import Presentation.Adapters.ClickCategoria;
 import Presentation.Adapters.Pais;
 
 public class ListaDesplegables extends Fragment {
     private RecyclerView listaDesplegables;
     List<Pais> paises;
     List<Area> areas;
-
+    FragmentManager fragmentoExaminar;
+    ClickCategoria logicaBusqueda;
     public ListaDesplegables() {
         // Required empty public constructor
+    }
+    public ListaDesplegables(ClickCategoria logicaBusqueda) {
+        this.logicaBusqueda = logicaBusqueda;
     }
 
 
@@ -36,7 +42,7 @@ public class ListaDesplegables extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         listaDesplegables = view.findViewById(R.id.listaDesplegables);
         initializeComponents();
-        listaDesplegables.setAdapter(new AdapterArea(areas, paises));
+        listaDesplegables.setAdapter(new AdapterArea(areas, paises, logicaBusqueda));
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         listaDesplegables.setLayoutManager(linearLayoutManager);
 
