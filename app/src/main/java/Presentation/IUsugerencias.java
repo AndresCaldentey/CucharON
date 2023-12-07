@@ -1,5 +1,6 @@
 package Presentation;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -56,7 +57,17 @@ public class IUsugerencias extends AppCompatActivity {
         rv1 = findViewById(R.id.rv1);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2);
         rv1.setLayoutManager(gridLayoutManager);
-        platosAdapter = new AdaptadorPlato(IUreserva.class);
+        Context contextoActual = this;
+        AdaptadorPlato.ClickPlato logicaPlato = new AdaptadorPlato.ClickPlato() {
+            @Override
+            public void click(Producto plato) {
+                IUreserva reserva = new IUreserva();
+                Intent intent = new Intent(contextoActual,IUreserva.class);
+                intent.putExtra("Producto",plato.getIdProducto());
+                contextoActual.startActivity(intent);
+            }
+        };
+        platosAdapter = new AdaptadorPlato(logicaPlato);
         rv1.setAdapter(platosAdapter);
         //--------------------------------------------------------------------------------
 

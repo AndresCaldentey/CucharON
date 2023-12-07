@@ -52,7 +52,17 @@ public class IUperfil extends AppCompatActivity {
         //Inicializar platos
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         mis_platos.setLayoutManager(linearLayoutManager);
-        platosAdapter = new AdaptadorPlato(IUreserva.class);
+        Context contextoActual = this;
+        AdaptadorPlato.ClickPlato logicaPlato = new AdaptadorPlato.ClickPlato() {
+            @Override
+            public void click(Producto plato) {
+                IUreserva reserva = new IUreserva();
+                Intent intent = new Intent(contextoActual,IUreserva.class);
+                intent.putExtra("Producto",plato.getIdProducto());
+                contextoActual.startActivity(intent);
+            }
+        };
+        platosAdapter = new AdaptadorPlato(logicaPlato);
         mis_platos.setAdapter(platosAdapter);
         //-----------------------------------------------
 

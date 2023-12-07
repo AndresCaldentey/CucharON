@@ -49,7 +49,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     android:fontFamily="@font/inter"
-                    android:text="5€"
+                    android:autoText="false"
                     android:textColor="@color/black"
                     android:textSize="18sp" />
             </LinearLayout>
@@ -107,6 +107,7 @@
             android:layout_marginBottom="10dp"
             android:fontFamily="@font/manrope"
             android:inputType="textMultiLine"
+            android:autoText="false"
             android:maxLines="2"
             android:text="NOMBRE PLATO"
             android:textColor="#34322E"

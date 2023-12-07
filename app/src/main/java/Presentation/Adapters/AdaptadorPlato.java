@@ -28,14 +28,16 @@ public class AdaptadorPlato extends RecyclerView.Adapter<AdaptadorPlato.Adaptado
     //Aquí guardamos la lista de los platos que queremos mostrar
     List<Producto> platos = new ArrayList<>();
     Context context;
-    Class clase;
     IService service;
-    public AdaptadorPlato(Class clase) {
-        this.clase = clase;
+    ClickPlato logicaPlato;
+    public AdaptadorPlato(ClickPlato logicaPlato) {
         service = Service.getService();
     }
-    public AdaptadorPlato(List<Producto> platos) {
+    public AdaptadorPlato(List<Producto> platos, ClickPlato logicaPlato) {
+
         this.platos = platos;
+        this.logicaPlato = logicaPlato;
+        this.service = Service.getService();
     }
     public void setPlatos (List<Producto> platos) { this.platos = platos; }
     @NonNull
@@ -68,6 +70,7 @@ public class AdaptadorPlato extends RecyclerView.Adapter<AdaptadorPlato.Adaptado
         //inicializar las variables :)
         TextView nomP, recP, precioP, puntuacionPerfil;
         ImageView platoI, fotoDPerfil;
+        Producto plato;
         public AdaptadorPlatoHolder(@NonNull View itemView) {
             super(itemView);
             nomP = itemView.findViewById(R.id.nomP);
@@ -85,16 +88,18 @@ public class AdaptadorPlato extends RecyclerView.Adapter<AdaptadorPlato.Adaptado
             precioP.setText(convertirAFormato(platos.get(position).getPrecio()) + "€");
             Bitmap image = service.pasarStringAImagen(platos.get(position).getImagen());
             platoI.setImageBitmap(image);
+            plato = platos.get(position);
         }
 
         @Override
         public void onClick(View view) {
             //aquí se define el listener que espera al click de un plato.
-            IUreserva reserva = new IUreserva();
-            Intent intent = new Intent(context,clase);
-            intent.putExtra("Producto",platos.get(getLayoutPosition()).getIdProducto());
-            context.startActivity(intent);
+            logicaPlato.click(plato);
+
 
         }
+    }
+    public interface ClickPlato {
+        public void click(Producto plato);
     }
 }

@@ -22,4 +22,5 @@ public class CategoriaRepository extends Repository<Categoria>{
             return null;
         }
     }
+
 }

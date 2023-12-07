@@ -40,6 +40,7 @@ public interface IService {
     /*PERSISTENCIA PRODUCTO-CATEGORIA*/
     void guardarProductoCategoria(ProductoCategoria productoCategoria);
     List<ProductoCategoria> getAllProductoCategoria();
+    List<Producto> buscarPorCategoria(String categoria);
 
     /*PERSISTENCIA OPINIONES*/
     void crearOpinion(Opinion opinion);

@@ -90,9 +90,11 @@ public class Service implements IService{
     public Categoria getCategoriaByName(String nombre) { return categoriaRepo.getCategoriaByName(nombre); }
     public List<Categoria> getAllCategorias() {return categoriaRepo.obtenerTodos();}
 
+
     /*PERSISTENCIA PRODUCTO-CATEGORIA*/
     public void guardarProductoCategoria(ProductoCategoria productoCategoria){productoCategoriaRepo.guardar(productoCategoria);}
     public List<ProductoCategoria> getAllProductoCategoria(){return productoCategoriaRepo.obtenerTodos(); }
+    public List<Producto> buscarPorCategoria(String categoria) { return productoCategoriaRepo.BuscarPorCategoria(categoria); }
 
     /*PERSISTENCIA OPINIONES*/
     public void crearOpinion(Opinion opinion) { opinionRepo.guardar(opinion); }
@@ -204,6 +206,7 @@ public class Service implements IService{
         return Base64.encodeToString(byteArray, Base64.DEFAULT);
     }
     public Bitmap pasarStringAImagen(String img64){
+        if(img64 == null) return null;
         byte[] imageBytes = Base64.decode(img64, Base64.DEFAULT);
         return BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
     }
