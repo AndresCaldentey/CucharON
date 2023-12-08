@@ -52,18 +52,13 @@ public class RegistrarseTest extends TestCase {
         onView(withId(R.id.direccionRegistro)).perform(ViewActions.clearText());
         onView(withId(R.id.direccionRegistro)).perform(ViewActions.typeText(direccion), pressImeActionButton());
 
-        String password = "password";
+        String password = "Contraseaa12";
         onView(withId(R.id.passwordRegistro)).perform(ViewActions.clearText());
         onView(withId(R.id.passwordRegistro)).perform(ViewActions.typeText(password), pressImeActionButton());
 
-        String passwordRepetida = "password";
+        String passwordRepetida = "Contraseaa12";
         onView(withId(R.id.passwordRegistro2)).perform(ViewActions.clearText());
         onView(withId(R.id.passwordRegistro2)).perform(ViewActions.typeText(passwordRepetida), pressImeActionButton());
-
-        onView(withId(R.id.btnRegistro)).perform(click());
-
-        IUregistro activity = activityRule.getActivity();
-        assertNotNull(activity);
 
         onView(withId(R.id.btnRegistro)).perform(click());
 
