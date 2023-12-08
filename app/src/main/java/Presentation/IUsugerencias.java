@@ -146,7 +146,7 @@ public class IUsugerencias extends AppCompatActivity {
             platos = new ProductoCategoria().getProductosByCategoria(categoriaEscogida[0].getNombre());
 
             if(platos.isEmpty()){
-                Toast.makeText(this, "No hay productos con esta categoría", Toast.LENGTH_LONG).show(); // Escoger entre uno de estos
+               // Toast.makeText(this, "No hay productos con esta categoría", Toast.LENGTH_LONG).show(); // Escoger entre uno de estos
                 showAlertDialog("Prueba con otra opción", "No hay productos con esta categoría"); // Escoger entre uno de estos
                 categoriaEscogida[0] = null;
                 actualizarPlatos(todosLosPlatos);

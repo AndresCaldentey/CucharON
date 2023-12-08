@@ -24,7 +24,6 @@ public class ReservaYCancelacionTest {
     @Test
     public void HacerReserva() {
 
-
         List<Producto> listaProductos = service.getAllProducto();
 
         assertFalse(listaProductos.isEmpty());
@@ -38,8 +37,8 @@ public class ReservaYCancelacionTest {
             }
         }
 
-
-        Usuario user = new Usuario("a@gmail.com", "usuarioPureba", "apellido", "contraseña", "direccion", 123);
+        Usuario user = new Usuario("a@gmail.com", "usuarioPureba", "apellido", "contraseña",
+                "direccion", 123);
 
         producto.setUsuarioComprador(user);
         service.actualizarProducto(producto);
@@ -51,7 +50,6 @@ public class ReservaYCancelacionTest {
 
         producto.setUsuarioComprador(null);
         service.actualizarProducto(producto);
-
     }
 
     @Test
