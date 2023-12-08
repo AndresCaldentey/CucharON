@@ -30,7 +30,7 @@ public class RegistrarseTest extends TestCase {
     public ActivityTestRule<IUregistro> activityRule = new ActivityTestRule<>(IUregistro.class);
 
     @Test
-    public void testRegistroPasswordNoCoincide() throws InterruptedException {
+    public void testRegistroExitoso() throws InterruptedException {
         String nombre = "Hugo";
         onView(withId(R.id.nombreRegistro)).perform(ViewActions.typeText(nombre));
 
