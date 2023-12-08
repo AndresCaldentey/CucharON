@@ -33,7 +33,7 @@ public class IUregistro extends AppCompatActivity {
 
     }
 
-    public void onClickRegistrar(View view) {
+    public Usuario onClickRegistrar(View view) {
         if(!service.validEmail(email.getText().toString())) {
             service.CrearAlerta("El email no es válido", this);
         }
@@ -55,10 +55,11 @@ public class IUregistro extends AppCompatActivity {
                         Integer.parseInt(telefono.getText().toString()));
 
                 service.crearUsuario(nuevoUser);
-                finish();
+                return nuevoUser;
+                //finish();
             }
         }
-
+        return null;
     }
 
 }

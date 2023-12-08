@@ -74,7 +74,6 @@ public class Service implements IService{
         }
     }
 
-
     /*PERSISTENCIA PRODUCTO*/
     public Producto crearProducto(Producto producto) { productoRepo.guardar2(producto);
                                                         return producto;}
