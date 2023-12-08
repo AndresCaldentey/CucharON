@@ -61,9 +61,9 @@ public class RegistrarseTest extends TestCase {
         assertNotNull(view);
 
         Service service = Service.getService();
-        Usuario usuario = activity.onClickRegistrar(view);
-        Usuario usuarioRegistrado = service.getUsuarioByEmail(usuario.getEmail());
+        activity.onClickRegistrar(view);
+        Usuario usuarioRegistrado = service.getUsuarioByEmail("hugoo@gmail.com");
         assertNotNull(usuarioRegistrado);
-        assertEquals(usuario.getEmail(), usuarioRegistrado.getEmail());
+        assertEquals(usuarioRegistrado.getNombre(), "Hugo");
     }
 }
