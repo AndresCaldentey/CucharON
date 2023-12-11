@@ -29,6 +29,7 @@ public class ListaDesplegables extends Fragment {
     List<Area> areas;
     FragmentManager fragmentoExaminar;
     ClickCategoria logicaBusqueda;
+    boolean addPlato;
     public ListaDesplegables() {
         // Required empty public constructor
     }
@@ -36,13 +37,15 @@ public class ListaDesplegables extends Fragment {
         this.logicaBusqueda = logicaBusqueda;
     }
 
-
+    public void setAddPlatoFragment() { addPlato = true; }
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         listaDesplegables = view.findViewById(R.id.listaDesplegables);
         initializeComponents();
-        listaDesplegables.setAdapter(new AdapterArea(areas, paises, logicaBusqueda));
+        AdapterArea adaptador = new AdapterArea(areas, paises, logicaBusqueda);
+        if(addPlato) adaptador.setFragmentAddPlato();
+        listaDesplegables.setAdapter(adaptador);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         listaDesplegables.setLayoutManager(linearLayoutManager);
 

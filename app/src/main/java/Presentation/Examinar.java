@@ -48,7 +48,7 @@ public class Examinar extends Fragment {
         contenedorExaminar = view.findViewById(R.id.contenedorExaminar);
         ClickCategoria logicaBusqueda = new ClickCategoria() {
             @Override
-            public void buscar(Pais pais) {
+            public void click(Pais pais) {
                 Bundle bundle = new Bundle();
                 bundle.putString("categoria", pais.getNombre());
                 getParentFragmentManager().setFragmentResult("datos", bundle);

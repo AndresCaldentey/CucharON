@@ -57,7 +57,7 @@ public class SlidePais extends RecyclerView.Adapter<SlidePais.SliderViewHolder> 
             paisImagen.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    logicaBusqueda.buscar(pais);
+                    logicaBusqueda.click(pais);
                 }
             });
 

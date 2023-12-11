@@ -1,5 +1,6 @@
 package Presentation;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -28,7 +29,10 @@ public class Navegacion extends AppCompatActivity {
             @Override
             public void onItemSelected(int i) {
                 if(i == R.id.search) getSupportFragmentManager().beginTransaction().replace(R.id.mainFragmentContainer, new Examinar()).commit();
-
+                if(i == R.id.add) {
+                    Intent intent = new Intent(Navegacion.this, IUAddPlato.class);
+                    startActivity(intent);
+                }
             }
         });
     }

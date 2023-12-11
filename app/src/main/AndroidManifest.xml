@@ -35,8 +35,13 @@
             android:name="Presentation.IUposteoProducto"
             android:screenOrientation="portrait"
             android:exported="true" />
+
         <activity
             android:name="Presentation.IUbuscar"
+            android:screenOrientation="portrait"
+            android:exported="true" />
+        <activity
+            android:name="Presentation.IUAddPlato"
             android:screenOrientation="portrait"
             android:exported="true" />
         <activity

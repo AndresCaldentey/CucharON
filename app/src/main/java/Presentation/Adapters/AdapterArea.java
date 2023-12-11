@@ -21,12 +21,14 @@ public class AdapterArea extends RecyclerView.Adapter<AdapterArea.AdapterViewHol
     List<Area> areas;
     List<Pais> paises;
     ClickCategoria logicaBusqueda;
+    boolean addPlato;
     public AdapterArea(List<Area> areas, List<Pais> paises, ClickCategoria buscar) {
         this.areas = areas;
         this.paises = paises;
         this.logicaBusqueda = buscar;
     }
-
+    //Para usar este adaptador en la parte de AddPlato usaré un boolean para diferenciarlo del que aparece en Examinar
+    public void setFragmentAddPlato() {addPlato = true;}
     @NonNull
     @Override
     public AdapterViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -61,7 +63,11 @@ public class AdapterArea extends RecyclerView.Adapter<AdapterArea.AdapterViewHol
         }
         public void imprimir(Area area) {
             nombreArea.setText(area.getNombreArea());
-            slidePaises.setAdapter(new SlidePais(area.getPaises(), logicaBusqueda));
+            if(addPlato) slidePaises.setAdapter(new AdapterPaisNuevoPlato(area.getPaises(), logicaBusqueda));
+            else {
+                slidePaises.setAdapter(new SlidePais(area.getPaises(), logicaBusqueda));
+            }
+
             slidePaises.setClipToPadding(false);
             slidePaises.setClipChildren(false);
             slidePaises.setOffscreenPageLimit(3);
@@ -97,7 +103,16 @@ public class AdapterArea extends RecyclerView.Adapter<AdapterArea.AdapterViewHol
                 @Override
                 public void onClick(View view) {
                     area.setVisible(!area.isVisible());
-                    notifyItemChanged(getLayoutPosition());
+
+                    for(int i = 0; i < areas.size(); i++){
+                        Area a = areas.get(i);
+                        if(!a.equals(area) && a.isVisible()) {
+                            a.setVisible(false);
+                            notifyItemChanged(i);
+                        }
+                    }
+                    notifyItemChanged(getAdapterPosition());
+
                 }
             });
         }

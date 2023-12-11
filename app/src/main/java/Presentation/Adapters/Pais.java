@@ -3,6 +3,7 @@ package Presentation.Adapters;
 public class Pais {
     private int imageP;
     private String nombreP;
+    private boolean pulsado;
 
     public Pais(int imageP, String nombreP) {
         this.imageP = imageP;
@@ -24,4 +25,6 @@ public class Pais {
     public void setNombre(String nombreP) {
         this.nombreP = nombreP;
     }
+    public boolean getPulsado() {return pulsado;}
+    public void setPulsado(boolean valor) {pulsado = valor;}
 }

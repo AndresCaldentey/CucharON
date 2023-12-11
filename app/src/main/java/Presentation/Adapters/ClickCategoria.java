@@ -1,7 +1,5 @@
 package Presentation.Adapters;
 
-import android.widget.LinearLayout;
-
 public interface ClickCategoria {
-    public void buscar(Pais pais);
+    public void click(Pais pais);
 }
