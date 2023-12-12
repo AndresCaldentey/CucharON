@@ -30,7 +30,7 @@ public class Producto implements Serializable {
     private String direccionRecogida;
     @DatabaseField(foreign = true, foreignAutoCreate = true, foreignAutoRefresh = true, columnName = "usuarioPublicador")
     private Usuario usuarioPublicador;
-    @DatabaseField (foreign = true, foreignAutoCreate = true, foreignAutoRefresh = true, columnName = "usuarioComprador")
+    @DatabaseField(foreign = true, foreignAutoCreate = true, foreignAutoRefresh = true, columnName = "usuarioComprador")
     private Usuario usuarioComprador;
     @DatabaseField
     private String horaRecogida;
@@ -44,11 +44,14 @@ public class Producto implements Serializable {
     private double direccionLongitud;
     @DatabaseField
     private double direccionLatitud;
+    @DatabaseField
+    private boolean entregado;
 
-    public Producto(){}
+    public Producto() {
+    }
 
-    public Producto(int idProducto, String nombre, String contenido, Double precio, String horaRecogida,String horaPreparacion,
-                    String imagen, String direccion_recogida,int numRaciones, Date diaPreparacion, Usuario usuario_publicador,
+    public Producto(int idProducto, String nombre, String contenido, Double precio, String horaRecogida, String horaPreparacion,
+                    String imagen, String direccion_recogida, int numRaciones, Date diaPreparacion, Usuario usuario_publicador,
                     double lat, double lon) {
         this.idProducto = idProducto;
         this.nombre = nombre;
@@ -64,7 +67,7 @@ public class Producto implements Serializable {
         this.usuarioComprador = null;
         this.direccionLatitud = lat;
         this.direccionLongitud = lon;
-       // ingredientes = new ArrayList<>();
+        this.entregado = false;
     }
 
     public int getIdProducto() {
@@ -177,6 +180,14 @@ public class Producto implements Serializable {
 
     public void setDireccionLatitud(double direccionLatitud) {
         this.direccionLatitud = direccionLatitud;
+    }
+
+    public boolean isEntregado() {
+        return entregado;
+    }
+
+    public void setEntregado(boolean entregado) {
+        this.entregado = entregado;
     }
     /*
     public List<Ingrediente> getIngredientes() {
