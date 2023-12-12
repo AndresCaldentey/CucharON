@@ -84,14 +84,14 @@ public class IUsugerencias extends AppCompatActivity {
 
 
         final int[] defaultPosition = {0};
-         // Inicializamos con null, ya que aún no se ha seleccionado ninguna categoría
+           // Inicializamos con null, ya que aún no se ha seleccionado ninguna categoría
 
         botonFiltro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Creamos un nuevo array de categorías que incluye la opción "Todas las categorías"
                 List<Categoria> categoriasConTodas = new ArrayList<>(todasLasCategorias);
-                categoriasConTodas.add(0, new Categoria("Todas las categorías","no tiene")); // Ajusta esto según la estructura de tu clase Categoria
+                categoriasConTodas.add(0, new Categoria("Todas las categorías", "no tiene")); // Ajusta esto según la estructura de tu clase Categoria
 
                 // Creamos un array de nombres de categorías que incluye la opción "Todas las categorías"
                 CharSequence[] categoriaNames = getCategoriaNames(categoriasConTodas);
@@ -136,29 +136,26 @@ public class IUsugerencias extends AppCompatActivity {
 
     public void generarPlatos() {
 
-        if(categoriaEscogida[0]== null || categoriaEscogida[0].getNombre() == "Todas las categorías") {
+        if (categoriaEscogida[0] == null || categoriaEscogida[0].getNombre() == "Todas las categorías") {
 
             platos = todosLosPlatos;
             actualizarPlatos(todosLosPlatos);
 
-        }else {
+        } else {
 
             platos = new ProductoCategoria().getProductosByCategoria(categoriaEscogida[0].getNombre());
 
-            if(platos.isEmpty()){
+            if (platos.isEmpty()) {
                // Toast.makeText(this, "No hay productos con esta categoría", Toast.LENGTH_LONG).show(); // Escoger entre uno de estos
                 showAlertDialog("Prueba con otra opción", "No hay productos con esta categoría"); // Escoger entre uno de estos
                 categoriaEscogida[0] = null;
                 actualizarPlatos(todosLosPlatos);
-            }
-
-            else {
+            } else {
                 actualizarPlatos(platos);
             }
 
         }
     }
-
 
 
     public void actualizarPlatos(List<Producto> platos) {
@@ -167,24 +164,24 @@ public class IUsugerencias extends AppCompatActivity {
     }
 
 
-
-
     public void buscarOnClick(View view) {
-        Intent intent = new Intent( IUsugerencias.this, IUbuscar.class);
+        Intent intent = new Intent(IUsugerencias.this, IUbuscar.class);
         startActivity(intent);
         finish();
     }
+
     public void posteoProductoOnClick(View view) {
         Intent intent = new Intent(IUsugerencias.this, IUposteoProducto.class);
         startActivity(intent);
         finish();
     }
+
     public void perfilOnClick(View view) {
         //Intent intent = new Intent(IUsugerencias.this, IUperfil.class);
         Intent intent = new Intent(IUsugerencias.this, Navegacion.class);
         startActivity(intent);
         // Restricciones para el divisor
-       /* */
+        /* */
         finish();
     }
 
@@ -201,10 +198,6 @@ public class IUsugerencias extends AppCompatActivity {
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
     }
-
-
-
-
 
 
 }

@@ -133,7 +133,9 @@
                         android:layout_width="42dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:orientation="horizontal"></LinearLayout>
+                        android:orientation="horizontal">
+
+                    </LinearLayout>
 
                     <TextView
                         android:id="@+id/veggieText"
@@ -144,6 +146,7 @@
                         android:fontFamily="@font/manrope"
                         android:gravity="center"
                         android:text="veggie" />
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -210,24 +213,14 @@
                 </LinearLayout>
 
                 <ImageView
-                    android:id="@+id/imageView26"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="240dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.896"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:srcCompat="@drawable/alergenos" />
-
-                <ImageView
                     android:id="@+id/imageView23"
-                    android:layout_width="604dp"
-                    android:layout_height="250dp"
+                    android:layout_width="347dp"
+                    android:layout_height="213dp"
+                    android:scaleType="centerCrop"
                     android:src="@drawable/img_7"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.502"
+                    app:layout_constraintHorizontal_bias="0.407"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.295" />
@@ -248,7 +241,7 @@
                     app:layout_constraintVertical_bias="0.0" />
 
                 <ImageView
-                    android:id="@+id/imageView27"
+                    android:id="@+id/imagenMapa"
                     android:layout_width="181dp"
                     android:layout_height="70dp"
                     android:src="@drawable/img_11"
@@ -274,7 +267,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.61"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView27"
+                    app:layout_constraintTop_toBottomOf="@+id/imagenMapa"
                     app:layout_constraintVertical_bias="0.0" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
