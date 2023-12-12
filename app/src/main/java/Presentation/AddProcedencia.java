@@ -62,8 +62,9 @@ public class AddProcedencia extends Fragment {
                     mostrarAlerta();
                 } else {
                     //Ver a donde envia esto
-                    //getParentFragmentManager().beginTransaction().replace(R.id.addPlatoFragmentMan, new AddProcedencia()).commit();
+
                     sendPaisToActivity(paisNombre);
+                    getParentFragmentManager().beginTransaction().replace(R.id.addPlatoFragmentMan, new AddPlatoSabores()).commit();
                 }
             }
         });

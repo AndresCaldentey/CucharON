@@ -44,7 +44,6 @@ public class AdaptadorPlato extends RecyclerView.Adapter<AdaptadorPlato.Adaptado
     @Override
     public AdaptadorPlato.AdaptadorPlatoHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         //Este método es obligatorio por el extends y permite la relación entre el holder(cada item por separado) y la vista recyclerView
-        this.context = parent.getContext();
         return new AdaptadorPlatoHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.itemplato, parent, false));
     }
 
