@@ -42,7 +42,7 @@ public class AddProcedencia extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         cerrar = view.findViewById(R.id.cerrar);
         contenedorPaises = view.findViewById(R.id.contenedorPaises);
-        siguiente = view.findViewById(R.id.siguienteB3);
+        siguiente = view.findViewById(R.id.siguienteB4);
         ClickCategoria logicaPlato = new ClickCategoria() {
             @Override
             public void click(Pais pais) {
