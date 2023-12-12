@@ -26,8 +26,7 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, IUsugerencias.class);
             startActivity(intent);
             finish();
-        } else
-        {
+        } else {
             //El usuario no ha iniciado sesion previamente y se va a login
             Intent intent = new Intent(MainActivity.this, IUlogin.class);
             startActivity(intent);

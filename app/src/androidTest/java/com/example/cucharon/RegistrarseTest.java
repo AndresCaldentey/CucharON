@@ -58,7 +58,6 @@ public class RegistrarseTest extends TestCase {
 
         String passwordRepetida = "Contraseaa12";
         onView(withId(R.id.passwordRegistro2)).perform(ViewActions.clearText());
-        onView(withId(R.id.passwordRegistro2)).perform(ViewActions.typeText(passwordRepetida), pressImeActionButton());
 
         onView(withId(R.id.btnRegistro)).perform(click());
 
