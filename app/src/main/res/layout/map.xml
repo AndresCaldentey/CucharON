@@ -26,13 +26,15 @@
 
     <HorizontalScrollView
         android:id="@+id/vistaInfoPlatos"
-        android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_width="406dp"
+        android:layout_height="155dp"
+        android:paddingLeft="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.85">
+        app:layout_constraintVertical_bias="0.856">
 
         <LinearLayout
             android:id="@+id/layoutPlatos"
@@ -43,10 +45,10 @@
             android:orientation="horizontal">
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="339dp"
+                android:layout_height="152dp"
                 android:layout_weight="0"
-                android:background="@drawable/fondoplatomapa"
+                android:background="@drawable/img_19"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -55,6 +57,7 @@
                     android:layout_height="100dp"
                     android:layout_gravity="center"
                     android:layout_weight="0"
+                    android:scaleType="centerCrop"
                     android:src="@drawable/user" />
 
                 <LinearLayout
@@ -63,30 +66,69 @@
                     android:layout_weight="1"
                     android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/textView18"
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Paella Valenciana"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
+                        android:layout_height="match_parent">
 
-                    <TextView
-                        android:id="@+id/textView20"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="12:00-14:00h"
-                        android:textSize="16sp" />
+                        <TextView
+                            android:id="@+id/textView20"
+                            android:layout_width="93dp"
+                            android:layout_height="20dp"
+                            android:fontFamily="@font/manrope"
+                            android:text="12:00-14:00h"
+                            android:textSize="16sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.89"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.507" />
 
-                    <TextView
-                        android:id="@+id/textView21"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingEnd="10dp"
-                        android:text="33€"
-                        android:textAlignment="textEnd"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
+                        <TextView
+                            android:id="@+id/textView42"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/manrope"
+                            android:text="Hora recogida:"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.197"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.503" />
+
+                        <TextView
+                            android:id="@+id/textView21"
+                            android:layout_width="53dp"
+                            android:layout_height="32dp"
+                            android:fontFamily="@font/manrope"
+                            android:paddingEnd="10dp"
+                            android:text="33€"
+                            android:textAlignment="textEnd"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.866" />
+
+                        <TextView
+                            android:id="@+id/textView18"
+                            android:layout_width="180dp"
+                            android:layout_height="33dp"
+                            android:fontFamily="@font/manrope"
+                            android:gravity="center"
+                            android:text="Paella Valenciana"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.491"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.158" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
                 </LinearLayout>
 
             </LinearLayout>
