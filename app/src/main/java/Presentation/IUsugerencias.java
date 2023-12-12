@@ -19,7 +19,6 @@ import com.example.cucharon.R;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -42,7 +41,7 @@ public class IUsugerencias extends AppCompatActivity {
     LinearLayout linearLayoutCategorias;
     Button botonFiltro;
     final Categoria[] categoriaEscogida = {null};
-    RecyclerView rv1;
+    RecyclerView listaPlatos;
     AdaptadorPlato platosAdapter;
 
     @Override
@@ -54,9 +53,9 @@ public class IUsugerencias extends AppCompatActivity {
 
         //relacionado con la muestra del plato
         platos = new ArrayList<>();
-        rv1 = findViewById(R.id.rv1);
+        listaPlatos = findViewById(R.id.rv1);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2);
-        rv1.setLayoutManager(gridLayoutManager);
+        listaPlatos.setLayoutManager(gridLayoutManager);
         Context contextoActual = this;
         AdaptadorPlato.ClickPlato logicaPlato = new AdaptadorPlato.ClickPlato() {
             @Override
@@ -68,7 +67,7 @@ public class IUsugerencias extends AppCompatActivity {
             }
         };
         platosAdapter = new AdaptadorPlato(logicaPlato);
-        rv1.setAdapter(platosAdapter);
+        listaPlatos.setAdapter(platosAdapter);
         //--------------------------------------------------------------------------------
 
         servicio = Service.getService();
