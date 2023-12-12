@@ -28,12 +28,15 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import Negocio.IService;
 import Negocio.Service;
@@ -52,6 +55,12 @@ public class IUbuscar extends AppCompatActivity implements OnMapReadyCallback {
     private LinearLayout layoutPlatos;
     private HorizontalScrollView scrollPlatos;
     private GoogleMap mMap;
+    int[] arrayImagenesPines = {
+            R.drawable.platico1,
+            R.drawable.platico2,
+            R.drawable.platico3,
+            R.drawable.platico4
+    };
 
 
     @Override
@@ -139,7 +148,7 @@ public class IUbuscar extends AppCompatActivity implements OnMapReadyCallback {
             if(!posiciones.contains(nuevaPos))
             {
                 posiciones.add(nuevaPos);
-                Marker m = mMap.addMarker(new MarkerOptions().position(nuevaPos));
+                Marker m = mMap.addMarker(new MarkerOptions().position(nuevaPos).icon(obtainRandomIcon()));
                 if(m != null) { m.setTag(nuevaPos.latitude + "h" + nuevaPos.longitude); }
             }
         }
@@ -160,6 +169,14 @@ public class IUbuscar extends AppCompatActivity implements OnMapReadyCallback {
             return false; // Devuelve 'true' si consumes el evento, 'false' si no.
         });
 
+    }
+
+    private BitmapDescriptor obtainRandomIcon(){
+        Random random = new Random();
+        int indiceAleatorio = random.nextInt(arrayImagenesPines.length);
+        int drawableAleatorio = arrayImagenesPines[indiceAleatorio];
+        BitmapDescriptor icon = BitmapDescriptorFactory.fromResource(drawableAleatorio);
+        return icon;
     }
 
     private void crearInfoPlato(Producto producto)
