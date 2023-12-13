@@ -61,6 +61,7 @@ public class IUbuscar extends AppCompatActivity implements OnMapReadyCallback {
     List<Producto> lProducts;
     public ViewPager2 platoMapaViewer;
     AdaptadorPlatoMapa adaptadorPlatoMapa;
+    private static final double RADIO_TIERRA = 6371000.0;
     int[] arrayImagenesPines = {
             R.drawable.uva,
             R.drawable.platano,
@@ -159,7 +160,7 @@ public class IUbuscar extends AppCompatActivity implements OnMapReadyCallback {
         for(Producto p : servicio.getAllProducto())
         {
             LatLng nuevaPos = new LatLng(p.getDireccionLatitud(), p.getDireccionLongitud());
-            if(!posiciones.contains(nuevaPos))
+            if(!posicionEstaEnLista(posiciones,nuevaPos))
             {
                 posiciones.add(nuevaPos);
                 Marker m = mMap.addMarker(new MarkerOptions().position(nuevaPos).icon(obtainRandomIcon()));
@@ -247,6 +248,15 @@ public class IUbuscar extends AppCompatActivity implements OnMapReadyCallback {
 
         return textView;
     }
+    public boolean posicionEstaEnLista(List<LatLng> listaPosiciones,LatLng nuevaPos){
+        double areaUmbral = 10;
+        for (LatLng pos:listaPosiciones) {
+            if(estanEnLaMismaArea(pos, nuevaPos, areaUmbral)){
+                return true;
+            }
+        }
+        return false;
+    }
 
     public void posteoProductoOnClick(View view) {
         Intent intent = new Intent(IUbuscar.this, IUposteoProducto.class);
@@ -264,5 +274,32 @@ public class IUbuscar extends AppCompatActivity implements OnMapReadyCallback {
         finish();
     }
 
+    public static double calcularDistancia(LatLng punto1, LatLng punto2) {
+        // Convierte las coordenadas de grados a radianes
+        double latitud1 = Math.toRadians(punto1.latitude);
+        double longitud1 = Math.toRadians(punto1.longitude);
+        double latitud2 = Math.toRadians(punto2.latitude);
+        double longitud2 = Math.toRadians(punto2.longitude);
+
+        // Calcula las diferencias de latitud y longitud
+        double dlat = latitud2 - latitud1;
+        double dlon = longitud2 - longitud1;
+
+        // Fórmula haversine
+        double a = Math.sin(dlat / 2) * Math.sin(dlat / 2) +
+                Math.cos(latitud1) * Math.cos(latitud2) * Math.sin(dlon / 2) * Math.sin(dlon / 2);
+        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+        // Distancia en metros
+        return RADIO_TIERRA * c;
+    }
+
+    public static boolean estanEnLaMismaArea(LatLng punto1, LatLng punto2, double areaUmbral) {
+        // Calcula la distancia entre los dos puntos
+        double distancia = calcularDistancia(punto1, punto2);
+
+        // Comprueba si la distancia es menor o igual al umbral
+        return distancia <= areaUmbral;
+    }
 
 }
