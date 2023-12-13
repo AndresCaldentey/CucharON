@@ -10,8 +10,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/detalles_plato_fondo"
-        app:layout_constraintBottom_toBottomOf="@+id/editTextText6"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText6">
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        app:layout_constraintBottom_toBottomOf="@+id/textoDescripcion"
+        app:layout_constraintTop_toBottomOf="@+id/textoDescripcion">
 
         <ImageView
             android:id="@+id/imageView27"
@@ -90,25 +92,25 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="53dp"
             android:fontFamily="@font/manrope"
-            android:text="PRECIO"
+            android:text="Precio por ración"
             android:textAppearance="@style/TextoNav"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.137"
+            app:layout_constraintHorizontal_bias="0.183"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.772" />
 
         <EditText
-            android:id="@+id/editTextText6"
+            android:id="@+id/textoDescripcion"
             android:layout_width="335dp"
             android:layout_height="45dp"
             android:background="@drawable/aa_campo_texto"
             android:ems="10"
+            android:hint="CON PIMIENTO Y CEBOLLA"
             android:inputType="text"
             android:paddingStart="8dp"
-            android:text="CON PIMIENTO Y CEBOLLA"
             android:textColor="#A9A9A9"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -117,7 +119,7 @@
             app:layout_constraintVertical_bias="0.029" />
 
         <EditText
-            android:id="@+id/editTextNumber2"
+            android:id="@+id/textoRacion"
             android:layout_width="100dp"
             android:layout_height="45dp"
             android:layout_marginStart="155dp"
@@ -131,14 +133,14 @@
             android:textColor="#A8A8A8"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/imageView43"
+            app:layout_constraintEnd_toStartOf="@+id/botonBajarRacion"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView51"
             app:layout_constraintVertical_bias="0.0" />
 
         <EditText
-            android:id="@+id/editTextNumber5"
+            android:id="@+id/textoPrecio"
             android:layout_width="100dp"
             android:layout_height="45dp"
             android:layout_marginStart="155dp"
@@ -146,45 +148,45 @@
             android:layout_marginEnd="17dp"
             android:background="@drawable/campo_precio"
             android:ems="10"
-            android:inputType="number"
-            android:text="1"
+            android:hint="0.0"
+            android:inputType="number|numberDecimal"
             android:textAlignment="center"
             android:textColor="#A8A8A8"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/imageView43"
+            app:layout_constraintEnd_toStartOf="@+id/botonBajarRacion"
             app:layout_constraintHorizontal_bias="0.034"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView54"
             app:layout_constraintVertical_bias="0.098" />
 
         <EditText
-            android:id="@+id/editTextNumber3"
+            android:id="@+id/textoHora1"
             android:layout_width="100dp"
             android:layout_height="45dp"
             android:layout_marginTop="28dp"
             android:background="@drawable/campo_precio"
             android:ems="10"
-            android:inputType="number"
-            android:text="19:00"
+            android:hint="00:00"
+            android:inputType="datetime|time"
             android:textAlignment="center"
             android:textColor="#A8A8A8"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.244"
+            app:layout_constraintHorizontal_bias="0.189"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView052"
-            app:layout_constraintVertical_bias="0.007" />
+            app:layout_constraintVertical_bias="0.015" />
 
         <EditText
-            android:id="@+id/editTextNumber4"
+            android:id="@+id/textoHora2"
             android:layout_width="100dp"
             android:layout_height="45dp"
             android:layout_marginTop="28dp"
             android:background="@drawable/campo_precio"
             android:ems="10"
-            android:inputType="number"
-            android:text="19:30"
+            android:hint="00:00"
+            android:inputType="datetime|time"
             android:textAlignment="center"
             android:textColor="#A8A8A8"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -192,29 +194,30 @@
             app:layout_constraintHorizontal_bias="0.819"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView052"
-            app:layout_constraintVertical_bias="0.015" />
+            app:layout_constraintVertical_bias="0.016" />
 
         <ImageView
-            android:id="@+id/imageView43"
+            android:id="@+id/botonBajarRacion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/flecha_abajo"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.718"
+            app:layout_constraintStart_toEndOf="@+id/textoRacion"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView45"
+            app:layout_constraintTop_toBottomOf="@+id/botonSubirRacion"
             app:layout_constraintVertical_bias="0.055" />
 
         <ImageView
-            android:id="@+id/imageView45"
+            android:id="@+id/botonSubirRacion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/flecha_arriba"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.166"
-            app:layout_constraintStart_toEndOf="@+id/editTextNumber2"
+            app:layout_constraintHorizontal_bias="0.718"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView51"
             app:layout_constraintVertical_bias="0.034" />
 
@@ -222,30 +225,28 @@
             android:id="@+id/textView53"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="6dp"
             android:layout_marginEnd="16dp"
             android:text="-"
             android:textSize="34sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/editTextNumber4"
+            app:layout_constraintEnd_toStartOf="@+id/textoHora2"
             app:layout_constraintHorizontal_bias="0.583"
-            app:layout_constraintStart_toEndOf="@+id/editTextNumber3"
+            app:layout_constraintStart_toEndOf="@+id/textoHora1"
             app:layout_constraintTop_toBottomOf="@+id/textView052"
             app:layout_constraintVertical_bias="0.118" />
 
         <Button
-            android:id="@+id/siguienteB4"
+            android:id="@+id/siguienteB5"
             style="@style/TextoNav"
             android:layout_width="202dp"
             android:layout_height="50dp"
-            android:layout_marginBottom="24dp"
             android:background="@drawable/boton_naranja"
             android:text="Siguiente"
             android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
-            />
+            app:layout_constraintTop_toBottomOf="@+id/textoPrecio" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

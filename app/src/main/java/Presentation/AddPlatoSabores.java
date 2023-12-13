@@ -1,5 +1,6 @@
 package Presentation;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -15,16 +16,20 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.cucharon.R;
+import com.example.cucharon.add_detalles;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import Presentation.Adapters.DataObject;
+import Presentation.Adapters.OnDataPassListener;
 import Presentation.Adapters.Sabor;
 import Presentation.Adapters.SliderSabor;
 
 
 public class AddPlatoSabores extends Fragment {
 
+    private OnDataPassListener dataPassListener;
     List<Sabor> sabores = new ArrayList<>();
     String tituloSabor;
     private ViewPager2 slideSabores;
@@ -39,7 +44,10 @@ public class AddPlatoSabores extends Fragment {
         SliderSabor.LogicaSabor logicaSabor = new SliderSabor.LogicaSabor() {
             @Override
             public void click(Sabor sabor) {
+
                 tituloSabor = sabor.getTituloSabor();
+                sendSaboresToActivity(tituloSabor);
+                getParentFragmentManager().beginTransaction().replace(R.id.addPlatoFragmentMan, new add_detalles()).commit();
             }
         };
         slideSabores = view.findViewById(R.id.slideSabores);
@@ -78,5 +86,20 @@ public class AddPlatoSabores extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_add_plato_sabores, container, false);
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        try {
+            dataPassListener = (OnDataPassListener) context;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(context.toString() + " debe implementar OnDataPassListener");
+        }
+    }
+
+    private void sendSaboresToActivity(String data) {
+        DataObject dataObject = new DataObject("categoria", data);
+        dataPassListener.onDataPass(dataObject);
     }
 }

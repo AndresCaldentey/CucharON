@@ -21,7 +21,7 @@ public class IUAddPlato extends AppCompatActivity implements OnDataPassListener 
     private int indexNav;
 
     private String nombre;
-    private String contenido;
+    private String descripcion;
     private String precio;
     private String imagen;
     private String direccion;
@@ -29,6 +29,7 @@ public class IUAddPlato extends AppCompatActivity implements OnDataPassListener 
     private String diaPreparacion; //No se si se usara o se pondra por defecto
     private String direccionLatitud;
     private String direccionLongitud;
+    private String racion;
     private List<String> categorias = new ArrayList<>();
 
     @Override
@@ -51,15 +52,25 @@ public class IUAddPlato extends AppCompatActivity implements OnDataPassListener 
         // Aquí es donde gestionas los datos provenientes de los fragments.
         if (data.getSource().equals("nombre")) {
             nombre = data.getData();
-            System.out.println("------------------------ nombre en activity");
-        } else if (data.getSource().equals("contenido")) {
-            contenido = data.getData();
+            System.out.println("nombre en activity");
+        } else if (data.getSource().equals("descripcion")) {
+            descripcion = data.getData();
+            System.out.println("descripcion en activity");
         } else if (data.getSource().equals("imagen")) {
-            contenido = data.getData();
-            System.out.println("------------------------ imagen en activity");
+            imagen = data.getData();
+            System.out.println("imagen en activity");
         } else if (data.getSource().equals("categoria")) {
            categorias.add(data.getData());
-            System.out.println("------------------------ categoria en activity");
+            System.out.println("categoria en activity");
+        } else if (data.getSource().equals("racion")) {
+            racion = data.getData();
+            System.out.println("racion en activity");
+        } else if (data.getSource().equals("hora")) {
+            racion = data.getData();
+            System.out.println("hora en activity");
+        } else if (data.getSource().equals("precio")) {
+            racion = data.getData();
+            System.out.println("precio en activity");
         }
     }
 

@@ -42,7 +42,7 @@ public class AddProcedencia extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         cerrar = view.findViewById(R.id.cerrar);
         contenedorPaises = view.findViewById(R.id.contenedorPaises);
-        siguiente = view.findViewById(R.id.siguienteB4);
+        siguiente = view.findViewById(R.id.siguienteB5);
         ClickCategoria logicaPlato = new ClickCategoria() {
             @Override
             public void click(Pais pais) {
@@ -62,7 +62,6 @@ public class AddProcedencia extends Fragment {
                     mostrarAlerta();
                 } else {
                     //Ver a donde envia esto
-
                     sendPaisToActivity(paisNombre);
                     getParentFragmentManager().beginTransaction().replace(R.id.addPlatoFragmentMan, new AddPlatoSabores()).commit();
                 }

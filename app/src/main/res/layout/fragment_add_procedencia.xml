@@ -11,7 +11,7 @@
         android:layout_height="match_parent">
 
         <Button
-            android:id="@+id/siguienteB4"
+            android:id="@+id/siguienteB5"
             style="@style/TextoNav"
             android:layout_width="202dp"
             android:layout_height="50dp"
@@ -53,7 +53,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            app:layout_constraintBottom_toTopOf="@+id/siguienteB4"
+            app:layout_constraintBottom_toTopOf="@+id/siguienteB5"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
