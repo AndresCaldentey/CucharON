@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fondo_plato_subido"
+    tools:context=".plato_publicado" >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/imageView48"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="26dp"
+            android:layout_marginTop="38dp"
+            android:src="@drawable/cerrar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView52"
+            android:layout_width="293dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="191dp"
+            android:layout_marginBottom="15dp"
+            android:fontFamily="@font/manrope"
+            android:text="Tus deliciosos NOMBRE DEL PLATO han sido subidos a "
+            android:textAlignment="center"
+            android:textAppearance="@style/TextoNav"
+            android:textSize="34sp"
+            app:layout_constraintBottom_toTopOf="@+id/imageView49"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView49"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="380dp"
+            android:src="@drawable/cucharon"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView52" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

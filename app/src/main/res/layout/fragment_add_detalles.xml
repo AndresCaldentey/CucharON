@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".add_detalles">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/detalles_plato_fondo"
+        app:layout_constraintBottom_toBottomOf="@+id/editTextText6"
+        app:layout_constraintTop_toBottomOf="@+id/editTextText6">
+
+        <ImageView
+            android:id="@+id/imageView27"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/detalles_plato"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.241"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.127" />
+
+        <ImageView
+            android:id="@+id/imageView41"
+            android:layout_width="24dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="38dp"
+            android:layout_marginBottom="204dp"
+            android:src="@drawable/cerrar"
+            app:layout_constraintBottom_toTopOf="@+id/editTextText4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.059"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.046" />
+
+        <TextView
+            android:id="@+id/textView48"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Título"
+            android:textAppearance="@style/TextoNav"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.131"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView27"
+            app:layout_constraintVertical_bias="0.062" />
+
+        <EditText
+            android:id="@+id/editTextText4"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="38dp"
+            android:layout_marginTop="266dp"
+            android:layout_marginEnd="38dp"
+            android:layout_marginBottom="179dp"
+            android:background="@drawable/aa_campo_texto"
+            android:ems="10"
+            android:inputType="text"
+            android:paddingStart="8dp"
+            android:text="NOODLES DE POLLO Y VERDURAS"
+            android:textColor="#AAAAAA"
+            app:layout_constraintBottom_toTopOf="@+id/imageView45"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView510"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="53dp"
+            android:fontFamily="@font/manrope"
+            android:text="Descripción"
+            android:textAppearance="@style/TextoNav"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.155"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.374" />
+
+        <TextView
+            android:id="@+id/textView51"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="53dp"
+            android:fontFamily="@font/manrope"
+            android:text="Raciones"
+            android:textAppearance="@style/TextoNav"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.144"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.515" />
+
+        <TextView
+            android:id="@+id/textView052"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="53dp"
+            android:fontFamily="@font/manrope"
+            android:text="Hora de recogida"
+            android:textAppearance="@style/TextoNav"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.183"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.655" />
+
+        <TextView
+            android:id="@+id/textView54"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="53dp"
+            android:fontFamily="@font/manrope"
+            android:text="PRECIO"
+            android:textAppearance="@style/TextoNav"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.137"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.821" />
+
+        <EditText
+            android:id="@+id/editTextText6"
+            android:layout_width="335dp"
+            android:layout_height="45dp"
+            android:background="@drawable/aa_campo_texto"
+            android:ems="10"
+            android:inputType="text"
+            android:paddingStart="8dp"
+            android:text="CON PIMIENTO Y CEBOLLA"
+            android:textColor="#A9A9A9"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView510"
+            app:layout_constraintVertical_bias="0.029" />
+
+        <EditText
+            android:id="@+id/editTextNumber2"
+            android:layout_width="0dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="155dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="17dp"
+            android:background="@drawable/campo_precio"
+            android:ems="10"
+            android:inputType="number"
+            android:text="1"
+            android:textAlignment="center"
+            android:textColor="#A8A8A8"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/imageView43"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView51"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <EditText
+            android:id="@+id/editTextNumber5"
+            android:layout_width="0dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="155dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="17dp"
+            android:background="@drawable/campo_precio"
+            android:ems="10"
+            android:inputType="number"
+            android:text="1"
+            android:textAlignment="center"
+            android:textColor="#A8A8A8"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/imageView43"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView51"
+            app:layout_constraintVertical_bias="0.737" />
+
+        <EditText
+            android:id="@+id/editTextNumber3"
+            android:layout_width="100dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="28dp"
+            android:background="@drawable/campo_precio"
+            android:ems="10"
+            android:inputType="number"
+            android:text="19:00"
+            android:textAlignment="center"
+            android:textColor="#A8A8A8"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.244"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView052"
+            app:layout_constraintVertical_bias="0.007" />
+
+        <EditText
+            android:id="@+id/editTextNumber4"
+            android:layout_width="100dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="28dp"
+            android:background="@drawable/campo_precio"
+            android:ems="10"
+            android:inputType="number"
+            android:text="19:30"
+            android:textAlignment="center"
+            android:textColor="#A8A8A8"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.819"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView052"
+            app:layout_constraintVertical_bias="0.015" />
+
+        <ImageView
+            android:id="@+id/imageView43"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="119dp"
+            android:layout_marginBottom="311dp"
+            android:src="@drawable/flecha_abajo"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/editTextNumber2"
+            app:layout_constraintTop_toBottomOf="@+id/imageView45" />
+
+        <ImageView
+            android:id="@+id/imageView45"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="17dp"
+            android:layout_marginBottom="23dp"
+            android:src="@drawable/flecha_arriba"
+            app:layout_constraintBottom_toTopOf="@+id/imageView43"
+            app:layout_constraintStart_toEndOf="@+id/editTextNumber2"
+            app:layout_constraintTop_toBottomOf="@+id/editTextText4" />
+
+        <TextView
+            android:id="@+id/textView53"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:layout_marginEnd="16dp"
+            android:text="-"
+            android:textSize="34sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/editTextNumber4"
+            app:layout_constraintHorizontal_bias="0.583"
+            app:layout_constraintStart_toEndOf="@+id/editTextNumber3"
+            app:layout_constraintTop_toBottomOf="@+id/editTextNumber2"
+            app:layout_constraintVertical_bias="0.285" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>
