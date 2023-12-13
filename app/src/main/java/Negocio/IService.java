@@ -29,6 +29,8 @@ public interface IService {
     List<Producto> getProductosByPosicion(double lat, double lon);
     List<Producto> getProductosPubPorUser(Usuario usuario);
     List<Producto> getProductosSinComprar();
+    List<Producto> getProductoReservadoEnCurso();
+    List<Producto> getProductoReservadoEntregado();
     List<Producto> getAllProducto();
     void actualizarProducto(Producto p);
     void borrarProducto(Producto producto);

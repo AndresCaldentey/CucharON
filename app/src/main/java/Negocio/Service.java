@@ -63,6 +63,8 @@ public class Service implements IService{
     public void crearUsuario(Usuario user) { userRepo.guardar2(user); }
     public Usuario getUsuarioByEmail(String correo) { return userRepo.getUserByEmail(correo); }
     public void actualizarUser(Usuario user) { userRepo.actualizar(user);}
+    public List<Producto> getProductoReservadoEnCurso() { return productoRepo.getReservasEnCurso(loggedUser); }
+    public List<Producto> getProductoReservadoEntregado() { return productoRepo.getReservasPrevias(loggedUser); }
     public boolean cancelarReserva(Producto producto, Usuario user) {
         if(producto.getUsuarioComprador() == user) {
             producto.setUsuarioComprador(null);

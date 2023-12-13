@@ -69,14 +69,16 @@ public class ProductoRepository extends Repository<Producto>{
         return listaProductos;
     }
 
-    /*public List<Producto> getProductosConDistintaPosicion(){
+    public List<Producto> getReservasEnCurso(Usuario usuario){
         listaProductos = new ArrayList<>();
         Thread hilo = new Thread(() ->
         {
             try {
                 QueryBuilder<Producto, Integer> queryBuilder = this.getDao().queryBuilder();
-                queryBuilder.selectColumns("direccionLatitud", "direccionLongitud").groupBy("direccionLatitud", "direccionLongitud");
-                //queryBuilder.
+                Where<Producto, Integer> where = queryBuilder.where();
+
+                where.eq("usuarioComprador", usuario.getEmail()).and().eq("entregado", false);
+
                 PreparedQuery<Producto> preparedQuery = queryBuilder.prepare();
                 listaProductos = this.getDao().query(preparedQuery);
             } catch (SQLException e) {
@@ -92,7 +94,34 @@ public class ProductoRepository extends Repository<Producto>{
             e.printStackTrace();
         }
         return listaProductos;
-    }*/
+    }
+
+    public List<Producto> getReservasPrevias(Usuario usuario){
+        listaProductos = new ArrayList<>();
+        Thread hilo = new Thread(() ->
+        {
+            try {
+                QueryBuilder<Producto, Integer> queryBuilder = this.getDao().queryBuilder();
+                Where<Producto, Integer> where = queryBuilder.where();
+
+                where.eq("usuarioComprador", usuario.getEmail()).and().eq("entregado", true);
+
+                PreparedQuery<Producto> preparedQuery = queryBuilder.prepare();
+                listaProductos = this.getDao().query(preparedQuery);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        });
+        hilo.start();
+
+        //Esperar al hilo
+        try {
+            hilo.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return listaProductos;
+    }
 
     private List<Producto> productos;
     public List<Producto> getProductosPorUsuario(Usuario user){

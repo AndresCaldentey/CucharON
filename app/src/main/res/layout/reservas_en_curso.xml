@@ -29,7 +29,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/imagen_plato"
+                android:id="@+id/imagenReservaEnCurso"
                 android:layout_width="63dp"
                 android:layout_height="63dp"
                 android:layout_marginTop="16dp"
@@ -41,20 +41,20 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/nombre_user"
+                android:id="@+id/nombreUsuarioReservaEnCurso"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Nombre"
                 android:textSize="8sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/imagen_plato"
+                app:layout_constraintEnd_toStartOf="@+id/imagenReservaEnCurso"
                 app:layout_constraintHorizontal_bias="0.038"
                 app:layout_constraintStart_toEndOf="@+id/imagen_perfil"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.1" />
 
             <TextView
-                android:id="@+id/nombre_plato"
+                android:id="@+id/nombreReservaEnCurso"
                 android:layout_width="207dp"
                 android:layout_height="24dp"
                 android:fontFamily="@font/manrope"
@@ -70,7 +70,7 @@
                 app:layout_constraintVertical_bias="0.259" />
 
             <TextView
-                android:id="@+id/texto_recogida"
+                android:id="@+id/recogidaReservaEnCurso"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="¡Dos horas para recoger un platÓn!"
@@ -78,7 +78,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.153"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/nombre_plato"
+                app:layout_constraintTop_toBottomOf="@+id/nombreReservaEnCurso"
                 app:layout_constraintVertical_bias="0.303" />
 
             <ImageView
@@ -89,7 +89,7 @@
                 android:layout_marginEnd="24dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/texto_recogida"
+                app:layout_constraintTop_toBottomOf="@+id/recogidaReservaEnCurso"
                 app:layout_constraintVertical_bias="0.0"
                 app:srcCompat="@drawable/reserva_confirmada" />
 

@@ -17,7 +17,7 @@
             android:layout_height="match_parent">
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/imagen_plato"
+                android:id="@+id/imagenReservaEnCurso"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_marginTop="16dp"
@@ -29,7 +29,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/user_name"
+                android:id="@+id/nombreReservaPrevia"
                 android:layout_width="181dp"
                 android:layout_height="13dp"
                 android:layout_marginStart="20dp"
@@ -38,11 +38,11 @@
                 android:text="Nombre user"
                 android:textColor="#D3D3D3"
                 android:textSize="10sp"
-                app:layout_constraintStart_toEndOf="@+id/imagen_plato"
+                app:layout_constraintStart_toEndOf="@+id/imagenReservaEnCurso"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textView49"
+                android:id="@+id/nombrePlatoReservaPrevia"
                 android:layout_width="181dp"
                 android:layout_height="22dp"
                 android:layout_marginStart="20dp"
@@ -50,11 +50,11 @@
                 android:fontFamily="@font/manrope"
                 android:text="Texto"
                 android:textColor="#FFFFFF"
-                app:layout_constraintStart_toEndOf="@+id/imagen_plato"
-                app:layout_constraintTop_toBottomOf="@+id/user_name" />
+                app:layout_constraintStart_toEndOf="@+id/imagenReservaEnCurso"
+                app:layout_constraintTop_toBottomOf="@+id/nombreReservaPrevia" />
 
             <TextView
-                android:id="@+id/precio_plato"
+                android:id="@+id/precioReservaPrevia"
                 android:layout_width="33dp"
                 android:layout_height="23dp"
                 android:layout_marginTop="32dp"

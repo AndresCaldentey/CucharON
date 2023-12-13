@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".cesta">
+    tools:context="Presentation.Cesta">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -67,7 +67,7 @@
             android:layout_marginTop="60dp"
             android:layout_marginBottom="460dp"
             android:src="@drawable/texto_cesta"
-            app:layout_constraintBottom_toTopOf="@+id/recyclerView3"
+            app:layout_constraintBottom_toTopOf="@+id/recyclerPreviasCesta"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0" />
@@ -85,7 +85,7 @@
             app:layout_constraintTop_toBottomOf="@+id/button" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView2"
+            android:id="@+id/recyclerEnCursoCesto"
             android:layout_width="311dp"
             android:layout_height="188dp"
             android:layout_marginTop="1dp"
@@ -105,10 +105,10 @@
             android:text="Previas"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/recyclerView2" />
+            app:layout_constraintTop_toBottomOf="@+id/recyclerEnCursoCesto" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView3"
+            android:id="@+id/recyclerPreviasCesta"
             android:layout_width="315dp"
             android:layout_height="201dp"
             android:layout_marginEnd="44dp"
