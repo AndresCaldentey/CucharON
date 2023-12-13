@@ -40,6 +40,8 @@ import java.util.Random;
 
 import Negocio.IService;
 import Negocio.Service;
+import Presentation.Adapters.AdaptadorPlatoMapa;
+
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -47,6 +49,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.viewpager2.widget.ViewPager2;
 
 public class IUbuscar extends AppCompatActivity implements OnMapReadyCallback {
     private static final int REQUEST_CODE_LOCATION_PERMISSION = 123;
@@ -55,11 +58,14 @@ public class IUbuscar extends AppCompatActivity implements OnMapReadyCallback {
     private LinearLayout layoutPlatos;
     private HorizontalScrollView scrollPlatos;
     private GoogleMap mMap;
+    List<Producto> lProducts;
+    public ViewPager2 platoMapaViewer;
+    AdaptadorPlatoMapa adaptadorPlatoMapa;
     int[] arrayImagenesPines = {
-            R.drawable.platico1,
-            R.drawable.platico2,
-            R.drawable.platico3,
-            R.drawable.platico4
+            R.drawable.uva,
+            R.drawable.platano,
+            R.drawable.naranja1,
+            R.drawable.kiwi1
     };
 
 
@@ -83,18 +89,26 @@ public class IUbuscar extends AppCompatActivity implements OnMapReadyCallback {
             );
         }
         servicio = Service.getService();
-        scrollPlatos = findViewById(R.id.vistaInfoPlatos);
-        layoutPlatos = findViewById(R.id.layoutPlatos);
+        platoMapaViewer = findViewById(R.id.platosMapaViewer);
+        lProducts = new ArrayList<>();
+        AdaptadorPlatoMapa.LogicaMapa logicaMapa = new AdaptadorPlatoMapa.LogicaMapa() {
+            @Override
+            public void click(Producto producto) {
+                return;
+            }
+        };
+        adaptadorPlatoMapa = new AdaptadorPlatoMapa(lProducts, logicaMapa);
+        platoMapaViewer.setAdapter(adaptadorPlatoMapa);
+
+
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         if (mapFragment != null) {
             mapFragment.getMapAsync(this);
         }
 
-        layoutPlatos.removeAllViews();
 
         if(mapFragment != null) { mapFragment.getMapAsync(this); }
-
-        layoutPlatos.removeAllViews();  //Borra las vistas de platos de prueba que hay para ver en el xml
+        //Borra las vistas de platos de prueba que hay para ver en el xml
 
 
     }
@@ -155,15 +169,14 @@ public class IUbuscar extends AppCompatActivity implements OnMapReadyCallback {
 
         //Se hace click en marcador
         mMap.setOnMarkerClickListener(marker -> {
-            layoutPlatos.removeAllViews();  // Se borran los productos de la selección anterior
-            scrollPlatos.fullScroll(View.FOCUS_LEFT);   // Se recorre el scroll hasta el inicio
+            // Se recorre el scroll hasta el inicio
 
             // Se cargan los productos posteados en la posición seleccionada
             if(marker.getTag() != null)
             {
                 String[] s = marker.getTag().toString().split("h");
-                List<Producto> lProducts = servicio.getProductosByPosicion(Double.parseDouble(s[0]), Double.parseDouble(s[1]));
-                for (Producto p : lProducts) { crearInfoPlato(p); } //Se crea el layout de información de cada producto
+                lProducts = servicio.getProductosByPosicion(Double.parseDouble(s[0]), Double.parseDouble(s[1]));
+                crearInfoPlatos(lProducts);//Se crea el layout de información de cada producto
             }
 
             return false; // Devuelve 'true' si consumes el evento, 'false' si no.
@@ -179,29 +192,10 @@ public class IUbuscar extends AppCompatActivity implements OnMapReadyCallback {
         return icon;
     }
 
-    private void crearInfoPlato(Producto producto)
+    private void crearInfoPlatos(List<Producto> productos)
     {
-        LinearLayout panelPlato = new LinearLayout(this);
-        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
-                LinearLayout.LayoutParams.MATCH_PARENT, 0);
-        layoutParams.setMarginStart(50);
-        layoutParams.setMarginEnd(50);
-        panelPlato.setLayoutParams(layoutParams);
-        panelPlato.setBackgroundResource(R.drawable.fondoplatomapa);
-        panelPlato.setOrientation(LinearLayout.HORIZONTAL);
-
-        //Agrega la imagen y la descripcion deproducto al layout
-        panelPlato.addView(crearImagenProducto(producto));
-        panelPlato.addView(crearDescripcion(producto));
-
-        layoutPlatos.addView(panelPlato);   // Agrega el LinearLayout principal a tu layout principal
-
-        //Han seleccionado un plato y se hace la transicion a IUreserva
-        panelPlato.setOnClickListener(v -> {
-            Intent intent = new Intent(IUbuscar.this, IUreserva.class);
-            intent.putExtra("Producto", producto.getIdProducto());
-            startActivity(intent);
-        });
+       adaptadorPlatoMapa.setProductos(productos);
+       adaptadorPlatoMapa.notifyDataSetChanged();
     }
 
     private ImageView crearImagenProducto(Producto producto)
