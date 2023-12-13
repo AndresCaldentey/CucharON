@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".mi_reserva_plato">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/imageView50"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="34dp"
+            android:layout_marginTop="53dp"
+            android:src="@drawable/detalles_reserva"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView51"
+            android:layout_width="340dp"
+            android:layout_height="196dp"
+            android:layout_marginTop="24dp"
+            android:cropToPadding="true"
+            android:src="@drawable/img_7"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.492"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView50"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/textView50"
+            android:layout_width="163dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="1dp"
+            android:background="@drawable/img_9"
+            android:fontFamily="@font/manrope"
+            android:gravity="center"
+            android:text="TextView"
+            app:layout_constraintEnd_toStartOf="@+id/textView56"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView51" />
+
+        <TextView
+            android:id="@+id/textView63"
+            android:layout_width="163dp"
+            android:layout_height="25dp"
+            android:background="@drawable/img_9"
+            android:fontFamily="@font/manrope"
+            android:gravity="center"
+            android:text="Valorar plato"
+            android:textColor="#FE8A30"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.915"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider3"
+            app:layout_constraintVertical_bias="0.391" />
+
+        <TextView
+            android:id="@+id/textView56"
+            android:layout_width="163dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="1dp"
+            android:background="@drawable/boton_naranja"
+            android:fontFamily="@font/manrope"
+            android:gravity="center"
+            android:text="TextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.854"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView51" />
+
+        <ImageView
+            android:id="@+id/imageView52"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/cerrar"
+            tools:layout_editor_absoluteX="360dp"
+            tools:layout_editor_absoluteY="16dp" />
+
+        <TextView
+            android:id="@+id/textView57"
+            android:layout_width="344dp"
+            android:layout_height="135dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/manrope"
+            android:text="Tortilla de patatas"
+            android:textAppearance="@style/TextoNav"
+            android:textSize="48sp"
+            app:layout_constraintTop_toBottomOf="@+id/textView50"
+            tools:layout_editor_absoluteX="35dp" />
+
+        <TextView
+            android:id="@+id/textView58"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="29dp"
+            android:fontFamily="@font/manrope"
+            android:text="1 unidad"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.098"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView57"
+            app:layout_constraintVertical_bias="0.03" />
+
+        <TextView
+            android:id="@+id/textView59"
+            android:layout_width="230dp"
+            android:layout_height="19dp"
+            android:fontFamily="@font/manrope"
+            android:text="Calle Colón, 10, Valencia"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.193"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView58"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/textView60"
+            android:layout_width="230dp"
+            android:layout_height="19dp"
+            android:fontFamily="@font/manrope"
+            android:text="11:00, 23/11  "
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.193"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView59"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <View
+            android:id="@+id/divider3"
+            android:layout_width="381dp"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.466"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView60"
+            app:layout_constraintVertical_bias="0.427" />
+
+        <TextView
+            android:id="@+id/textView61"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="44dp"
+            android:fontFamily="@font/manrope"
+            android:text="Nombre usuario"
+            android:textAppearance="@style/TextoNav"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.83"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView60" />
+
+        <TextView
+            android:id="@+id/textView62"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/manrope"
+            android:text="Precio final:"
+            android:textAppearance="@style/TextoNav"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.118"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider3"
+            app:layout_constraintVertical_bias="0.404" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>
