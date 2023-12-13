@@ -63,10 +63,10 @@ public class IUbuscar extends AppCompatActivity implements OnMapReadyCallback {
     AdaptadorPlatoMapa adaptadorPlatoMapa;
     private static final double RADIO_TIERRA = 6371000.0;
     int[] arrayImagenesPines = {
-            R.drawable.uva,
-            R.drawable.platano,
-            R.drawable.naranja1,
-            R.drawable.kiwi1
+            R.drawable.platico1,
+            R.drawable.platico2,
+            R.drawable.platico3,
+            R.drawable.platico4
     };
 
 
