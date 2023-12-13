@@ -18,7 +18,10 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class SliderSabor extends RecyclerView.Adapter<SliderSabor.SliderSaborHolder>{
     List<Sabor> sabores;
     LogicaSabor logicaSabor;
-    public SliderSabor (List<Sabor> sabores) { this.sabores = sabores; }
+    public SliderSabor (List<Sabor> sabores, LogicaSabor logicaSabor) {
+        this.sabores = sabores;
+        this.logicaSabor = logicaSabor;
+    }
     @NonNull
     @Override
     public SliderSabor.SliderSaborHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
