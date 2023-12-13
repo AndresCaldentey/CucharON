@@ -18,6 +18,7 @@ import Presentation.Adapters.OnDataPassListener;
 
 public class IUAddPlato extends AppCompatActivity implements OnDataPassListener {
     FragmentContainerView addPlatoFragmentMan;
+    private int indexNav;
 
     private String nombre;
     private String contenido;
@@ -61,4 +62,6 @@ public class IUAddPlato extends AppCompatActivity implements OnDataPassListener 
             System.out.println("------------------------ categoria en activity");
         }
     }
+
+
 }

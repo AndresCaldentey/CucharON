@@ -16,6 +16,7 @@ import Negocio.Service;
 public class Navegacion extends AppCompatActivity {
     private Service servicio;
     private ChipNavigationBar barraNav;
+    private int previousIndex;
     FragmentContainerView mainFragmentContainer;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -28,8 +29,13 @@ public class Navegacion extends AppCompatActivity {
         barraNav.setOnItemSelectedListener(new ChipNavigationBar.OnItemSelectedListener() {
             @Override
             public void onItemSelected(int i) {
-                if(i == R.id.search) getSupportFragmentManager().beginTransaction().replace(R.id.mainFragmentContainer, new Examinar()).commit();
+                if(i == R.id.search) {
+                    previousIndex = R.id.search;
+                    getSupportFragmentManager().beginTransaction().replace(R.id.mainFragmentContainer, new Examinar()).commit();
+
+                }
                 if(i == R.id.add) {
+                    barraNav.setItemSelected(previousIndex, true);
                     Intent intent = new Intent(Navegacion.this, IUAddPlato.class);
                     startActivity(intent);
                 }

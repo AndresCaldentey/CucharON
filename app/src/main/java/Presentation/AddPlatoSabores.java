@@ -36,9 +36,15 @@ public class AddPlatoSabores extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        SliderSabor.LogicaSabor logicaSabor = new SliderSabor.LogicaSabor() {
+            @Override
+            public void click(Sabor sabor) {
+                tituloSabor = sabor.getTituloSabor();
+            }
+        };
         slideSabores = view.findViewById(R.id.slideSabores);
         inicializarSabores();
-        slideSabores.setAdapter(new SliderSabor(sabores));
+        slideSabores.setAdapter(new SliderSabor(sabores, logicaSabor));
 
         slideSabores.setClipToPadding(false);
         slideSabores.setClipChildren(false);
@@ -51,12 +57,7 @@ public class AddPlatoSabores extends Fragment {
         slideSabores.setPageTransformer(compositePageTransformer);
         slideSabores.setCurrentItem(1);
 
-        SliderSabor.LogicaSabor logicaSabor = new SliderSabor.LogicaSabor() {
-            @Override
-            public void click(Sabor sabor) {
-                tituloSabor = sabor.getTituloSabor();
-            }
-        };
+
 
     }
 
