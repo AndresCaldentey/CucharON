@@ -72,7 +72,7 @@ public class add_detalles extends Fragment {
                 sendPrecioToActivity(precio.getText().toString());
                 sendRacionToActivity(racion.getText().toString());
 
-                //cambiar de pantalla
+                getParentFragmentManager().beginTransaction().replace(R.id.addPlatoFragmentMan, new add_punto_encuentro()).commit();
 
             } else {
                 mostrarAlerta();

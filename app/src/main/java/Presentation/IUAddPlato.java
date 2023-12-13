@@ -71,6 +71,9 @@ public class IUAddPlato extends AppCompatActivity implements OnDataPassListener 
         } else if (data.getSource().equals("precio")) {
             racion = data.getData();
             System.out.println("precio en activity");
+        }else if (data.getSource().equals("direccion")) {
+            racion = data.getData();
+            System.out.println("direccion en activity");
         }
     }
 

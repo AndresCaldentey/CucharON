@@ -28,7 +28,7 @@
             android:layout_marginTop="191dp"
             android:layout_marginBottom="15dp"
             android:fontFamily="@font/manrope"
-            android:text="Tus deliciosos NOMBRE DEL PLATO han sido subidos a "
+            android:text="Tus deliciosos platos han sido subidos a "
             android:textAlignment="center"
             android:textAppearance="@style/TextoNav"
             android:textSize="34sp"
