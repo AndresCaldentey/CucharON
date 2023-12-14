@@ -5,21 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/fondo_plato_subido"
-    tools:context=".plato_publicado" >
+    tools:context=".Plato_publicado" >
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-        <ImageView
-            android:id="@+id/imageView48"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginStart="26dp"
-            android:layout_marginTop="38dp"
-            android:src="@drawable/cerrar"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textView52"

@@ -14,7 +14,6 @@ import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
-import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,7 +33,6 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
-import java.util.concurrent.Executor;
 
 import Presentation.Adapters.DataObject;
 import Presentation.Adapters.OnDataPassListener;
@@ -51,6 +49,7 @@ public class add_punto_encuentro extends Fragment implements OnMapReadyCallback 
     public add_punto_encuentro() {
         // Required empty public constructor
     }
+
 
 
     @Override
@@ -213,7 +212,7 @@ public class add_punto_encuentro extends Fragment implements OnMapReadyCallback 
                 // Puedes agregar lógica adicional aquí si es necesario
                 dialog.dismiss(); // Cierra la alerta
                 sendDireccionToActivity(direccion);
-                getParentFragmentManager().beginTransaction().replace(R.id.addPlatoFragmentMan, new plato_publicado()).commit();
+                getParentFragmentManager().beginTransaction().replace(R.id.addPlatoFragmentMan, new Plato_publicado()).commit();
 
             }
         });

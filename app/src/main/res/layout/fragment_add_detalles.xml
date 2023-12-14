@@ -27,17 +27,6 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.127" />
 
-        <ImageView
-            android:id="@+id/imageView41"
-            android:layout_width="24dp"
-            android:layout_height="0dp"
-            android:layout_marginTop="38dp"
-            android:src="@drawable/cerrar"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.059"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <TextView
             android:id="@+id/textView510"
             android:layout_width="wrap_content"
@@ -128,6 +117,7 @@
             android:background="@drawable/campo_precio"
             android:ems="10"
             android:inputType="number"
+            android:selectAllOnFocus="true"
             android:text="1"
             android:textAlignment="center"
             android:textColor="#A8A8A8"
@@ -148,8 +138,9 @@
             android:layout_marginEnd="17dp"
             android:background="@drawable/campo_precio"
             android:ems="10"
-            android:hint="0.0"
             android:inputType="number|numberDecimal"
+            android:selectAllOnFocus="true"
+            android:text="0.0"
             android:textAlignment="center"
             android:textColor="#A8A8A8"
             app:layout_constraintBottom_toBottomOf="parent"

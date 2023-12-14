@@ -12,16 +12,6 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/imageView46"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="38dp"
-            android:src="@drawable/cerrar"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
             android:id="@+id/imageView47"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

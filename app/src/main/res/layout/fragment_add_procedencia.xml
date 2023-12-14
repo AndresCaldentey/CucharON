@@ -26,18 +26,6 @@
              />
 
         <ImageView
-            android:id="@+id/cerrar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="30dp"
-            app:layout_constraintBottom_toTopOf="@+id/imageView39"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.173"
-            app:srcCompat="@drawable/cerrar" />
-
-        <ImageView
             android:id="@+id/imageView39"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
