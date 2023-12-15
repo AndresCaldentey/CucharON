@@ -59,7 +59,7 @@
                 android:layout_height="24dp"
                 android:fontFamily="@font/manrope"
                 android:text="Nombre plato"
-                android:textAppearance="@style/TextoNav"
+                android:textAppearance="@style/ManropeBold"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"

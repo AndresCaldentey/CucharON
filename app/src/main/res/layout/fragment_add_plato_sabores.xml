@@ -40,7 +40,7 @@
             android:layout_marginBottom="24dp"
             android:background="@drawable/boton_naranja"
             android:text="Siguiente"
-            android:textAppearance="@style/TextoNav"
+            android:textAppearance="@style/ManropeBold"
             android:textSize="18sp"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"

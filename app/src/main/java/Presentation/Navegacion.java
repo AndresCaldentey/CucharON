@@ -29,6 +29,10 @@ public class Navegacion extends AppCompatActivity {
         barraNav.setOnItemSelectedListener(new ChipNavigationBar.OnItemSelectedListener() {
             @Override
             public void onItemSelected(int i) {
+                if(i == R.id.home) {
+                    previousIndex = i;
+                    getSupportFragmentManager().beginTransaction().replace(R.id.mainFragmentContainer, new Home()).commit();
+                }
                 if(i == R.id.search) {
                     previousIndex = R.id.search;
                     getSupportFragmentManager().beginTransaction().replace(R.id.mainFragmentContainer, new Examinar()).commit();
@@ -39,7 +43,11 @@ public class Navegacion extends AppCompatActivity {
                     Intent intent = new Intent(Navegacion.this, IUAddPlato.class);
                     startActivity(intent);
                 }
+
             }
+
         });
+        barraNav.setItemSelected(R.id.home, true);
     }
+
 }

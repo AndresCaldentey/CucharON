@@ -12,7 +12,7 @@
 
         <Button
             android:id="@+id/siguienteB5"
-            style="@style/TextoNav"
+            style="@style/ManropeBold"
             android:layout_width="202dp"
             android:layout_height="50dp"
             android:layout_marginBottom="24dp"

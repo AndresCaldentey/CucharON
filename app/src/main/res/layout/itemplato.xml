@@ -107,6 +107,7 @@
             android:layout_marginBottom="10dp"
             android:fontFamily="@font/manrope"
             android:inputType="textMultiLine"
+
             android:autoText="false"
             android:maxLines="2"
             android:text="NOMBRE PLATO"

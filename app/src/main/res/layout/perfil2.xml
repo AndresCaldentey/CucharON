@@ -35,7 +35,7 @@
                     android:layout_height="wrap_content"
                     android:text="Martinha"
                     android:textAlignment="center"
-                    android:textAppearance="@style/TextoNav"
+                    android:textAppearance="@style/ManropeBold"
                     android:textSize="60sp"
                     android:textStyle="normal" />
 
@@ -53,7 +53,7 @@
                     android:layout_weight="1"
                     android:text="23 años"
                     android:textAlignment="center"
-                    android:textAppearance="@style/TextoNav"
+                    android:textAppearance="@style/ManropeBold"
                     android:textSize="28sp"
                     android:textStyle="normal" />
             </LinearLayout>
@@ -78,7 +78,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:text="5"
-                        android:textAppearance="@style/TextoNav"
+                        android:textAppearance="@style/ManropeBold"
                         android:textSize="18dp" />
                 </LinearLayout>
 
@@ -110,7 +110,7 @@
                     android:layout_height="37dp"
                     android:fontFamily="@font/inter"
                     android:text="*"
-                    android:textAppearance="@style/TextoNav"
+                    android:textAppearance="@style/ManropeBold"
                     android:textSize="40sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.69"

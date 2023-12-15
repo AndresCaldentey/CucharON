@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name= "TextoNav" parent="TextAppearance.AppCompat">
+    <style name= "ManropeBold" parent="TextAppearance.AppCompat">
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/negroDis</item>
         <item name="android:fontFamily">@font/manrope</item>
@@ -18,5 +18,13 @@
         <item name="android:textColor">@color/negroDis</item>
         <item name="android:fontFamily">@font/snellbt_regular</item>
         <item name="android:textSize">35sp</item>
+    </style>
+
+    <style name= "Cursiva" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/negroDis</item>
+        <item name="android:fontFamily">@font/snellbt_regular</item>
+        <item name="android:textStyle">italic</item>
+        <item name="android:textSize">45sp</item>
+
     </style>
 </resources>

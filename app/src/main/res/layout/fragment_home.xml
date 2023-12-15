@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="Presentation.Home">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/platosSliderHome"
+            android:layout_width="wrap_content"
+            android:layout_height="200dp"
+            android:layout_marginTop="30dp"
+            android:paddingStart="80dp"
+            android:paddingEnd="80dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/scrollBotones" />
+
+        <TextView
+            android:id="@+id/nombrePerfilHome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="19dp"
+            android:text="Martinha"
+            android:textAppearance="@style/ManropeRegular"
+
+            android:textSize="40sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView18" />
+
+        <TextView
+            android:id="@+id/textView18"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="19dp"
+            android:layout_marginTop="35dp"
+            android:text="Hola,"
+            android:textAppearance="@style/ManropeRegular"
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <HorizontalScrollView
+            android:id="@+id/scrollBotones"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+
+
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="19dp"
+            android:layout_marginTop="20dp"
+            android:scrollbars="none"
+            app:layout_constraintTop_toBottomOf="@+id/nombrePerfilHome">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                >
+
+                <ToggleButton
+                    android:id="@+id/mapaB"
+                    android:layout_width="180dp"
+                    android:layout_height="35dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/boton_home_cercano"
+                    android:text="mapa"
+                    android:textAppearance="@style/ManropeBold"
+                    android:textColor="@color/azulDis"
+                    android:textOff="mapa"
+                    android:textOn="mapa"
+                    android:textSize="15sp"
+                    />
+
+                <ToggleButton
+                    android:id="@+id/masBaratoB"
+                    android:layout_width="180dp"
+                    android:layout_height="35dp"
+                    android:textAppearance="@style/ManropeBold"
+                    android:textSize="15sp"
+                    android:textColor="@color/verdeOlivaDis"
+                    android:textOff="precio más barato"
+                    android:textOn="precio más barato"
+                    android:text="precio más bajo"
+                    android:background="@drawable/boton_verde_sel"
+                    android:layout_marginRight="45dp"/>
+
+                <ToggleButton
+                    android:id="@+id/masCaroB"
+                    android:layout_width="180dp"
+                    android:layout_height="35dp"
+                    android:textAppearance="@style/ManropeBold"
+                    android:textSize="15sp"
+                    android:textOff="precio más alto"
+                    android:textOn="precio más alto"
+                    android:text="precio más alto"
+                    android:textColor="@color/plataDis"
+                    android:background="@drawable/boton_plata_sel"
+                    android:layout_marginRight="20dp"/>
+
+                <ToggleButton
+                    android:id="@+id/vendedorTopB"
+                    android:layout_width="180dp"
+                    android:layout_height="35dp"
+                    android:textAppearance="@style/ManropeBold"
+                    android:textSize="15sp"
+                    android:textColor="@color/naranjaDis"
+                    android:textOff="vendedores top"
+                    android:textOn="vendedores top"
+                    android:text="vendedores top"
+                    android:background="@drawable/boton_naranja_sel"/>
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <Negocio.CustomFontTextView
+            android:id="@+id/nombrePlatoLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="55dp"
+            android:layout_marginStart="19dp"
+            android:text="Gyozas de verdura"
+            android:textAppearance="@style/ManropeBold"
+            android:ellipsize="none"
+            android:maxLines="2"
+            android:textSize="30sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/platosSliderHome"
+            android:layout_marginTop="30dp"/>
+
+        <TextView
+            android:id="@+id/precioLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3 euros"
+            android:textAppearance="@style/ManropeRegular"
+            android:textSize="22sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/nombrePlatoLabel"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="19dp"
+            />
+
+        <Button
+            android:id="@+id/abrirB"
+            android:layout_width="75dp"
+            android:layout_height="25dp"
+
+            android:background="@drawable/boton_abrir_home"
+            app:layout_constraintStart_toEndOf="@id/precioLabel"
+            app:layout_constraintTop_toBottomOf="@+id/nombrePlatoLabel"
+            android:layout_marginTop="25dp"
+            android:layout_marginStart="19dp"
+            />
+
+        <LinearLayout
+            android:id="@+id/perfilPubLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="19dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/precioLabel">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/fotoPerfilPub"
+                android:layout_width="29dp"
+                android:layout_height="29dp"
+                android:layout_marginRight="16dp"
+                app:srcCompat="@drawable/abuela" />
+
+            <TextView
+                android:id="@+id/nombrePublicador"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Malíah Gonzalez"
+                android:textAppearance="@style/ManropeBold"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/valoracionPerfil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/perfilPubLayout"
+            android:layout_marginStart="19dp"
+            android:layout_marginTop="7dp"
+            android:textAppearance="@style/ManropeBold"
+            android:textSize="40sp"
+            android:textColor="@color/naranjaDis"
+            android:text="***" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

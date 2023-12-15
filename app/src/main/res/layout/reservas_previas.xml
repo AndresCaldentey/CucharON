@@ -62,7 +62,7 @@
                 android:fontFamily="@font/manrope"
                 android:text="2€"
                 android:textAlignment="viewEnd"
-                android:textAppearance="@style/TextoNav"
+                android:textAppearance="@style/ManropeBold"
                 android:textColor="#FFFFFF"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"

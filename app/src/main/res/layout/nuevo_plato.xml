@@ -96,7 +96,7 @@
 
         <Button
             android:id="@+id/siguienteB"
-            style="@style/TextoNav"
+            style="@style/ManropeBold"
             android:layout_width="202dp"
             android:layout_height="50dp"
             android:background="@drawable/boton_naranja"

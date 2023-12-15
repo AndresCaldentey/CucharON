@@ -16,7 +16,7 @@
 
     <TextView
         android:id="@+id/nombreP"
-        style="@style/TextoNav"
+        style="@style/ManropeBold"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="20dp"

@@ -14,45 +14,33 @@ import java.util.List;
 
 public class ProductoCategoriaRepository extends Repository<ProductoCategoria>{
     ConnectionSource conn;
+    List<ProductoCategoria> listaProductos;
 
     public ProductoCategoriaRepository(ConnectionSource c)  {
         init(ProductoCategoria.class, c);
         conn = c;
     }
 
-    public List<Producto> BuscarPorCategoria(String nombreCategoria) {
-        final List<Producto> productos = new ArrayList<>();
+    public List<ProductoCategoria> BuscarPorCategoria(String categoria) {
 
-        Thread hilo = new Thread(() -> {
-            CategoriaRepository categoriaRepository = new CategoriaRepository(conn);
-            Categoria busqueda = categoriaRepository.getCategoriaByName(nombreCategoria);
+
+        Thread hilo = new Thread(() ->
+        {
             try {
-                QueryBuilder<ProductoCategoria, ?> queryBuilder = getDao().queryBuilder();
-                queryBuilder.where().eq("categoria", busqueda);
-                PreparedQuery<ProductoCategoria> preparedQuery = queryBuilder.prepare();
-
-                // Ejecutar la consulta
-                List<ProductoCategoria> productoCategorias = getDao().query(preparedQuery);
-
-                // Obtener los productos de las ProductoCategoria encontradas
-                for (ProductoCategoria pc : productoCategorias) {
-                    productos.add(pc.getProducto());
-                }
-
+                listaProductos = this.getDao().queryForEq("categoria", categoria);
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         });
         hilo.start();
 
-        // Esperar al hilo
+        //Esperar al hilo
         try {
             hilo.join();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
-        return productos;
+        return listaProductos;
     }
 
 

@@ -20,7 +20,7 @@
             android:fontFamily="@font/manrope"
             android:text="Tus deliciosos platos han sido subidos a "
             android:textAlignment="center"
-            android:textAppearance="@style/TextoNav"
+            android:textAppearance="@style/ManropeBold"
             android:textSize="34sp"
             app:layout_constraintBottom_toTopOf="@+id/imageView49"
             app:layout_constraintEnd_toEndOf="parent"

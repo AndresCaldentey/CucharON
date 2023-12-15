@@ -32,7 +32,7 @@
 
             <TextView
                 android:id="@+id/pais_en_tu_tv"
-                style="@style/TextoNav"
+                style="@style/ManropeBold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="60dp"

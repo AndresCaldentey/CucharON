@@ -32,9 +32,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="53dp"
-            android:fontFamily="@font/manrope"
+
             android:text="Descripción"
-            android:textAppearance="@style/TextoNav"
+            android:textAppearance="@style/ManropeBold"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -50,7 +50,7 @@
             android:layout_marginTop="53dp"
             android:fontFamily="@font/manrope"
             android:text="Raciones"
-            android:textAppearance="@style/TextoNav"
+            android:textAppearance="@style/ManropeBold"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -66,7 +66,7 @@
             android:layout_marginTop="53dp"
             android:fontFamily="@font/manrope"
             android:text="Hora de recogida"
-            android:textAppearance="@style/TextoNav"
+            android:textAppearance="@style/ManropeBold"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -82,7 +82,7 @@
             android:layout_marginTop="53dp"
             android:fontFamily="@font/manrope"
             android:text="Precio por ración"
-            android:textAppearance="@style/TextoNav"
+            android:textAppearance="@style/ManropeBold"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -111,7 +111,7 @@
             android:id="@+id/textoRacion"
             android:layout_width="100dp"
             android:layout_height="45dp"
-            android:layout_marginStart="155dp"
+            android:layout_marginStart="153dp"
             android:layout_marginTop="15dp"
             android:layout_marginEnd="17dp"
             android:background="@drawable/campo_precio"
@@ -191,14 +191,14 @@
             android:id="@+id/botonBajarRacion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
             android:src="@drawable/flecha_abajo"
+
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.718"
-            app:layout_constraintStart_toEndOf="@+id/textoRacion"
-            app:layout_constraintStart_toStartOf="parent"
+
+            app:layout_constraintStart_toEndOf="@id/textoRacion"
             app:layout_constraintTop_toBottomOf="@+id/botonSubirRacion"
-            app:layout_constraintVertical_bias="0.055" />
+            app:layout_constraintVertical_bias="0.04" />
 
         <ImageView
             android:id="@+id/botonSubirRacion"
@@ -207,10 +207,10 @@
             android:src="@drawable/flecha_arriba"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.718"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.173"
+            app:layout_constraintStart_toEndOf="@id/textoRacion"
             app:layout_constraintTop_toBottomOf="@+id/textView51"
-            app:layout_constraintVertical_bias="0.034" />
+            app:layout_constraintVertical_bias="0.05" />
 
         <TextView
             android:id="@+id/textView53"
@@ -228,7 +228,7 @@
 
         <Button
             android:id="@+id/siguienteB5"
-            style="@style/TextoNav"
+            style="@style/ManropeBold"
             android:layout_width="202dp"
             android:layout_height="50dp"
             android:background="@drawable/boton_naranja"

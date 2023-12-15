@@ -17,6 +17,7 @@ import com.example.cucharon.Usuario;
 import java.io.ByteArrayOutputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -95,7 +96,14 @@ public class Service implements IService{
     /*PERSISTENCIA PRODUCTO-CATEGORIA*/
     public void guardarProductoCategoria(ProductoCategoria productoCategoria){productoCategoriaRepo.guardar(productoCategoria);}
     public List<ProductoCategoria> getAllProductoCategoria(){return productoCategoriaRepo.obtenerTodos(); }
-    public List<Producto> buscarPorCategoria(String categoria) { return productoCategoriaRepo.BuscarPorCategoria(categoria); }
+    public List<Producto> buscarPorCategoria(String categoria) {
+        List<ProductoCategoria> prodCats = productoCategoriaRepo.BuscarPorCategoria(categoria);
+        List<Producto> result = new ArrayList<>();
+        for (ProductoCategoria productCat : prodCats) {
+            result.add(productCat.getProducto());
+        }
+        return result;
+    }
 
     /*PERSISTENCIA OPINIONES*/
     public void crearOpinion(Opinion opinion) { opinionRepo.guardar(opinion); }

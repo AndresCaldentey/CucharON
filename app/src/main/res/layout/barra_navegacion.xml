@@ -25,7 +25,7 @@
             android:background="@color/negroDis"
             app:cnb_iconSize="24dp"
             app:cnb_menuResource="@menu/barra_navegacion"
-            app:cnb_textAppearance="@style/TextoNav"
+            app:cnb_textAppearance="@style/ManropeBold"
             app:cnb_unselectedColor="@color/white" />
     </androidx.cardview.widget.CardView>
 

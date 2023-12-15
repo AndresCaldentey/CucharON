@@ -37,7 +37,7 @@
                     android:layout_marginBottom="78dp"
                     android:layout_weight="1"
                     android:text="NOMBRE"
-                    android:textAppearance="@style/TextoNav"
+                    android:textAppearance="@style/ManropeBold"
                     tools:ignore="NotSibling" />
 
                 <LinearLayout
@@ -87,7 +87,7 @@
                         android:inputType="text"
                         android:singleLine="false"
                         android:text="Martinha"
-                        android:textAppearance="@style/TextoNav"
+                        android:textAppearance="@style/ManropeBold"
                         android:textSize="30sp" />
                 </LinearLayout>
 
@@ -115,7 +115,7 @@
                         android:ems="10"
                         android:inputType="date"
                         android:text="07/10/1999"
-                        android:textAppearance="@style/TextoNav"
+                        android:textAppearance="@style/ManropeBold"
                         android:textSize="30sp" />
                 </LinearLayout>
 
@@ -183,7 +183,7 @@
                     android:layout_marginBottom="195dp"
                     android:layout_weight="1"
                     android:text="EDAD"
-                    android:textAppearance="@style/TextoNav"
+                    android:textAppearance="@style/ManropeBold"
                     tools:ignore="NotSibling" />
 
                 <TextView
@@ -198,7 +198,7 @@
                     android:layout_marginBottom="195dp"
                     android:layout_weight="1"
                     android:text="BIOGRAFÍA"
-                    android:textAppearance="@style/TextoNav"
+                    android:textAppearance="@style/ManropeBold"
                     tools:ignore="NotSibling" />
 
             </RelativeLayout>
