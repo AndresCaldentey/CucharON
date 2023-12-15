@@ -77,7 +77,7 @@ public class ProductoRepository extends Repository<Producto>{
                 QueryBuilder<Producto, Integer> queryBuilder = this.getDao().queryBuilder();
                 Where<Producto, Integer> where = queryBuilder.where();
 
-                where.eq("usuarioComprador", usuario.getEmail()).and().eq("entregado", false);
+                where.eq("usuarioComprador", usuario.getEmail()).and().eq("entregado", 0);
 
                 PreparedQuery<Producto> preparedQuery = queryBuilder.prepare();
                 listaProductos = this.getDao().query(preparedQuery);
@@ -104,7 +104,7 @@ public class ProductoRepository extends Repository<Producto>{
                 QueryBuilder<Producto, Integer> queryBuilder = this.getDao().queryBuilder();
                 Where<Producto, Integer> where = queryBuilder.where();
 
-                where.eq("usuarioComprador", usuario.getEmail()).and().eq("entregado", true);
+                where.eq("usuarioComprador", usuario.getEmail()).and().eq("entregado", 1);
 
                 PreparedQuery<Producto> preparedQuery = queryBuilder.prepare();
                 listaProductos = this.getDao().query(preparedQuery);

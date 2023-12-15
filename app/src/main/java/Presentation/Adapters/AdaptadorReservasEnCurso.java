@@ -17,6 +17,7 @@ import java.util.List;
 
 import Negocio.IService;
 import Negocio.Service;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class AdaptadorReservasEnCurso extends RecyclerView.Adapter<AdaptadorReservasEnCurso.ReservasEnCursoHolder>{
     private List<Producto> productos = new ArrayList<>();
@@ -47,7 +48,7 @@ public class AdaptadorReservasEnCurso extends RecyclerView.Adapter<AdaptadorRese
 
 
     public class ReservasEnCursoHolder extends RecyclerView.ViewHolder {
-        ImageView imagenPlato ;
+        CircleImageView imagenPlato ;
         TextView textViewNombrePlato, textViewNombreUsuario, textViewRecogida;
 
         public ReservasEnCursoHolder(@NonNull View itemView) {
