@@ -35,7 +35,7 @@
             app:layout_constraintVertical_bias="0.0" />
 
         <TextView
-            android:id="@+id/categoria1"
+            android:id="@+id/textView50"
             android:layout_width="163dp"
             android:layout_height="35dp"
             android:layout_marginTop="1dp"
@@ -43,7 +43,7 @@
             android:fontFamily="@font/manrope"
             android:gravity="center"
             android:text="TextView"
-            app:layout_constraintEnd_toStartOf="@+id/categoria2"
+            app:layout_constraintEnd_toStartOf="@+id/textView56"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView51" />
 
@@ -64,7 +64,7 @@
             app:layout_constraintVertical_bias="0.391" />
 
         <TextView
-            android:id="@+id/categoria2"
+            android:id="@+id/textView56"
             android:layout_width="163dp"
             android:layout_height="35dp"
             android:layout_marginTop="1dp"
@@ -85,21 +85,22 @@
             tools:layout_editor_absoluteX="360dp"
             tools:layout_editor_absoluteY="16dp" />
 
-        <TextView
-            android:id="@+id/tituloDelPlato"
+        <Negocio.CustomFontTextView
+            android:id="@+id/textView57"
             android:layout_width="344dp"
             android:layout_height="135dp"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/manrope"
+            android:paddingLeft="20dp"
             android:text="Tortilla de patatas"
             android:textAppearance="@style/ManropeBold"
             android:textSize="48sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/categoria1" />
+            app:layout_constraintTop_toBottomOf="@+id/textView50" />
 
         <TextView
-            android:id="@+id/raciones"
+            android:id="@+id/textView58"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="29dp"
@@ -110,11 +111,11 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.098"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tituloDelPlato"
+            app:layout_constraintTop_toBottomOf="@+id/textView57"
             app:layout_constraintVertical_bias="0.03" />
 
         <TextView
-            android:id="@+id/direccion"
+            android:id="@+id/textView59"
             android:layout_width="230dp"
             android:layout_height="19dp"
             android:fontFamily="@font/manrope"
@@ -124,11 +125,11 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.193"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/raciones"
+            app:layout_constraintTop_toBottomOf="@+id/textView58"
             app:layout_constraintVertical_bias="0.0" />
 
         <TextView
-            android:id="@+id/recogida"
+            android:id="@+id/textView60"
             android:layout_width="230dp"
             android:layout_height="19dp"
             android:fontFamily="@font/manrope"
@@ -138,7 +139,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.193"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/direccion"
+            app:layout_constraintTop_toBottomOf="@+id/textView59"
             app:layout_constraintVertical_bias="0.0" />
 
         <View
@@ -150,11 +151,11 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.466"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/recogida"
+            app:layout_constraintTop_toBottomOf="@+id/textView60"
             app:layout_constraintVertical_bias="0.427" />
 
         <TextView
-            android:id="@+id/nombre_usu"
+            android:id="@+id/textView61"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="44dp"
@@ -165,10 +166,10 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.83"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/recogida" />
+            app:layout_constraintTop_toBottomOf="@+id/textView60" />
 
         <TextView
-            android:id="@+id/precio_plato1"
+            android:id="@+id/textView62"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/manrope"

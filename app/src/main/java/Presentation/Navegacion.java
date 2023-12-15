@@ -49,6 +49,11 @@ public class Navegacion extends AppCompatActivity {
                     Intent intent = new Intent(Navegacion.this, IUAddPlato.class);
                     startActivity(intent);
                 }
+                if(i == R.id.cesta) {
+                    previousIndex = R.id.cesta;
+                    getSupportFragmentManager().beginTransaction().replace(R.id.mainFragmentContainer, new Cesta()).commit();
+
+                }
 
             }
 

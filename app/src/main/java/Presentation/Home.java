@@ -57,7 +57,6 @@ public class Home extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         //Inicializacion variables programa
-
         nombrePerfilHome = view.findViewById(R.id.nombrePerfilHome);
         precioLabel = view.findViewById(R.id.precioLabel);
         valoracionPerfil = view.findViewById(R.id.valoracionPerfil);
@@ -182,6 +181,7 @@ public class Home extends Fragment {
         nombrePublicador.setText(publicador.getNombre() + " " + publicador.getApellido());
 
         nombrePlatoLabel.setText(producto.getNombre());
+        //nombrePlatoLabel.setText("aaaaaaaaaaaaaaaaaaaaa \n patatas");
 
         if(publicador.getFoto() != null) fotoPerfilPub.setImageBitmap(service.pasarStringAImagen(publicador.getFoto()));
 
