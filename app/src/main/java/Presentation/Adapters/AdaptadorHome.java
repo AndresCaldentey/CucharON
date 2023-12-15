@@ -18,6 +18,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class AdaptadorHome extends RecyclerView.Adapter<AdaptadorHome.HomeViewHolder> {
     List<Producto> productos;
     Service service;
+    private int batchSize = 5; // Número de elementos a cargar en cada lote
 
     public AdaptadorHome(List<Producto> productos) {
         this.productos = productos;
@@ -25,6 +26,7 @@ public class AdaptadorHome extends RecyclerView.Adapter<AdaptadorHome.HomeViewHo
     }
     public void setProductos(List<Producto> productos) {
         this.productos = productos;
+        notifyDataSetChanged();
     }
     @NonNull
     @Override

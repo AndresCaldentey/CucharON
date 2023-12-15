@@ -8,8 +8,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.FragmentContainerView;
 
+import com.example.cucharon.Producto;
 import com.example.cucharon.R;
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
+
+import java.util.List;
 
 import Negocio.Service;
 
@@ -18,6 +21,8 @@ public class Navegacion extends AppCompatActivity {
     private ChipNavigationBar barraNav;
     private int previousIndex;
     FragmentContainerView mainFragmentContainer;
+
+    List<Producto> allProductos;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +54,8 @@ public class Navegacion extends AppCompatActivity {
 
         });
         barraNav.setItemSelected(R.id.home, true);
+        allProductos = servicio.getAllProducto();
     }
+    public List<Producto> getAllProductos() { return allProductos; }
 
 }

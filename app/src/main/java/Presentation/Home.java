@@ -77,7 +77,14 @@ public class Home extends Fragment {
         service = Service.getService();
 
         //Inicialización del Slider
-        productos = service.getAllProducto();
+        if(getActivity() != null) {
+            if(getActivity() instanceof Navegacion) {
+                Navegacion activityActual = (Navegacion) getActivity();
+                productos = activityActual.getAllProductos();
+            }
+
+        }
+
         AdaptadorHome platosAdapter = new AdaptadorHome(productos);
         platosSliderHome.setAdapter(platosAdapter);
 
