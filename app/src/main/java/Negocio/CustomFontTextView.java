@@ -3,6 +3,7 @@ import android.content.Context;
 import android.graphics.Typeface;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
+import android.text.TextUtils;
 import android.text.style.StyleSpan;
 import android.text.style.TextAppearanceSpan;
 import android.util.AttributeSet;
@@ -46,10 +47,30 @@ public class CustomFontTextView extends androidx.appcompat.widget.AppCompatTextV
             // Establecer el estilo de la última palabra utilizando el estilo definido en styles.xml
             spannable.setSpan(new TextAppearanceSpan(getContext(), R.style.Cursiva), lastWordStart + 2, lastWordEnd + 2, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 
-            super.setText(spannable, type);
+            super.setText(processText(spannable), type);
         } else {
             // Si no hay palabras, simplemente establecer el texto normal
             super.setText(text, type);
+        }
+    }
+
+    private CharSequence processText(CharSequence text) {
+        // Divide el texto en líneas
+        String[] lines = text.toString().split("\\n");
+
+        if (lines.length > 1) {
+            // Procesa las líneas y añade dos espacios al inicio si es necesario
+            for (int i = 1; i < lines.length; i++) {
+                if (lines[i - 1].endsWith(" ")) {
+                    // Añade dos espacios al inicio de la línea actual
+                    lines[i] = "  " + lines[i];
+                }
+            }
+
+            // Une las líneas de nuevo en un solo CharSequence
+            return new SpannableStringBuilder(TextUtils.join("\n", lines));
+        } else {
+            return text;
         }
     }
 }
