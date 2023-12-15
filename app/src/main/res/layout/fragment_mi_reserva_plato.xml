@@ -35,7 +35,7 @@
             app:layout_constraintVertical_bias="0.0" />
 
         <TextView
-            android:id="@+id/textView50"
+            android:id="@+id/categoria1"
             android:layout_width="163dp"
             android:layout_height="35dp"
             android:layout_marginTop="1dp"
@@ -43,7 +43,7 @@
             android:fontFamily="@font/manrope"
             android:gravity="center"
             android:text="TextView"
-            app:layout_constraintEnd_toStartOf="@+id/textView56"
+            app:layout_constraintEnd_toStartOf="@+id/categoria2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView51" />
 
@@ -64,7 +64,7 @@
             app:layout_constraintVertical_bias="0.391" />
 
         <TextView
-            android:id="@+id/textView56"
+            android:id="@+id/categoria2"
             android:layout_width="163dp"
             android:layout_height="35dp"
             android:layout_marginTop="1dp"
@@ -86,7 +86,7 @@
             tools:layout_editor_absoluteY="16dp" />
 
         <Negocio.CustomFontTextView
-            android:id="@+id/textView57"
+            android:id="@+id/tituloDelPlato"
             android:layout_width="344dp"
             android:layout_height="135dp"
             android:layout_marginTop="20dp"
@@ -97,10 +97,10 @@
             android:textSize="48sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView50" />
+            app:layout_constraintTop_toBottomOf="@+id/categoria1" />
 
         <TextView
-            android:id="@+id/textView58"
+            android:id="@+id/raciones"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="29dp"
@@ -111,11 +111,11 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.098"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView57"
+            app:layout_constraintTop_toBottomOf="@+id/tituloDelPlato"
             app:layout_constraintVertical_bias="0.03" />
 
         <TextView
-            android:id="@+id/textView59"
+            android:id="@+id/direccion"
             android:layout_width="230dp"
             android:layout_height="19dp"
             android:fontFamily="@font/manrope"
@@ -125,11 +125,11 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.193"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView58"
+            app:layout_constraintTop_toBottomOf="@+id/raciones"
             app:layout_constraintVertical_bias="0.0" />
 
         <TextView
-            android:id="@+id/textView60"
+            android:id="@+id/recogida"
             android:layout_width="230dp"
             android:layout_height="19dp"
             android:fontFamily="@font/manrope"
@@ -139,7 +139,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.193"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView59"
+            app:layout_constraintTop_toBottomOf="@+id/direccion"
             app:layout_constraintVertical_bias="0.0" />
 
         <View
@@ -151,11 +151,11 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.466"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView60"
+            app:layout_constraintTop_toBottomOf="@+id/recogida"
             app:layout_constraintVertical_bias="0.427" />
 
         <TextView
-            android:id="@+id/textView61"
+            android:id="@+id/nombre_usu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="44dp"
@@ -166,10 +166,10 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.83"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView60" />
+            app:layout_constraintTop_toBottomOf="@+id/recogida" />
 
         <TextView
-            android:id="@+id/textView62"
+            android:id="@+id/precio_plato1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/manrope"
