@@ -2,11 +2,15 @@ package com.example.cucharon;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,6 +27,15 @@ public class mi_reserva_plato extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    ImageView cerrar;
+    TextView categoria1;
+    TextView categoria2;
+    TextView titulo;
+    TextView raciones;
+    TextView direccion;
+    TextView recogida;
+    TextView precio;
+    TextView nombre_usu;
 
     public mi_reserva_plato() {
         // Required empty public constructor
@@ -60,5 +73,27 @@ public class mi_reserva_plato extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_mi_reserva_plato, container, false);
+    }
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        cerrar = view.findViewById(R.id.cerrar);
+        nombre_usu = view.findViewById(R.id.nombre_usu);
+        precio = view.findViewById(R.id.precio_plato1);
+        titulo = view.findViewById(R.id.tituloDelPlato);
+        raciones = view.findViewById(R.id.raciones);
+        categoria1 = view.findViewById(R.id.categoria1);
+        categoria2 = view.findViewById(R.id.categoria2);
+        direccion = view.findViewById(R.id.direccion);
+        recogida = view.findViewById(R.id.recogida);
+
+    }
+    public void ponerDatosProducto(Producto producto){
+        titulo.setText(producto.getNombre());
+        precio.setText(producto.getPrecio().toString());
+        raciones.setText(producto.getNumRaciones());
+        direccion.setText(producto.getDireccionRecogida());
+        recogida.setText(producto.getHoraRecogida());
+        
     }
 }
