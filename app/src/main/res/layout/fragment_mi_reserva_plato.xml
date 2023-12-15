@@ -85,17 +85,19 @@
             tools:layout_editor_absoluteX="360dp"
             tools:layout_editor_absoluteY="16dp" />
 
-        <TextView
+        <Negocio.CustomFontTextView
             android:id="@+id/textView57"
             android:layout_width="344dp"
             android:layout_height="135dp"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/manrope"
+            android:paddingLeft="20dp"
             android:text="Tortilla de patatas"
             android:textAppearance="@style/ManropeBold"
             android:textSize="48sp"
-            app:layout_constraintTop_toBottomOf="@+id/textView50"
-            tools:layout_editor_absoluteX="35dp" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView50" />
 
         <TextView
             android:id="@+id/textView58"
