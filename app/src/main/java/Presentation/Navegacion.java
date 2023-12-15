@@ -31,7 +31,8 @@ public class Navegacion extends AppCompatActivity {
             public void onItemSelected(int i) {
                 if(i == R.id.home) {
                     previousIndex = i;
-                    getSupportFragmentManager().beginTransaction().replace(R.id.mainFragmentContainer, new Home()).commit();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.mainFragmentContainer, new Home()).addToBackStack(null).commit();
+                    //getSupportFragmentManager().beginTransaction().replace(R.id.mainFragmentContainer, new Home()).commit();
                 }
                 if(i == R.id.search) {
                     previousIndex = R.id.search;
