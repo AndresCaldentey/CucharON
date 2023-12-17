@@ -3,6 +3,7 @@ package Presentation;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
@@ -15,13 +16,17 @@ import com.example.cucharon.R;
 import com.example.cucharon.Usuario;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 import Negocio.*;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class IUregistro extends AppCompatActivity {
 
-    EditText nombre, apellido, telefono, email, direccion, password, password2;
+    EditText nombre, apellido, telefono, email, fechaNacimiento, password, password2,biografia;
     CircleImageView imagenUsuario;
     TextView cambiarFoto;
     IService service;
@@ -39,11 +44,13 @@ public class IUregistro extends AppCompatActivity {
         apellido = findViewById(R.id.apellidoRegistro);
         telefono = findViewById(R.id.telefonoRegistro);
         email = findViewById(R.id.emailRegistro);
-        direccion = findViewById(R.id.edadRegistro);
+        fechaNacimiento = findViewById(R.id.edadRegistroEditText);
         password = findViewById(R.id.passwordRegistro);
         password2 = findViewById(R.id.passwordRegistro2);
         cambiarFoto = findViewById(R.id.boton_cambiar_imagen);
         imagenUsuario = findViewById(R.id.fotoDeUsuario);
+        biografia = findViewById(R.id.biografiaEditText);
+
         imagenUsuario.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -84,6 +91,7 @@ public class IUregistro extends AppCompatActivity {
     }
 
     public void onClickRegistrar(View view) {
+        String foto = service.imagenToString(((BitmapDrawable) imagenUsuario.getDrawable()).getBitmap());
         if(!service.validEmail(email.getText().toString())) {
             service.CrearAlerta("El email no es válido", this);
         }
@@ -101,12 +109,23 @@ public class IUregistro extends AppCompatActivity {
             } else {
                 //Hay que crear el usuario y añadirlo a la db
                 Usuario nuevoUser = new Usuario(email.getText().toString(), nombre.getText().toString(), apellido.getText().toString(),
-                        password.getText().toString(), ""/*direccion.getText().toString()*/,
-                        Integer.parseInt(telefono.getText().toString()));
+                        password.getText().toString(), "",biografia.getText().toString(),getDateFromEditText(),
+                        Integer.parseInt(telefono.getText().toString()),foto);
 
                 service.crearUsuario(nuevoUser);
                 finish();
             }
+        }
+    }
+
+    private Date getDateFromEditText() {
+        String dateTimeString = fechaNacimiento.getText().toString();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        try {
+            return sdf.parse(dateTimeString);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return null;
         }
     }
 

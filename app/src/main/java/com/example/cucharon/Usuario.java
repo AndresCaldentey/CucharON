@@ -35,13 +35,16 @@ public class Usuario {
 
     public Usuario() {}
 
-    public Usuario(String email, String nombre, String apellido, String contraseña, String direccion, int tlf) {
+    public Usuario(String email, String nombre, String apellido, String contraseña, String direccion,String biografia,Date edad, int tlf,String foto) {
         this.email = email;
         this.nombre = nombre;
         this.apellido = apellido;
         this.contraseña = contraseña;
         this.direccion = direccion;
+        this.biografia = biografia;
+        this.edad = edad;
         this.tlf = tlf;
+        this.foto = foto;
     }
 
     public String getEmail() {

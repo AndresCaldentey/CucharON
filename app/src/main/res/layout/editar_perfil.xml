@@ -120,7 +120,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
                         android:background="#00FFFFFF"
-                        android:inputType="text"
+                        android:inputType="datetime|date"
                         android:paddingStart="5dp"
                         android:singleLine="false"
                         android:text="17/10/1999"
