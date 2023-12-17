@@ -22,6 +22,7 @@ import com.example.cucharon.Producto;
 import com.example.cucharon.R;
 import com.example.cucharon.Usuario;
 import com.example.cucharon.add_detalles;
+import com.example.cucharon.reserva3;
 import com.example.cucharon.reserva_paso2;
 
 import java.util.ArrayList;
@@ -92,7 +93,7 @@ public class Home extends Fragment {
                 bundle.putSerializable("plato", plato);
                 //fragmentoReservaPaso2.setArguments(bundle);
                 getParentFragmentManager().setFragmentResult("datos2", bundle);
-                getParentFragmentManager().beginTransaction().replace(R.id.mainFragmentContainer, new reserva_paso2()).commit();
+                getParentFragmentManager().beginTransaction().replace(R.id.mainFragmentContainer, new reserva3()).commit();
             }
         };
 
