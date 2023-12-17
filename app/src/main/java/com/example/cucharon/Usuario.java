@@ -23,6 +23,12 @@ public class Usuario {
     private int tlf;
     @DatabaseField
     private String foto;
+    @DatabaseField
+    private String biografia;
+    @DatabaseField
+    private int cantidadValoracion;
+    @DatabaseField
+    private int valoracion;
 
     public Usuario() {}
 
@@ -89,5 +95,29 @@ public class Usuario {
 
     public void setFoto(String foto) {
         this.foto = foto;
+    }
+
+    public String getBiografia() {
+        return biografia;
+    }
+
+    public void setBiografia(String biografia) {
+        this.biografia = biografia;
+    }
+
+    public int getCantidadValoracion() {
+        return cantidadValoracion;
+    }
+
+    public void setCantidadValoracion(int cantidadValoracion) {
+        this.cantidadValoracion = cantidadValoracion;
+    }
+
+    public int getValoracion() {
+        return valoracion;
+    }
+
+    public void setValoracion(int valoracion) {
+        this.valoracion = valoracion;
     }
 }
