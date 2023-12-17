@@ -27,21 +27,16 @@ import Negocio.Service;
 import Presentation.Adapters.AdaptadorPlato;
 
 public class verBusqueda extends Fragment {
-
-
     TextView pais_txt;
     ImageView cerrar;
     RecyclerView listaPlatos;
     Service service;
     String categoria;
     List<Producto> platos;
-
     AdaptadorPlato platosAdapter;
     AdaptadorPlato.ClickPlato logicaPlato;
 
-    public verBusqueda() {
-        // Required empty public constructor
-    }
+    public verBusqueda() {}
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -62,14 +57,12 @@ public class verBusqueda extends Fragment {
             @Override
             public void click(Producto plato) {
                 Toast.makeText(view.getContext(), plato.getNombre(), Toast.LENGTH_SHORT).show();
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("platoReserva3", plato);
+                getParentFragmentManager().setFragmentResult("Reserva3", bundle);
+                getParentFragmentManager().beginTransaction().replace(R.id.mainFragmentContainer, new Reserva3()).commit();
             }
         };
-
-
-
-
-
-
     }
 
     @Override

@@ -16,7 +16,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.cucharon.R;
-import com.example.cucharon.add_detalles;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,7 +46,7 @@ public class AddPlatoSabores extends Fragment {
 
                 tituloSabor = sabor.getTituloSabor();
                 sendSaboresToActivity(tituloSabor);
-                getParentFragmentManager().beginTransaction().replace(R.id.addPlatoFragmentMan, new add_detalles()).commit();
+                getParentFragmentManager().beginTransaction().replace(R.id.addPlatoFragmentMan, new Add_detalles()).commit();
             }
         };
         slideSabores = view.findViewById(R.id.slideSabores);

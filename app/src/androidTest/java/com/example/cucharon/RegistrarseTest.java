@@ -3,13 +3,10 @@ package com.example.cucharon;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.pressImeActionButton;
-import static androidx.test.espresso.action.ViewActions.scrollTo;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-
-import android.view.View;
 
 import androidx.test.espresso.action.ViewActions;
 import androidx.test.rule.ActivityTestRule;
@@ -22,7 +19,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import Negocio.Service;
-import Presentation.IUposteoProducto;
 import Presentation.IUregistro;
 
 @RunWith(AndroidJUnit4.class)
