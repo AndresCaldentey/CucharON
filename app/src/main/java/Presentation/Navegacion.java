@@ -2,6 +2,7 @@ package Presentation;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -62,5 +63,12 @@ public class Navegacion extends AppCompatActivity {
         allProductos = servicio.getAllProducto();
     }
     public List<Producto> getAllProductos() { return allProductos; }
+
+    public void clickPerfil(View view) {
+        Intent intent = new Intent(Navegacion.this, Perfil.class);
+        intent.putExtra("usuario", servicio.getLoggedUser().getEmail());
+        startActivity(intent);
+
+    }
 
 }

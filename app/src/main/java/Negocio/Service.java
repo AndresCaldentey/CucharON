@@ -191,6 +191,25 @@ public class Service implements IService{
         }
     }
 
+    public boolean isValidDate(String inputDate) {
+        // Define el formato de fecha esperado
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        dateFormat.setLenient(false);
+
+        try {
+            // Intenta parsear la cadena como una fecha
+            Date date = dateFormat.parse(inputDate);
+
+            // Verifica si la fecha es igual o anterior al día actual
+            Date currentDate = new Date();
+            return date != null && !date.after(currentDate);
+
+        } catch (ParseException e) {
+            // La cadena no tiene el formato esperado
+            return false;
+        }
+    }
+
     /*GESTION ALERTAS*/
     public void CrearAlerta(String errorString, Context contexto) {
         AlertDialog.Builder alert = new AlertDialog.Builder(contexto);

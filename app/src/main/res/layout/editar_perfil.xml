@@ -6,217 +6,262 @@
     android:layout_height="match_parent"
     android:background="#DADADA"
     app:layoutDescription="@xml/perfil2_scene">
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
-        android:layout_width="409dp"
-        android:layout_height="521dp"
-        app:cardCornerRadius="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <RelativeLayout
-                android:id="@+id/principal"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:id="@+id/textoNombre"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginTop="94dp"
-                    android:layout_marginEnd="325dp"
-                    android:layout_marginBottom="78dp"
-                    android:layout_weight="1"
-                    android:text="NOMBRE"
-                    android:textAppearance="@style/ManropeBold"
-                    tools:ignore="NotSibling" />
-
-                <LinearLayout
-                    android:layout_width="256dp"
-                    android:layout_height="82dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_gravity="center|top"
-                    android:layout_marginStart="11dp"
-                    android:layout_marginTop="9dp"
-                    android:layout_marginEnd="140dp"
-                    android:gravity="top|left"
-                    android:orientation="horizontal"
-                    android:padding="15dp">
-
-                    <ImageView
-                        android:id="@+id/imageView22"
-                        android:layout_width="266dp"
-                        android:layout_height="43dp"
-                        android:layout_weight="1"
-                        app:srcCompat="@drawable/img_6" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="366dp"
-                    android:layout_height="57dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginStart="23dp"
-                    android:layout_marginTop="97dp"
-                    android:layout_marginEnd="18dp"
-                    android:layout_marginBottom="350dp"
-                    android:background="@drawable/img_4"
-                    android:orientation="horizontal"
-                    android:paddingLeft="8dp"
-                    tools:ignore="NotSibling">
-
-                    <EditText
-                        android:id="@+id/editTextText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:ems="10"
-                        android:inputType="text"
-                        android:singleLine="false"
-                        android:text="Martinha"
-                        android:textAppearance="@style/ManropeBold"
-                        android:textSize="30sp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="366dp"
-                    android:layout_height="57dp"
-                    android:layout_below="@+id/principal"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginStart="21dp"
-                    android:layout_marginTop="97dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginBottom="251dp"
-                    android:background="@drawable/img_4"
-                    android:orientation="horizontal"
-                    android:paddingLeft="8dp"
-                    tools:ignore="NotSibling">
-
-                    <EditText
-                        android:id="@+id/editTextDate"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:ems="10"
-                        android:inputType="date"
-                        android:text="07/10/1999"
-                        android:textAppearance="@style/ManropeBold"
-                        android:textSize="30sp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="119dp"
-                    android:layout_below="@+id/principal"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginStart="27dp"
-                    android:layout_marginTop="97dp"
-                    android:layout_marginEnd="23dp"
-                    android:layout_marginBottom="98dp"
-                    android:background="@drawable/img_5"
-                    android:orientation="horizontal"
-                    tools:ignore="NotSibling">
-
-                    <EditText
-                        android:id="@+id/editTextTextMultiLine"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:ems="10"
-                        android:gravity="start|top"
-                        android:inputType="textMultiLine" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="277dp"
-                    android:layout_height="53dp"
-                    android:layout_below="@+id/principal"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginStart="69dp"
-                    android:layout_marginTop="97dp"
-                    android:layout_marginEnd="61dp"
-                    android:layout_marginBottom="28dp"
-                    android:background="@drawable/img_2"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    tools:ignore="NotSibling">
-
-                    <TextView
-                        android:id="@+id/textView24"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="Aceptar"
-                        android:textAppearance="@style/ManropeRegular"
-                        android:textSize="20sp" />
-                </LinearLayout>
-
-                <TextView
-                    android:id="@+id/textView26"
-                    android:layout_width="91dp"
-                    android:layout_height="wrap_content"
-                    android:layout_above="@+id/principal"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginTop="191dp"
-                    android:layout_marginEnd="289dp"
-                    android:layout_marginBottom="195dp"
-                    android:layout_weight="1"
-                    android:text="EDAD"
-                    android:textAppearance="@style/ManropeBold"
-                    tools:ignore="NotSibling" />
-
-                <TextView
-                    android:id="@+id/textView27"
-                    android:layout_width="91dp"
-                    android:layout_height="wrap_content"
-                    android:layout_above="@+id/principal"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginTop="283dp"
-                    android:layout_marginEnd="287dp"
-                    android:layout_marginBottom="195dp"
-                    android:layout_weight="1"
-                    android:text="BIOGRAFÍA"
-                    android:textAppearance="@style/ManropeBold"
-                    tools:ignore="NotSibling" />
-
-            </RelativeLayout>
-
-        </LinearLayout>
-
-    </androidx.cardview.widget.CardView>
-
     <ImageView
-        android:id="@+id/fotoDPerfil"
-        android:layout_width="425dp"
-        android:layout_height="542dp"
-        android:textAlignment="center"
+        android:id="@+id/fotoDeditarPerfil"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/img_1" />
+        app:srcCompat="@drawable/martina" />
+
+    <LinearLayout
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+        android:layout_height="615dp"
+        app:cardCornerRadius="24dp"
+        app:cardPreventCornerOverlap="false"
+        android:background="@drawable/contenedor_editar_perfil"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/principal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:id="@+id/imageView22"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+
+                    android:layout_marginStart="19dp"
+                    android:layout_marginTop="35dp"
+
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/editar_perfil" />
+
+                <TextView
+                    android:id="@+id/textoNombre"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/imageView22"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginStart="19dp"
+                    android:text="NOMBRE"
+                    android:textAppearance="@style/ManropeMedium"
+                    tools:ignore="NotSibling" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraint_nombre_edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginEnd="19dp"
+                    android:layout_marginStart="19dp"
+                    android:background="@drawable/editar_campo_perfil"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textoNombre">
+
+                    <EditText
+                        android:id="@+id/nombreEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:background="#00FFFFFF"
+                        android:inputType="text"
+                        android:paddingStart="5dp"
+                        android:singleLine="false"
+                        android:text="Martinha"
+                        android:textAppearance="@style/ManropeMedium"
+                        android:textSize="40sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <TextView
+                    android:id="@+id/edadLabel"
+                    android:layout_width="91dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/constraint_apellido_edit"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginStart="19dp"
+                    android:layout_marginBottom="195dp"
+                    android:layout_weight="1"
+                    android:text="EDAD"
+                    android:textAppearance="@style/ManropeMedium"
+                    tools:ignore="NotSibling" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintEdadEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginEnd="19dp"
+                    android:layout_marginStart="19dp"
+                    android:background="@drawable/editar_campo_perfil"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/edadLabel">
+
+                    <EditText
+                        android:id="@+id/editEdadText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:background="#00FFFFFF"
+                        android:inputType="text"
+                        android:paddingStart="5dp"
+                        android:singleLine="false"
+                        android:text="17/10/1999"
+                        android:textAppearance="@style/ManropeMedium"
+                        android:textSize="40sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                <TextView
+                    android:id="@+id/biografiaLabel"
+                    android:layout_width="91dp"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginStart="19dp"
+                    android:layout_marginTop="25dp"
+                    android:layout_weight="1"
+
+                    android:text="BIOGRAFÍA"
+                    android:textAppearance="@style/ManropeMedium"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/constraintEdadEdit"
+                    tools:ignore="NotSibling" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintBiografiaEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="160dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginEnd="19dp"
+                    android:layout_marginStart="19dp"
+                    android:background="@drawable/contenedor_biografia_edit"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/biografiaLabel">
+
+                    <EditText
+                        android:id="@+id/editBiografia"
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:background="#00FFFFFF"
+                        android:gravity="left"
+                        android:inputType="textMultiLine"
+                        android:maxLength="200"
+                        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vestibulum, quam vel sollicitudin hendrerit, mauris turpis pellentesque neque, vel convallis enim augue eu metus. Proin vel ultricies dolor. Integer feugiat est vel metus luctus, vel ultrices lacus elementum. In hac habitasse platea dictumst. Fusce hendrerit scelerisque lacus, quis facilisis dolor hendrerit ac. Vivamus eu metus at elit malesuada dictum ut vel justo. Aenean bibendum pharetra turpis, a fringilla leo dictum ut. Morbi fi
+"
+
+                        android:textAppearance="@style/ManropeRegular"
+                        android:textColor="#EFEFEF"
+                        android:textSize="15sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/contadorPalabras"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="30dp"
+                        android:text="200 carácteres"
+                        android:textAppearance="@style/ManropeRegular"
+                        android:textColor="#EFEFEF"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/editBiografia" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <TextView
+                    android:id="@+id/apellidoLabel"
+                    android:layout_width="91dp"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginStart="19dp"
+                    android:layout_marginTop="25dp"
+                    android:layout_weight="1"
+
+                    android:text="APELLIDO"
+                    android:textAppearance="@style/ManropeMedium"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/constraint_nombre_edit"
+                    />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraint_apellido_edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginEnd="19dp"
+                    android:layout_marginStart="19dp"
+                    android:background="@drawable/editar_campo_perfil"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/apellidoLabel">
+
+                    <EditText
+                        android:id="@+id/apellidoEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:background="#00FFFFFF"
+                        android:inputType="text"
+                        android:paddingStart="5dp"
+                        android:text="Otero Varela"
+                        android:textAppearance="@style/ManropeMedium"
+                        android:textSize="40sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                <Button
+                    android:id="@+id/aceptarEditB"
+                    android:layout_width="180dp"
+                    android:layout_height="35dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/boton_azul"
+                    android:onClick="aceptarClick"
+                    android:text="Aceptar"
+                    android:textAppearance="@style/ManropeBold"
+                    android:textColor="@color/negroDis"
+                    android:textSize="15sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/constraintBiografiaEdit" />
+
+
+
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+    </LinearLayout>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

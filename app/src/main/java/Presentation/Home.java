@@ -1,7 +1,6 @@
 package Presentation;
 
 import android.annotation.SuppressLint;
-import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -18,12 +17,13 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
+import com.codeboy.pager2_transformers.Pager2_PopTransformer;
 import com.example.cucharon.Producto;
 import com.example.cucharon.R;
 import com.example.cucharon.Usuario;
 
+import java.util.ArrayList;
 import java.util.List;
-
 import Negocio.CustomFontTextView;
 import Negocio.Service;
 import Presentation.Adapters.AdaptadorHome;
@@ -49,9 +49,9 @@ public class Home extends Fragment {
     Service service;
 
     List<Producto> productos;
+    List<ToggleButton> botones = new ArrayList<>();
 
     ToggleButton previousChecked = null;
-    int previousColor;
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -87,6 +87,7 @@ public class Home extends Fragment {
         AdaptadorHome platosAdapter = new AdaptadorHome(productos);
         platosSliderHome.setAdapter(platosAdapter);
 
+
         //Codigo para hacer el slider con su animación de hacer los otros platos en chiquitito
         platosSliderHome.setClipToPadding(false);
         platosSliderHome.setClipChildren(false);
@@ -95,8 +96,10 @@ public class Home extends Fragment {
 
 
         CompositePageTransformer compositePageTransformer = new CompositePageTransformer();
-        compositePageTransformer.addTransformer(new MarginPageTransformer(40));
+        //compositePageTransformer.addTransformer(new MarginPageTransformer(20));
+
         compositePageTransformer.addTransformer(new ViewPager2.PageTransformer() {
+
             @Override
             public void transformPage(@NonNull View page, float position) {
                 float r = 1 - Math.abs(position);
@@ -104,6 +107,10 @@ public class Home extends Fragment {
                 page.setScaleX(0.85f + r * 0.15f);
             }
         });
+        botones.add(mapaB);
+        botones.add(masBaratoB);
+        botones.add(masCaroB);
+        botones.add(vendedorTopB);
 
         platosSliderHome.setPageTransformer(compositePageTransformer);
         actualizarPantalla(productos.get(0));
@@ -118,32 +125,32 @@ public class Home extends Fragment {
         mapaB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(mapaB.isChecked()) return;
-                actualizarBotones(mapaB, R.color.azulDis);
+                if(!mapaB.isChecked()) return;
+                actualizarBotones(mapaB);
             }
         });
 
         masBaratoB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(masBaratoB.isChecked()) return;
-                actualizarBotones(masBaratoB, R.color.verdeOlivaDis);
+                if(!masBaratoB.isChecked()) return;
+                actualizarBotones(masBaratoB);
             }
         });
 
         masCaroB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(masCaroB.isChecked()) return;
-                actualizarBotones(masCaroB, R.color.plataDis);
+                if(!masCaroB.isChecked()) return;
+                actualizarBotones(masCaroB);
             }
         });
 
         vendedorTopB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(vendedorTopB.isChecked()) return;
-                actualizarBotones(vendedorTopB, R.color.naranjaDis);
+                if(!vendedorTopB.isChecked()) return;
+                actualizarBotones(vendedorTopB);
             }
         });
 
@@ -152,22 +159,9 @@ public class Home extends Fragment {
 
 
     @SuppressLint("ResourceAsColor")
-    public void actualizarBotones(ToggleButton justCheckedB, int justCheckedColor){
-        if(previousChecked == null ) {
-            previousChecked = justCheckedB;
-            previousColor = justCheckedColor;
-            justCheckedB.setChecked(true);
-            justCheckedB.setTextColor(R.color.negroDis);
-
-        }
-        if(!previousChecked.equals(justCheckedB) ){
-            previousChecked.setChecked(false);
-            previousChecked.setTextColor(previousColor);
-            previousChecked = justCheckedB;
-            previousColor = justCheckedColor;
-            justCheckedB.setChecked(true);
-            justCheckedB.setTextColor(R.color.negroDis);
-
+    public void actualizarBotones(ToggleButton justCheckedB){
+        for(ToggleButton button : botones) {
+            if(!button.equals(justCheckedB)) { button.setChecked(false); }
         }
     }
 

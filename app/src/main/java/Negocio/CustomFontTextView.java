@@ -42,7 +42,14 @@ public class CustomFontTextView extends androidx.appcompat.widget.AppCompatTextV
             int lastWordStart = text.toString().lastIndexOf(lastWord);
             int lastWordEnd = lastWordStart + lastWord.length();
 
-            spannable.insert(lastWordStart, "  ");
+            int lastWordEndWithSpace = lastWordEnd ; // Agrega dos espacios
+            int availableWidth = getWidth() - getPaddingLeft() - getPaddingRight();
+
+            if(getLayout() != null && lastWordEndWithSpace >= availableWidth) {
+                spannable.insert(lastWordStart, "/n  ");
+            }else {
+                spannable.insert(lastWordStart, "  ");
+            }
 
             // Establecer el estilo de la última palabra utilizando el estilo definido en styles.xml
             spannable.setSpan(new TextAppearanceSpan(getContext(), R.style.Cursiva), lastWordStart + 2, lastWordEnd + 2, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);

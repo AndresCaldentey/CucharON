@@ -47,4 +47,5 @@ dependencies {
     implementation 'com.github.ismaeldivita:chip-navigation-bar:1.4.0'
     implementation 'androidx.fragment:fragment:1.5.5'
     implementation "com.vanniktech:android-image-cropper:4.5.0"
+    implementation 'com.github.CodeBoy722:ViewPager2_Transformers:1.0.0'
 }

@@ -13,10 +13,10 @@
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/platosSliderHome"
             android:layout_width="wrap_content"
-            android:layout_height="200dp"
+            android:layout_height="250dp"
             android:layout_marginTop="30dp"
-            android:paddingStart="80dp"
-            android:paddingEnd="80dp"
+            android:paddingStart="77dp"
+            android:paddingEnd="65dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/scrollBotones" />
@@ -26,24 +26,26 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="19dp"
+            android:layout_marginTop="64dp"
             android:text="Martinha"
             android:textAppearance="@style/ManropeRegular"
 
             android:textSize="40sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView18" />
+            app:layout_constraintTop_toTopOf="parent"  />
 
         <TextView
             android:id="@+id/textView18"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="19dp"
-            android:layout_marginTop="35dp"
+
             android:text="Hola,"
             android:textAppearance="@style/ManropeRegular"
             android:textSize="15sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintBottom_toTopOf="@id/nombrePerfilHome"
+             />
 
         <HorizontalScrollView
             android:id="@+id/scrollBotones"
@@ -72,7 +74,7 @@
                     android:background="@drawable/boton_home_cercano"
                     android:text="mapa"
                     android:textAppearance="@style/ManropeBold"
-                    android:textColor="@color/azulDis"
+                    android:textColor="@color/negroDis"
                     android:textOff="mapa"
                     android:textOn="mapa"
                     android:textSize="15sp"
@@ -84,7 +86,7 @@
                     android:layout_height="35dp"
                     android:textAppearance="@style/ManropeBold"
                     android:textSize="15sp"
-                    android:textColor="@color/verdeOlivaDis"
+                    android:textColor="@color/negroDis"
                     android:textOff="precio más barato"
                     android:textOn="precio más barato"
                     android:text="precio más bajo"
@@ -100,7 +102,7 @@
                     android:textOff="precio más alto"
                     android:textOn="precio más alto"
                     android:text="precio más alto"
-                    android:textColor="@color/plataDis"
+                    android:textColor="@color/negroDis"
                     android:background="@drawable/boton_plata_sel"
                     android:layout_marginRight="20dp"/>
 
@@ -110,7 +112,7 @@
                     android:layout_height="35dp"
                     android:textAppearance="@style/ManropeBold"
                     android:textSize="15sp"
-                    android:textColor="@color/naranjaDis"
+                    android:textColor="@color/negroDis"
                     android:textOff="vendedores top"
                     android:textOn="vendedores top"
                     android:text="vendedores top"
@@ -120,10 +122,15 @@
 
         <Negocio.CustomFontTextView
             android:id="@+id/nombrePlatoLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="55dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginStart="19dp"
-            android:text="Gyozas de verdura"
+
+            android:includeFontPadding="false"
+            android:text="Gyozas de proroporpaos perdura"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="12sp"
+            android:autoSizeMaxTextSize="100sp"
             android:textAppearance="@style/ManropeBold"
             android:ellipsize="none"
             android:maxLines="2"

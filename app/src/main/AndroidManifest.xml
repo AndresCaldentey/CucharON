@@ -57,6 +57,14 @@
             android:screenOrientation="portrait"
             android:exported="true" />
         <activity
+            android:name="Presentation.Perfil"
+            android:screenOrientation="portrait"
+            android:exported="true" />
+        <activity
+            android:name="Presentation.IUEditPerfil"
+            android:screenOrientation="portrait"
+            android:exported="true" />
+        <activity
             android:name="Presentation.IUreserva"
             android:screenOrientation="portrait"
             android:exported="true" />

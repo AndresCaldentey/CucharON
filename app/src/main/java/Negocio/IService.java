@@ -74,6 +74,7 @@ public interface IService {
     boolean validPrecio(String precio);
     boolean validTimeRange(String hora1, String hora2);
     boolean validRaciones(String raciones);
+    boolean isValidDate(String inputDate);
 
     /*GESTION DE MENSAJES*/
     void CrearAlerta(String errorString, Context contexto);
