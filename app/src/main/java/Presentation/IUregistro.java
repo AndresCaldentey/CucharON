@@ -1,20 +1,32 @@
 package Presentation;
 
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.cucharon.R;
 import com.example.cucharon.Usuario;
+
+import java.io.IOException;
+
 import Negocio.*;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class IUregistro extends AppCompatActivity {
 
     EditText nombre, apellido, telefono, email, direccion, password, password2;
+    CircleImageView imagenUsuario;
+    TextView cambiarFoto;
     IService service;
+    boolean noTieneImagen = true;
+    private static final int REQUEST_IMAGE_CAPTURE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,10 +39,48 @@ public class IUregistro extends AppCompatActivity {
         apellido = findViewById(R.id.apellidoRegistro);
         telefono = findViewById(R.id.telefonoRegistro);
         email = findViewById(R.id.emailRegistro);
-        direccion = findViewById(R.id.direccionRegistro);
+        direccion = findViewById(R.id.edadRegistro);
         password = findViewById(R.id.passwordRegistro);
         password2 = findViewById(R.id.passwordRegistro2);
+        cambiarFoto = findViewById(R.id.boton_cambiar_imagen);
+        imagenUsuario = findViewById(R.id.fotoDeUsuario);
+        imagenUsuario.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent pickImageIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(pickImageIntent, REQUEST_IMAGE_CAPTURE);
 
+            }
+
+        });
+        cambiarFoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent pickImageIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(pickImageIntent, REQUEST_IMAGE_CAPTURE);
+
+            }
+
+        });
+
+    }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        //Se ha obtenido resultado de la actividad seleccionar imagen
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK && data != null) {
+            Bitmap bitmap = null;
+            try {
+                bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), data.getData());
+                // Ahora 'bitmap' contiene la imagen en formato Bitmap y puedes usarlo como desees.
+            } catch (IOException e) {
+                e.printStackTrace();
+                // Maneja la excepción apropiadamente
+            }
+            noTieneImagen = false;
+            imagenUsuario.setImageBitmap(bitmap);
+        }
     }
 
     public void onClickRegistrar(View view) {
@@ -51,7 +101,7 @@ public class IUregistro extends AppCompatActivity {
             } else {
                 //Hay que crear el usuario y añadirlo a la db
                 Usuario nuevoUser = new Usuario(email.getText().toString(), nombre.getText().toString(), apellido.getText().toString(),
-                        password.getText().toString(), direccion.getText().toString(),
+                        password.getText().toString(), ""/*direccion.getText().toString()*/,
                         Integer.parseInt(telefono.getText().toString()));
 
                 service.crearUsuario(nuevoUser);

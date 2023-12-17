@@ -37,7 +37,7 @@ public class IUModificarPerfil extends AppCompatActivity {
         apellidoRegistro = findViewById(R.id.apellidoRegistro);
         telefonoRegistro = findViewById(R.id.telefonoRegistro);
         emailRegistro = findViewById(R.id.emailRegistro);
-        direccionRegistro = findViewById(R.id.direccionRegistro);
+        direccionRegistro = findViewById(R.id.edadRegistro);
         passwordRegistro = findViewById(R.id.passwordRegistro);
         passwordRegistro2 = findViewById(R.id.passwordRegistro2);
         errorTv = findViewById(R.id.errorTv);
