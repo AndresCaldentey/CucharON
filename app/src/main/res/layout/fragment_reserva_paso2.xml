@@ -11,14 +11,16 @@
         android:layout_height="match_parent">
 
         <LinearLayout
+            android:id="@+id/linearLayout14"
             android:layout_width="338dp"
             android:layout_height="61dp"
+            android:layout_marginTop="36dp"
             android:gravity="center"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.479"
             app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="621dp">
+            app:layout_constraintTop_toBottomOf="@+id/nomPlato9">
 
             <TextView
                 android:id="@+id/horaRecogidaText"
@@ -50,25 +52,29 @@
             android:id="@+id/imageView24"
             android:layout_width="325dp"
             android:layout_height="152dp"
-            android:layout_marginTop="28dp"
             android:src="@drawable/img_13"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.186"
+            app:layout_constraintHorizontal_bias="0.287"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.044" />
 
         <TextView
             android:id="@+id/nomPlato"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:fontFamily="@font/manrope"
             android:text="Crema de calabaza"
             android:textSize="24sp"
             android:textStyle="normal"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.124"
+            app:layout_constraintHorizontal_bias="0.108"
             app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="213dp" />
+            app:layout_constraintTop_toBottomOf="@+id/imageView24"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/usuarioText"
@@ -77,22 +83,27 @@
             android:fontFamily="@font/manrope"
             android:text="Malíah González"
             android:textSize="28sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.108"
+            app:layout_constraintHorizontal_bias="0.079"
             app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="397dp" />
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout13"
+            app:layout_constraintVertical_bias="0.094" />
 
         <TextView
             android:id="@+id/nomPlato8"
             android:layout_width="140dp"
             android:layout_height="102dp"
+            android:layout_marginTop="15dp"
             android:fontFamily="@font/manrope"
             android:text="Calle Dr. Llunch, Nº23, Valencia"
             android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.092"
+            app:layout_constraintHorizontal_bias="0.058"
             app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="451dp" />
+            app:layout_constraintTop_toBottomOf="@+id/usuarioText"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/nomPlato9"
@@ -101,36 +112,45 @@
             android:fontFamily="@font/manrope"
             android:text="Hora de recogida:"
             android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.154"
+            app:layout_constraintHorizontal_bias="0.098"
             app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="561dp" />
+            app:layout_constraintTop_toBottomOf="@+id/nomPlato8"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/contactBtn"
             android:layout_width="356dp"
             android:layout_height="49dp"
+            android:layout_marginTop="24dp"
             android:background="@drawable/img_17"
             android:fontFamily="@font/manrope"
             android:gravity="center"
             android:text="Contactar"
             android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="712dp" />
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout14"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/reservarbtn"
             android:layout_width="353dp"
             android:layout_height="49dp"
+            android:layout_marginTop="21dp"
             android:background="@drawable/img_16"
             android:fontFamily="@font/manrope"
             android:gravity="center"
             android:text="Reservar"
             android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.525"
             app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="777dp" />
+            app:layout_constraintTop_toBottomOf="@+id/contactBtn"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/valorText"
@@ -140,10 +160,12 @@
             android:text="***"
             android:textColor="#FF8B30"
             android:textSize="40sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.778"
+            app:layout_constraintHorizontal_bias="0.763"
             app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="398dp" />
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout13"
+            app:layout_constraintVertical_bias="0.094" />
 
         <TextView
             android:id="@+id/cantidad"
@@ -166,10 +188,12 @@
             android:text="Precio final:"
             android:textSize="16sp"
             android:textStyle="normal"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.831"
+            app:layout_constraintHorizontal_bias="0.85"
             app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="354dp" />
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout13"
+            app:layout_constraintVertical_bias="0.006" />
 
         <TextView
             android:id="@+id/precio"
@@ -179,10 +203,12 @@
             android:text="3€"
             android:textSize="16sp"
             android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.958"
             app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="354dp" />
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout13"
+            app:layout_constraintVertical_bias="0.006" />
 
         <TextView
             android:id="@+id/nomPlato4"
@@ -192,23 +218,28 @@
             android:text="unidad"
             android:textSize="16sp"
             android:textStyle="normal"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.109"
+            app:layout_constraintHorizontal_bias="0.077"
             app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="278dp" />
+            app:layout_constraintTop_toBottomOf="@+id/textView30"
+            app:layout_constraintVertical_bias="0.057" />
 
         <TextView
             android:id="@+id/textView30"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:fontFamily="@font/manrope"
             android:text="Veggie"
             android:textColor="#D5C331"
             android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.069"
+            app:layout_constraintHorizontal_bias="0.06"
             app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="246dp" />
+            app:layout_constraintTop_toBottomOf="@+id/nomPlato"
+            app:layout_constraintVertical_bias="0.005" />
 
         <ImageView
             android:id="@+id/botonMenos"
@@ -228,13 +259,17 @@
             tools:srcCompat="@drawable/img_14" />
 
         <LinearLayout
+            android:id="@+id/linearLayout13"
             android:layout_width="349dp"
             android:layout_height="18dp"
             android:gravity="center"
             android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.507"
             app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="325dp">
+            app:layout_constraintTop_toBottomOf="@+id/nomPlato4"
+            app:layout_constraintVertical_bias="0.029">
 
             <View
                 android:id="@+id/divider8"
