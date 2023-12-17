@@ -17,23 +17,23 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
-import com.codeboy.pager2_transformers.Pager2_PopTransformer;
+//import com.codeboy.pager2_transformers.Pager2_PopTransformer;
 import com.example.cucharon.Producto;
 import com.example.cucharon.R;
 import com.example.cucharon.Usuario;
+import com.example.cucharon.add_detalles;
+import com.example.cucharon.reserva_paso2;
 
 import java.util.ArrayList;
 import java.util.List;
 import Negocio.CustomFontTextView;
 import Negocio.Service;
 import Presentation.Adapters.AdaptadorHome;
+import Presentation.Adapters.Sabor;
+import Presentation.Adapters.SliderSabor;
 import de.hdodenhof.circleimageview.CircleImageView;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link Home#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class Home extends Fragment {
 
 
@@ -87,7 +87,12 @@ public class Home extends Fragment {
         AdaptadorHome.OnClickListenerPlato logicaPlatoClick = new AdaptadorHome.OnClickListenerPlato() {
             @Override
             public void click(Producto plato) {
-                //PONER EL SALTO A LA SIGUIENTE PANTALLA
+               // reserva_paso2 fragmentoReservaPaso2 = new reserva_paso2();
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("plato", plato);
+                //fragmentoReservaPaso2.setArguments(bundle);
+                getParentFragmentManager().setFragmentResult("datos2", bundle);
+                getParentFragmentManager().beginTransaction().replace(R.id.mainFragmentContainer, new reserva_paso2()).commit();
             }
         };
 
@@ -129,6 +134,7 @@ public class Home extends Fragment {
                 actualizarPantalla(productos.get(position));
             }
         });
+
 
         mapaB.setOnClickListener(new View.OnClickListener() {
             @Override
