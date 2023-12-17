@@ -39,8 +39,8 @@ public class PantallaDeCargaLogin extends AppCompatActivity {
                 @Override
                 public void run() {
                     // Este código se ejecutará después de SPLASH_TIMEOUT
-                    Intent intent = new Intent(PantallaDeCargaLogin.this, IUsugerencias.class);
-                    startActivity(intent);
+                    /*Intent intent = new Intent(PantallaDeCargaLogin.this, IUsugerencias.class);
+                    startActivity(intent);*/
                     finish(); // Cierra la actividad de carga para que no vuelva al presionar "Atrás"
                 }
             }, SPLASH_TIMEOUT);

@@ -25,7 +25,7 @@
                 android:layout_height="98dp"
                 android:ems="10"
                 android:fontFamily="@font/manrope"
-                android:hint="20"
+                android:hint="00"
                 android:inputType="number"
                 android:textAlignment="center"
                 android:textColor="#A8A8A8"
@@ -44,7 +44,7 @@
                 android:layout_weight="1"
                 android:ems="10"
                 android:fontFamily="@font/manrope"
-                android:hint="30"
+                android:hint="00"
                 android:inputType="number"
                 android:textAlignment="center"
                 android:textColor="#A8A8A8"
@@ -95,7 +95,7 @@
             app:layout_constraintVertical_bias="0.094" />
 
         <TextView
-            android:id="@+id/nomPlato8"
+            android:id="@+id/textoDireccion"
             android:layout_width="140dp"
             android:layout_height="102dp"
             android:layout_marginTop="15dp"
@@ -120,7 +120,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.098"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/nomPlato8"
+            app:layout_constraintTop_toBottomOf="@+id/textoDireccion"
             app:layout_constraintVertical_bias="0.0" />
 
         <TextView

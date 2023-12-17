@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import Presentation.Adapters.AdaptadorPlato;
@@ -19,7 +20,7 @@ import Presentation.Adapters.AdaptadorPlato;
 public class reserva_paso2 extends Fragment {
 
     Producto producto;
-    TextView nombrePlato, cantidad, unidad, precio;
+    TextView nombrePlato, cantidad, unidad, precio, nombreUsuario, valoracion;
 
     public reserva_paso2() {
         // Required empty public constructor
@@ -32,6 +33,8 @@ public class reserva_paso2 extends Fragment {
         cantidad = view.findViewById(R.id.cantidad);
         unidad = view.findViewById(R.id.unidad);
         precio = view.findViewById(R.id.precio);
+        nombreUsuario= view.findViewById(R.id.usuarioText);
+        valoracion = view.findViewById(R.id.valorText);
     }
 
     @Override
@@ -43,9 +46,13 @@ public class reserva_paso2 extends Fragment {
                 producto = (Producto) result.getSerializable("plato");
 
                 nombrePlato.setText(producto.getNombre());
-                cantidad.setText(producto.getNumRaciones() + "");
+
                 setUnidad();
                 setPrecio();
+                nombreUsuario.setText(producto.getUsuarioPublicador().getNombre() + " " + producto.getUsuarioPublicador().getApellido());
+
+                System.out.println(producto.getUsuarioPublicador().getValoracion()+"");
+                 setValoracion(producto.getUsuarioPublicador().getValoracion());
 
             }
         });
@@ -53,14 +60,28 @@ public class reserva_paso2 extends Fragment {
     }
 
     private void setUnidad() {
+        cantidad.setText(producto.getNumRaciones() + "");
+
         if (producto.getNumRaciones() > 1) {
             unidad.setText("Unidades");
+        } else {
+            unidad.setText("Unidad");
         }
     }
 
     private void setPrecio() {
         Double cantidad2 = Double.parseDouble(cantidad.getText().toString());
         precio.setText(cantidad2 * producto.getPrecio() + " €");
+    }
+
+    private void setValoracion(int cantidad) {
+
+        String valor = " ";
+        for (int i = 0; i < cantidad; i++) {
+            valor += "*";
+        }
+
+        valoracion.setText(valor);
     }
 
     @Override

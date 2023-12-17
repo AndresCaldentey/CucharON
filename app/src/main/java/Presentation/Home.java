@@ -8,7 +8,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.CompositePageTransformer;
-import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.view.LayoutInflater;
@@ -21,59 +20,44 @@ import android.widget.ToggleButton;
 import com.example.cucharon.Producto;
 import com.example.cucharon.R;
 import com.example.cucharon.Usuario;
-import com.example.cucharon.add_detalles;
-import com.example.cucharon.reserva_paso2;
 
 import java.util.ArrayList;
 import java.util.List;
 import Negocio.CustomFontTextView;
 import Negocio.Service;
 import Presentation.Adapters.AdaptadorHome;
-import Presentation.Adapters.Sabor;
-import Presentation.Adapters.SliderSabor;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 
 public class Home extends Fragment {
-
-
-    public Home() {
-        // Required empty public constructor
-    }
     TextView nombrePerfilHome, precioLabel, valoracionPerfil, nombrePublicador;
     CustomFontTextView nombrePlatoLabel;
     ViewPager2 platosSliderHome;
     CircleImageView fotoPerfilPub;
     ToggleButton mapaB, masBaratoB, masCaroB, vendedorTopB;
-
     Service service;
-
     List<Producto> productos;
     List<ToggleButton> botones = new ArrayList<>();
-
     ToggleButton previousChecked = null;
+
+    public Home() {}
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         //Inicializacion variables programa
+        service = Service.getService();
         nombrePerfilHome = view.findViewById(R.id.nombrePerfilHome);
         precioLabel = view.findViewById(R.id.precioLabel);
         valoracionPerfil = view.findViewById(R.id.valoracionPerfil);
         nombrePublicador = view.findViewById(R.id.nombrePublicador);
-
         nombrePlatoLabel = view.findViewById(R.id.nombrePlatoLabel);
-
         fotoPerfilPub = view.findViewById(R.id.fotoPerfilPub);
-
         platosSliderHome = view.findViewById(R.id.platosSliderHome);
-
         mapaB = view.findViewById(R.id.mapaB);
         masBaratoB = view.findViewById(R.id.masBaratoB);
         masCaroB = view.findViewById(R.id.masCaroB);
         vendedorTopB = view.findViewById(R.id.vendedorTopB);
-
-        service = Service.getService();
 
         //Inicialización del Slider
         if(getActivity() != null) {
@@ -81,32 +65,25 @@ public class Home extends Fragment {
                 Navegacion activityActual = (Navegacion) getActivity();
                 productos = activityActual.getAllProductos();
             }
-
         }
 
         AdaptadorHome.OnClickListenerPlato logicaPlatoClick = new AdaptadorHome.OnClickListenerPlato() {
             @Override
             public void click(Producto plato) {
-               // reserva_paso2 fragmentoReservaPaso2 = new reserva_paso2();
                 Bundle bundle = new Bundle();
-                bundle.putSerializable("plato", plato);
-                //fragmentoReservaPaso2.setArguments(bundle);
-                getParentFragmentManager().setFragmentResult("datos2", bundle);
-                getParentFragmentManager().beginTransaction().replace(R.id.mainFragmentContainer, new reserva_paso2()).commit();
+                bundle.putSerializable("platoReserva3", plato);
+                getParentFragmentManager().setFragmentResult("Reserva3", bundle);
+                getParentFragmentManager().beginTransaction().replace(R.id.mainFragmentContainer, new Reserva3()).commit();
             }
         };
 
-        AdaptadorHome platosAdapter = new AdaptadorHome(productos, logicaPlatoClick);
-
-        platosSliderHome.setAdapter(platosAdapter);
-
+        platosSliderHome.setAdapter(new AdaptadorHome(productos, logicaPlatoClick));
 
         //Codigo para hacer el slider con su animación de hacer los otros platos en chiquitito
         platosSliderHome.setClipToPadding(false);
         platosSliderHome.setClipChildren(false);
         platosSliderHome.setOffscreenPageLimit(3);
         platosSliderHome.getChildAt(0).setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
-
 
         CompositePageTransformer compositePageTransformer = new CompositePageTransformer();
         //compositePageTransformer.addTransformer(new MarginPageTransformer(20));
@@ -134,7 +111,6 @@ public class Home extends Fragment {
                 actualizarPantalla(productos.get(position));
             }
         });
-
 
         mapaB.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -168,9 +144,7 @@ public class Home extends Fragment {
             }
         });
 
-
     }
-
 
     @SuppressLint("ResourceAsColor")
     public void actualizarBotones(ToggleButton justCheckedB){
@@ -192,8 +166,8 @@ public class Home extends Fragment {
         //nombrePlatoLabel.setText("aaaaaaaaaaaaaaaaaaaaa \n patatas");
 
         if(publicador.getFoto() != null) fotoPerfilPub.setImageBitmap(service.pasarStringAImagen(publicador.getFoto()));
-
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

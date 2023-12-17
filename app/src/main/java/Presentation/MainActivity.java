@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (!correo.isEmpty()) {
             service.setLoggedUser(service.getUsuarioByEmail(correo));
-            Intent intent = new Intent(MainActivity.this, IUsugerencias.class);
+            Intent intent = new Intent(MainActivity.this, Navegacion.class);
             startActivity(intent);
             finish();
         } else {

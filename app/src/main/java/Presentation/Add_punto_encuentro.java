@@ -1,4 +1,4 @@
-package com.example.cucharon;
+package Presentation;
 
 import android.Manifest;
 import android.app.AlertDialog;
@@ -21,6 +21,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import com.example.cucharon.Plato_publicado;
+import com.example.cucharon.R;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -38,7 +40,7 @@ import Presentation.Adapters.DataObject;
 import Presentation.Adapters.OnDataPassListener;
 
 
-public class add_punto_encuentro extends Fragment implements OnMapReadyCallback {
+public class Add_punto_encuentro extends Fragment implements OnMapReadyCallback {
 
     private OnDataPassListener dataPassListener;
     EditText direccionEditText;
@@ -46,7 +48,7 @@ public class add_punto_encuentro extends Fragment implements OnMapReadyCallback 
     ImageView buscarButton;
     Button botonSubirPlato;
     String direccion;
-    public add_punto_encuentro() {
+    public Add_punto_encuentro() {
         // Required empty public constructor
     }
 
