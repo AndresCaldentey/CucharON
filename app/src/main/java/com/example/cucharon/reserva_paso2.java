@@ -20,7 +20,7 @@ import Presentation.Adapters.AdaptadorPlato;
 public class reserva_paso2 extends Fragment {
 
     Producto producto;
-    TextView nombrePlato, cantidad, unidad, precio, nombreUsuario, valoracion;
+    TextView nombrePlato, cantidad, unidad, precio, nombreUsuario, valoracion, direccion, rangoRecogida;
 
     public reserva_paso2() {
         // Required empty public constructor
@@ -33,8 +33,10 @@ public class reserva_paso2 extends Fragment {
         cantidad = view.findViewById(R.id.cantidad);
         unidad = view.findViewById(R.id.unidad);
         precio = view.findViewById(R.id.precio);
-        nombreUsuario= view.findViewById(R.id.usuarioText);
+        nombreUsuario = view.findViewById(R.id.usuarioText);
         valoracion = view.findViewById(R.id.valorText);
+        direccion = view.findViewById(R.id.textoDireccion);
+        rangoRecogida = view.findViewById(R.id.rangoRecogidaText);
     }
 
     @Override
@@ -48,12 +50,16 @@ public class reserva_paso2 extends Fragment {
                 nombrePlato.setText(producto.getNombre());
 
                 setUnidad();
+
                 setPrecio();
+
                 nombreUsuario.setText(producto.getUsuarioPublicador().getNombre() + " " + producto.getUsuarioPublicador().getApellido());
 
-                System.out.println(producto.getUsuarioPublicador().getValoracion()+"");
-                 setValoracion(producto.getUsuarioPublicador().getValoracion());
+                setValoracion(producto.getUsuarioPublicador().getValoracion());
 
+                direccion.setText(producto.getDireccionRecogida());
+
+                rangoRecogida.setText("Rango de hora: "+ producto.getHoraRecogida());
             }
         });
 

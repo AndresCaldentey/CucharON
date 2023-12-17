@@ -29,6 +29,8 @@ public class Usuario {
     private int cantidadValoracion;
     @DatabaseField
     private int valoracion;
+    @DatabaseField
+    private int edad;
 
     public Usuario() {}
 
@@ -119,5 +121,13 @@ public class Usuario {
 
     public void setValoracion(int valoracion) {
         this.valoracion = valoracion;
+    }
+
+    public int getEdad() {
+        return edad;
+    }
+
+    public void setEdad(int edad) {
+        this.edad = edad;
     }
 }

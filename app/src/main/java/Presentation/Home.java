@@ -93,7 +93,7 @@ public class Home extends Fragment {
                 bundle.putSerializable("plato", plato);
                 //fragmentoReservaPaso2.setArguments(bundle);
                 getParentFragmentManager().setFragmentResult("datos2", bundle);
-                getParentFragmentManager().beginTransaction().replace(R.id.mainFragmentContainer, new reserva3()).commit();
+                getParentFragmentManager().beginTransaction().replace(R.id.mainFragmentContainer, new reserva_paso2()).commit();
             }
         };
 
