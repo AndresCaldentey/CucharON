@@ -7,6 +7,8 @@
     android:background="#DADADA"
     app:layoutDescription="@xml/perfil2_scene2">
 
+
+
     <ImageView
         android:id="@+id/fotoDPerfil"
         android:layout_width="match_parent"
@@ -25,16 +27,18 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout3"
         android:layout_width="match_parent"
-        android:layout_height="350dp"
+        android:layout_height="match_parent"
+        android:layout_marginTop="450dp"
         android:background="@drawable/contenedor_editar_perfil"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="435dp">
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/nombrePerfil"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
             android:text="Martinha"
             android:textAlignment="center"
             android:textAppearance="@style/ManropeBold"
@@ -120,16 +124,6 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/mis_platos"
-        android:layout_width="wrap_content"
-        android:layout_height="609dp"
-        android:background="@drawable/ic_launcher_background"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <ImageView
         android:id="@+id/EditarB"
         android:layout_width="24dp"
@@ -154,5 +148,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/cerrar_blanco" />
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/mis_platos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="500dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.motion.widget.MotionLayout>
