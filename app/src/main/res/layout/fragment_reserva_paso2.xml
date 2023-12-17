@@ -14,21 +14,21 @@
             android:id="@+id/linearLayout14"
             android:layout_width="338dp"
             android:layout_height="61dp"
-            android:layout_marginTop="36dp"
             android:gravity="center"
             android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.479"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/nomPlato9">
+            tools:layout_editor_absoluteX="35dp"
+            tools:layout_editor_absoluteY="625dp">
 
-            <TextView
+            <EditText
                 android:id="@+id/horaRecogidaText"
-                android:layout_width="171dp"
-                android:layout_height="61dp"
+                android:layout_width="160dp"
+                android:layout_height="98dp"
+                android:ems="10"
                 android:fontFamily="@font/manrope"
-                android:gravity="center"
-                android:text="20"
+                android:hint="20"
+                android:inputType="number"
+                android:textAlignment="center"
+                android:textColor="#A8A8A8"
                 android:textSize="34sp" />
 
             <View
@@ -37,15 +37,19 @@
                 android:layout_height="match_parent"
                 android:background="?android:attr/listDivider" />
 
-            <TextView
+            <EditText
                 android:id="@+id/minutosRecogidaText"
-                android:layout_width="146dp"
-                android:layout_height="61dp"
+                android:layout_width="160dp"
+                android:layout_height="98dp"
                 android:layout_weight="1"
+                android:ems="10"
                 android:fontFamily="@font/manrope"
-                android:gravity="center"
-                android:text="30"
+                android:hint="30"
+                android:inputType="number"
+                android:textAlignment="center"
+                android:textColor="#A8A8A8"
                 android:textSize="34sp" />
+
         </LinearLayout>
 
         <ImageView
@@ -281,13 +285,18 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/textView20"
+            android:id="@+id/rangoRecogidaText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TextView"
+            android:fontFamily="@font/manrope"
+            android:text="Rango de recogida:"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.069"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:layout_editor_absoluteX="227dp" />
+            app:layout_constraintVertical_bias="0.709" />
 
         <TextView
             android:id="@+id/unidadesDispoText"
@@ -302,6 +311,20 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.302" />
+
+        <TextView
+            android:id="@+id/textView24"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/manrope_medium"
+            android:text="18:30 - 21:30"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout14"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.544"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.97" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
