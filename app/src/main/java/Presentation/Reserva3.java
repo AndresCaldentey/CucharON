@@ -48,14 +48,6 @@ public class Reserva3 extends Fragment {
         imagenPlato = view.findViewById(R.id.imagenPlatoReserva3);
         btnReserva = view.findViewById(R.id.btnReserva3);
 
-        Usuario usuario = service.getLoggedUser();
-        nombreUser.setText(usuario.getNombre());
-        valoracionUser.setText(usuario.getValoracion()+"");
-        imagenUser.setImageBitmap(service.pasarStringAImagen(usuario.getFoto()) );
-        nombrePlato.setText(producto.getNombre());
-        precioPlato.setText(producto.getPrecio() + "€");
-        imagenPlato.setImageBitmap(service.pasarStringAImagen(producto.getImagen()) );
-
         btnReserva.setOnClickListener((v) -> {
             getParentFragmentManager().beginTransaction().replace(R.id.mainFragmentContainer, new reserva_paso2()).commit();
         });
@@ -68,6 +60,14 @@ public class Reserva3 extends Fragment {
             @Override
             public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
                 producto = (Producto) result.getSerializable("platoReserva3");
+                Usuario usuario = service.getLoggedUser();
+
+                nombreUser.setText(usuario.getNombre());
+                valoracionUser.setText(usuario.getValoracion()+"");
+                imagenUser.setImageBitmap(service.pasarStringAImagen(usuario.getFoto()) );
+                nombrePlato.setText(producto.getNombre());
+                precioPlato.setText(producto.getPrecio() + "€");
+                imagenPlato.setImageBitmap(service.pasarStringAImagen(producto.getImagen()) );
             }
         });
     }
