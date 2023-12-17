@@ -32,28 +32,11 @@
             android:resource="@array/preloaded_fonts" />
 
         <activity
-            android:name="Presentation.IUposteoProducto"
-            android:screenOrientation="portrait"
-            android:exported="true" />
-
-        <activity
-            android:name="Presentation.IUbuscar"
-            android:screenOrientation="portrait"
-            android:exported="true" />
-        <activity
             android:name="Presentation.IUAddPlato"
             android:screenOrientation="portrait"
             android:exported="true" />
         <activity
-            android:name="Presentation.IUModificarPerfil"
-            android:screenOrientation="portrait"
-            android:exported="true" />
-        <activity
             android:name="Presentation.Navegacion"
-            android:screenOrientation="portrait"
-            android:exported="true" />
-        <activity
-            android:name="Presentation.IUperfil"
             android:screenOrientation="portrait"
             android:exported="true" />
         <activity
@@ -62,14 +45,6 @@
             android:exported="true" />
         <activity
             android:name="Presentation.IUEditPerfil"
-            android:screenOrientation="portrait"
-            android:exported="true" />
-        <activity
-            android:name="Presentation.IUreserva"
-            android:screenOrientation="portrait"
-            android:exported="true" />
-        <activity
-            android:name="Presentation.IUsugerencias"
             android:screenOrientation="portrait"
             android:exported="true" />
         <activity

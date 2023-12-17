@@ -24,7 +24,7 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/precioProd"
+                    android:id="@+id/precioPlatoReserva3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/manrope"
@@ -34,7 +34,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.084"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/nombreProd"
+                    app:layout_constraintTop_toBottomOf="@+id/nombrePlatoReserva3"
                     app:layout_constraintVertical_bias="0.064" />
 
                 <TextView
@@ -48,7 +48,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.175"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/nombreProd"
+                    app:layout_constraintTop_toBottomOf="@+id/nombrePlatoReserva3"
                     app:layout_constraintVertical_bias="0.593" />
 
                 <LinearLayout
@@ -116,7 +116,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.623"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/precioProd"
+                    app:layout_constraintTop_toBottomOf="@+id/precioPlatoReserva3"
                     app:layout_constraintVertical_bias="0.092">
 
                     <TextView
@@ -167,7 +167,7 @@
                         android:orientation="horizontal">
 
                         <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/fotoPerfil"
+                            android:id="@+id/fotoPerfilReserva3"
                             android:layout_width="40dp"
                             android:layout_height="23dp"
                             android:layout_margin="6dp"
@@ -177,7 +177,7 @@
                     </LinearLayout>
 
                     <TextView
-                        android:id="@+id/nombreUsuario"
+                        android:id="@+id/nombreUsuarioReserva3"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -187,7 +187,7 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/valoracionText"
+                        android:id="@+id/valoracionReserva3"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -213,7 +213,7 @@
                 </LinearLayout>
 
                 <ImageView
-                    android:id="@+id/imageView23"
+                    android:id="@+id/imagenPlatoReserva3"
                     android:layout_width="347dp"
                     android:layout_height="213dp"
                     android:scaleType="centerCrop"
@@ -226,7 +226,7 @@
                     app:layout_constraintVertical_bias="0.295" />
 
                 <TextView
-                    android:id="@+id/nombreProd"
+                    android:id="@+id/nombrePlatoReserva3"
                     android:layout_width="320dp"
                     android:layout_height="125dp"
                     android:fontFamily="@font/manrope"
@@ -237,7 +237,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.345"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView23"
+                    app:layout_constraintTop_toBottomOf="@+id/imagenPlatoReserva3"
                     app:layout_constraintVertical_bias="0.0" />
 
                 <ImageView
