@@ -3,6 +3,7 @@ package com.example.cucharon;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
+import java.util.Date;
 import java.util.List;
 
 import Persistencia.UsuarioRepository;
@@ -30,7 +31,7 @@ public class Usuario {
     @DatabaseField
     private int valoracion;
     @DatabaseField
-    private int edad;
+    private Date edad;
 
     public Usuario() {}
 
@@ -123,11 +124,11 @@ public class Usuario {
         this.valoracion = valoracion;
     }
 
-    public int getEdad() {
+    public Date getEdad() {
         return edad;
     }
 
-    public void setEdad(int edad) {
+    public void setEdad(Date edad) {
         this.edad = edad;
     }
 }
