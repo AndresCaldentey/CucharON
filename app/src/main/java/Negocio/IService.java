@@ -23,6 +23,7 @@ public interface IService {
     void actualizarUser(Usuario user);
     boolean cancelarReserva(Producto producto, Usuario user);
 
+
     /*PERSISTENCIA PRODUCTO*/
     Producto crearProducto(Producto producto);
     Producto getProductoById(int id);
@@ -34,6 +35,7 @@ public interface IService {
     List<Producto> getAllProducto();
     void actualizarProducto(Producto p);
     void borrarProducto(Producto producto);
+    List<Producto> getProductosSinVenderPorUser(Usuario user);
 
     /*PERSISTENCIA CATEGORIA*/
     Categoria getCategoriaByName(String nombre);

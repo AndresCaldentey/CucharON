@@ -9,11 +9,16 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.viewpager2.widget.ViewPager2;
 
+import com.example.cucharon.Producto;
 import com.example.cucharon.R;
 import com.example.cucharon.Usuario;
 
+import java.util.List;
+
 import Negocio.Service;
+import Presentation.Adapters.SliderPlatosEnVenta;
 
 public class Perfil extends AppCompatActivity {
     Service servicio;
@@ -21,6 +26,8 @@ public class Perfil extends AppCompatActivity {
 
     Usuario usuarioActual;
     ImageView fotoDPerfil;
+
+    ViewPager2 mis_platos;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -33,6 +40,10 @@ public class Perfil extends AppCompatActivity {
         valoracion = findViewById(R.id.valoracion);
         descripcion = findViewById(R.id.descripcion);
         fotoDPerfil = findViewById(R.id.fotoDPerfil);
+        mis_platos = findViewById(R.id.mis_platos);
+
+        List<Producto> productos = servicio.getAllProducto();/**servicio.getProductosSinVenderPorUser(usuarioActual);**/
+        mis_platos.setAdapter(new SliderPlatosEnVenta(productos));
 
          Intent intent = getIntent();
          String userEmail = intent.getStringExtra("usuario");

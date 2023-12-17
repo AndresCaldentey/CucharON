@@ -88,6 +88,11 @@ public class Service implements IService{
     public void actualizarProducto(Producto p) { productoRepo.actualizar(p);}
     public void borrarProducto(Producto producto) { productoRepo.delete(producto.getIdProducto());}
 
+    @Override
+    public List<Producto> getProductosSinVenderPorUser(Usuario user) {
+        return productoRepo.getProductosSinVenderPorUser(user);
+    }
+
     /*PERSISTENCIA CATEGORIA*/
     public Categoria getCategoriaByName(String nombre) { return categoriaRepo.getCategoriaByName(nombre); }
     public List<Categoria> getAllCategorias() {return categoriaRepo.obtenerTodos();}

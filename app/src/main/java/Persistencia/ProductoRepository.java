@@ -173,4 +173,32 @@ public class ProductoRepository extends Repository<Producto>{
         }
         return productos;
     }
+    public List<Producto> getProductosSinVenderPorUser(Usuario usuario){
+        Thread hilo = new Thread(() ->
+        {
+
+            try {
+                QueryBuilder<Producto, ?> queryBuilder = getDao().queryBuilder();
+                Where<Producto, ?> where = queryBuilder.where();
+                where.eq("usuarioPublicador", usuario).and().isNull("usuarioComprador");
+                PreparedQuery<Producto> preparedQuery = queryBuilder.prepare();
+
+                // Ejecutar la consulta
+                productos = getDao().query(preparedQuery);
+
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        });
+        hilo.start();
+
+        //Esperar al hilo
+        try {
+            hilo.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return productos;
+    }
 }
