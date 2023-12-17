@@ -1,4 +1,4 @@
-package com.example.cucharon;
+package Presentation;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -8,9 +8,6 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager2.widget.CompositePageTransformer;
-import androidx.viewpager2.widget.MarginPageTransformer;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,16 +16,13 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.regex.Pattern;
+import com.example.cucharon.R;
 
 import Presentation.Adapters.DataObject;
 import Presentation.Adapters.OnDataPassListener;
-import Presentation.Adapters.Sabor;
-import Presentation.Adapters.SliderSabor;
-import Presentation.AddPlatoSabores;
 
 
-public class add_detalles extends Fragment {
+public class Add_detalles extends Fragment {
 
     TextView descripcion;
     TextView racion;
@@ -43,7 +37,7 @@ public class add_detalles extends Fragment {
     private OnDataPassListener dataPassListener;
     String textoError = "";
 
-    public add_detalles() {
+    public Add_detalles() {
         // Required empty public constructor
     }
 
@@ -72,7 +66,7 @@ public class add_detalles extends Fragment {
                 sendPrecioToActivity(precio.getText().toString());
                 sendRacionToActivity(racion.getText().toString());
 
-                getParentFragmentManager().beginTransaction().replace(R.id.addPlatoFragmentMan, new add_punto_encuentro()).commit();
+                getParentFragmentManager().beginTransaction().replace(R.id.addPlatoFragmentMan, new Add_punto_encuentro()).commit();
 
             } else {
                 mostrarAlerta();
