@@ -30,7 +30,7 @@ import Presentation.Adapters.AdaptadorPlato;
 public class Reserva3 extends Fragment {
     private Service service;
     private TextView nombreUser, valoracionUser, nombrePlato, precioPlato, btnReserva;
-    private ImageView cerrar, imagenUser, imagenPlato;
+    private ImageView imagenUser, imagenPlato;
     private Producto producto;
 
     public Reserva3() { }
@@ -77,4 +77,5 @@ public class Reserva3 extends Fragment {
                              Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_reserva3, container, false);
     }
+
 }

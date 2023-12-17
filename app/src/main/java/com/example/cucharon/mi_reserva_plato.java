@@ -77,7 +77,7 @@ public class mi_reserva_plato extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        cerrar = view.findViewById(R.id.cerrar);
+        cerrar = view.findViewById(R.id.cerrarVerBusqueda);
         nombre_usu = view.findViewById(R.id.nombre_usu);
         precio = view.findViewById(R.id.precio_plato1);
         titulo = view.findViewById(R.id.tituloDelPlato);

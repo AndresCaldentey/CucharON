@@ -1,7 +1,8 @@
 package Presentation.Adapters;
 
-import android.content.Context;
+import android.app.Activity;
 import android.graphics.Bitmap;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,25 +20,24 @@ import java.util.List;
 
 import Negocio.IService;
 import Negocio.Service;
+import Presentation.Navegacion;
+import Presentation.Reserva3;
 
 //El Adaptador es donde se almacena cada instancia de mostrar un plato y el holder es como se define cada instancia de mostrar plato.
 public class AdaptadorPlato extends RecyclerView.Adapter<AdaptadorPlato.AdaptadorPlatoHolder>{
-
     //Aquí guardamos la lista de los platos que queremos mostrar
     List<Producto> platos = new ArrayList<>();
-    Context context;
+    Activity actividad;
     IService service;
-    ClickPlato logicaPlato;
-    public AdaptadorPlato(ClickPlato logicaPlato) {
-        service = Service.getService();
-    }
-    public AdaptadorPlato(List<Producto> platos, ClickPlato logicaPlato) {
 
+    public AdaptadorPlato(List<Producto> platos, Activity actividad) {
         this.platos = platos;
-        this.logicaPlato = logicaPlato;
+        this.actividad = actividad;
         this.service = Service.getService();
     }
+
     public void setPlatos (List<Producto> platos) { this.platos = platos; }
+
     @NonNull
     @Override
     public AdaptadorPlato.AdaptadorPlatoHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -65,38 +65,40 @@ public class AdaptadorPlato extends RecyclerView.Adapter<AdaptadorPlato.Adaptado
 
     class AdaptadorPlatoHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         //inicializar las variables :)
-        TextView nomP, recP, precioP, puntuacionPerfil;
-        ImageView platoI, fotoDPerfil;
+        TextView nombre, recogida, precio, puntuacionPerfil;
+        ImageView imagen, fotoPerfil;
         Producto plato;
+
         public AdaptadorPlatoHolder(@NonNull View itemView) {
             super(itemView);
-            nomP = itemView.findViewById(R.id.nomP);
-            recP = itemView.findViewById(R.id.recP);
-            precioP = itemView.findViewById(R.id.precioP);
-            platoI = itemView.findViewById(R.id.platoI);
-            fotoDPerfil = itemView.findViewById(R.id.fotoDPerfil);
+            nombre = itemView.findViewById(R.id.nombreItemPlato);
+            recogida = itemView.findViewById(R.id.recogidaItemPlato);
+            precio = itemView.findViewById(R.id.precioItemPlato);
+            imagen = itemView.findViewById(R.id.imagenItemPlato);
+            fotoPerfil = itemView.findViewById(R.id.fotoPerfilItemPlato);
             puntuacionPerfil = itemView.findViewById(R.id.puntuacionPerfil);
             itemView.setOnClickListener(this);
         }
+
         public void imprimir(int position) {
             //Este método se encarga de imprimir el plato
-            nomP.setText(platos.get(position).getNombre());
-            recP.setText(platos.get(position).getHoraRecogida());
-            precioP.setText(convertirAFormato(platos.get(position).getPrecio()) + "€");
-            Bitmap image = service.pasarStringAImagen(platos.get(position).getImagen());
-            platoI.setImageBitmap(image);
             plato = platos.get(position);
+            nombre.setText(plato.getNombre());
+            recogida.setText(plato.getHoraRecogida());
+            precio.setText(convertirAFormato(plato.getPrecio()) + "€");
+            Bitmap image = service.pasarStringAImagen(plato.getImagen());
+            imagen.setImageBitmap(image);
         }
 
         @Override
         public void onClick(View view) {
             //aquí se define el listener que espera al click de un plato.
-            logicaPlato.click(plato);
-
-
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("platoReserva3", plato);
+            Navegacion navegacion = (Navegacion) actividad;
+            navegacion.getSupportFragmentManager().setFragmentResult("Reserva3", bundle);
+            navegacion.getSupportFragmentManager().beginTransaction().replace(R.id.mainFragmentContainer, new Reserva3()).commit();
         }
     }
-    public interface ClickPlato {
-        public void click(Producto plato);
-    }
+
 }

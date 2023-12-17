@@ -14,11 +14,11 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:layout_marginTop="0dp">
+            android:layout_marginTop="0dp"
+            android:layout_marginBottom="20dp">
 
             <ImageView
-                android:id="@+id/cerrar"
+                android:id="@+id/cerrarVerBusqueda"
                 android:layout_width="16dp"
                 android:layout_height="16dp"
                 android:layout_marginStart="112dp"
@@ -31,7 +31,7 @@
                 app:srcCompat="@drawable/cerrar" />
 
             <TextView
-                android:id="@+id/pais_en_tu_tv"
+                android:id="@+id/paisVerBusqueda"
                 style="@style/ManropeBold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -54,14 +54,13 @@
                 android:text="  paladar"
                 android:textSize="60sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/pais_en_tu_tv" />
+                app:layout_constraintTop_toTopOf="@id/paisVerBusqueda" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recylerPlatosVerBusqueda"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/listaPlatos"
-            />
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
 

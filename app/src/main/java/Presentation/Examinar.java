@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentContainerView;
 
@@ -18,34 +19,19 @@ import com.example.cucharon.R;
 import Presentation.Adapters.ClickCategoria;
 import Presentation.Adapters.Pais;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link Examinar#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class Examinar extends Fragment {
+    private Button btnProcedencia, btnSabor;
+    private FragmentContainerView contenedorExaminar;
 
-    Button procedenciaB, saborB;
-    boolean procedenciaPress, saborPress;
-
-    Drawable botonPulsado, botonSinPulsar;
-    FragmentContainerView contenedorExaminar;
-
-    public Examinar() {
-        // Required empty public constructor
-    }
-
+    public Examinar() { }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        procedenciaB = view.findViewById(R.id.procedenciaB);
-        saborB = view.findViewById(R.id.saborB);
-        botonPulsado = view.getResources().getDrawable(R.drawable.boton_naranja);
-        botonSinPulsar = view.getResources().getDrawable(R.drawable.boton_verde_borde);
-        saborPress = false;
-        procedenciaPress = true;
         contenedorExaminar = view.findViewById(R.id.contenedorExaminar);
+        btnProcedencia = view.findViewById(R.id.procedenciaB);
+        btnSabor = view.findViewById(R.id.saborB);
+
         ClickCategoria logicaBusqueda = new ClickCategoria() {
             @Override
             public void click(Pais pais) {
@@ -55,35 +41,21 @@ public class Examinar extends Fragment {
                 getParentFragmentManager().beginTransaction().replace(R.id.mainFragmentContainer, new verBusqueda()).commit();
             }
         };
-        procedenciaB.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(saborPress){
-                    saborPress = !saborPress;
-                    saborB.setBackground(botonSinPulsar);
-                    procedenciaPress = !procedenciaPress;
-                    procedenciaB.setBackground(botonPulsado);
-                    getFragmentManager().beginTransaction().replace(R.id.contenedorExaminar, new ListaDesplegables(logicaBusqueda)).commit();
 
-                }
-            }
-        });
+        getParentFragmentManager().beginTransaction().replace(R.id.contenedorExaminar, new ListaDesplegables(logicaBusqueda)).commit();
 
-        saborB.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(procedenciaPress){
-                    saborPress = !saborPress;
-                    procedenciaPress = !procedenciaPress;
-                    saborB.setBackground(botonPulsado);
-                    procedenciaB.setBackground(botonSinPulsar);
-                    getFragmentManager().beginTransaction().replace(R.id.contenedorExaminar, new SaboresFragment()).commit();
-                }
-            }
-        });
+        btnProcedencia.setOnClickListener((view1) -> { botonSeleccionado(btnProcedencia, btnSabor, new ListaDesplegables(logicaBusqueda)); });
 
-        getFragmentManager().beginTransaction().replace(R.id.contenedorExaminar, new ListaDesplegables(logicaBusqueda)).commit();
+        btnSabor.setOnClickListener((view1) -> { botonSeleccionado(btnSabor, btnProcedencia, new SaboresFragment()); });
+    }
 
+    private void botonSeleccionado(Button boton, Button btnADesactivar, Fragment fragment) {
+        Drawable botonPulsado = ResourcesCompat.getDrawable(getResources(), R.drawable.boton_naranja, null);
+        Drawable botonSinPulsar = ResourcesCompat.getDrawable(getResources(), R.drawable.boton_verde_borde, null);
+
+        btnADesactivar.setBackground(botonSinPulsar);
+        boton.setBackground(botonPulsado);
+        getParentFragmentManager().beginTransaction().replace(R.id.contenedorExaminar, fragment).commit();
     }
 
     @Override
@@ -91,6 +63,6 @@ public class Examinar extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_examinar, container, false);
-
     }
+
 }

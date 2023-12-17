@@ -48,9 +48,6 @@ public class ListaDesplegables extends Fragment {
         listaDesplegables.setAdapter(adaptador);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         listaDesplegables.setLayoutManager(linearLayoutManager);
-
-
-
     }
 
     @Override
