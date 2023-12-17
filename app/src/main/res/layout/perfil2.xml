@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#DADADA"
-    app:layoutDescription="@xml/perfil2_scene">
+    app:layoutDescription="@xml/perfil2_scene2">
 
     <ImageView
         android:id="@+id/fotoDPerfil"
@@ -22,111 +22,102 @@
         app:srcCompat="@drawable/martina" />
 
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:background="@drawable/contenedor_editar_perfil"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="435dp">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="350dp"
+        <TextView
+            android:id="@+id/nombrePerfil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Martinha"
+            android:textAlignment="center"
+            android:textAppearance="@style/ManropeBold"
+            android:textSize="60sp"
+            android:textStyle="normal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:background="@drawable/contenedor_editar_perfil"
-            >
+            app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/nombrePerfil"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Martinha"
-                    android:textAlignment="center"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:textAppearance="@style/ManropeBold"
-                    android:textSize="60sp"
-                    android:textStyle="normal" />
-
-                <TextView
-                    android:id="@+id/edadUsuario"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    app:layout_constraintTop_toBottomOf="@id/nombrePerfil"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:text="23 años"
-                    android:textAlignment="center"
-                    android:textAppearance="@style/ManropeBold"
-                    android:textSize="28sp"
-                    android:textStyle="normal" />
+        <TextView
+            android:id="@+id/edadUsuario"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="23 años"
+            android:textAlignment="center"
+            android:textAppearance="@style/ManropeBold"
+            android:textSize="28sp"
+            android:textStyle="normal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/nombrePerfil" />
 
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/contenedorValoracion"
-                android:layout_width="62dp"
-                android:layout_height="28dp"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/contenedorValoracion"
+            android:layout_width="62dp"
+            android:layout_height="28dp"
 
-                android:layout_marginTop="12dp"
-                android:background="@drawable/boton_azul"
-                android:gravity="top|start"
-                android:orientation="horizontal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/edadUsuario">
-
-                <TextView
-                    android:id="@+id/valoracion"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginBottom="3dp"
-                    android:layout_weight="1"
-                    android:text="5"
-                    android:textAppearance="@style/ManropeBold"
-                    android:textSize="22sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
-
-                <TextView
-                    android:id="@+id/textView44"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="top"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginBottom="8dp"
-                    android:layout_weight="1"
-                    android:text="*"
-                    android:textAppearance="@style/ManropeBold"
-                    android:textSize="40sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/valoracion" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-
+            android:layout_marginTop="12dp"
+            android:background="@drawable/boton_azul"
+            android:gravity="top|start"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edadUsuario">
 
             <TextView
-                android:id="@+id/descripcion"
-                app:layout_constraintTop_toBottomOf="@id/contenedorValoracion"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="20dp"
-                android:textAppearance="@style/ManropeRegular"
-                android:maxLength="200"
-                android:textSize="15sp"
-                android:text="Sin descripción uauumammmmmmmmmmmmmmmmmmmmmmmmmmm amsdas dma smd mdms la lms dlsa mdma sld lma sddmsal da daslmd als lmd als dsam dlmalmd lmsa dlmasm alm dla ds lmasdl slmdsal ald aslm dlmadlsa ld salmdlm s lmd sal dlmsa dlmaa sldaslm d"
-                />
+                android:id="@+id/valoracion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginBottom="3dp"
+                android:layout_weight="1"
+                android:text="5"
+                android:textAppearance="@style/ManropeBold"
+                android:textSize="22sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
-
-
-
+            <TextView
+                android:id="@+id/textView44"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:layout_marginStart="5dp"
+                android:layout_marginBottom="8dp"
+                android:layout_weight="1"
+                android:text="*"
+                android:textAppearance="@style/ManropeBold"
+                android:textSize="40sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/valoracion" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
+        <TextView
+            android:id="@+id/descripcion"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:maxLength="200"
+            android:text="Sin descripción uauumammmmmmmmmmmmmmmmmmmmmmmmmmm amsdas dma smd mdms la lms dlsa mdma sld lma sddmsal da daslmd als lmd als dsam dlmalmd lmsa dlmasm alm dla ds lmasdl slmdsal ald aslm dlmadlsa ld salmdlm s lmd sal dlmsa dlmaa sldaslm d"
+            android:textAppearance="@style/ManropeRegular"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/contenedorValoracion" />
 
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     <androidx.recyclerview.widget.RecyclerView
@@ -164,4 +155,4 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/cerrar_blanco" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.motion.widget.MotionLayout>

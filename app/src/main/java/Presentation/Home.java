@@ -84,7 +84,15 @@ public class Home extends Fragment {
 
         }
 
-        AdaptadorHome platosAdapter = new AdaptadorHome(productos);
+        AdaptadorHome.OnClickListenerPlato logicaPlatoClick = new AdaptadorHome.OnClickListenerPlato() {
+            @Override
+            public void click(Producto plato) {
+                //PONER EL SALTO A LA SIGUIENTE PANTALLA
+            }
+        };
+
+        AdaptadorHome platosAdapter = new AdaptadorHome(productos, logicaPlatoClick);
+
         platosSliderHome.setAdapter(platosAdapter);
 
 

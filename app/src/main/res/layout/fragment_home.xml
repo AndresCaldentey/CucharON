@@ -46,79 +46,86 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toTopOf="@id/nombrePerfilHome"
              />
-
-        <HorizontalScrollView
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/scrollBotones"
-            android:layout_width="wrap_content"
+            android:layout_width="360dp"
             android:layout_height="wrap_content"
-
-
-
+            android:layout_marginStart="19dp"
+            android:layout_marginEnd="19dp"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginLeft="19dp"
-            android:layout_marginTop="20dp"
-            android:scrollbars="none"
             app:layout_constraintTop_toBottomOf="@+id/nombrePerfilHome">
+            <HorizontalScrollView
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+
+                android:layout_marginTop="20dp"
+                android:scrollbars="none"
                 >
 
-                <ToggleButton
-                    android:id="@+id/mapaB"
-                    android:layout_width="180dp"
-                    android:layout_height="35dp"
-                    android:layout_marginRight="20dp"
-                    android:background="@drawable/boton_home_cercano"
-                    android:text="mapa"
-                    android:textAppearance="@style/ManropeBold"
-                    android:textColor="@color/negroDis"
-                    android:textOff="mapa"
-                    android:textOn="mapa"
-                    android:textSize="15sp"
-                    />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    >
 
-                <ToggleButton
-                    android:id="@+id/masBaratoB"
-                    android:layout_width="180dp"
-                    android:layout_height="35dp"
-                    android:textAppearance="@style/ManropeBold"
-                    android:textSize="15sp"
-                    android:textColor="@color/negroDis"
-                    android:textOff="precio más barato"
-                    android:textOn="precio más barato"
-                    android:text="precio más bajo"
-                    android:background="@drawable/boton_verde_sel"
-                    android:layout_marginRight="45dp"/>
+                    <ToggleButton
+                        android:id="@+id/mapaB"
+                        android:layout_width="170dp"
+                        android:layout_height="35dp"
+                        android:layout_marginRight="20dp"
+                        android:background="@drawable/boton_home_cercano"
+                        android:text="mapa"
+                        android:textAppearance="@style/ManropeBold"
+                        android:textColor="@color/negroDis"
+                        android:textOff="mapa"
+                        android:textOn="mapa"
+                        android:textSize="15sp"
+                        />
 
-                <ToggleButton
-                    android:id="@+id/masCaroB"
-                    android:layout_width="180dp"
-                    android:layout_height="35dp"
-                    android:textAppearance="@style/ManropeBold"
-                    android:textSize="15sp"
-                    android:textOff="precio más alto"
-                    android:textOn="precio más alto"
-                    android:text="precio más alto"
-                    android:textColor="@color/negroDis"
-                    android:background="@drawable/boton_plata_sel"
-                    android:layout_marginRight="20dp"/>
+                    <ToggleButton
+                        android:id="@+id/masBaratoB"
+                        android:layout_width="170dp"
+                        android:layout_height="35dp"
+                        android:textAppearance="@style/ManropeBold"
+                        android:textSize="15sp"
+                        android:textColor="@color/negroDis"
+                        android:textOff="precio más barato"
+                        android:textOn="precio más barato"
+                        android:text="precio más bajo"
+                        android:background="@drawable/boton_verde_sel"
+                        android:layout_marginRight="20dp"/>
 
-                <ToggleButton
-                    android:id="@+id/vendedorTopB"
-                    android:layout_width="180dp"
-                    android:layout_height="35dp"
-                    android:textAppearance="@style/ManropeBold"
-                    android:textSize="15sp"
-                    android:textColor="@color/negroDis"
-                    android:textOff="vendedores top"
-                    android:textOn="vendedores top"
-                    android:text="vendedores top"
-                    android:background="@drawable/boton_naranja_sel"/>
-            </LinearLayout>
-        </HorizontalScrollView>
+                    <ToggleButton
+                        android:id="@+id/masCaroB"
+                        android:layout_width="170dp"
+                        android:layout_height="35dp"
+                        android:textAppearance="@style/ManropeBold"
+                        android:textSize="15sp"
+                        android:textOff="precio más alto"
+                        android:textOn="precio más alto"
+                        android:text="precio más alto"
+                        android:textColor="@color/negroDis"
+                        android:background="@drawable/boton_plata_sel"
+                        android:layout_marginRight="20dp"/>
+
+                    <ToggleButton
+                        android:id="@+id/vendedorTopB"
+                        android:layout_width="170dp"
+                        android:layout_height="35dp"
+                        android:textAppearance="@style/ManropeBold"
+                        android:textSize="15sp"
+                        android:textColor="@color/negroDis"
+                        android:textOff="vendedores top"
+                        android:textOn="vendedores top"
+                        android:text="vendedores top"
+                        android:background="@drawable/boton_naranja_sel"/>
+                </LinearLayout>
+            </HorizontalScrollView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <Negocio.CustomFontTextView
             android:id="@+id/nombrePlatoLabel"
