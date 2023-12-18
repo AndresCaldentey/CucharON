@@ -1,5 +1,7 @@
 package Presentation.Adapters;
 
+import android.app.Activity;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,18 +16,20 @@ import com.example.cucharon.R;
 import java.util.List;
 
 import Negocio.Service;
+import Presentation.Navegacion;
+import Presentation.Reserva3;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class AdaptadorHome extends RecyclerView.Adapter<AdaptadorHome.HomeViewHolder> {
     List<Producto> productos;
     Service service;
-    OnClickListenerPlato logicaPlato;
+    Activity actividad;
     private int batchSize = 5; // Número de elementos a cargar en cada lote
 
-    public AdaptadorHome(List<Producto> productos, OnClickListenerPlato logicaPlato) {
+    public AdaptadorHome(List<Producto> productos, Activity actividad) {
         this.productos = productos;
         this.service = Service.getService();
-        this.logicaPlato = logicaPlato;
+        this.actividad = actividad;
     }
 
     public void setProductos(List<Producto> productos) {
@@ -51,6 +55,7 @@ public class AdaptadorHome extends RecyclerView.Adapter<AdaptadorHome.HomeViewHo
 
     public class HomeViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         CircleImageView imagenPlato;
+        Producto plato;
 
         public HomeViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -58,18 +63,21 @@ public class AdaptadorHome extends RecyclerView.Adapter<AdaptadorHome.HomeViewHo
             itemView.setOnClickListener(this);
         }
 
-        public void imprimir(Producto plato) {
+        public void imprimir(Producto p) {
+            plato = p;
             imagenPlato.setImageBitmap(service.pasarStringAImagen(plato.getImagen()));
         }
 
         @Override
         public void onClick(View view) {
-            logicaPlato.click(productos.get(getAdapterPosition()));
+            //aquí se define el listener que espera al click de un plato.
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("platoReserva3", plato);
+            Navegacion navegacion = (Navegacion) actividad;
+            navegacion.getSupportFragmentManager().setFragmentResult("Reserva3", bundle);
+            navegacion.getSupportFragmentManager().beginTransaction().replace(R.id.mainFragmentContainer, new Reserva3()).commit();
         }
 
+    }
 
-    }
-    public interface OnClickListenerPlato {
-        public void click(Producto plato);
-    }
 }

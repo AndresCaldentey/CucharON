@@ -19,28 +19,8 @@ import java.util.List;
 public class ProductoRepository extends Repository<Producto>{
     private  Producto producto;
     private List<Producto> listaProductos;
+
     public ProductoRepository(ConnectionSource c)  {init(Producto.class, c);}
-
-    public List<Producto> getProductosByDireccion(String direccion){
-        listaProductos = new ArrayList<>();
-        Thread hilo = new Thread(() ->
-        {
-            try {
-                listaProductos = this.getDao().queryForEq("direccionRecogida", direccion);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        });
-        hilo.start();
-
-        //Esperar al hilo
-        try {
-            hilo.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        return listaProductos;
-    }
 
     public List<Producto> getProductosByPosicion(double lat, double lon){
         listaProductos = new ArrayList<>();
@@ -105,6 +85,60 @@ public class ProductoRepository extends Repository<Producto>{
                 Where<Producto, Integer> where = queryBuilder.where();
 
                 where.eq("usuarioComprador", usuario.getEmail()).and().eq("entregado", 1);
+
+                PreparedQuery<Producto> preparedQuery = queryBuilder.prepare();
+                listaProductos = this.getDao().query(preparedQuery);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        });
+        hilo.start();
+
+        //Esperar al hilo
+        try {
+            hilo.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return listaProductos;
+    }
+
+    public List<Producto> getProductoPublicadoEnCurso(Usuario usuario){
+        listaProductos = new ArrayList<>();
+        Thread hilo = new Thread(() ->
+        {
+            try {
+                QueryBuilder<Producto, Integer> queryBuilder = this.getDao().queryBuilder();
+                Where<Producto, Integer> where = queryBuilder.where();
+
+                where.eq("usuarioPublicador", usuario.getEmail()).and().eq("entregado", 0);
+
+                PreparedQuery<Producto> preparedQuery = queryBuilder.prepare();
+                listaProductos = this.getDao().query(preparedQuery);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        });
+        hilo.start();
+
+        //Esperar al hilo
+        try {
+            hilo.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return listaProductos;
+    }
+
+    public List<Producto> getProductoPublicadoEntregado(Usuario usuario){
+        listaProductos = new ArrayList<>();
+        Thread hilo = new Thread(() ->
+        {
+            try {
+                QueryBuilder<Producto, Integer> queryBuilder = this.getDao().queryBuilder();
+                Where<Producto, Integer> where = queryBuilder.where();
+
+                where.eq("usuarioPublicador", usuario.getEmail()).and().eq("entregado", 1);
 
                 PreparedQuery<Producto> preparedQuery = queryBuilder.prepare();
                 listaProductos = this.getDao().query(preparedQuery);

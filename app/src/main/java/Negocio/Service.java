@@ -64,8 +64,6 @@ public class Service implements IService{
     public void crearUsuario(Usuario user) { userRepo.guardar2(user); }
     public Usuario getUsuarioByEmail(String correo) { return userRepo.getUserByEmail(correo); }
     public void actualizarUser(Usuario user) { userRepo.actualizar(user);}
-    public List<Producto> getProductoReservadoEnCurso() { return productoRepo.getReservasEnCurso(loggedUser); }
-    public List<Producto> getProductoReservadoEntregado() { return productoRepo.getReservasPrevias(loggedUser); }
     public boolean cancelarReserva(Producto producto, Usuario user) {
         if(producto.getUsuarioComprador() == user) {
             producto.setUsuarioComprador(null);
@@ -82,6 +80,10 @@ public class Service implements IService{
                                                         return producto;}
     public Producto getProductoById(int id) { return productoRepo.obtener(id); }
     public List<Producto> getProductosByPosicion(double lat, double lon) { return productoRepo.getProductosByPosicion(lat, lon);}
+    public List<Producto> getProductoReservadoEnCurso() { return productoRepo.getReservasEnCurso(loggedUser); }
+    public List<Producto> getProductoReservadoEntregado() { return productoRepo.getReservasPrevias(loggedUser); }
+    public List<Producto> getProductoPublicadoEnCurso() { return productoRepo.getProductoPublicadoEnCurso(loggedUser); }
+    public List<Producto> getProductoPublicadoEntregado() { return productoRepo.getProductoPublicadoEntregado(loggedUser); }
     public List<Producto> getProductosPubPorUser(Usuario user) { return productoRepo.getProductosPorUsuario(user); }
     public List<Producto> getProductosSinComprar(){ return productoRepo.getProductosSinComprador(); }
     public List<Producto> getAllProducto() { return productoRepo.obtenerTodos(); }

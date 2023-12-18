@@ -28,7 +28,7 @@ public class AdaptadorReservasEnCurso extends RecyclerView.Adapter<AdaptadorRese
         servicio = new Service();
     }
 
-    public void setProductos(List<Producto> productos) {this.productos = productos;}
+    public void setProductos(List<Producto> productos) { this.productos = productos;}
 
     @NonNull
     @Override

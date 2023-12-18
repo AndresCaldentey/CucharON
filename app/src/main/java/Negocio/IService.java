@@ -32,6 +32,8 @@ public interface IService {
     List<Producto> getProductosSinComprar();
     List<Producto> getProductoReservadoEnCurso();
     List<Producto> getProductoReservadoEntregado();
+    List<Producto> getProductoPublicadoEnCurso();
+    List<Producto> getProductoPublicadoEntregado();
     List<Producto> getAllProducto();
     void actualizarProducto(Producto p);
     void borrarProducto(Producto producto);

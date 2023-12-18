@@ -24,21 +24,21 @@ import com.example.cucharon.Usuario;
 import java.util.ArrayList;
 import java.util.List;
 import Negocio.CustomFontTextView;
+import Negocio.IService;
 import Negocio.Service;
 import Presentation.Adapters.AdaptadorHome;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 
 public class Home extends Fragment {
-    TextView nombrePerfilHome, precioLabel, valoracionPerfil, nombrePublicador;
-    CustomFontTextView nombrePlatoLabel;
-    ViewPager2 platosSliderHome;
-    CircleImageView fotoPerfilPub;
-    ToggleButton mapaB, masBaratoB, masCaroB, vendedorTopB;
-    Service service;
-    List<Producto> productos;
-    List<ToggleButton> botones = new ArrayList<>();
-    ToggleButton previousChecked = null;
+    private TextView nombrePerfil, precioPlato, valoracionPerfil, nombrePublicador;
+    private CustomFontTextView nombrePlato;
+    private ViewPager2 platosSliderHome;
+    private CircleImageView fotoPerfilPub;
+    private ToggleButton btnMapa, btnMasBarato, btnMasCaro, btnVendedorTop;
+    private IService service;
+    private List<Producto> productos;
+    private List<ToggleButton> botones = new ArrayList<>();
 
     public Home() {}
 
@@ -47,17 +47,17 @@ public class Home extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         //Inicializacion variables programa
         service = Service.getService();
-        nombrePerfilHome = view.findViewById(R.id.nombrePerfilHome);
-        precioLabel = view.findViewById(R.id.precioLabel);
+        nombrePerfil = view.findViewById(R.id.nombrePerfilHome);
+        precioPlato = view.findViewById(R.id.precioLabel);
         valoracionPerfil = view.findViewById(R.id.valoracionPerfil);
         nombrePublicador = view.findViewById(R.id.nombrePublicador);
-        nombrePlatoLabel = view.findViewById(R.id.nombrePlatoLabel);
+        nombrePlato = view.findViewById(R.id.nombrePlatoLabel);
         fotoPerfilPub = view.findViewById(R.id.fotoPerfilPub);
         platosSliderHome = view.findViewById(R.id.platosSliderHome);
-        mapaB = view.findViewById(R.id.mapaB);
-        masBaratoB = view.findViewById(R.id.masBaratoB);
-        masCaroB = view.findViewById(R.id.masCaroB);
-        vendedorTopB = view.findViewById(R.id.vendedorTopB);
+        btnMapa = view.findViewById(R.id.mapaB);
+        btnMasBarato = view.findViewById(R.id.masBaratoB);
+        btnMasCaro = view.findViewById(R.id.masCaroB);
+        btnVendedorTop = view.findViewById(R.id.vendedorTopB);
 
         //Inicialización del Slider
         if(getActivity() != null) {
@@ -66,18 +66,7 @@ public class Home extends Fragment {
                 productos = activityActual.getAllProductos();
             }
         }
-
-        AdaptadorHome.OnClickListenerPlato logicaPlatoClick = new AdaptadorHome.OnClickListenerPlato() {
-            @Override
-            public void click(Producto plato) {
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("platoReserva3", plato);
-                getParentFragmentManager().setFragmentResult("Reserva3", bundle);
-                getParentFragmentManager().beginTransaction().replace(R.id.mainFragmentContainer, new Reserva3()).commit();
-            }
-        };
-
-        platosSliderHome.setAdapter(new AdaptadorHome(productos, logicaPlatoClick));
+        platosSliderHome.setAdapter(new AdaptadorHome(productos, getActivity()) );
 
         //Codigo para hacer el slider con su animación de hacer los otros platos en chiquitito
         platosSliderHome.setClipToPadding(false);
@@ -89,7 +78,6 @@ public class Home extends Fragment {
         //compositePageTransformer.addTransformer(new MarginPageTransformer(20));
 
         compositePageTransformer.addTransformer(new ViewPager2.PageTransformer() {
-
             @Override
             public void transformPage(@NonNull View page, float position) {
                 float r = 1 - Math.abs(position);
@@ -97,10 +85,6 @@ public class Home extends Fragment {
                 page.setScaleX(0.85f + r * 0.15f);
             }
         });
-        botones.add(mapaB);
-        botones.add(masBaratoB);
-        botones.add(masCaroB);
-        botones.add(vendedorTopB);
 
         platosSliderHome.setPageTransformer(compositePageTransformer);
         actualizarPantalla(productos.get(0));
@@ -112,38 +96,18 @@ public class Home extends Fragment {
             }
         });
 
-        mapaB.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(!mapaB.isChecked()) return;
-                actualizarBotones(mapaB);
-            }
-        });
+        botones.add(btnMapa);
+        botones.add(btnMasBarato);
+        botones.add(btnMasCaro);
+        botones.add(btnVendedorTop);
 
-        masBaratoB.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(!masBaratoB.isChecked()) return;
-                actualizarBotones(masBaratoB);
-            }
-        });
+        btnMapa.setOnClickListener((view1) -> { if(btnMapa.isChecked()) actualizarBotones(btnMapa); });
 
-        masCaroB.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(!masCaroB.isChecked()) return;
-                actualizarBotones(masCaroB);
-            }
-        });
+        btnMasBarato.setOnClickListener((view1) -> { if(btnMasBarato.isChecked()) actualizarBotones(btnMasBarato); });
 
-        vendedorTopB.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(!vendedorTopB.isChecked()) return;
-                actualizarBotones(vendedorTopB);
-            }
-        });
+        btnMasCaro.setOnClickListener((view1) -> { if(btnMasCaro.isChecked()) actualizarBotones(btnMasCaro); });
 
+        btnVendedorTop.setOnClickListener((view1) -> { if(btnVendedorTop.isChecked()) actualizarBotones(btnVendedorTop); });
     }
 
     @SuppressLint("ResourceAsColor")
@@ -155,14 +119,14 @@ public class Home extends Fragment {
 
     private void actualizarPantalla(Producto producto) {
         Usuario publicador = producto.getUsuarioPublicador();
-        nombrePerfilHome.setText(service.getLoggedUser().getNombre());
-        precioLabel.setText(producto.getPrecio().toString() + " euros");
+        nombrePerfil.setText(service.getLoggedUser().getNombre());
+        precioPlato.setText(producto.getPrecio().toString() + " euros");
         //int valoracion = publicador().getValoracion();
         //String valoracionText = String.valueOf('*').repeat(valoracion);
         //if(valoracion != null) valoracionPerfil.setText(valoracionText);
         nombrePublicador.setText(publicador.getNombre() + " " + publicador.getApellido());
 
-        nombrePlatoLabel.setText(producto.getNombre());
+        nombrePlato.setText(producto.getNombre());
         //nombrePlatoLabel.setText("aaaaaaaaaaaaaaaaaaaaa \n patatas");
 
         if(publicador.getFoto() != null) fotoPerfilPub.setImageBitmap(service.pasarStringAImagen(publicador.getFoto()));
