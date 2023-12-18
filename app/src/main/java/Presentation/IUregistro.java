@@ -16,6 +16,7 @@ import com.example.cucharon.R;
 import com.example.cucharon.Usuario;
 
 import java.io.IOException;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -106,7 +107,13 @@ public class IUregistro extends AppCompatActivity {
             }
             else if(!service.passwordMatch(password.getText().toString(), password2.getText().toString())) {
                 service.CrearAlerta("Las contraseñas no coinciden", this);
-            } else {
+            }else if(fechaNacimiento.getText().toString().equals("")){
+                service.CrearAlerta("La fecha de nacimiento no puede ser nula",this);
+            }else if(!service.isValidDate(fechaNacimiento.getText().toString())){
+                service.CrearAlerta("Asegúrate de que la fecha de nacimiento tiene el formato correcto 15/04/2002", this);
+            }else if(biografia.getText().toString().equals("")){
+                service.CrearAlerta("La biografia no puede ser nula",this);
+            }else {
                 //Hay que crear el usuario y añadirlo a la db
                 Usuario nuevoUser = new Usuario(email.getText().toString(), nombre.getText().toString(), apellido.getText().toString(),
                         password.getText().toString(), "",biografia.getText().toString(),getDateFromEditText(),
@@ -118,11 +125,14 @@ public class IUregistro extends AppCompatActivity {
         }
     }
 
+
     private Date getDateFromEditText() {
         String dateTimeString = fechaNacimiento.getText().toString();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+
         try {
-            return sdf.parse(dateTimeString);
+            Date fechaDate = dateFormat.parse(dateTimeString);
+            return fechaDate;
         } catch (ParseException e) {
             e.printStackTrace();
             return null;

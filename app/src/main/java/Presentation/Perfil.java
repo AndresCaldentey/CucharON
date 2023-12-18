@@ -15,6 +15,7 @@ import com.example.cucharon.Producto;
 import com.example.cucharon.R;
 import com.example.cucharon.Usuario;
 
+import java.util.Date;
 import java.util.List;
 
 import Negocio.Service;
@@ -50,6 +51,8 @@ public class Perfil extends AppCompatActivity {
          usuarioActual = servicio.getUsuarioByEmail(userEmail);
 
          nombrePerfil.setText(usuarioActual.getNombre());
+         edadUsuario.setText(obtenerEdad(usuarioActual.getEdad())+" años");
+         descripcion.setText(usuarioActual.getBiografia());
          //valoracion.setText(usuarioActual.getValoracion().toString());
          //descripcion.setText(usuarioActual.getDescripcion());
          if(usuarioActual.getFoto() != null) {
@@ -67,5 +70,12 @@ public class Perfil extends AppCompatActivity {
         intent.putExtra("usuario", usuarioActual.getEmail());
         startActivity(intent);
         finish();
+    }
+
+    public String obtenerEdad(Date date){
+        int añoActual = new Date().getYear();
+        int añoNacimiento = date.getYear();
+        int edad = añoActual-añoNacimiento;
+        return ""+edad;
     }
 }
