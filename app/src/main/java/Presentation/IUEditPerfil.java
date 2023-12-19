@@ -16,6 +16,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -111,7 +112,7 @@ public class IUEditPerfil extends AppCompatActivity {
                     editBiografia.getText().toString(),getDateFromEditText(), usuarioActual.getTlf(), servicio.imagenToString(fotodelPerfil));
             servicio.actualizarUser(usuarioActualizado);
             Intent intent = new Intent(IUEditPerfil.this,Perfil.class);
-            intent.putExtra("usuario", usuarioActual.getEmail());
+            intent.putExtra("usuario", usuarioActualizado.getEmail());
             startActivity(intent);
             finish();
         }
@@ -178,5 +179,13 @@ public class IUEditPerfil extends AppCompatActivity {
             e.printStackTrace();
             return null;
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(IUEditPerfil.this,Perfil.class);
+        intent.putExtra("usuario", usuarioActual.getEmail());
+        startActivity(intent);
+        finish();
     }
 }
