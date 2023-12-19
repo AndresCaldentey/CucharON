@@ -234,6 +234,7 @@ public class Service implements IService{
 
     /*GESTION IMAGENES*/
     public String imagenToString(Bitmap bitmap){
+        if(bitmap == null) return "";
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
 
         bitmap.compress(Bitmap.CompressFormat.JPEG, 60, byteArrayOutputStream);

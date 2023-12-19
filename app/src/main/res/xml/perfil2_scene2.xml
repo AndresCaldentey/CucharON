@@ -7,25 +7,20 @@
         motion:constraintSetEnd="@+id/end"
         motion:constraintSetStart="@id/start"
         motion:duration="1000">
-       <KeyFrameSet>
-       </KeyFrameSet>
-        <OnSwipe motion:touchAnchorId="@+id/constraintLayout3" />
+        <KeyFrameSet>
+        </KeyFrameSet>
+        <OnSwipe
+            motion:touchAnchorId="@+id/desplegableDetalles"
+            />
+
     </Transition>
 
     <ConstraintSet android:id="@+id/start">
-        <Constraint
-            android:id="@+id/mis_platos"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="visible"
-            motion:layout_constraintTop_toTopOf="parent"
-            motion:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="800dp" />
     </ConstraintSet>
 
     <ConstraintSet android:id="@+id/end">
         <Constraint
-            android:id="@+id/constraintLayout3"
+            android:id="@+id/desplegableDetalles"
             motion:layout_constraintEnd_toEndOf="parent"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -50,13 +45,7 @@
             motion:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="33dp"
             android:visibility="gone" />
-        <Constraint
-            android:id="@+id/mis_platos"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="visible"
-            motion:layout_constraintTop_toTopOf="parent"
-            motion:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="400dp" />
+
+
     </ConstraintSet>
 </MotionScene>

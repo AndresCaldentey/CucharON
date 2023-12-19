@@ -3,7 +3,10 @@ package Presentation;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -21,6 +24,7 @@ import androidx.appcompat.app.AppCompatDelegate;
 import com.example.cucharon.R;
 import com.example.cucharon.Usuario;
 
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -34,8 +38,10 @@ public class IUEditPerfil extends AppCompatActivity {
     Usuario usuarioActual;
     ImageView fotoPerfil;
     TextView contadorPalabras;
+    private static final int REQUEST_IMAGE_CAPTURE = 1;
 
     EditText nombreEditText,editEdadText, editBiografia, apellidoEdit;
+    Bitmap fotodelPerfil;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -102,16 +108,37 @@ public class IUEditPerfil extends AppCompatActivity {
             Usuario usuarioActualizado = new Usuario(usuarioActual.getEmail(),
                     nombreEditText.getText().toString(),apellidoEdit.getText().toString(),
                     usuarioActual.getContraseña(), usuarioActual.getDireccion(),
-                    editBiografia.getText().toString(),getDateFromEditText(), usuarioActual.getTlf(), "");
+                    editBiografia.getText().toString(),getDateFromEditText(), usuarioActual.getTlf(), servicio.imagenToString(fotodelPerfil));
             servicio.actualizarUser(usuarioActualizado);
             Intent intent = new Intent(IUEditPerfil.this,Perfil.class);
             intent.putExtra("usuario", usuarioActual.getEmail());
             startActivity(intent);
             finish();
         }
+    }
 
+    public void clickImagen(View view) {
+        Intent pickImageIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(pickImageIntent, REQUEST_IMAGE_CAPTURE);
+    }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
+        //Se ha obtenido resultado de la actividad seleccionar imagen
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK && data != null) {
+            fotodelPerfil = null;
+            try {
+                fotodelPerfil = MediaStore.Images.Media.getBitmap(this.getContentResolver(), data.getData());
+                // Ahora 'bitmap' contiene la imagen en formato Bitmap y puedes usarlo como desees.
+            } catch (IOException e) {
+                e.printStackTrace();
+                // Maneja la excepción apropiadamente
+            }
+
+            fotoPerfil.setImageBitmap(fotodelPerfil);
+        }
     }
 
     public boolean isNullEditText(@NonNull EditText editText, String nombreCampo){

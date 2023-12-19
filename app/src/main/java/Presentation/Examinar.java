@@ -39,6 +39,31 @@ public class Examinar extends Fragment {
                 bundle.putString("categoria", pais.getNombre());
                 getParentFragmentManager().setFragmentResult("datos", bundle);
                 getParentFragmentManager().beginTransaction().replace(R.id.mainFragmentContainer, new VerBusqueda()).commit();
+                //Esconde el perfil de la pantalla
+                if(getActivity() != null) {
+                    if(getActivity() instanceof Navegacion) {
+                       Navegacion activityActual = (Navegacion) getActivity();
+                       activityActual.hidePerfil();
+                    }
+                }
+            }
+        };
+
+        SaboresFragment.OnClickListener clickSabor = new SaboresFragment.OnClickListener() {
+            @Override
+            public void click(String sabor) {
+                Bundle bundle = new Bundle();
+                bundle.putString("categoria", sabor);
+                getParentFragmentManager().setFragmentResult("datos", bundle);
+                getParentFragmentManager().beginTransaction().replace(R.id.mainFragmentContainer, new VerBusqueda()).commit();
+                //Esconde el perfil de la pantalla
+                if(getActivity() != null) {
+                    if(getActivity() instanceof Navegacion) {
+                        Navegacion activityActual = (Navegacion) getActivity();
+                        activityActual.hidePerfil();
+                    }
+                }
+                getParentFragmentManager().beginTransaction().replace(R.id.mainFragmentContainer, new VerBusqueda()).commit();
             }
         };
 
@@ -46,7 +71,7 @@ public class Examinar extends Fragment {
 
         btnProcedencia.setOnClickListener((view1) -> { botonSeleccionado(btnProcedencia, btnSabor, new ListaDesplegables(logicaBusqueda)); });
 
-        btnSabor.setOnClickListener((view1) -> { botonSeleccionado(btnSabor, btnProcedencia, new SaboresFragment()); });
+        btnSabor.setOnClickListener((view1) -> { botonSeleccionado(btnSabor, btnProcedencia, new SaboresFragment(clickSabor)); });
     }
 
     private void botonSeleccionado(Button boton, Button btnADesactivar, Fragment fragment) {

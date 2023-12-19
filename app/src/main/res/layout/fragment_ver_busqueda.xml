@@ -21,12 +21,11 @@
                 android:id="@+id/cerrarVerBusqueda"
                 android:layout_width="16dp"
                 android:layout_height="16dp"
-                android:layout_marginStart="112dp"
-                android:layout_marginTop="44dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginTop="75dp"
                 app:layout_constraintEnd_toEndOf="parent"
 
-                app:layout_constraintHorizontal_bias="0.823"
-                app:layout_constraintStart_toStartOf="parent"
+
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/cerrar" />
 

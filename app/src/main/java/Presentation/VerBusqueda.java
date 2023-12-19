@@ -1,5 +1,6 @@
 package Presentation;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -17,6 +18,7 @@ import android.widget.TextView;
 
 import com.example.cucharon.Producto;
 import com.example.cucharon.R;
+import com.example.cucharon.Usuario;
 
 import java.util.List;
 
@@ -42,6 +44,12 @@ public class VerBusqueda extends Fragment {
 
         cerrar.setOnClickListener((view1) -> {
             getParentFragmentManager().beginTransaction().replace(R.id.mainFragmentContainer, new Examinar()).commit();
+            if(getActivity() != null) {
+                if(getActivity() instanceof Navegacion) {
+                    Navegacion activityActual = (Navegacion) getActivity();
+                    activityActual.showPerfil();
+                }
+            }
         });
     }
 
@@ -55,7 +63,15 @@ public class VerBusqueda extends Fragment {
                 textViewPais.setText(categoria+ " en tu");
 
                 List<Producto> platos = service.buscarPorCategoria(categoria);
-                AdaptadorPlato platosAdapter = new AdaptadorPlato(platos, getActivity());
+                AdaptadorPlato.OnClickPerfilListener logicaClPerfil = new AdaptadorPlato.OnClickPerfilListener() {
+                    @Override
+                    public void click(Usuario usuario) {
+                        Intent intent = new Intent(getContext(), Perfil.class);
+                        intent.putExtra("usuario", usuario.getEmail());
+                        startActivity(intent);
+                    }
+                };
+                AdaptadorPlato platosAdapter = new AdaptadorPlato(platos, getActivity(), logicaClPerfil);
                 recyclerPlatos.setLayoutManager(new GridLayoutManager(getContext(), 2));
                 recyclerPlatos.setAdapter(platosAdapter);
             }
@@ -69,4 +85,5 @@ public class VerBusqueda extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_ver_busqueda, container, false);
     }
+
 }

@@ -19,7 +19,7 @@
             android:layout_marginBottom="10dp">
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/cardView6"
+                android:id="@+id/dulceSabor"
                 android:layout_width="160dp"
                 android:layout_height="280dp"
                 app:cardElevation="0dp"
@@ -61,12 +61,14 @@
 
 
             <LinearLayout
+
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="10dp"
                 android:orientation="vertical">
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/saladoSabor"
                     android:layout_width="162dp"
                     android:layout_height="134dp"
                     app:cardElevation="0dp"
@@ -108,6 +110,7 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/acidoSabor"
                     android:layout_width="162dp"
                     android:layout_height="134dp"
                     android:layout_marginTop="10dp"
@@ -158,6 +161,7 @@
 
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/amargoSabor"
                 android:layout_width="162dp"
                 android:layout_height="134dp"
                 app:cardBackgroundColor="@color/azulDis"
@@ -199,6 +203,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/umamiSabor"
                 android:layout_width="162dp"
                 android:layout_height="134dp"
                 android:layout_marginStart="10dp"

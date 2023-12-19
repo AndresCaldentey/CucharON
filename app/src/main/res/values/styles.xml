@@ -20,6 +20,12 @@
         <item name="android:textSize">15sp</item>
     </style>
 
+    <style name= "ManropeSemi" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/negroDis</item>
+        <item name="android:fontFamily">@font/manrope_semibold</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+
     <style name= "CursivaTitulo" parent="TextAppearance.AppCompat">
         <item name="android:textColor">@color/negroDis</item>
         <item name="android:fontFamily">@font/snellbt_regular</item>

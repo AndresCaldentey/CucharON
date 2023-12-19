@@ -77,7 +77,7 @@ public class AddPlatoSabores extends Fragment {
         sabores.add(saborAux);
         saborAux = new Sabor(R.drawable.acido_sabor, "Ácido", R.drawable.sabor_acido_frase);
         sabores.add(saborAux);
-        saborAux = new Sabor(R.drawable.umami_sabor, "Dulce", R.drawable.sabor_umami_frase);
+        saborAux = new Sabor(R.drawable.umami_sabor, "Umami", R.drawable.sabor_umami_frase);
         sabores.add(saborAux);
     }
     @Override

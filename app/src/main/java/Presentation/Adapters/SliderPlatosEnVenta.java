@@ -38,6 +38,7 @@ public class SliderPlatosEnVenta extends RecyclerView.Adapter<SliderPlatosEnVent
 
     @Override
     public int getItemCount() {
+        if(platos == null) return 0;
         return platos.size();
     }
 
@@ -53,7 +54,7 @@ public class SliderPlatosEnVenta extends RecyclerView.Adapter<SliderPlatosEnVent
         }
         public void imprimir(Producto producto) {
             nombreLabel.setText(producto.getNombre());
-            cantidadValor.setText(producto.getNumRaciones() + " uds");
+            cantidadValor.setText(producto.getNumRaciones() + " platos");
             precioPlato.setText(producto.getPrecio().toString() + " €");
             platoFoto.setImageBitmap(servicio.pasarStringAImagen(producto.getImagen()));
         }

@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#DADADA"
+    android:id="@+id/escenaPrincipal"
     app:layoutDescription="@xml/perfil2_scene2">
 
 
@@ -24,12 +25,13 @@
         app:srcCompat="@drawable/martina" />
 
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout3"
+    <androidx.constraintlayout.motion.widget.MotionLayout
+        android:id="@+id/desplegableDetalles"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="450dp"
+        android:layout_marginTop="465dp"
         android:background="@drawable/contenedor_editar_perfil"
+        app:layoutDescription="@xml/perfil2_xml_constraintlayout3_scene"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -121,11 +123,36 @@
             app:layout_constraintTop_toBottomOf="@id/contenedorValoracion" />
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/platosEnVentaLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="19dp"
+            android:layout_marginTop="500dp"
+            android:text="Platos en venta"
+            android:textAppearance="@style/ManropeMedium"
+            android:textSize="22sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/descripcion" />
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/mis_platos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="20dp"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/platosEnVentaLabel" />
+
+
+    </androidx.constraintlayout.motion.widget.MotionLayout>
 
 
     <ImageView
-        android:id="@+id/EditarB"
+        android:id="@+id/editarB"
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:layout_marginStart="20dp"
@@ -148,15 +175,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/cerrar_blanco" />
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/mis_platos"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="500dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:visibility="gone"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+
 
 </androidx.constraintlayout.motion.widget.MotionLayout>

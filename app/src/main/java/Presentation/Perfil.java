@@ -3,12 +3,14 @@ package Presentation;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.constraintlayout.motion.widget.MotionLayout;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.cucharon.Producto;
@@ -21,7 +23,7 @@ import java.util.List;
 import Negocio.Service;
 import Presentation.Adapters.SliderPlatosEnVenta;
 
-public class Perfil extends AppCompatActivity {
+public class Perfil extends AppCompatActivity implements MotionLayout.TransitionListener{
     Service servicio;
     TextView nombrePerfil, edadUsuario, valoracion, descripcion;
 
@@ -30,12 +32,18 @@ public class Perfil extends AppCompatActivity {
 
     ViewPager2 mis_platos;
 
+    MotionLayout escenaPrincipal, desplegableDetalles;
+    ImageView editarB;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.perfil2);
         servicio = Service.getService();
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        Intent intent = getIntent();
+        String userEmail = intent.getStringExtra("usuario");
+        usuarioActual = servicio.getUsuarioByEmail(userEmail);
         nombrePerfil = findViewById(R.id.nombrePerfil);
         edadUsuario = findViewById(R.id.edadUsuario);
         valoracion = findViewById(R.id.valoracion);
@@ -43,12 +51,22 @@ public class Perfil extends AppCompatActivity {
         fotoDPerfil = findViewById(R.id.fotoDPerfil);
         mis_platos = findViewById(R.id.mis_platos);
 
-        List<Producto> productos = servicio.getAllProducto();/**servicio.getProductosSinVenderPorUser(usuarioActual);**/
+        escenaPrincipal = findViewById(R.id.escenaPrincipal);
+        desplegableDetalles = findViewById(R.id.desplegableDetalles);
+
+        escenaPrincipal.setTransitionListener(this);
+        desplegableDetalles.setTransitionListener(this);
+
+        editarB = findViewById(R.id.editarB);
+        if(userEmail != servicio.getLoggedUser().getEmail()) editarB.setVisibility(View.GONE);
+        else {editarB.setVisibility(View.VISIBLE);}
+
+
+
+        List<Producto> productos = servicio.getProductosSinVenderPorUser(usuarioActual);
         mis_platos.setAdapter(new SliderPlatosEnVenta(productos));
 
-         Intent intent = getIntent();
-         String userEmail = intent.getStringExtra("usuario");
-         usuarioActual = servicio.getUsuarioByEmail(userEmail);
+
 
          nombrePerfil.setText(usuarioActual.getNombre());
          edadUsuario.setText(obtenerEdad(usuarioActual.getEdad())+" años");
@@ -58,7 +76,7 @@ public class Perfil extends AppCompatActivity {
          if(usuarioActual.getFoto() != null) {
              fotoDPerfil.setImageBitmap(servicio.pasarStringAImagen(usuarioActual.getFoto())); }
 
-
+         else { fotoDPerfil.setImageResource(R.drawable.martina); }
     }
 
     public void cerrar(View view) {
@@ -71,6 +89,36 @@ public class Perfil extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
+
+    @Override
+    public void onTransitionStarted(MotionLayout motionLayout, int startId, int endId) {
+        updateNestedMotionLayout(motionLayout);
+    }
+
+    @Override
+    public void onTransitionChange(MotionLayout motionLayout, int startId, int endId, float progress) {
+        updateNestedMotionLayout(motionLayout);
+    }
+
+    @Override
+    public void onTransitionCompleted(MotionLayout motionLayout, int currentId) {
+        updateNestedMotionLayout(motionLayout);
+    }
+
+    @Override
+    public void onTransitionTrigger(MotionLayout motionLayout, int triggerId, boolean positive, float progress) {
+        updateNestedMotionLayout(motionLayout);
+    }
+
+    private void updateNestedMotionLayout(MotionLayout motionLayout) {
+        if(motionLayout != null) {
+            if (motionLayout.getId() == R.id.escenaPrincipal) {
+                desplegableDetalles.setProgress(motionLayout.getProgress());
+
+            }
+        }
+    }
+
 
     public String obtenerEdad(Date date){
         int añoActual = new Date().getYear();
