@@ -1,4 +1,4 @@
-package com.example.cucharon;
+package Presentation;
 
 import android.os.Bundle;
 
@@ -12,12 +12,15 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.cucharon.Producto;
+import com.example.cucharon.R;
+
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link mi_reserva_plato#newInstance} factory method to
+ * Use the {@link Mi_reserva_plato#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class mi_reserva_plato extends Fragment {
+public class Mi_reserva_plato extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -37,7 +40,7 @@ public class mi_reserva_plato extends Fragment {
     TextView precio;
     TextView nombre_usu;
 
-    public mi_reserva_plato() {
+    public Mi_reserva_plato() {
         // Required empty public constructor
     }
 
@@ -50,8 +53,8 @@ public class mi_reserva_plato extends Fragment {
      * @return A new instance of fragment mi_reserva_plato.
      */
     // TODO: Rename and change types and number of parameters
-    public static mi_reserva_plato newInstance(String param1, String param2) {
-        mi_reserva_plato fragment = new mi_reserva_plato();
+    public static Mi_reserva_plato newInstance(String param1, String param2) {
+        Mi_reserva_plato fragment = new Mi_reserva_plato();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);

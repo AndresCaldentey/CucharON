@@ -1,29 +1,44 @@
-package com.example.cucharon;
+package Presentation;
 
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentResultListener;
-import androidx.recyclerview.widget.GridLayoutManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.TextView;
 
-import Presentation.Adapters.AdaptadorPlato;
+import com.example.cucharon.Producto;
+import com.example.cucharon.R;
+import com.example.cucharon.Usuario;
+
+import Negocio.IService;
 
 
-public class reserva_paso2 extends Fragment {
+public class Reserva_paso2 extends Fragment {
+    private IService service;
+    private Producto producto;
+    private TextView nombrePlato, cantidad, unidad, precio, nombreUsuario, valoracion, direccion, rangoRecogida;
 
-    Producto producto;
-    TextView nombrePlato, cantidad, unidad, precio, nombreUsuario, valoracion, direccion, rangoRecogida;
+    public Reserva_paso2() { }
 
-    public reserva_paso2() {
-        // Required empty public constructor
+    public static Reserva_paso2 newInstance(Producto plato) {
+        Reserva_paso2 fragment = new Reserva_paso2();
+        Bundle args = new Bundle();
+        args.putSerializable("plato", plato);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            producto = (Producto) getArguments().getSerializable("plato");
+        }
     }
 
     @Override
@@ -37,32 +52,16 @@ public class reserva_paso2 extends Fragment {
         valoracion = view.findViewById(R.id.valorText);
         direccion = view.findViewById(R.id.textoDireccion);
         rangoRecogida = view.findViewById(R.id.rangoRecogidaText);
-    }
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        getParentFragmentManager().setFragmentResultListener("datos2", this, new FragmentResultListener() {
-            @Override
-            public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
-                producto = (Producto) result.getSerializable("plato");
-
-                nombrePlato.setText(producto.getNombre());
-
-                setUnidad();
-
-                setPrecio();
-
-                nombreUsuario.setText(producto.getUsuarioPublicador().getNombre() + " " + producto.getUsuarioPublicador().getApellido());
-
-                setValoracion(producto.getUsuarioPublicador().getValoracion());
-
-                direccion.setText(producto.getDireccionRecogida());
-
-                rangoRecogida.setText("Rango de hora: "+ producto.getHoraRecogida());
-            }
-        });
-
+        Usuario publicador = producto.getUsuarioPublicador();
+        nombrePlato.setText(producto.getNombre());
+        setUnidad();
+        setPrecio();
+        String nombreCompleto = publicador.getNombre() + " " + publicador.getApellido();
+        nombreUsuario.setText(nombreCompleto);
+        setValoracion(publicador.getValoracion());
+        direccion.setText(producto.getDireccionRecogida());
+        rangoRecogida.setText("Rango de hora: "+ producto.getHoraRecogida());
     }
 
     private void setUnidad() {
@@ -81,12 +80,10 @@ public class reserva_paso2 extends Fragment {
     }
 
     private void setValoracion(int cantidad) {
-
         String valor = " ";
         for (int i = 0; i < cantidad; i++) {
             valor += "*";
         }
-
         valoracion.setText(valor);
     }
 
@@ -96,4 +93,5 @@ public class reserva_paso2 extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_reserva_paso2, container, false);
     }
+
 }

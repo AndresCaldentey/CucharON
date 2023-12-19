@@ -24,12 +24,12 @@ import Negocio.IService;
 import Negocio.Service;
 import Presentation.Adapters.AdaptadorPlato;
 
-public class verBusqueda extends Fragment {
+public class VerBusqueda extends Fragment {
     private IService service;
     private TextView textViewPais;
     private RecyclerView recyclerPlatos;
 
-    public verBusqueda() {}
+    public VerBusqueda() {}
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {

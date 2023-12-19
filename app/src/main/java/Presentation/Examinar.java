@@ -38,7 +38,7 @@ public class Examinar extends Fragment {
                 Bundle bundle = new Bundle();
                 bundle.putString("categoria", pais.getNombre());
                 getParentFragmentManager().setFragmentResult("datos", bundle);
-                getParentFragmentManager().beginTransaction().replace(R.id.mainFragmentContainer, new verBusqueda()).commit();
+                getParentFragmentManager().beginTransaction().replace(R.id.mainFragmentContainer, new VerBusqueda()).commit();
             }
         };
 

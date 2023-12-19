@@ -15,7 +15,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.FragmentContainerView;
 
-import com.example.cucharon.Plato_publicado;
 import com.example.cucharon.R;
 
 import java.util.ArrayList;

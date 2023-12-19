@@ -93,11 +93,8 @@ public class AdaptadorPlato extends RecyclerView.Adapter<AdaptadorPlato.Adaptado
         @Override
         public void onClick(View view) {
             //aquí se define el listener que espera al click de un plato.
-            Bundle bundle = new Bundle();
-            bundle.putSerializable("platoReserva3", plato);
             Navegacion navegacion = (Navegacion) actividad;
-            navegacion.getSupportFragmentManager().setFragmentResult("Reserva3", bundle);
-            navegacion.getSupportFragmentManager().beginTransaction().replace(R.id.mainFragmentContainer, new Reserva3()).commit();
+            navegacion.getSupportFragmentManager().beginTransaction().replace(R.id.mainFragmentContainer, Reserva3.newInstance(plato)).commit();
         }
     }
 

@@ -1,4 +1,4 @@
-package com.example.cucharon;
+package Presentation;
 
 import android.os.Bundle;
 
@@ -9,31 +9,20 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import com.example.cucharon.R;
 
 
 public class Plato_publicado extends Fragment {
 
-
-
-
-
-
-
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-
         super.onViewCreated(view, savedInstanceState);
-
-
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
@@ -42,6 +31,5 @@ public class Plato_publicado extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_plato_publicado, container, false);
     }
-
 
 }
