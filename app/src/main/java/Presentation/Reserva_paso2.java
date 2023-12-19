@@ -21,7 +21,7 @@ import Negocio.IService;
 public class Reserva_paso2 extends Fragment {
     private IService service;
     private Producto producto;
-    private TextView nombrePlato, cantidad, unidad, precio, nombreUsuario, valoracion, direccion, rangoRecogida;
+    private TextView nombrePlato, cantidad, precio, nombreUsuario, valoracion, direccion, rangoRecogida;
 
     public Reserva_paso2() { }
 
@@ -46,7 +46,6 @@ public class Reserva_paso2 extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         nombrePlato = view.findViewById(R.id.nomPlato);
         cantidad = view.findViewById(R.id.cantidad);
-        unidad = view.findViewById(R.id.unidad);
         precio = view.findViewById(R.id.precio);
         nombreUsuario = view.findViewById(R.id.usuarioText);
         valoracion = view.findViewById(R.id.valorText);
@@ -55,7 +54,7 @@ public class Reserva_paso2 extends Fragment {
 
         Usuario publicador = producto.getUsuarioPublicador();
         nombrePlato.setText(producto.getNombre());
-        setUnidad();
+        //setUnidad();
         setPrecio();
         String nombreCompleto = publicador.getNombre() + " " + publicador.getApellido();
         nombreUsuario.setText(nombreCompleto);
@@ -64,7 +63,7 @@ public class Reserva_paso2 extends Fragment {
         rangoRecogida.setText("Rango de hora: "+ producto.getHoraRecogida());
     }
 
-    private void setUnidad() {
+   /* private void setUnidad() {
         cantidad.setText(producto.getNumRaciones() + "");
 
         if (producto.getNumRaciones() > 1) {
@@ -72,7 +71,7 @@ public class Reserva_paso2 extends Fragment {
         } else {
             unidad.setText("Unidad");
         }
-    }
+    }*/
 
     private void setPrecio() {
         Double cantidad2 = Double.parseDouble(cantidad.getText().toString());
