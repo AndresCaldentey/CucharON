@@ -9,14 +9,19 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.cucharon.Producto;
 import com.example.cucharon.R;
+import com.example.cucharon.Reserva;
 import com.example.cucharon.Usuario;
 
+import java.util.Date;
+
 import Negocio.IService;
+import Negocio.Service;
 
 
 public class Reserva_paso2 extends Fragment {
@@ -25,6 +30,8 @@ public class Reserva_paso2 extends Fragment {
     private TextView cantidad, unidad, precio, valoracion, nombrePlato, nombreUsuario, direccion, rangoRecogida;
     ImageView botonMas, botonMenos;
     int numCantidad = 1;
+    Button botonReservar;
+    Date horaRecodiga;
 
     public Reserva_paso2() {
     }
@@ -58,6 +65,7 @@ public class Reserva_paso2 extends Fragment {
         valoracion = view.findViewById(R.id.valorText);
         botonMas = view.findViewById(R.id.botonMas);
         botonMenos = view.findViewById(R.id.botonMenos);
+        botonReservar = view.findViewById(R.id.reservarbtn);
 
         Usuario publicador = producto.getUsuarioPublicador();
 
@@ -79,30 +87,29 @@ public class Reserva_paso2 extends Fragment {
         String valor = " ";
         for (int i = 0; i < publicador.getValoracion(); i++) {
             valor += "*";
+            valoracion.setText(valor);
         }
-        valoracion.setText(valor);
+        //valoracion.setText(valor);
 
-        botonMenos.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        botonMenos.setOnClickListener(view1 -> {
 
-                numCantidad -= 1;
-                cantidad.setText(numCantidad + "");
+            numCantidad -= 1;
+            cantidad.setText(numCantidad + "");
 
-            }
         });
 
-        botonMas.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        botonMas.setOnClickListener(view12 -> {
 
-                numCantidad += 1;
-                cantidad.setText(numCantidad + "");
+            numCantidad += 1;
+            cantidad.setText(numCantidad + "");
 
-            }
         });
 
+        botonReservar.setOnClickListener(view13 -> {
 
+            Reserva reserva = new Reserva(0,numCantidad,producto,horaRecodiga, Service.getService().getLoggedUser());
+
+        });
     }
 
     private void setUnidades() {

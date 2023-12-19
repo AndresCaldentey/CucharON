@@ -32,7 +32,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Home extends Fragment {
     private TextView nombrePerfil, precioPlato, valoracionPerfil, nombrePublicador;
-    private CustomFontTextView nombrePlato;
+    private TextView nombrePlato;
     private ViewPager2 platosSliderHome;
     private CircleImageView fotoPerfilPub;
     private ToggleButton btnMapa, btnMasBarato, btnMasCaro, btnVendedorTop;
