@@ -49,6 +49,30 @@ public class ProductoRepository extends Repository<Producto>{
         return listaProductos;
     }
 
+    public List<Producto> getProductoPorNombre(String nombre) {
+        Thread hilo = new Thread(() -> {
+            try {
+                // Utilizar el método queryBuilder().where().like() para realizar la búsqueda
+                QueryBuilder<Producto, Integer> queryBuilder = this.getDao().queryBuilder();
+                queryBuilder.where().like("nombre", "%" + nombre + "%");
+                listaProductos = queryBuilder.query();
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        });
+        hilo.start();
+
+        // Esperar al hilo
+        try {
+            hilo.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return listaProductos;
+    }
+
+
     public List<Producto> getReservasEnCurso(Usuario usuario){
         listaProductos = new ArrayList<>();
         Thread hilo = new Thread(() ->

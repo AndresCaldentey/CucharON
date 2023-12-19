@@ -5,6 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/opinionLayout"
         android:layout_width="335dp"
         android:layout_height="112dp"
         app:cardCornerRadius="10dp"

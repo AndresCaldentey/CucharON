@@ -13,6 +13,7 @@ import androidx.viewpager2.widget.ViewPager2;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
@@ -39,6 +40,7 @@ public class Home extends Fragment {
     private IService service;
     private List<Producto> productos;
     private List<ToggleButton> botones = new ArrayList<>();
+    LinearLayout perfilPubLayout;
 
     public Home() {}
 
@@ -54,6 +56,7 @@ public class Home extends Fragment {
         nombrePlato = view.findViewById(R.id.nombrePlatoLabel);
         fotoPerfilPub = view.findViewById(R.id.fotoPerfilPub);
         platosSliderHome = view.findViewById(R.id.platosSliderHome);
+        perfilPubLayout = view.findViewById(R.id.perfilPubLayout);
         btnMapa = view.findViewById(R.id.mapaB);
         btnMasBarato = view.findViewById(R.id.masBaratoB);
         btnMasCaro = view.findViewById(R.id.masCaroB);
@@ -130,6 +133,12 @@ public class Home extends Fragment {
         //nombrePlatoLabel.setText("aaaaaaaaaaaaaaaaaaaaa \n patatas");
 
         if(publicador.getFoto() != null) fotoPerfilPub.setImageBitmap(service.pasarStringAImagen(publicador.getFoto()));
+        perfilPubLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                service.pulsarPerfil(getContext(), publicador);
+            }
+        });
     }
 
     @Override

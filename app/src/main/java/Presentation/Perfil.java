@@ -23,6 +23,7 @@ import java.util.Date;
 import java.util.List;
 
 import Negocio.Service;
+import Presentation.Adapters.AdapterOpinion;
 import Presentation.Adapters.SliderPlatosEnVenta;
 import Negocio.*;
 
@@ -74,7 +75,12 @@ public class Perfil extends AppCompatActivity implements MotionLayout.Transition
         List<Producto> productos = servicio.getProductosSinVenderPorUser(usuarioActual);
         mis_platos.setAdapter(new SliderPlatosEnVenta(productos));
 
-
+        AdapterOpinion.OnClickListener logicaClickOpinion = new AdapterOpinion.OnClickListener() {
+            @Override
+            public void click(Usuario usuario) {
+                servicio.pulsarPerfil(Perfil.this, usuario);
+            }
+        };
 
          nombrePerfil.setText(usuarioActual.getNombre());
          edadUsuario.setText(obtenerEdad(usuarioActual.getEdad())+" años");

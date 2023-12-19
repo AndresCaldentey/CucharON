@@ -38,11 +38,11 @@ public class Reserva {
         this.cantidad = cantidad;
     }
 
-    public Producto getIdProducto() {
+    public Producto getProducto() {
         return idProducto;
     }
 
-    public void setIdProducto(Producto idProducto) {
+    public void setProducto(Producto idProducto) {
         this.idProducto = idProducto;
     }
 

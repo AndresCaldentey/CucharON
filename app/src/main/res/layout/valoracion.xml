@@ -1,5 +1,10 @@
 <!-- dialog_rating.xml -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="20dp">
+<LinearLayout
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:gravity="center"
@@ -11,6 +16,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:numStars="5"
+        android:progressTint="@color/naranjaDis"
         android:rating="0.0"
         android:stepSize="1.0" />
 
@@ -22,3 +28,4 @@
         android:text="Aceptar" />
 
 </LinearLayout>
+</androidx.cardview.widget.CardView>

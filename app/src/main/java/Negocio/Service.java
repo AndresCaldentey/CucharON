@@ -3,6 +3,7 @@ package Negocio;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Base64;
@@ -28,6 +29,8 @@ import Persistencia.ProductoRepository;
 import Persistencia.RecetaRepository;
 import Persistencia.SingletonConnection;
 import Persistencia.UsuarioRepository;
+import Presentation.Perfil;
+
 public class Service implements IService{
     private final UsuarioRepository userRepo;
     private final ProductoRepository productoRepo;
@@ -93,6 +96,11 @@ public class Service implements IService{
     @Override
     public List<Producto> getProductosSinVenderPorUser(Usuario user) {
         return productoRepo.getProductosSinVenderPorUser(user);
+    }
+
+    @Override
+    public List<Producto> getProductoPorNombre(String nombre) {
+        return productoRepo.getProductoPorNombre(nombre);
     }
 
     /*PERSISTENCIA CATEGORIA*/
@@ -245,6 +253,22 @@ public class Service implements IService{
         if(img64 == null) return null;
         byte[] imageBytes = Base64.decode(img64, Base64.DEFAULT);
         return BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
+    }
+
+    @Override
+    public String valoracionAString(int valoracion) {
+
+        String valoracionText = "";
+        if(valoracion == -1 ) return "S/V";
+        for(int i = 0; i < valoracion; i++) valoracionText += "*";
+        return valoracionText;
+    }
+
+    @Override
+    public void pulsarPerfil(Context context, Usuario user) {
+        Intent intent = new Intent(context, Perfil.class);
+        intent.putExtra("usuario", user.getEmail());
+        context.startActivity(intent);
     }
 
 }

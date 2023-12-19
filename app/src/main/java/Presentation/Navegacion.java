@@ -80,11 +80,7 @@ public class Navegacion extends AppCompatActivity {
     }
 
     public void clickPerfil(View view) {
-        Intent intent = new Intent(Navegacion.this, Perfil.class);
-        String usuarioActual = servicio.getLoggedUser().getEmail();
-        intent.putExtra("usuario", usuarioActual);
-        startActivity(intent);
-
+        servicio.pulsarPerfil(this, servicio.getLoggedUser());
     }
 
     @Override
