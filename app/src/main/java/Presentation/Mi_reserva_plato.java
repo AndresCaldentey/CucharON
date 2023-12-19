@@ -1,5 +1,6 @@
 package Presentation;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -9,8 +10,11 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.cucharon.Producto;
 import com.example.cucharon.R;
@@ -39,6 +43,7 @@ public class Mi_reserva_plato extends Fragment {
     TextView recogida;
     TextView precio;
     TextView nombre_usu;
+    Button valorarPlato;
 
     public Mi_reserva_plato() {
         // Required empty public constructor
@@ -89,6 +94,10 @@ public class Mi_reserva_plato extends Fragment {
         categoria2 = view.findViewById(R.id.categoria2);
         direccion = view.findViewById(R.id.direccion);
         recogida = view.findViewById(R.id.recogida);
+        valorarPlato = view.findViewById(R.id.valorarPlato);
+
+        valorarPlato.setOnClickListener((view1) -> { mostrarDialogoCalificacion(); });
+
 
     }
     public void ponerDatosProducto(Producto producto){
@@ -99,4 +108,41 @@ public class Mi_reserva_plato extends Fragment {
         recogida.setText(producto.getHoraRecogida());
         
     }
+
+    private void mostrarDialogoCalificacion() {
+        // Infla el diseño del diálogo
+        LayoutInflater inflater = LayoutInflater.from(getActivity());
+        View dialogView = inflater.inflate(R.layout.valoracion, null);
+
+        // Encuentra las vistas en el diseño del diálogo
+        RatingBar ratingBar = dialogView.findViewById(R.id.ratingBar);
+        Button btnSubmit = dialogView.findViewById(R.id.btnSubmit);
+        btnSubmit.setBackgroundResource(R.drawable.boton_naranja);
+
+        // Crea el constructor de AlertDialog
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setView(dialogView);
+
+        // Crea el AlertDialog
+        final AlertDialog dialog = builder.create();
+
+        // Configura el clic del botón de aceptar
+        btnSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Obtiene la calificación seleccionada
+                float calificacion = ratingBar.getRating();
+
+                // Puedes hacer algo con la calificación aquí (guardarla, enviarla a un servidor, etc.)
+                Toast.makeText(getActivity(), "Calificación seleccionada: " + calificacion, Toast.LENGTH_SHORT).show();
+
+                // Cierra el diálogo
+                dialog.dismiss();
+            }
+        });
+
+        // Muestra el diálogo
+        dialog.show();
+    }
+
 }

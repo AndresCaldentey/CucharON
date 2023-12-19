@@ -10,46 +10,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <Button
-            android:id="@+id/btnPlatosCesta"
-            android:layout_width="136dp"
-            android:layout_height="49dp"
-            android:background="@drawable/boton_verde_borde"
-            android:fontFamily="@font/manrope"
-            android:text="Mis platos"
-            android:textAppearance="@style/ManropeBold"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.857"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.175" />
-
-        <Button
-            android:id="@+id/btnReservasCesta"
-            android:layout_width="136dp"
-            android:layout_height="49dp"
-            android:background="@drawable/boton_naranja"
-            android:fontFamily="@font/manrope"
-            android:text="Mis reservas"
-            android:textAppearance="@style/ManropeBold"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.142"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView40"
-            app:layout_constraintVertical_bias="0.033" />
-
         <ImageView
             android:id="@+id/imageView40"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="26dp"
+            android:layout_marginBottom="1dp"
             android:src="@drawable/texto_cesta"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.186"
             app:layout_constraintStart_toStartOf="parent"
@@ -60,15 +28,14 @@
             android:id="@+id/textView42"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
             android:fontFamily="@font/manrope"
             android:text="En curso"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.105"
+            app:layout_constraintHorizontal_bias="0.104"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnReservasCesta"
-            app:layout_constraintVertical_bias="0.051" />
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerEnCursoCesto"
@@ -105,6 +72,45 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView43"
             app:layout_constraintVertical_bias="0.32" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="1dp"
+            android:layout_marginEnd="1dp"
+            android:layout_marginBottom="564dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView40">
+
+            <Button
+                android:id="@+id/btnReservasCesta"
+                android:layout_width="136dp"
+                android:layout_height="49dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/boton_naranja"
+                android:fontFamily="@font/manrope"
+                android:text="Mis reservas"
+                android:textAppearance="@style/ManropeBold"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btnPlatosCesta"
+                android:layout_width="136dp"
+                android:layout_height="49dp"
+                android:background="@drawable/boton_verde_borde"
+                android:fontFamily="@font/manrope"
+                android:text="Mis platos"
+                android:textAppearance="@style/ManropeBold"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

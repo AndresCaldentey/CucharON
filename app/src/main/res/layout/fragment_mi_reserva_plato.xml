@@ -48,7 +48,7 @@
             app:layout_constraintTop_toBottomOf="@+id/imageView51" />
 
         <TextView
-            android:id="@+id/textView63"
+            android:id="@+id/valorarPlato"
             android:layout_width="163dp"
             android:layout_height="25dp"
             android:background="@drawable/img_9"
@@ -151,20 +151,20 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.466"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/recogida"
-            app:layout_constraintVertical_bias="0.427" />
+            app:layout_constraintTop_toBottomOf="@+id/nombre_usu"
+            app:layout_constraintVertical_bias="0.084" />
 
         <TextView
             android:id="@+id/nombre_usu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="44dp"
+            android:layout_marginTop="72dp"
             android:fontFamily="@font/manrope"
             android:text="Nombre usuario"
             android:textAppearance="@style/ManropeBold"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.83"
+            app:layout_constraintHorizontal_bias="0.877"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/recogida" />
 
