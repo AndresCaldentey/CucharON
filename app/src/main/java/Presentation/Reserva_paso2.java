@@ -44,8 +44,12 @@ public class Reserva_paso2 extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        nombrePlato = view.findViewById(R.id.nomPlato);
+        TextView nombrePlato = view.findViewById(R.id.nomPlato);
+        TextView nombreUsuario = view.findViewById(R.id.usuarioText);
+        TextView direccion = view.findViewById(R.id.textoDireccion);
+        TextView rangoRecogida = view.findViewById(R.id.rangoRecogidaText);
         cantidad = view.findViewById(R.id.cantidad);
+        unidad = view.findViewById(R.id.unidad);
         precio = view.findViewById(R.id.precio);
         nombreUsuario = view.findViewById(R.id.usuarioText);
         valoracion = view.findViewById(R.id.valorText);
@@ -61,7 +65,8 @@ public class Reserva_paso2 extends Fragment {
         setValoracion(publicador.getValoracion());
         direccion.setText(producto.getDireccionRecogida());
         rangoRecogida.setText("Rango de hora: "+ producto.getHoraRecogida());
-    }
+        nombrePlato.setText(producto.getNombre());
+        precio.setText(producto.getNumRaciones() * producto.getPrecio() + " €");
 
    /* private void setUnidad() {
         cantidad.setText(producto.getNumRaciones() + "");
@@ -73,16 +78,9 @@ public class Reserva_paso2 extends Fragment {
         }
     }*/
 
-    private void setPrecio() {
-        Double cantidad2 = Double.parseDouble(cantidad.getText().toString());
-        precio.setText(cantidad2 * producto.getPrecio() + " €");
-    }
-
-    private void setValoracion(int cantidad) {
+        //Inicializa valoracion
         String valor = " ";
-        for (int i = 0; i < cantidad; i++) {
-            valor += "*";
-        }
+        for (int i = 0; i < publicador.getValoracion(); i++) { valor += "*"; }
         valoracion.setText(valor);
     }
 
