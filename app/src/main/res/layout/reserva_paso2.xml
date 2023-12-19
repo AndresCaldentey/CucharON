@@ -197,10 +197,10 @@
 
         <ImageView
             android:id="@+id/botonMenos"
-            android:layout_width="24dp"
+            android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_marginTop="4dp"
-            android:src="@drawable/img_15"
+            android:src="@drawable/minus"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.074"
             app:layout_constraintStart_toEndOf="@+id/unidad"
@@ -208,12 +208,12 @@
 
         <ImageView
             android:id="@+id/botonMas"
-            android:layout_width="24dp"
+            android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_marginTop="4dp"
-            android:src="@drawable/img_14"
+            android:src="@drawable/mas"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.042"
+            app:layout_constraintHorizontal_bias="0.122"
             app:layout_constraintStart_toEndOf="@+id/botonMenos"
             app:layout_constraintTop_toBottomOf="@+id/unidDispTextView" />
 

@@ -23,7 +23,7 @@ import Negocio.Service;
 public class ReservaPaso2 extends AppCompatActivity {
     private IService service;
     private Producto producto;
-    private TextView cantidad, unidad, precio, valoracion, nombrePlato, nombreUsuario, direccion, rangoRecogida;
+    private TextView cantidad, unidad, precio, valoracion, nombrePlato, nombreUsuario, direccion, rangoRecogida, disponibles;
     ImageView botonMas, botonMenos;
     int numCantidad = 1;
     Button botonReservar;
@@ -48,12 +48,17 @@ public class ReservaPaso2 extends AppCompatActivity {
         botonMas = findViewById(R.id.botonMas);
         botonMenos = findViewById(R.id.botonMenos);
         botonReservar = findViewById(R.id.reservarbtn);
+        disponibles = findViewById(R.id.unidDispTextView);
 
         Usuario publicador = producto.getUsuarioPublicador();
 
         String nombreCompleto = publicador.getNombre() + " " + publicador.getApellido();
 
         nombreUsuario.setText(nombreCompleto);
+
+        cantidad.setText("1");
+
+        disponibles.setText("Unidades disponibles: " + producto.getNumRaciones());
 
         direccion.setText(producto.getDireccionRecogida());
 
@@ -74,16 +79,22 @@ public class ReservaPaso2 extends AppCompatActivity {
         //valoracion.setText(valor);
 
         botonMenos.setOnClickListener(view1 -> {
+            if(numCantidad > 1){
+                numCantidad -= 1;
+                cantidad.setText(numCantidad+ "");
+                setUnidades();
+            }
 
-            numCantidad -= 1;
-            cantidad.setText(numCantidad + "");
 
         });
 
         botonMas.setOnClickListener(view12 -> {
+            if(numCantidad < producto.getNumRaciones()){
+                numCantidad += 1;
+                cantidad.setText(numCantidad + "");
+                setUnidades();
+            }
 
-            numCantidad += 1;
-            cantidad.setText(numCantidad + "");
 
         });
 
@@ -98,11 +109,10 @@ public class ReservaPaso2 extends AppCompatActivity {
 
     private void setUnidades() {
         //Inicializa la cantidad y las unidades
-        cantidad.setText(producto.getNumRaciones() + "");
-        if (producto.getNumRaciones() > 1) {
-            unidad.setText("Unidades");
-        } else {
+        if (numCantidad == 1) {
             unidad.setText("Unidad");
+        } else {
+            unidad.setText("Unidades");
         }
     }
 

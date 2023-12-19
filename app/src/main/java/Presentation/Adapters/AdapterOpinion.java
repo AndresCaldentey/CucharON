@@ -8,7 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cucharon.R;
-import com.example.cucharon.Reserva
+import com.example.cucharon.Reserva;
 
 import java.util.List;
 
