@@ -58,7 +58,7 @@ public class Perfil extends AppCompatActivity implements MotionLayout.Transition
         desplegableDetalles.setTransitionListener(this);
 
         editarB = findViewById(R.id.editarB);
-        if(userEmail != servicio.getLoggedUser().getEmail()) editarB.setVisibility(View.GONE);
+        if(!userEmail.equals(servicio.getLoggedUser().getEmail())) editarB.setVisibility(View.GONE);
         else {editarB.setVisibility(View.VISIBLE);}
 
 

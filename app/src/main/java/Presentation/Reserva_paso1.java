@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -18,6 +19,7 @@ import com.example.cucharon.Usuario;
 
 import Negocio.IService;
 import Negocio.Service;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Reserva_paso1 extends Fragment {
     private IService service;
@@ -51,8 +53,8 @@ public class Reserva_paso1 extends Fragment {
         ImageView imagenUser = view.findViewById(R.id.fotoPerfilReserva3);
         TextView nombrePlato = view.findViewById(R.id.nombrePlatoReserva3);
         TextView precioPlato = view.findViewById(R.id.precioPlatoReserva3);
-        ImageView imagenPlato = view.findViewById(R.id.imagenPlatoReserva3);
-        TextView btnReserva = view.findViewById(R.id.btnReserva3);
+        CircleImageView imagenPlato = view.findViewById(R.id.imagenPlatoReserva3);
+        Button btnReserva = view.findViewById(R.id.btnReserva3);
 
         Usuario usuario = service.getLoggedUser();
         nombreUser.setText(usuario.getNombre());

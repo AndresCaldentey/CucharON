@@ -14,6 +14,13 @@
         <item name="android:textSize">15sp</item>
     </style>
 
+    <style name= "ManropeLight" parent="TextAppearance.AppCompat">
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/negroDis</item>
+        <item name="android:fontFamily">@font/manrope_light</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+
     <style name= "ManropeMedium" parent="TextAppearance.AppCompat">
         <item name="android:textColor">@color/negroDis</item>
         <item name="android:fontFamily">@font/manrope_medium</item>

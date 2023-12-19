@@ -126,17 +126,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:text="Horario recogida" />
             
-            <Button
-                android:layout_width="66dp"
-                android:layout_height="24dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:background="@drawable/boton_azul"
-                android:text="Ver más"
-                android:textAppearance="@style/ManropeRegular"
-                android:textSize="11dp"
-                android:elevation="0dp"
-                />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
 
