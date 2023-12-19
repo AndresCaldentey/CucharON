@@ -49,7 +49,7 @@ public class Reserva_paso2 extends Fragment {
         direccion = view.findViewById(R.id.textoDireccion);
         rangoRecogida = view.findViewById(R.id.rangoRecogidaText);
         cantidad = view.findViewById(R.id.cantidad);
-        unidad = view.findViewById(R.id.unidad);
+        //unidad = view.findViewById(R.id.unidad);
         precio = view.findViewById(R.id.precio);
         valoracion = view.findViewById(R.id.valorText);
 
