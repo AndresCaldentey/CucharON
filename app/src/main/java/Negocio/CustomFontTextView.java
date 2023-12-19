@@ -46,7 +46,7 @@ public class CustomFontTextView extends androidx.appcompat.widget.AppCompatTextV
             int availableWidth = getWidth() - getPaddingLeft() - getPaddingRight();
 
             if(getLayout() != null && lastWordEndWithSpace >= availableWidth) {
-                spannable.insert(lastWordStart, "/n  ");
+                spannable.insert(lastWordStart, "\n  ");
             }else {
                 spannable.insert(lastWordStart, "  ");
             }

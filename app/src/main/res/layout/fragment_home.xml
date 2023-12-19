@@ -129,7 +129,7 @@
             </HorizontalScrollView>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <Negocio.CustomFontTextView
+        <TextView
             android:id="@+id/nombrePlatoLabel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
