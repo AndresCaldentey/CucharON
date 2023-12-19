@@ -44,20 +44,6 @@
             app:layout_constraintTop_toBottomOf="@+id/imageView40"
             app:layout_constraintVertical_bias="0.033" />
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/imagen_perfil"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:elevation="2dp"
-            android:src="@drawable/abuela"
-
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.555"
-            app:layout_constraintStart_toEndOf="@+id/imageView40"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.038" />
-
         <ImageView
             android:id="@+id/imageView40"
             android:layout_width="wrap_content"

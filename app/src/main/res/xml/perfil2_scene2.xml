@@ -28,7 +28,7 @@
             motion:layout_constraintStart_toStartOf="parent"
             android:layout_marginTop="0dp" />
         <Constraint
-            android:id="@+id/EditarB"
+            android:id="@+id/editarB"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_marginStart="20dp"
@@ -45,7 +45,16 @@
             motion:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="33dp"
             android:visibility="gone" />
-
+        <Constraint
+            android:id="@+id/cerrarSesLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="25dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"/>
 
     </ConstraintSet>
 </MotionScene>

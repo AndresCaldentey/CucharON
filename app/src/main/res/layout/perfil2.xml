@@ -122,30 +122,76 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/contenedorValoracion" />
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/listaValoraciones"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="113dp"
+            android:layout_marginTop="300dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/descripcion"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/noHayOpinion"
+            android:layout_width="335dp"
+            android:layout_height="112dp"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="0dp"
+            android:backgroundTint="@color/negroDis"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/listaValoraciones"
+            app:layout_constraintEnd_toEndOf="parent"
+            >
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
+                <TextView
+                    android:id="@+id/nombreValoracion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Sin opiniones"
+                    android:textSize="25sp"
+                    android:textAppearance="@style/ManropeMedium"
+                    android:textColor="@color/blancoDis"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
 
         <TextView
             android:id="@+id/platosEnVentaLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="19dp"
-            android:layout_marginTop="500dp"
+            android:layout_marginTop="30dp"
             android:text="Platos en venta"
             android:textAppearance="@style/ManropeMedium"
             android:textSize="22sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/descripcion" />
+            app:layout_constraintTop_toBottomOf="@id/listaValoraciones" />
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/mis_platos"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="20dp"
             android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/platosEnVentaLabel" />
+
 
 
     </androidx.constraintlayout.motion.widget.MotionLayout>
@@ -158,8 +204,6 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="33dp"
         android:onClick="modificar"
-
-        android:scaleType="fitXY"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/lapiz_editar" />
@@ -169,12 +213,32 @@
         android:layout_width="17dp"
         android:layout_height="19dp"
         android:layout_marginTop="33dp"
-
         android:layout_marginEnd="20dp"
         android:onClick="cerrar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/cerrar_blanco" />
+    <LinearLayout
+        android:id="@+id/cerrarSesLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+        <Button
+            android:id="@+id/cerrarSesB"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/boton_rojo"
+            android:text="Cerrar sesión"
+            android:textAppearance="@style/ManropeBold"
+            android:textSize="20sp"
+            android:onClick="cerrarSesion"
+            />
+    </LinearLayout>
 
 
 </androidx.constraintlayout.motion.widget.MotionLayout>

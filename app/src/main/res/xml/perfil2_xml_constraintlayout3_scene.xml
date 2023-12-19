@@ -13,16 +13,16 @@
 
     <ConstraintSet android:id="@+id/start">
         <Constraint
-            android:id="@+id/platosEnVentaLabel"
+            android:id="@+id/listaValoraciones"
+            android:orientation="horizontal"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="19dp"
+            android:layout_height="113dp"
             android:layout_marginTop="300dp"
-            android:text="Platos en venta"
-            android:textAppearance="@style/ManropeMedium"
-            android:textSize="22sp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
             motion:layout_constraintStart_toStartOf="parent"
             motion:layout_constraintTop_toBottomOf="@id/descripcion"
+            motion:layout_constraintEnd_toEndOf="parent"
             />
 
 
@@ -30,16 +30,17 @@
 
     <ConstraintSet android:id="@+id/end">
         <Constraint
-            android:id="@+id/platosEnVentaLabel"
+            android:id="@+id/listaValoraciones"
+            android:orientation="horizontal"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="19dp"
-            android:text="Platos en venta"
-            android:textAppearance="@style/ManropeMedium"
-            android:textSize="22sp"
-            android:layout_marginTop="25dp"
+            android:layout_height="113dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
             motion:layout_constraintStart_toStartOf="parent"
             motion:layout_constraintTop_toBottomOf="@id/descripcion"
+            motion:layout_constraintEnd_toEndOf="parent"
             />
+
     </ConstraintSet>
 </MotionScene>

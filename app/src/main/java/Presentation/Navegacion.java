@@ -11,6 +11,7 @@ import androidx.fragment.app.FragmentContainerView;
 
 import com.example.cucharon.Producto;
 import com.example.cucharon.R;
+import com.example.cucharon.Usuario;
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 
 import java.util.List;
@@ -35,6 +36,8 @@ public class Navegacion extends AppCompatActivity {
         barraNav = findViewById(R.id.barraNav);
         mainFragmentContainer = findViewById(R.id.mainFragmentContainer);
         imagenPerfil = findViewById(R.id.imagen_perfil);
+        Usuario loggedUser = servicio.getLoggedUser();
+        if(loggedUser.getFoto() != null) imagenPerfil.setImageBitmap(servicio.pasarStringAImagen(loggedUser.getFoto()));
         barraNav.setOnItemSelectedListener(new ChipNavigationBar.OnItemSelectedListener() {
             @Override
             public void onItemSelected(int i) {

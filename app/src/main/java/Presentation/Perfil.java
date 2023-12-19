@@ -34,6 +34,8 @@ public class Perfil extends AppCompatActivity implements MotionLayout.Transition
 
     MotionLayout escenaPrincipal, desplegableDetalles;
     ImageView editarB;
+    Button cerrarSesB;
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -50,6 +52,7 @@ public class Perfil extends AppCompatActivity implements MotionLayout.Transition
         descripcion = findViewById(R.id.descripcion);
         fotoDPerfil = findViewById(R.id.fotoDPerfil);
         mis_platos = findViewById(R.id.mis_platos);
+        cerrarSesB = findViewById(R.id.cerrarSesB);
 
         escenaPrincipal = findViewById(R.id.escenaPrincipal);
         desplegableDetalles = findViewById(R.id.desplegableDetalles);
@@ -58,8 +61,10 @@ public class Perfil extends AppCompatActivity implements MotionLayout.Transition
         desplegableDetalles.setTransitionListener(this);
 
         editarB = findViewById(R.id.editarB);
-        if(!userEmail.equals(servicio.getLoggedUser().getEmail())) editarB.setVisibility(View.GONE);
-        else {editarB.setVisibility(View.VISIBLE);}
+        if(!userEmail.equals(servicio.getLoggedUser().getEmail())) {
+            editarB.setVisibility(View.GONE);
+            cerrarSesB.setVisibility(View.GONE);
+        }
 
 
 
@@ -103,11 +108,15 @@ public class Perfil extends AppCompatActivity implements MotionLayout.Transition
     @Override
     public void onTransitionCompleted(MotionLayout motionLayout, int currentId) {
         updateNestedMotionLayout(motionLayout);
+        if(currentId == R.id.end) {
+
+        }
     }
 
     @Override
     public void onTransitionTrigger(MotionLayout motionLayout, int triggerId, boolean positive, float progress) {
         updateNestedMotionLayout(motionLayout);
+
     }
 
     private void updateNestedMotionLayout(MotionLayout motionLayout) {
@@ -125,5 +134,9 @@ public class Perfil extends AppCompatActivity implements MotionLayout.Transition
         int añoNacimiento = date.getYear();
         int edad = añoActual-añoNacimiento;
         return ""+edad;
+    }
+
+    public void cerrarSesion(View view){
+        //Logica para cerrar sesión
     }
 }
