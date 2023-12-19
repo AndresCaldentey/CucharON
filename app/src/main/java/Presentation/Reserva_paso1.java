@@ -5,7 +5,6 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentResultListener;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,14 +19,14 @@ import com.example.cucharon.Usuario;
 import Negocio.IService;
 import Negocio.Service;
 
-public class Reserva3 extends Fragment {
+public class Reserva_paso1 extends Fragment {
     private IService service;
     private Producto producto;
 
-    public Reserva3() { }
+    public Reserva_paso1() { }
 
-    public static Reserva3 newInstance(Producto plato) {
-        Reserva3 fragment = new Reserva3();
+    public static Reserva_paso1 newInstance(Producto plato) {
+        Reserva_paso1 fragment = new Reserva_paso1();
         Bundle args = new Bundle();
         args.putSerializable("plato", plato);
         fragment.setArguments(args);
@@ -63,9 +62,8 @@ public class Reserva3 extends Fragment {
         precioPlato.setText(producto.getPrecio() + "€");
         imagenPlato.setImageBitmap(service.pasarStringAImagen(producto.getImagen()) );
 
-        btnReserva.setOnClickListener((v) -> {
-            getParentFragmentManager().beginTransaction().replace(R.id.mainFragmentContainer, Reserva_paso2.newInstance(producto)).commit();
-        });
+        btnReserva.setOnClickListener(v -> getParentFragmentManager().beginTransaction().replace(R.id.mainFragmentContainer,
+                Reserva_paso2.newInstance(producto)).commit());
     }
 
     @Override

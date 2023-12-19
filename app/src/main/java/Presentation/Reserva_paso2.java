@@ -21,7 +21,7 @@ import Negocio.IService;
 public class Reserva_paso2 extends Fragment {
     private IService service;
     private Producto producto;
-    private TextView nombrePlato, cantidad, unidad, precio, nombreUsuario, valoracion, direccion, rangoRecogida;
+    private TextView cantidad, unidad, precio, valoracion;
 
     public Reserva_paso2() { }
 
@@ -44,46 +44,31 @@ public class Reserva_paso2 extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        nombrePlato = view.findViewById(R.id.nomPlato);
+        TextView nombrePlato = view.findViewById(R.id.nomPlato);
+        TextView nombreUsuario = view.findViewById(R.id.usuarioText);
+        TextView direccion = view.findViewById(R.id.textoDireccion);
+        TextView rangoRecogida = view.findViewById(R.id.rangoRecogidaText);
         cantidad = view.findViewById(R.id.cantidad);
         unidad = view.findViewById(R.id.unidad);
         precio = view.findViewById(R.id.precio);
-        nombreUsuario = view.findViewById(R.id.usuarioText);
         valoracion = view.findViewById(R.id.valorText);
-        direccion = view.findViewById(R.id.textoDireccion);
-        rangoRecogida = view.findViewById(R.id.rangoRecogidaText);
 
         Usuario publicador = producto.getUsuarioPublicador();
-        nombrePlato.setText(producto.getNombre());
-        setUnidad();
-        setPrecio();
         String nombreCompleto = publicador.getNombre() + " " + publicador.getApellido();
         nombreUsuario.setText(nombreCompleto);
-        setValoracion(publicador.getValoracion());
         direccion.setText(producto.getDireccionRecogida());
         rangoRecogida.setText("Rango de hora: "+ producto.getHoraRecogida());
-    }
+        nombrePlato.setText(producto.getNombre());
+        precio.setText(producto.getNumRaciones() * producto.getPrecio() + " €");
 
-    private void setUnidad() {
+        //Inicializa la cantidad y las unidades
         cantidad.setText(producto.getNumRaciones() + "");
+        if (producto.getNumRaciones() > 1) { unidad.setText("Unidades"); }
+        else { unidad.setText("Unidad"); }
 
-        if (producto.getNumRaciones() > 1) {
-            unidad.setText("Unidades");
-        } else {
-            unidad.setText("Unidad");
-        }
-    }
-
-    private void setPrecio() {
-        Double cantidad2 = Double.parseDouble(cantidad.getText().toString());
-        precio.setText(cantidad2 * producto.getPrecio() + " €");
-    }
-
-    private void setValoracion(int cantidad) {
+        //Inicializa valoracion
         String valor = " ";
-        for (int i = 0; i < cantidad; i++) {
-            valor += "*";
-        }
+        for (int i = 0; i < publicador.getValoracion(); i++) { valor += "*"; }
         valoracion.setText(valor);
     }
 

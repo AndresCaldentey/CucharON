@@ -2,7 +2,6 @@ package Presentation.Adapters;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +16,7 @@ import java.util.List;
 
 import Negocio.Service;
 import Presentation.Navegacion;
-import Presentation.Reserva3;
+import Presentation.Reserva_paso1;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class AdaptadorHome extends RecyclerView.Adapter<AdaptadorHome.HomeViewHolder> {
@@ -75,7 +74,7 @@ public class AdaptadorHome extends RecyclerView.Adapter<AdaptadorHome.HomeViewHo
             bundle.putSerializable("platoReserva3", plato);
             Navegacion navegacion = (Navegacion) actividad;
             navegacion.getSupportFragmentManager().setFragmentResult("Reserva3", bundle);
-            navegacion.getSupportFragmentManager().beginTransaction().replace(R.id.mainFragmentContainer, new Reserva3()).commit();
+            navegacion.getSupportFragmentManager().beginTransaction().replace(R.id.mainFragmentContainer, new Reserva_paso1()).commit();
         }
 
     }
