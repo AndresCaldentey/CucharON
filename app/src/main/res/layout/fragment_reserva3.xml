@@ -230,7 +230,7 @@
                     android:background="@drawable/img_12"
                     android:fontFamily="@font/manrope"
                     android:gravity="center"
-                    android:text="Reservar Producto"
+                    android:text="Continuar con la reserva"
                     android:textColor="@color/white"
                     android:textSize="18sp" />
             </LinearLayout>
