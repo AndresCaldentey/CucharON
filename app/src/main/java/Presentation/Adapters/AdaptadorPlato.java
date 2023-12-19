@@ -1,6 +1,7 @@
 package Presentation.Adapters;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,7 +23,7 @@ import java.util.List;
 import Negocio.IService;
 import Negocio.Service;
 import Presentation.Navegacion;
-import Presentation.Reserva_paso1;
+import Presentation.ReservaPaso1;
 
 //El Adaptador es donde se almacena cada instancia de mostrar un plato y el holder es como se define cada instancia de mostrar plato.
 public class AdaptadorPlato extends RecyclerView.Adapter<AdaptadorPlato.AdaptadorPlatoHolder>{
@@ -111,7 +112,8 @@ public class AdaptadorPlato extends RecyclerView.Adapter<AdaptadorPlato.Adaptado
 
         private void pulsar(){
             Navegacion navegacion = (Navegacion) actividad;
-            navegacion.getSupportFragmentManager().beginTransaction().replace(R.id.mainFragmentContainer, Reserva_paso1.newInstance(plato)).commit();
+            Intent intent = new Intent(navegacion, ReservaPaso1.class);
+            intent.putExtra("plato", plato.getIdProducto());
         }
     }
     public interface OnClickPerfilListener{

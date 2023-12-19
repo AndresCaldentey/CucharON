@@ -1,7 +1,7 @@
 package Presentation.Adapters;
 
 import android.app.Activity;
-import android.os.Bundle;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +16,7 @@ import java.util.List;
 
 import Negocio.Service;
 import Presentation.Navegacion;
-import Presentation.Reserva_paso1;
+import Presentation.ReservaPaso1;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class AdaptadorHome extends RecyclerView.Adapter<AdaptadorHome.HomeViewHolder> {
@@ -71,7 +71,9 @@ public class AdaptadorHome extends RecyclerView.Adapter<AdaptadorHome.HomeViewHo
         public void onClick(View view) {
             //aquí se define el listener que espera al click de un plato.
             Navegacion navegacion = (Navegacion) actividad;
-            navegacion.getSupportFragmentManager().beginTransaction().replace(R.id.mainFragmentContainer, Reserva_paso1.newInstance(plato)).commit();
+            Intent intent = new Intent(navegacion, ReservaPaso1.class);
+            intent.putExtra("plato", plato.getIdProducto());
+            navegacion.startActivity(intent);
         }
 
     }

@@ -35,6 +35,15 @@
             android:name="Presentation.IUAddPlato"
             android:screenOrientation="portrait"
             android:exported="true" />
+
+        <activity
+            android:name="Presentation.ReservaPaso1"
+            android:screenOrientation="portrait"
+            android:exported="true" />
+        <activity
+            android:name="Presentation.ReservaPaso2"
+            android:screenOrientation="portrait"
+            android:exported="true" />
         <activity
             android:name="Presentation.Navegacion"
             android:screenOrientation="portrait"

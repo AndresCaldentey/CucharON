@@ -2,13 +2,9 @@ package Presentation;
 
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
+import androidx.appcompat.app.AppCompatActivity;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -24,7 +20,7 @@ import Negocio.IService;
 import Negocio.Service;
 
 
-public class Reserva_paso2 extends Fragment {
+public class ReservaPaso2 extends AppCompatActivity {
     private IService service;
     private Producto producto;
     private TextView cantidad, unidad, precio, valoracion, nombrePlato, nombreUsuario, direccion, rangoRecogida;
@@ -33,39 +29,25 @@ public class Reserva_paso2 extends Fragment {
     Button botonReservar;
     Date horaRecodiga;
 
-    public Reserva_paso2() {
-    }
-
-    public static Reserva_paso2 newInstance(Producto plato) {
-        Reserva_paso2 fragment = new Reserva_paso2();
-        Bundle args = new Bundle();
-        args.putSerializable("plato", plato);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            producto = (Producto) getArguments().getSerializable("plato");
-        }
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        nombrePlato = view.findViewById(R.id.nomPlato);
-        nombreUsuario = view.findViewById(R.id.usuarioText);
-        direccion = view.findViewById(R.id.textoDireccion);
-        rangoRecogida = view.findViewById(R.id.rangoRecogidaText);
-        cantidad = view.findViewById(R.id.cantidad);
-        unidad = view.findViewById(R.id.unidad);
-        precio = view.findViewById(R.id.precio);
-        valoracion = view.findViewById(R.id.valorText);
-        botonMas = view.findViewById(R.id.botonMas);
-        botonMenos = view.findViewById(R.id.botonMenos);
-        botonReservar = view.findViewById(R.id.reservarbtn);
+        setContentView(R.layout.reserva_paso2);
+        service = Service.getService();
+        int platoId = getIntent().getIntExtra("plato", -1);
+        if(platoId == -1) finish();
+        producto = service.getProductoById(platoId);
+        nombrePlato = findViewById(R.id.nomPlato);
+        nombreUsuario = findViewById(R.id.usuarioText);
+        direccion = findViewById(R.id.textoDireccion);
+        rangoRecogida = findViewById(R.id.rangoRecogidaText);
+        cantidad = findViewById(R.id.cantidad);
+        unidad = findViewById(R.id.unidad);
+        precio = findViewById(R.id.precio);
+        valoracion = findViewById(R.id.valorText);
+        botonMas = findViewById(R.id.botonMas);
+        botonMenos = findViewById(R.id.botonMenos);
+        botonReservar = findViewById(R.id.reservarbtn);
 
         Usuario publicador = producto.getUsuarioPublicador();
 
@@ -112,6 +94,8 @@ public class Reserva_paso2 extends Fragment {
         });
     }
 
+
+
     private void setUnidades() {
         //Inicializa la cantidad y las unidades
         cantidad.setText(producto.getNumRaciones() + "");
@@ -120,13 +104,6 @@ public class Reserva_paso2 extends Fragment {
         } else {
             unidad.setText("Unidad");
         }
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_reserva_paso2, container, false);
     }
 
 }
