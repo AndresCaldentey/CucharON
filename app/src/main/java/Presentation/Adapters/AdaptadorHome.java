@@ -70,11 +70,8 @@ public class AdaptadorHome extends RecyclerView.Adapter<AdaptadorHome.HomeViewHo
         @Override
         public void onClick(View view) {
             //aquí se define el listener que espera al click de un plato.
-            Bundle bundle = new Bundle();
-            bundle.putSerializable("platoReserva3", plato);
             Navegacion navegacion = (Navegacion) actividad;
-            navegacion.getSupportFragmentManager().setFragmentResult("Reserva3", bundle);
-            navegacion.getSupportFragmentManager().beginTransaction().replace(R.id.mainFragmentContainer, new Reserva_paso1()).commit();
+            navegacion.getSupportFragmentManager().beginTransaction().replace(R.id.mainFragmentContainer, Reserva_paso1.newInstance(plato)).commit();
         }
 
     }
