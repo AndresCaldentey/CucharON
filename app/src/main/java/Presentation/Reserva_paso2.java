@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.cucharon.Producto;
@@ -22,8 +23,11 @@ public class Reserva_paso2 extends Fragment {
     private IService service;
     private Producto producto;
     private TextView cantidad, unidad, precio, valoracion, nombrePlato, nombreUsuario, direccion, rangoRecogida;
+    ImageView botonMas, botonMenos;
+    int numCantidad = 1;
 
-    public Reserva_paso2() { }
+    public Reserva_paso2() {
+    }
 
     public static Reserva_paso2 newInstance(Producto plato) {
         Reserva_paso2 fragment = new Reserva_paso2();
@@ -49,9 +53,11 @@ public class Reserva_paso2 extends Fragment {
         direccion = view.findViewById(R.id.textoDireccion);
         rangoRecogida = view.findViewById(R.id.rangoRecogidaText);
         cantidad = view.findViewById(R.id.cantidad);
-        //unidad = view.findViewById(R.id.unidad);
+        unidad = view.findViewById(R.id.unidad);
         precio = view.findViewById(R.id.precio);
         valoracion = view.findViewById(R.id.valorText);
+        botonMas = view.findViewById(R.id.botonMas);
+        botonMenos = view.findViewById(R.id.botonMenos);
 
         Usuario publicador = producto.getUsuarioPublicador();
 
@@ -61,7 +67,7 @@ public class Reserva_paso2 extends Fragment {
 
         direccion.setText(producto.getDireccionRecogida());
 
-        rangoRecogida.setText("Rango de hora: "+ producto.getHoraRecogida());
+        rangoRecogida.setText("Rango de hora: " + producto.getHoraRecogida());
 
         nombrePlato.setText(producto.getNombre());
 
@@ -71,15 +77,42 @@ public class Reserva_paso2 extends Fragment {
 
         //Inicializa valoracion
         String valor = " ";
-        for (int i = 0; i < publicador.getValoracion(); i++) { valor += "*"; }
+        for (int i = 0; i < publicador.getValoracion(); i++) {
+            valor += "*";
+        }
         valoracion.setText(valor);
+
+        botonMenos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                numCantidad -= 1;
+                cantidad.setText(numCantidad + "");
+
+            }
+        });
+
+        botonMas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                numCantidad += 1;
+                cantidad.setText(numCantidad + "");
+
+            }
+        });
+
+
     }
 
     private void setUnidades() {
         //Inicializa la cantidad y las unidades
         cantidad.setText(producto.getNumRaciones() + "");
-        if (producto.getNumRaciones() > 1) { unidad.setText("Unidades"); }
-        else { unidad.setText("Unidad"); }
+        if (producto.getNumRaciones() > 1) {
+            unidad.setText("Unidades");
+        } else {
+            unidad.setText("Unidad");
+        }
     }
 
     @Override
