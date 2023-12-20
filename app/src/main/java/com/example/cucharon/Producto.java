@@ -46,6 +46,8 @@ public class Producto implements Serializable {
     private double direccionLatitud;
     @DatabaseField
     private boolean entregado;
+    @DatabaseField
+    private int valoracion;
 
     public Producto() {
     }
@@ -68,6 +70,7 @@ public class Producto implements Serializable {
         this.direccionLatitud = lat;
         this.direccionLongitud = lon;
         this.entregado = false;
+        this.valoracion = -1;
     }
 
     public int getIdProducto() {
@@ -189,6 +192,15 @@ public class Producto implements Serializable {
     public void setEntregado(boolean entregado) {
         this.entregado = entregado;
     }
+
+    public int getValoracion() {
+        return valoracion;
+    }
+
+    public void setValoracion(int valoracion) {
+        this.valoracion = valoracion;
+    }
+
     /*
     public List<Ingrediente> getIngredientes() {
         return ingredientes;
