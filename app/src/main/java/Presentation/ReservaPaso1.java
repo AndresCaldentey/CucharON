@@ -64,6 +64,10 @@ public class ReservaPaso1 extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void cerrarClick(View view){
+        finish();
+    }
+
 
 
 }
