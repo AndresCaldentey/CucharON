@@ -54,12 +54,13 @@
             app:layout_constraintTop_toBottomOf="@+id/textView32"
             app:layout_constraintVertical_bias="0.127">
 
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/imagenPlato"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/img_18" />
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/mas_add_plato" />
 
         </LinearLayout>
 

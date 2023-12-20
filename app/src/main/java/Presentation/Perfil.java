@@ -80,6 +80,7 @@ public class Perfil extends AppCompatActivity implements MotionLayout.Transition
         };
 
         List<Producto> productosValorados = servicio.getProductosValorados(usuarioActual);
+
         if(productosValorados.size() > 0) { noHayOpinion.setVisibility(View.GONE); }
 
         AdapterOpinion adapterOpinion = new AdapterOpinion(productosValorados, logicaOpinion);
