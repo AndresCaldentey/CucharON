@@ -44,8 +44,11 @@ public class Navegacion extends AppCompatActivity {
         Usuario loggedUser = servicio.getLoggedUser();
         if(loggedUser.getFoto() != null) imagenPerfil.setImageBitmap(servicio.pasarStringAImagen(loggedUser.getFoto()));
 
-        listaProductos = servicio.getPrimerosProductos();
+        allProductos = PantalladaDeCargaInicio.productos;
+        setListaProductos(allProductos);
 
+       // listaProductos = servicio.getPrimerosProductos();
+/*
         //Hilo para recoger todos los productos de fondo
         Thread hilo = new Thread(() ->
         {
@@ -53,7 +56,7 @@ public class Navegacion extends AppCompatActivity {
             runOnUiThread(() -> setListaProductos(lproduct));
         });
         hilo.start();
-
+*/
 
         barraNav.setOnItemSelectedListener(new ChipNavigationBar.OnItemSelectedListener() {
             @Override
