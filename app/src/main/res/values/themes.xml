@@ -6,4 +6,10 @@
     </style>
 
     <style name="Theme.CucharON" parent="Base.Theme.CucharON" />
+    
+    <style name="splashScreem" parent="Base.Theme.CucharON">
+        <item name="windowSplashScreenBackground">@color/black</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/acido_sabor</item>
+        <item name="postSplashScreenTheme">@style/Base.Theme.CucharON</item>
+    </style>
 </resources>

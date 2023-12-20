@@ -64,12 +64,14 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toEndOf="@id/valoracionReserva3"
             />
+
         <ImageView
             android:id="@+id/cerrarB"
             android:layout_width="17dp"
             android:layout_height="19dp"
             android:layout_marginTop="40dp"
             android:layout_marginEnd="20dp"
+            android:onClick="mostrarAlertaConDosOpciones"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/cerrar" />
