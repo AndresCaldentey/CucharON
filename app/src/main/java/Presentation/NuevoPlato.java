@@ -32,10 +32,11 @@ import Negocio.IService;
 import Negocio.Service;
 import Presentation.Adapters.DataObject;
 import Presentation.Adapters.OnDataPassListener;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class NuevoPlato extends Fragment{
     Service servicio;
-    ImageView imagenPlato;
+    CircleImageView imagenPlato;
     EditText textoNombre;
     Button siguienteB;
     private static final int REQUEST_IMAGE_CAPTURE = 1;
@@ -53,6 +54,8 @@ public class NuevoPlato extends Fragment{
         imagenPlato = view.findViewById(R.id.imagenPlato);
         siguienteB = view.findViewById(R.id.siguienteB);
         textoNombre = view.findViewById(R.id.textoNombre);
+
+        imagenPlato.setImageResource(R.drawable.mas_add_plato);
 
         siguienteB.setOnClickListener(new View.OnClickListener() {
             @Override

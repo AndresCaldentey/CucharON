@@ -40,7 +40,7 @@ public class ReservaPaso1 extends AppCompatActivity {
         if(platoId == -1) finish();
         producto = service.getProductoById(platoId);
 
-
+        TextView platoDesc = findViewById(R.id.platoDesc);
         TextView nombreUser = findViewById(R.id.nombreUsuarioReserva3);
         TextView valoracionUser = findViewById(R.id.valoracionReserva3);
         ImageView imagenUser = findViewById(R.id.fotoPerfilReserva3);
@@ -52,13 +52,11 @@ public class ReservaPaso1 extends AppCompatActivity {
         Usuario usuario = producto.getUsuarioPublicador();
         nombreUser.setText(usuario.getNombre());
         valoracionUser.setText(usuario.getValoracion()+"");
-        imagenUser.setImageBitmap(service.pasarStringAImagen(usuario.getFoto()) );
+        imagenUser.setImageBitmap(service.pasarStringAImagen(usuario.getFoto()));
         nombrePlato.setText(producto.getNombre());
-        precioPlato.setText(producto.getPrecio() + "€");
+        precioPlato.setText(producto.getPrecio() + " euros");
         imagenPlato.setImageBitmap(service.pasarStringAImagen(producto.getImagen()) );
-
-        reservaB.setEnabled(!usuario.getEmail().equals(service.getLoggedUser().getEmail()));
-        reservaB.setTextColor(reservaB.isEnabled() ? R.color.blancoDis : R.color.negroDis);
+        platoDesc.setText(producto.getContenido());
 
     }
 
@@ -113,6 +111,10 @@ public class ReservaPaso1 extends AppCompatActivity {
         // Mostrar la alerta
         AlertDialog dialog = builder.create();
         dialog.show();
+    }
+
+    public void clickPerfil(View view){
+        service.pulsarPerfil(ReservaPaso1.this, producto.getUsuarioPublicador());
     }
 
 
