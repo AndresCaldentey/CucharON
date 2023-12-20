@@ -1,7 +1,10 @@
 package Presentation;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -11,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.cucharon.Producto;
 import com.example.cucharon.R;
@@ -68,6 +72,48 @@ public class ReservaPaso1 extends AppCompatActivity {
         finish();
     }
 
+    public void abrirEnMapa(){
+        String label = producto.getDireccionRecogida();
+        String uri = "geo:" + producto.getDireccionLatitud() + "," + producto.getDireccionLongitud() + "?q=" +  producto.getDireccionLatitud() + "," + producto.getDireccionLongitud() + "(" + label + ")";
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+        intent.setPackage("com.google.android.apps.maps"); // Asegura que se abra en Google Maps
+
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        } else {
+            // Si Google Maps no está instalado, maneja la situación de alguna manera
+            Toast.makeText(this, "Google Maps no está instalado", Toast.LENGTH_SHORT).show();
+        }
+    }
+    public void mostrarAlertaConDosOpciones(View view) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("¿Quieres abrir esta dirección en google maps?");
+        builder.setMessage("Serás redirigido a otra aplicación");
+
+        // Configurar botón positivo (Sí)
+        builder.setPositiveButton("Sí", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                // Acciones al hacer clic en Sí
+                // Puedes agregar lógica adicional aquí si es necesario
+                abrirEnMapa();
+                dialog.dismiss(); // Cierra la alerta
+
+            }
+        });
+
+        // Configurar botón negativo (No)
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                // Acciones al hacer clic en No
+                // Puedes agregar lógica adicional aquí si es necesario
+                dialog.dismiss(); // Cierra la alerta
+            }
+        });
+
+        // Mostrar la alerta
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
 
 
 }
