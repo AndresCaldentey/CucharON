@@ -104,6 +104,11 @@ public class Service implements IService{
         return productoRepo.getProductoPorNombre(nombre);
     }
 
+    @Override
+    public List<Producto> getProductosValorados(Usuario user) {
+        return productoRepo.getProductosValorados(user);
+    }
+
     /*PERSISTENCIA CATEGORIA*/
     public Categoria getCategoriaByName(String nombre) { return categoriaRepo.getCategoriaByName(nombre); }
     public List<Categoria> getAllCategorias() {return categoriaRepo.obtenerTodos();}

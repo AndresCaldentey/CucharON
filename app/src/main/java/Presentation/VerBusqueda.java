@@ -76,8 +76,6 @@ public class VerBusqueda extends Fragment {
                     textViewPais.setText(categoria + " en tu");
                     nombreBusqueda.setVisibility(View.GONE);
                     platos = service.buscarPorCategoria(categoria);
-
-
                 }
                 else {
                     nombreBusqueda.setText(nomPlato);
@@ -90,7 +88,6 @@ public class VerBusqueda extends Fragment {
                 recyclerPlatos.setAdapter(platosAdapter);
             }
         });
-
     }
 
     @Override

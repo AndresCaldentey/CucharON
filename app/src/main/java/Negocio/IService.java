@@ -40,6 +40,7 @@ public interface IService {
     void borrarProducto(Producto producto);
     List<Producto> getProductosSinVenderPorUser(Usuario user);
     List<Producto> getProductoPorNombre(String nombre);
+    List<Producto> getProductosValorados(Usuario user);
 
     /*PERSISTENCIA CATEGORIA*/
     Categoria getCategoriaByName(String nombre);

@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.cucharon.Producto;
 import com.example.cucharon.R;
 import com.example.cucharon.Reserva;
 import com.example.cucharon.Usuario;
@@ -20,11 +21,11 @@ import Negocio.Service;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class AdapterOpinion extends RecyclerView.Adapter<AdapterOpinion.OpinionHolder> {
-    private List<Reserva> reservas;
+    private List<Producto> productos;
     Service servicio;
     OnClickListener logicaClickOpinion;
-    public AdapterOpinion(List<Reserva> reservas, OnClickListener logicaClickOpinion) {
-        this.reservas = reservas;
+    public AdapterOpinion(List<Producto> reservas, OnClickListener logicaClickOpinion) {
+        this.productos = reservas;
         servicio = Service.getService();
         this.logicaClickOpinion = logicaClickOpinion;
     }
@@ -37,13 +38,13 @@ public class AdapterOpinion extends RecyclerView.Adapter<AdapterOpinion.OpinionH
 
     @Override
     public void onBindViewHolder(@NonNull AdapterOpinion.OpinionHolder holder, int position) {
-        if(reservas.get(position).getValoracion() != -1) holder.imprimir(reservas.get(position));
+        if(productos.get(position).getValoracion() != -1) holder.imprimir(productos.get(position));
     }
 
     @Override
     public int getItemCount() {
-        if(reservas == null) return 0;
-        return reservas.size();
+        if(productos == null) return 0;
+        return productos.size();
     }
 
     public class OpinionHolder extends RecyclerView.ViewHolder {
@@ -57,9 +58,9 @@ public class AdapterOpinion extends RecyclerView.Adapter<AdapterOpinion.OpinionH
             valoracionPlato = itemView.findViewById(R.id.valoracionPerfil);
             opinionLayout = itemView.findViewById(R.id.opinionLayout);
         }
-        public void imprimir(Reserva reserva){
-            int valoracion = reserva.getValoracion();
-            Usuario usuarioCom = reserva.getUsuarioComprador();
+        public void imprimir(Producto producto){
+            int valoracion = producto.getValoracion();
+            Usuario usuarioCom = producto.getUsuarioComprador();
 
             if(usuarioCom.getFoto() != null) fotoPerfil.setImageBitmap(servicio.pasarStringAImagen(usuarioCom.getFoto()));
 
