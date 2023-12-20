@@ -19,15 +19,9 @@ import android.widget.Toast;
 import com.example.cucharon.Producto;
 import com.example.cucharon.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link Mi_reserva_plato#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class Mi_reserva_plato extends Fragment {
     private ImageView cerrar;
     private TextView categoria1, categoria2, titulo, raciones, direccion, recogida, precio, nombre_usu, valorarPlato;
-    //private Button valorarPlato;
     private Producto producto;
 
     public Mi_reserva_plato() { }
@@ -69,10 +63,11 @@ public class Mi_reserva_plato extends Fragment {
         valorarPlato = view.findViewById(R.id.valorarPlato);
 
         titulo.setText(producto.getNombre());
-        precio.setText(producto.getPrecio().toString());
+        precio.setText("Precio final: " + producto.getPrecio() + "€");
         raciones.setText(producto.getNumRaciones()+"");
         direccion.setText(producto.getDireccionRecogida());
         recogida.setText(producto.getHoraRecogida());
+        nombre_usu.setText(producto.getUsuarioPublicador().getNombre());
 
         valorarPlato.setOnClickListener((view1) -> { mostrarDialogoCalificacion(); });
     }
@@ -104,7 +99,6 @@ public class Mi_reserva_plato extends Fragment {
                 // Puedes hacer algo con la calificación aquí (guardarla, enviarla a un servidor, etc.)
                 Toast.makeText(getActivity(), "Calificación seleccionada: " + calificacion, Toast.LENGTH_SHORT).show();
 
-                // Cierra el diálogo
                 dialog.dismiss();
             }
         });
