@@ -120,7 +120,11 @@ public class Navegacion extends AppCompatActivity {
         if(mainFragmentContainer.getFragment() instanceof VerBusqueda) {
             getSupportFragmentManager().beginTransaction().replace(R.id.mainFragmentContainer, new Examinar()).commit();
             showPerfil();
-        }else
+        } else if(mainFragmentContainer.getFragment() instanceof HomeMapa) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.mainFragmentContainer, new Home()).commit();
+            showPerfil();
+        }
+        else
         {
             super.onBackPressed();
         }
