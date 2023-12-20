@@ -47,6 +47,8 @@ public class Add_punto_encuentro extends Fragment implements OnMapReadyCallback 
     ImageView buscarButton;
     Button botonSubirPlato;
     String direccion;
+    String longitud;
+    String latitud;
     public Add_punto_encuentro() {
         // Required empty public constructor
     }
@@ -103,7 +105,8 @@ public class Add_punto_encuentro extends Fragment implements OnMapReadyCallback 
             public void onMapClick(LatLng latLng) {
                 // Muestra la ubicación en el EditText
                 direccion = getAddressFromCoordinates(requireContext(), latLng.latitude, latLng.longitude);
-
+                longitud = latLng.longitude + "";
+                latitud = latLng.latitude + "";
                 direccionEditText.setText(direccion);
 
                 // Coloca una marca en el mapa
@@ -128,6 +131,8 @@ public class Add_punto_encuentro extends Fragment implements OnMapReadyCallback 
                             googleMap.moveCamera(CameraUpdateFactory.newLatLng(myLocation));
                             googleMap.animateCamera(CameraUpdateFactory.zoomTo(15.0f));
                             direccion = getAddressFromCoordinates(requireContext(), location.getLatitude(), location.getLongitude());
+                            latitud = location.getLatitude() + "";
+                            longitud = location.getLongitude() + "";
                             direccionEditText.setText(direccion);
                         }
                     });
@@ -201,6 +206,16 @@ public class Add_punto_encuentro extends Fragment implements OnMapReadyCallback 
         dataPassListener.onDataPass(dataObject);
     }
 
+    private void sendLatitudToActivity(String data) {
+        DataObject dataObject = new DataObject("latitud", data);
+        dataPassListener.onDataPass(dataObject);
+    }
+
+    private void sendLongitudToActivity(String data) {
+        DataObject dataObject = new DataObject("longitud", data);
+        dataPassListener.onDataPass(dataObject);
+    }
+
     private void mostrarAlertaConDosOpciones() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setTitle("¡Estamos apuntos de terminar!");
@@ -213,6 +228,8 @@ public class Add_punto_encuentro extends Fragment implements OnMapReadyCallback 
                 // Puedes agregar lógica adicional aquí si es necesario
                 dialog.dismiss(); // Cierra la alerta
                 sendDireccionToActivity(direccion);
+                sendLatitudToActivity(latitud);
+                sendLongitudToActivity(longitud);
                 getParentFragmentManager().beginTransaction().replace(R.id.addPlatoFragmentMan, new Plato_publicado()).commit();
 
             }

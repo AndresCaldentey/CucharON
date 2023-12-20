@@ -15,11 +15,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.FragmentContainerView;
 
+import com.example.cucharon.Categoria;
+import com.example.cucharon.Producto;
+import com.example.cucharon.ProductoCategoria;
 import com.example.cucharon.R;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+import Negocio.Service;
 import Presentation.Adapters.DataObject;
 import Presentation.Adapters.OnDataPassListener;
 
@@ -29,15 +34,16 @@ public class IUAddPlato extends AppCompatActivity implements OnDataPassListener 
     ImageView botonSalir;
     private String nombre = "";
     private String descripcion = "";
-    private String precio = "";
+    private Double precio = 0.0;
     private String imagen = "";
     private String direccion = "";
     private String horaRecogida = "";
     private String diaPreparacion = ""; //No se si se usara o se pondra por defecto
-    private String direccionLatitud = "";
-    private String direccionLongitud = "";
-    private String racion = "";
+    private int racion = 0;
+    private Double latitud = 0.0;
+    private Double longitud = 0.0;
     private List<String> categorias = new ArrayList<>();
+    Service service = Service.getService();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -74,59 +80,86 @@ public class IUAddPlato extends AppCompatActivity implements OnDataPassListener 
         // Aquí es donde gestionas los datos provenientes de los fragments.
         if (data.getSource().equals("nombre")) {
             nombre = data.getData();
-            System.out.println("nombre en activity");
+
         } else if (data.getSource().equals("descripcion")) {
             descripcion = data.getData();
-            System.out.println("descripcion en activity");
+
         } else if (data.getSource().equals("imagen")) {
             imagen = data.getData();
-            System.out.println("imagen en activity");
+
         } else if (data.getSource().equals("categoria")) {
-            categorias.add(data.getData());
-            System.out.println("categoria en activity");
+            categorias.add((data.getData()));
+
         } else if (data.getSource().equals("racion")) {
-            racion = data.getData();
-            System.out.println("racion en activity");
+            racion = Integer.parseInt(data.getData());
+
         } else if (data.getSource().equals("hora")) {
             horaRecogida = data.getData();
-            System.out.println("hora en activity");
+
         } else if (data.getSource().equals("precio")) {
-            precio = data.getData();
-            System.out.println("precio en activity");
+            precio = Double.parseDouble(data.getData());
+
         } else if (data.getSource().equals("direccion")) {
             direccion = data.getData();
-            System.out.println("direccion en activity");
+
+        } else if (data.getSource().equals("latitud")) {
+            latitud = Double.parseDouble(data.getData());
+        } else if (data.getSource().equals("longitud")) {
+            longitud = Double.parseDouble(data.getData());
+
         }
     }
 
     public void botonCerrar(View view) {
-        System.out.println("Funcionaaaaa");
+
         if (datosExisten()) {
-            //guardar producto
+
+            Producto producto = new Producto(0, nombre, descripcion, precio, horaRecogida, imagen, direccion, racion, service.getLoggedUser(), latitud, longitud);
+            service.crearProducto(producto);
+
+            Producto producto1 = service.getProductoById(producto.getIdProducto());
+            for (String categoria : categorias) {
+
+                ProductoCategoria productoCategoria = new ProductoCategoria(producto1, service.getCategoriaByName(categoria));
+                service.guardarProductoCategoria(productoCategoria);
+            }
+
+
+            finish();
+
         } else {
             mostrarAlertaConDosOpciones();
         }
-        System.out.println("No tantoooo");
+
     }
 
     public boolean datosExisten() {
         if (nombre.isEmpty()) {
+
             return false;
         } else if (descripcion.isEmpty()) {
+
             return false;
-        } else if (precio.isEmpty()) {
+        } else if (precio == 0.0) {
+
             return false;
         } else if (imagen.isEmpty()) {
+
             return false;
         } else if (direccion.isEmpty()) {
+
             return false;
         } else if (horaRecogida.isEmpty()) {
+
             return false;
-        } else if (racion.isEmpty()) {
+        } else if (racion == 0) {
+
             return false;
-        } else if (direccionLatitud.isEmpty()) {
+        } else if (latitud == 0.0) {
+
             return false;
-        } else if (direccionLongitud.isEmpty()) {
+        } else if (longitud == 0.0) {
+
             return false;
         }
 

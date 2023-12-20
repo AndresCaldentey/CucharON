@@ -115,7 +115,7 @@ public class Service implements IService{
 
 
     /*PERSISTENCIA PRODUCTO-CATEGORIA*/
-    public void guardarProductoCategoria(ProductoCategoria productoCategoria){productoCategoriaRepo.guardar(productoCategoria);}
+    public void guardarProductoCategoria(ProductoCategoria productoCategoria){productoCategoriaRepo.guardar2(productoCategoria);}
     public List<ProductoCategoria> getAllProductoCategoria(){return productoCategoriaRepo.obtenerTodos(); }
     public List<Producto> buscarPorCategoria(String categoria) {
         List<ProductoCategoria> prodCats = productoCategoriaRepo.BuscarPorCategoria(categoria);
