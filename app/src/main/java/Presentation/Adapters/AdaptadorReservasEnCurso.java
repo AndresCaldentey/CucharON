@@ -1,5 +1,6 @@
 package Presentation.Adapters;
 
+import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,15 +18,20 @@ import java.util.List;
 
 import Negocio.IService;
 import Negocio.Service;
+import Presentation.HomeMapa;
+import Presentation.Mi_reserva_plato;
+import Presentation.Navegacion;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class AdaptadorReservasEnCurso extends RecyclerView.Adapter<AdaptadorReservasEnCurso.ReservasEnCursoHolder>{
     private List<Producto> productos = new ArrayList<>();
     private IService servicio;
+    private Activity activity;
 
-    public AdaptadorReservasEnCurso(List<Producto> productos) {
+    public AdaptadorReservasEnCurso(List<Producto> productos, Activity activity) {
         this.productos = productos;
-        servicio = new Service();
+        this.servicio = Service.getService();
+        this.activity = activity;
     }
 
     public void setProductos(List<Producto> productos) { this.productos = productos;}
@@ -50,6 +56,7 @@ public class AdaptadorReservasEnCurso extends RecyclerView.Adapter<AdaptadorRese
     public class ReservasEnCursoHolder extends RecyclerView.ViewHolder {
         CircleImageView imagenPlato ;
         TextView textViewNombrePlato, textViewNombreUsuario, textViewRecogida;
+        Producto plato;
 
         public ReservasEnCursoHolder(@NonNull View itemView) {
             super(itemView);
@@ -61,10 +68,14 @@ public class AdaptadorReservasEnCurso extends RecyclerView.Adapter<AdaptadorRese
                 @Override
                 public void onClick(View view) {
                     //Se ha clickado
+                    Navegacion actividad = (Navegacion) activity;
+                    actividad.getSupportFragmentManager().beginTransaction().replace(R.id.mainFragmentContainer,
+                            Mi_reserva_plato.newInstance(plato)).commit();
                 }
             });
         }
         public void visualizar(Producto producto){
+            plato = producto;
             imagenPlato.setImageBitmap(servicio.pasarStringAImagen(producto.getImagen()));
             textViewNombrePlato.setText(producto.getNombre());
             textViewNombreUsuario.setText(producto.getUsuarioPublicador().getNombre());

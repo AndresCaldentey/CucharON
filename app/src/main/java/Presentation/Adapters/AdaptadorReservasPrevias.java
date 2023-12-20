@@ -1,5 +1,6 @@
 package Presentation.Adapters;
 
+import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,14 +18,18 @@ import java.util.List;
 
 import Negocio.IService;
 import Negocio.Service;
+import Presentation.Mi_reserva_plato;
+import Presentation.Navegacion;
 
 public class AdaptadorReservasPrevias extends RecyclerView.Adapter<AdaptadorReservasPrevias.PreviasHolder> {
     private List<Producto> productos = new ArrayList<>();
     private IService servicio;
+    private Activity actividad;
 
-    public AdaptadorReservasPrevias(List<Producto> productos) {
+    public AdaptadorReservasPrevias(List<Producto> productos, Activity actividad) {
         this.productos = productos;
-        servicio = new Service();
+        this.servicio = Service.getService();
+        this.actividad = actividad;
     }
 
     public void setProductos(List<Producto> productos) {this.productos = productos;}
@@ -48,6 +53,7 @@ public class AdaptadorReservasPrevias extends RecyclerView.Adapter<AdaptadorRese
 
     public class PreviasHolder extends RecyclerView.ViewHolder {
         TextView textViewNombrePlato, textViewNombreUsuario, textViewPrecio;
+        Producto plato;
 
         public PreviasHolder(@NonNull View itemView) {
             super(itemView);
@@ -58,10 +64,14 @@ public class AdaptadorReservasPrevias extends RecyclerView.Adapter<AdaptadorRese
                 @Override
                 public void onClick(View view) {
                     //Se ha clickado
+                    Navegacion navegacion = (Navegacion) actividad;
+                    navegacion.getSupportFragmentManager().beginTransaction().replace(R.id.mainFragmentContainer,
+                            Mi_reserva_plato.newInstance(plato)).commit();
                 }
             });
         }
         public void visualizar(Producto producto){
+            plato = producto;
             textViewNombrePlato.setText(producto.getNombre());
             textViewNombreUsuario.setText(producto.getUsuarioPublicador().getNombre());
             textViewPrecio.setText(producto.getPrecio()+"€");
