@@ -45,7 +45,7 @@ public class PantalladaDeCargaInicio extends AppCompatActivity {
                 startActivity(intent);
                 finish();
             }
-        }, 4000);
+        }, 6000);
 
 
     }
