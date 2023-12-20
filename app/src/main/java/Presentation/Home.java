@@ -1,10 +1,16 @@
 package Presentation;
 
+//import static Presentation.Mapa.REQUEST_CODE_LOCATION_PERMISSION;
+
+import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.CompositePageTransformer;
@@ -42,6 +48,7 @@ public class Home extends Fragment {
     private AdaptadorHome adaptadosPlatosHome;
     private List<ToggleButton> botones = new ArrayList<>();
     LinearLayout perfilPubLayout;
+    private static final int REQUEST_CODE_LOCATION_PERMISSION = 123;
 
     public Home() {}
 
@@ -118,6 +125,24 @@ public class Home extends Fragment {
         btnMasCaro.setOnClickListener((view1) -> { if(btnMasCaro.isChecked()) actualizarBotones(btnMasCaro); });
 
         btnVendedorTop.setOnClickListener((view1) -> { if(btnVendedorTop.isChecked()) actualizarBotones(btnVendedorTop); });
+
+
+
+
+        if (ContextCompat.checkSelfPermission(
+                getContext(),
+                Manifest.permission.ACCESS_FINE_LOCATION
+        ) == PackageManager.PERMISSION_GRANTED) {
+            // Ya se tienen los permisos
+            // Puedes iniciar la lógica de ubicación aquí
+        } else {
+            // Solicitar permisos
+            ActivityCompat.requestPermissions(
+                    getActivity(),
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                    REQUEST_CODE_LOCATION_PERMISSION
+            );
+        }
     }
 
     @SuppressLint("ResourceAsColor")

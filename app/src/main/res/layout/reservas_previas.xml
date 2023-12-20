@@ -10,6 +10,7 @@
         android:layout_width="322dp"
         android:layout_height="70dp"
         app:cardBackgroundColor="@color/negroDis"
+        app:cardElevation="0dp"
         app:cardCornerRadius="10dp" >
 
         <androidx.constraintlayout.widget.ConstraintLayout
