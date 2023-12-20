@@ -1,6 +1,7 @@
 package Presentation;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.ImageView;
@@ -14,6 +15,7 @@ import com.example.cucharon.R;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CountDownLatch;
 
 import Negocio.Service;
 
@@ -31,22 +33,27 @@ public class PantalladaDeCargaInicio extends AppCompatActivity {
         servicio = Service.getService();
 
         Glide.with(this).asGif().load(R.drawable.gift).into(gifImagen);
-        Thread hilo = new Thread(() ->
-        {
-            productos = servicio.getProductosSinComprar();
 
-        });
-        hilo.start();
+        new CargaProductosTask().execute();
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Intent intent = new Intent(PantalladaDeCargaInicio.this, MainActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        }, 6000);
+    }
 
+    public class CargaProductosTask extends AsyncTask<Void, Void, List<Producto>> {
 
+        @Override
+        protected List<Producto> doInBackground(Void... voids) {
+            // Realiza la carga de productos en segundo plano
+            return servicio.getProductosSinComprar();
+        }
+
+        @Override
+        protected void onPostExecute(List<Producto> productos) {
+            // Este método se ejecutará en el hilo principal después de que la carga haya terminado
+            // Puedes continuar con el intent aquí o realizar cualquier otra acción necesaria
+            PantalladaDeCargaInicio.this.productos = productos;  // Asigna la lista cargada
+            Intent intent = new Intent(PantalladaDeCargaInicio.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
     }
 }
