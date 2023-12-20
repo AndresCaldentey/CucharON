@@ -57,8 +57,8 @@ public class ProductoRepository extends Repository<Producto>{
             QueryBuilder<Producto, Integer> queryBuilder = this.getDao().queryBuilder();
                 Where<Producto, Integer> where = queryBuilder.where();
 
-                where.eq("usuarioPublicador", user).and().not().eq("valoracion", -1);
-                productos = this.getDao().queryForEq("usuarioPublicador", user);
+                where.eq("usuarioPublicador", user).and().gt("valoracion", -1);
+                productos = this.getDao().query(queryBuilder.prepare());
 
             } catch (SQLException e) {
                 e.printStackTrace();

@@ -121,7 +121,8 @@ public class Service implements IService{
         List<ProductoCategoria> prodCats = productoCategoriaRepo.BuscarPorCategoria(categoria);
         List<Producto> result = new ArrayList<>();
         for (ProductoCategoria productCat : prodCats) {
-            result.add(productCat.getProducto());
+            if(productCat.getProducto().getUsuarioComprador() == null &&
+            !(productCat.getProducto().getUsuarioPublicador()).equals(loggedUser)) result.add(productCat.getProducto());
         }
         return result;
     }

@@ -16,7 +16,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import com.example.cucharon.Producto;
 import com.example.cucharon.R;
+
+import java.util.List;
 
 import Presentation.Adapters.ClickCategoria;
 import Presentation.Adapters.Pais;
@@ -89,7 +92,6 @@ public class Examinar extends Fragment {
                         activityActual.hidePerfil();
                     }
                 }
-                getParentFragmentManager().beginTransaction().replace(R.id.mainFragmentContainer, new VerBusqueda()).commit();
             }
         };
 
@@ -108,6 +110,7 @@ public class Examinar extends Fragment {
         boton.setBackground(botonPulsado);
         getParentFragmentManager().beginTransaction().replace(R.id.contenedorExaminar, fragment).commit();
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

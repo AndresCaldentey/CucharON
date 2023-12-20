@@ -15,7 +15,7 @@
         <Constraint
             android:id="@+id/listaValoraciones"
             android:orientation="horizontal"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="113dp"
             android:layout_marginTop="300dp"
             android:layout_marginStart="20dp"
@@ -32,7 +32,7 @@
         <Constraint
             android:id="@+id/listaValoraciones"
             android:orientation="horizontal"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="113dp"
             android:layout_marginTop="20dp"
             android:layout_marginStart="20dp"

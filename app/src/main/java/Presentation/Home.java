@@ -27,6 +27,8 @@ import com.example.cucharon.R;
 import com.example.cucharon.Usuario;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import Negocio.CustomFontTextView;
 import Negocio.IService;
@@ -47,6 +49,10 @@ public class Home extends Fragment {
     private List<ToggleButton> botones = new ArrayList<>();
     LinearLayout perfilPubLayout;
     private static final int REQUEST_CODE_LOCATION_PERMISSION = 123;
+
+    private static final int MAS_BARATO = 0;
+    private static final int MAS_CARO = 1;
+    private static final int VENDEDORES_TOP = 2;
 
     public Home() {}
 
@@ -121,11 +127,28 @@ public class Home extends Fragment {
             getParentFragmentManager().beginTransaction().replace(R.id.mainFragmentContainer, new HomeMapa()).commit();
         });
 
-        btnMasBarato.setOnClickListener((view1) -> { if(btnMasBarato.isChecked()) actualizarBotones(btnMasBarato); });
+        btnMasBarato.setOnClickListener((view1) -> {
+            if(btnMasBarato.isChecked()) {
+                setProductos(ordenarLista(MAS_BARATO, productos));
+                actualizarBotones(btnMasBarato);
+                platosSliderHome.setCurrentItem(0, true);
+            } });
 
-        btnMasCaro.setOnClickListener((view1) -> { if(btnMasCaro.isChecked()) actualizarBotones(btnMasCaro); });
+        btnMasCaro.setOnClickListener((view1) -> {
+            if(btnMasCaro.isChecked()) {
+                setProductos(ordenarLista(MAS_CARO, productos));
+                actualizarBotones(btnMasCaro);
+                platosSliderHome.setCurrentItem(0, true);
+            }
+        });
 
-        btnVendedorTop.setOnClickListener((view1) -> { if(btnVendedorTop.isChecked()) actualizarBotones(btnVendedorTop); });
+        btnVendedorTop.setOnClickListener((view1) -> {
+            if(btnVendedorTop.isChecked()) {
+                setProductos(ordenarLista(VENDEDORES_TOP, productos));
+                actualizarBotones(btnVendedorTop);
+                platosSliderHome.setCurrentItem(0, true);
+            }
+        });
 
     }
 
@@ -151,7 +174,19 @@ public class Home extends Fragment {
         if(publicador.getFoto() != null) fotoPerfilPub.setImageBitmap(service.pasarStringAImagen(publicador.getFoto()));
 
     }
-
+    private List<Producto> ordenarLista(int opcion, List<Producto> productos) {
+        List<Producto> prodAux=productos;
+        if(opcion == MAS_BARATO) {
+            Collections.sort(prodAux, Comparator.comparingDouble(Producto::getPrecio));
+        }
+        if(opcion == MAS_CARO) {
+            Collections.sort(prodAux, Comparator.comparingDouble(Producto::getPrecio).reversed());
+        }
+        if(opcion == VENDEDORES_TOP) {
+            Collections.sort(prodAux, Comparator.comparingInt((Producto p) -> p.getUsuarioPublicador().getValoracion()).reversed());
+        }
+        return prodAux;
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
