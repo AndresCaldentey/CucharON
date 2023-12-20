@@ -27,6 +27,7 @@ public interface IService {
     /*PERSISTENCIA PRODUCTO*/
     Producto crearProducto(Producto producto);
     Producto getProductoById(int id);
+    List<Producto> getPrimerosProductos();
     List<Producto> getProductosByPosicion(double lat, double lon);
     List<Producto> getProductosPubPorUser(Usuario usuario);
     List<Producto> getProductosSinComprar();

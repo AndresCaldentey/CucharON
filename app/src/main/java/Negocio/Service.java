@@ -82,6 +82,7 @@ public class Service implements IService{
     public Producto crearProducto(Producto producto) { productoRepo.guardar2(producto);
                                                         return producto;}
     public Producto getProductoById(int id) { return productoRepo.obtener(id); }
+    public List<Producto> getPrimerosProductos() { return productoRepo.getPrimerosProductos();}
     public List<Producto> getProductosByPosicion(double lat, double lon) { return productoRepo.getProductosByPosicion(lat, lon);}
     public List<Producto> getProductoReservadoEnCurso() { return productoRepo.getReservasEnCurso(loggedUser); }
     public List<Producto> getProductoReservadoEntregado() { return productoRepo.getReservasPrevias(loggedUser); }

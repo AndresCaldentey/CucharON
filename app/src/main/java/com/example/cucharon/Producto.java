@@ -48,6 +48,8 @@ public class Producto implements Serializable {
     private boolean entregado;
     @DatabaseField
     private int valoracion;
+    @DatabaseField
+    private String horaReserva;
 
     public Producto() {
     }
@@ -71,6 +73,7 @@ public class Producto implements Serializable {
         this.direccionLongitud = lon;
         this.entregado = false;
         this.valoracion = -1;
+        this.horaReserva = null;
     }
 
     public int getIdProducto() {
@@ -201,7 +204,14 @@ public class Producto implements Serializable {
         this.valoracion = valoracion;
     }
 
-    /*
+    public String getHoraReserva() {
+        return horaReserva;
+    }
+
+    public void setHoraReserva(String horaReserva) {
+        this.horaReserva = horaReserva;
+    }
+/*
     public List<Ingrediente> getIngredientes() {
         return ingredientes;
     }

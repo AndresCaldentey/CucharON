@@ -205,33 +205,24 @@ public class ProductoRepository extends Repository<Producto>{
     }
 
     public List<Producto> getProductosSinComprador(){
-        Thread hilo = new Thread(() ->
-        {
+        List<Producto> listaProduct = new ArrayList<>();
 
-            try {
-                QueryBuilder<Producto, ?> queryBuilder = getDao().queryBuilder();
-                queryBuilder.where().isNull("usuarioComprador");
-                PreparedQuery<Producto> preparedQuery = queryBuilder.prepare();
-
-                // Ejecutar la consulta
-                productos = getDao().query(preparedQuery);
-
-
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        });
-        hilo.start();
-
-        //Esperar al hilo
         try {
-            hilo.join();
-        } catch (InterruptedException e) {
+            QueryBuilder<Producto, ?> queryBuilder = getDao().queryBuilder();
+            queryBuilder.where().isNull("usuarioComprador");
+            PreparedQuery<Producto> preparedQuery = queryBuilder.prepare();
+
+            // Ejecutar la consulta
+            listaProduct = getDao().query(preparedQuery);
+
+        } catch (SQLException e) {
             e.printStackTrace();
         }
-        return productos;
+
+        return listaProduct;
     }
     public List<Producto> getProductosSinVenderPorUser(Usuario usuario){
+
         Thread hilo = new Thread(() ->
         {
 
@@ -259,4 +250,33 @@ public class ProductoRepository extends Repository<Producto>{
         }
         return productos;
     }
+
+    public List<Producto> getPrimerosProductos(){
+        listaProductos = new ArrayList<>();
+
+        Thread hilo = new Thread(() ->
+        {
+            try {
+                QueryBuilder<Producto, ?> queryBuilder = getDao().queryBuilder().limit(5L);
+                queryBuilder.where().isNull("usuarioComprador");
+                PreparedQuery<Producto> preparedQuery = queryBuilder.prepare();
+
+                // Ejecutar la consulta
+                listaProductos = getDao().query(preparedQuery);
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        });
+        hilo.start();
+
+        //Esperar al hilo
+        try {
+            hilo.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return listaProductos;
+    }
+
 }
