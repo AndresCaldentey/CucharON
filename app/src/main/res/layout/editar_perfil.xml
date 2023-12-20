@@ -169,7 +169,7 @@
                         android:background="#00FFFFFF"
                         android:gravity="left"
                         android:inputType="textMultiLine"
-                        android:maxLength="200"
+                        android:maxLength="150"
                         android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vestibulum, quam vel sollicitudin hendrerit, mauris turpis pellentesque neque, vel convallis enim augue eu metus. Proin vel ultricies dolor. Integer feugiat est vel metus luctus, vel ultrices lacus elementum. In hac habitasse platea dictumst. Fusce hendrerit scelerisque lacus, quis facilisis dolor hendrerit ac. Vivamus eu metus at elit malesuada dictum ut vel justo. Aenean bibendum pharetra turpis, a fringilla leo dictum ut. Morbi fi
 "
 
@@ -245,6 +245,7 @@
                     android:layout_marginTop="20dp"
                     android:background="@drawable/boton_azul"
                     android:onClick="aceptarClick"
+                    android:elevation="0dp"
                     android:text="Aceptar"
                     android:textAppearance="@style/ManropeBold"
                     android:textColor="@color/negroDis"

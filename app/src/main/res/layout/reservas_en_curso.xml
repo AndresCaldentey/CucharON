@@ -96,7 +96,7 @@
                 app:srcCompat="@drawable/reserva_confirmada" />
 
             <TextView
-                android:id="@+id/textView44"
+                android:id="@+id/asterisco"
                 android:layout_width="35dp"
                 android:layout_height="19dp"
                 android:layout_marginStart="16dp"

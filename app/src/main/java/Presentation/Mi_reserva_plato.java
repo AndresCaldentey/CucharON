@@ -19,10 +19,16 @@ import android.widget.Toast;
 import com.example.cucharon.Producto;
 import com.example.cucharon.R;
 
+import Negocio.Service;
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class Mi_reserva_plato extends Fragment {
     private ImageView cerrar;
     private TextView categoria1, categoria2, titulo, raciones, direccion, recogida, precio, nombre_usu, valorarPlato;
     private Producto producto;
+    private CircleImageView fotoPlato;
+
+    Service servicio;
 
     public Mi_reserva_plato() { }
 
@@ -51,6 +57,7 @@ public class Mi_reserva_plato extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        servicio = Service.getService();
         cerrar = view.findViewById(R.id.cerrarVerBusqueda);
         nombre_usu = view.findViewById(R.id.nombre_usu);
         precio = view.findViewById(R.id.precio_plato1);
@@ -61,6 +68,9 @@ public class Mi_reserva_plato extends Fragment {
         direccion = view.findViewById(R.id.direccion);
         recogida = view.findViewById(R.id.recogida);
         valorarPlato = view.findViewById(R.id.valorarPlato);
+        fotoPlato = view.findViewById(R.id.fotoPlato);
+
+        fotoPlato.setImageBitmap(servicio.pasarStringAImagen(producto.getImagen()));
 
         titulo.setText(producto.getNombre());
         precio.setText("Precio final: " + producto.getPrecio() + "€");

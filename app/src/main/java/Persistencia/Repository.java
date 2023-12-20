@@ -121,6 +121,11 @@ public abstract class Repository<T> {
                 }
             });
             hilo.start();
+            try {
+                hilo.join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
 
     }

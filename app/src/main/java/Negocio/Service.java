@@ -56,7 +56,7 @@ public class Service implements IService{
 
     /*GESTION DE SESIONES*/
     public void setLoggedUser(Usuario user) {
-        if(loggedUser == null) loggedUser = user;
+         loggedUser = user;
     }
     public Usuario getLoggedUser() {
         return loggedUser;

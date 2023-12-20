@@ -31,6 +31,14 @@ public class Navegacion extends AppCompatActivity {
     CircleImageView imagenPerfil;
 
     List<Producto> allProductos;
+    Usuario loggedUser;
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        loggedUser = servicio.getLoggedUser();
+        if(loggedUser.getFoto() != null) imagenPerfil.setImageBitmap(servicio.pasarStringAImagen(loggedUser.getFoto()));
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -41,22 +49,21 @@ public class Navegacion extends AppCompatActivity {
         barraNav = findViewById(R.id.barraNav);
         mainFragmentContainer = findViewById(R.id.mainFragmentContainer);
         imagenPerfil = findViewById(R.id.imagen_perfil);
-        Usuario loggedUser = servicio.getLoggedUser();
-        if(loggedUser.getFoto() != null) imagenPerfil.setImageBitmap(servicio.pasarStringAImagen(loggedUser.getFoto()));
+
 
         allProductos = PantalladaDeCargaInicio.productos;
         setListaProductos(allProductos);
 
-       // listaProductos = servicio.getPrimerosProductos();
-/*
+        //listaProductos = servicio.getPrimerosProductos();
+
         //Hilo para recoger todos los productos de fondo
-        Thread hilo = new Thread(() ->
+        /*Thread hilo = new Thread(() ->
         {
             List<Producto> lproduct = servicio.getProductosSinComprar();
             runOnUiThread(() -> setListaProductos(lproduct));
         });
-        hilo.start();
-*/
+        hilo.start();*/
+
 
         barraNav.setOnItemSelectedListener(new ChipNavigationBar.OnItemSelectedListener() {
             @Override

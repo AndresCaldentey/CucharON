@@ -152,7 +152,7 @@ public class Home extends Fragment {
 
     }
 
-    @SuppressLint("ResourceAsColor")
+
     public void actualizarBotones(ToggleButton justCheckedB){
         for(ToggleButton button : botones) {
             if(!button.equals(justCheckedB)) { button.setChecked(false); }

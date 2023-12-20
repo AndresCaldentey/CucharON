@@ -23,6 +23,8 @@ import com.example.cucharon.Producto;
 import com.example.cucharon.R;
 import com.example.cucharon.Usuario;
 
+import org.w3c.dom.Text;
+
 import java.util.Date;
 import java.util.List;
 
@@ -55,8 +57,11 @@ public class Perfil extends AppCompatActivity implements MotionLayout.Transition
         servicio = Service.getService();
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         Intent intent = getIntent();
+        String userFoto = intent.getStringExtra("foto");
         String userEmail = intent.getStringExtra("usuario");
         usuarioActual = servicio.getUsuarioByEmail(userEmail);
+
+        TextView asterisco = findViewById(R.id.asterisco);
         nombrePerfil = findViewById(R.id.nombrePerfil);
         edadUsuario = findViewById(R.id.edadUsuario);
         valoracion = findViewById(R.id.valoracion);
@@ -100,14 +105,22 @@ public class Perfil extends AppCompatActivity implements MotionLayout.Transition
         List<Producto> productos = servicio.getProductosSinVenderPorUser(usuarioActual);
         mis_platos.setAdapter(new SliderPlatosEnVenta(productos));
 
-         nombrePerfil.setText(usuarioActual.getNombre());
-         edadUsuario.setText(obtenerEdad(usuarioActual.getEdad())+" años");
-         descripcion.setText(usuarioActual.getBiografia());
-         valoracion.setText(servicio.valoracionAString(usuarioActual.getValoracion()));
-         if(usuarioActual.getFoto() != null) {
-             fotoDPerfil.setImageBitmap(servicio.pasarStringAImagen(usuarioActual.getFoto())); }
+        nombrePerfil.setText(usuarioActual.getNombre());
+        edadUsuario.setText(obtenerEdad(usuarioActual.getEdad())+" años");
+        descripcion.setText(usuarioActual.getBiografia());
+        if(usuarioActual.getValoracion() != -1) valoracion.setText(usuarioActual.getValoracion() + "");
+        else {
+            valoracion.setText("");
+            asterisco.setText("");
+        }
+        //Actualizar foto del perfil
 
-         else { fotoDPerfil.setImageResource(R.drawable.martina); }
+        if (usuarioActual.getFoto() != null) {
+            fotoDPerfil.setImageBitmap(servicio.pasarStringAImagen(usuarioActual.getFoto()));
+        } else {
+            fotoDPerfil.setImageResource(R.drawable.martina);
+        }
+
     }
 
     public void cerrar(View view) {

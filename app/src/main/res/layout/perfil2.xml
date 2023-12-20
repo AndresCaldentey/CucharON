@@ -29,7 +29,7 @@
         android:id="@+id/desplegableDetalles"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="465dp"
+        android:layout_marginTop="450dp"
         android:background="@drawable/contenedor_editar_perfil"
         app:layoutDescription="@xml/perfil2_xml_constraintlayout3_scene"
         app:layout_constraintEnd_toEndOf="parent"
@@ -92,7 +92,7 @@
                 app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
-                android:id="@+id/textView44"
+                android:id="@+id/asterisco"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="top"
@@ -110,11 +110,12 @@
         <TextView
             android:id="@+id/descripcion"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="40dp"
             android:layout_marginEnd="20dp"
-            android:maxLength="200"
+            android:maxLines="5"
+            android:maxLength="150"
             android:text="Sin descripción uauumammmmmmmmmmmmmmmmmmmmmmmmmmm amsdas dma smd mdms la lms dlsa mdma sld lma sddmsal da daslmd als lmd als dsam dlmalmd lmsa dlmasm alm dla ds lmasdl slmdsal ald aslm dlmadlsa ld salmdlm s lmd sal dlmsa dlmaa sldaslm d"
             android:textAppearance="@style/ManropeRegular"
             android:textSize="15sp"
@@ -128,16 +129,24 @@
             android:layout_width="match_parent"
             android:layout_height="113dp"
             android:layout_marginTop="300dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/descripcion"
             app:layout_constraintEnd_toEndOf="parent"
             />
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/listaValoraciones"
+            android:layout_marginTop="10dp"
+            />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/noHayOpinion"
-            android:layout_width="335dp"
+            android:layout_width="match_parent"
             android:layout_height="112dp"
             app:cardCornerRadius="20dp"
             app:cardElevation="0dp"
@@ -148,6 +157,7 @@
             app:layout_constraintTop_toTopOf="@id/listaValoraciones"
             app:layout_constraintEnd_toEndOf="parent"
             >
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -184,13 +194,13 @@
             android:id="@+id/mis_platos"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
+
             android:layout_marginTop="10dp"
-            android:layout_marginEnd="20dp"
+
             android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/platosEnVentaLabel" />
+            app:layout_constraintTop_toBottomOf="@id/divider" />
 
 
 
@@ -241,6 +251,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
+
         <Button
             android:id="@+id/cerrarSesB"
             android:layout_width="match_parent"

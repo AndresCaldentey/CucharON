@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -17,10 +18,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.activity.OnBackPressedCallback;
+import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.core.content.ContextCompat;
 
 import com.example.cucharon.R;
 import com.example.cucharon.Usuario;
@@ -54,6 +57,7 @@ public class IUEditPerfil extends AppCompatActivity {
         Intent intent = getIntent();
         String usuarioEmail = intent.getStringExtra("usuario");
         usuarioActual = servicio.getUsuarioByEmail(usuarioEmail);
+        fotodelPerfil = servicio.pasarStringAImagen(usuarioActual.getFoto());
         nombreEditText = findViewById(R.id.nombreEditText);
         apellidoEdit = findViewById(R.id.apellidoEdit);
         editEdadText = findViewById(R.id.editEdadText);
@@ -73,6 +77,8 @@ public class IUEditPerfil extends AppCompatActivity {
         editEdadText.setText(fechaStr);
         apellidoEdit.setText(usuarioActual.getApellido());
 
+        contadorPalabras.setText(usuarioActual.getBiografia().length() + " carácteres");
+
         editBiografia.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -83,10 +89,10 @@ public class IUEditPerfil extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 contadorPalabras.setText(charSequence.length() + " carácteres");
-                if(charSequence.length() >= 200) {
-                    contadorPalabras.setTextColor(R.color.rojoDis);
+                if(charSequence.length() >= 150) {
+                    contadorPalabras.setTextColor(ContextCompat.getColor(IUEditPerfil.this, R.color.rojoDis));
                 } else {
-                    contadorPalabras.setTextColor(R.color.negroDis);
+                    contadorPalabras.setTextColor(ContextCompat.getColor(IUEditPerfil.this, R.color.blancoDis));
                 }
             }
 
@@ -106,11 +112,13 @@ public class IUEditPerfil extends AppCompatActivity {
         }else if(!servicio.isValidDate(editEdadText.getText().toString())) {
             createDialog("La fecha no se ajusta al formato 30/10/2002");
         }else{
+
             Usuario usuarioActualizado = new Usuario(usuarioActual.getEmail(),
                     nombreEditText.getText().toString(),apellidoEdit.getText().toString(),
                     usuarioActual.getContraseña(), usuarioActual.getDireccion(),
                     editBiografia.getText().toString(),getDateFromEditText(), usuarioActual.getTlf(), servicio.imagenToString(fotodelPerfil));
             servicio.actualizarUser(usuarioActualizado);
+            servicio.setLoggedUser(usuarioActualizado);
             Intent intent = new Intent(IUEditPerfil.this,Perfil.class);
             intent.putExtra("usuario", usuarioActualizado.getEmail());
             startActivity(intent);
