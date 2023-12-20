@@ -13,6 +13,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.example.cucharon.R;
 
@@ -22,6 +24,8 @@ import Presentation.Adapters.Pais;
 public class Examinar extends Fragment {
     private Button btnProcedencia, btnSabor;
     private FragmentContainerView contenedorExaminar;
+    EditText searchText;
+    ImageView searchB;
 
     public Examinar() { }
 
@@ -31,12 +35,33 @@ public class Examinar extends Fragment {
         contenedorExaminar = view.findViewById(R.id.contenedorExaminar);
         btnProcedencia = view.findViewById(R.id.procedenciaB);
         btnSabor = view.findViewById(R.id.saborB);
+        searchText = view.findViewById(R.id.searchText);
+        searchB = view.findViewById(R.id.searchB);
+
+        searchB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!searchText.getText().toString().equals("")) {
+                    Bundle bundle = new Bundle();
+                    bundle.putString("nombre", searchText.getText().toString());
+                    getParentFragmentManager().setFragmentResult("datos", bundle);
+                    getParentFragmentManager().beginTransaction().replace(R.id.mainFragmentContainer, new VerBusqueda()).commit();
+                    if(getActivity() != null) {
+                        if(getActivity() instanceof Navegacion) {
+                            Navegacion activityActual = (Navegacion) getActivity();
+                            activityActual.hidePerfil();
+                        }
+                    }
+                }
+            }
+        });
 
         ClickCategoria logicaBusqueda = new ClickCategoria() {
             @Override
             public void click(Pais pais) {
                 Bundle bundle = new Bundle();
                 bundle.putString("categoria", pais.getNombre());
+                bundle.putString("nombre", "");
                 getParentFragmentManager().setFragmentResult("datos", bundle);
                 getParentFragmentManager().beginTransaction().replace(R.id.mainFragmentContainer, new VerBusqueda()).commit();
                 //Esconde el perfil de la pantalla
@@ -54,6 +79,7 @@ public class Examinar extends Fragment {
             public void click(String sabor) {
                 Bundle bundle = new Bundle();
                 bundle.putString("categoria", sabor);
+                bundle.putString("nombre", "");
                 getParentFragmentManager().setFragmentResult("datos", bundle);
                 getParentFragmentManager().beginTransaction().replace(R.id.mainFragmentContainer, new VerBusqueda()).commit();
                 //Esconde el perfil de la pantalla

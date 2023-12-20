@@ -49,6 +49,57 @@ public class ProductoRepository extends Repository<Producto>{
         return listaProductos;
     }
 
+
+     public List<Producto> getProductosValorados(Usuario user) {
+        Thread hilo = new Thread(() ->
+        {
+            try {
+            QueryBuilder<Producto, Integer> queryBuilder = this.getDao().queryBuilder();
+                Where<Producto, Integer> where = queryBuilder.where();
+
+                where.eq("usuarioPublicador", user).and().not().eq("valoracion", -1);
+                productos = this.getDao().queryForEq("usuarioPublicador", user);
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        });
+        hilo.start();
+
+        //Esperar al hilo
+        try {
+            hilo.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return productos;
+     }
+
+
+    public List<Producto> getProductoPorNombre(String nombre) {
+        Thread hilo = new Thread(() -> {
+            try {
+                // Utilizar el método queryBuilder().where().like() para realizar la búsqueda
+                QueryBuilder<Producto, Integer> queryBuilder = this.getDao().queryBuilder();
+                queryBuilder.where().like("nombre", "%" + nombre + "%");
+                listaProductos = queryBuilder.query();
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        });
+        hilo.start();
+
+        // Esperar al hilo
+        try {
+            hilo.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return listaProductos;
+    }
+
+
     public List<Producto> getReservasEnCurso(Usuario usuario){
         listaProductos = new ArrayList<>();
         Thread hilo = new Thread(() ->

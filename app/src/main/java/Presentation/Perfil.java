@@ -7,12 +7,16 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.motion.widget.MotionLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.cucharon.Producto;
@@ -23,6 +27,7 @@ import java.util.Date;
 import java.util.List;
 
 import Negocio.Service;
+import Presentation.Adapters.AdapterOpinion;
 import Presentation.Adapters.SliderPlatosEnVenta;
 import Negocio.*;
 
@@ -38,6 +43,9 @@ public class Perfil extends AppCompatActivity implements MotionLayout.Transition
     MotionLayout escenaPrincipal, desplegableDetalles;
     ImageView editarB;
     Button cerrarSesB;
+    RecyclerView listaValoraciones;
+
+    CardView noHayOpinion;
 
 
     @Override
@@ -56,9 +64,28 @@ public class Perfil extends AppCompatActivity implements MotionLayout.Transition
         fotoDPerfil = findViewById(R.id.fotoDPerfil);
         mis_platos = findViewById(R.id.mis_platos);
         cerrarSesB = findViewById(R.id.cerrarSesB);
-
+        noHayOpinion = findViewById(R.id.noHayOpinion);
         escenaPrincipal = findViewById(R.id.escenaPrincipal);
         desplegableDetalles = findViewById(R.id.desplegableDetalles);
+        listaValoraciones = findViewById(R.id.listaValoraciones);
+        LinearLayoutManager linlayMan = new LinearLayoutManager(this);
+        linlayMan.setOrientation(LinearLayoutManager.HORIZONTAL);
+        listaValoraciones.setLayoutManager(linlayMan);
+
+        AdapterOpinion.OnClickListener logicaOpinion = new AdapterOpinion.OnClickListener() {
+            @Override
+            public void click(Usuario usuario) {
+                servicio.pulsarPerfil(Perfil.this, usuario);
+            }
+        };
+
+        List<Producto> productosValorados = servicio.getProductosValorados(usuarioActual);
+        if(productosValorados.size() > 0) { noHayOpinion.setVisibility(View.GONE); }
+
+        AdapterOpinion adapterOpinion = new AdapterOpinion(productosValorados, logicaOpinion);
+        listaValoraciones.setAdapter(adapterOpinion);
+
+
 
         escenaPrincipal.setTransitionListener(this);
         desplegableDetalles.setTransitionListener(this);
@@ -69,18 +96,13 @@ public class Perfil extends AppCompatActivity implements MotionLayout.Transition
             cerrarSesB.setVisibility(View.GONE);
         }
 
-
-
         List<Producto> productos = servicio.getProductosSinVenderPorUser(usuarioActual);
         mis_platos.setAdapter(new SliderPlatosEnVenta(productos));
-
-
 
          nombrePerfil.setText(usuarioActual.getNombre());
          edadUsuario.setText(obtenerEdad(usuarioActual.getEdad())+" años");
          descripcion.setText(usuarioActual.getBiografia());
-         //valoracion.setText(usuarioActual.getValoracion().toString());
-         //descripcion.setText(usuarioActual.getDescripcion());
+         valoracion.setText(servicio.valoracionAString(usuarioActual.getValoracion()));
          if(usuarioActual.getFoto() != null) {
              fotoDPerfil.setImageBitmap(servicio.pasarStringAImagen(usuarioActual.getFoto())); }
 

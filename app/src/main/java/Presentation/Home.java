@@ -2,10 +2,13 @@ package Presentation;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.CompositePageTransformer;
@@ -14,6 +17,7 @@ import androidx.viewpager2.widget.ViewPager2;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
@@ -41,6 +45,8 @@ public class Home extends Fragment {
     private List<Producto> productos;
     private AdaptadorHome adaptadosPlatosHome;
     private List<ToggleButton> botones = new ArrayList<>();
+    LinearLayout perfilPubLayout;
+    private static final int REQUEST_CODE_LOCATION_PERMISSION = 123;
 
     public Home() {}
 
@@ -61,6 +67,7 @@ public class Home extends Fragment {
         nombrePlato = view.findViewById(R.id.nombrePlatoLabel);
         fotoPerfilPub = view.findViewById(R.id.fotoPerfilPub);
         platosSliderHome = view.findViewById(R.id.platosSliderHome);
+        perfilPubLayout = view.findViewById(R.id.perfilPubLayout);
         btnMapa = view.findViewById(R.id.mapaB);
         btnMasBarato = view.findViewById(R.id.masBaratoB);
         btnMasCaro = view.findViewById(R.id.masCaroB);
@@ -119,6 +126,7 @@ public class Home extends Fragment {
         btnMasCaro.setOnClickListener((view1) -> { if(btnMasCaro.isChecked()) actualizarBotones(btnMasCaro); });
 
         btnVendedorTop.setOnClickListener((view1) -> { if(btnVendedorTop.isChecked()) actualizarBotones(btnVendedorTop); });
+
     }
 
     @SuppressLint("ResourceAsColor")
@@ -132,11 +140,16 @@ public class Home extends Fragment {
         Usuario publicador = producto.getUsuarioPublicador();
         nombrePerfil.setText(service.getLoggedUser().getNombre());
         precioPlato.setText(producto.getPrecio().toString() + " euros");
+        //int valoracion = publicador().getValoracion();
+        //String valoracionText = String.valueOf('*').repeat(valoracion);
+        //if(valoracion != null) valoracionPerfil.setText(valoracionText);
         nombrePublicador.setText(publicador.getNombre() + " " + publicador.getApellido());
 
         nombrePlato.setText(producto.getNombre());
+        //nombrePlatoLabel.setText("aaaaaaaaaaaaaaaaaaaaa \n patatas");
 
         if(publicador.getFoto() != null) fotoPerfilPub.setImageBitmap(service.pasarStringAImagen(publicador.getFoto()));
+
     }
 
     @Override

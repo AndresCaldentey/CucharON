@@ -37,11 +37,11 @@ public class ReservaYCancelacionTest {
             }
         }
 
-        Usuario user = new Usuario("a@gmail.com", "usuarioPureba", "apellido", "contraseña",
-                "direccion", 123);
+        // Usuario user = new Usuario("a@gmail.com", "usuarioPureba", "apellido", "contraseña",
+        //        "direccion", 123);
 
-        producto.setUsuarioComprador(user);
-        service.actualizarProducto(producto);
+        //producto.setUsuarioComprador(user);
+        //service.actualizarProducto(producto);
 
         Producto productoGuardado = service.getProductoById(producto.getIdProducto());
 

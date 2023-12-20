@@ -32,11 +32,10 @@
                 android:id="@+id/imageView31"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="28dp"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="64dp"
                 android:layout_marginEnd="131dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/imagen_perfil"
                 app:layout_constraintHorizontal_bias="0.112"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -48,17 +47,18 @@
                 android:id="@+id/linearLayout12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="175dp"
+                android:layout_marginTop="30dp"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toBottomOf="@id/imageView31">
+
 
                 <Button
                     android:id="@+id/procedenciaB"
                     android:layout_width="160dp"
                     android:layout_height="35dp"
-                    android:layout_marginRight="15dp"
+                    android:layout_marginRight="18dp"
 
                     android:background="@drawable/boton_naranja"
                     android:text="Procedencia"
@@ -75,12 +75,58 @@
                     android:textAppearance="@style/ManropeRegular"
                     tools:text="Sabor" />
             </LinearLayout>
+            <LinearLayout
+                android:id="@+id/searchTextLayout"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                app:layout_constraintTop_toBottomOf="@id/linearLayout12"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:background="@drawable/boton_negro_linea"
+                android:layout_marginTop="30dp"
+                android:layout_marginStart="28dp"
+                android:layout_marginEnd="28dp"
+                >
+                <ImageView
+                    android:id="@+id/searchB"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="10dp"
+                    app:srcCompat="@drawable/search_examinar"
+                    />
+                <EditText
+                    android:id="@+id/searchText"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="15sp"
+                    android:layout_gravity="bottom"
+                    android:textAppearance="@style/ManropeRegular"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="13dp"
+                    android:backgroundTint="#FFFF"
+
+                    android:gravity="center|start"
+                    android:inputType="textMultiLine"
+                    android:lines="1"
+                    android:maxLines="1"
+                    android:scrollHorizontally="true"
+                    android:background="@android:color/transparent"
+                    android:paddingTop="0dp"
+                    android:paddingBottom="0dp"
+                    />
+
+            </LinearLayout>
+
+
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/contenedorExaminar"
             android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
             android:layout_height="wrap_content"
             android:layout_weight="1" />
     </LinearLayout>

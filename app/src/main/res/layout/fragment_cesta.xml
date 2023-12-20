@@ -39,8 +39,10 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerEnCursoCesto"
-            android:layout_width="310dp"
-            android:layout_height="172dp"
+            android:layout_width="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.56"
@@ -64,14 +66,16 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerPreviasCesta"
-            android:layout_width="313dp"
-            android:layout_height="165dp"
+            android:layout_width="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.595"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView43"
-            app:layout_constraintVertical_bias="0.32" />
+            app:layout_constraintTop_toBottomOf="@+id/textView43" />
 
         <LinearLayout
             android:id="@+id/linearLayout"

@@ -59,8 +59,8 @@ public class Add_detalles extends Fragment {
         siguiente.setOnClickListener(view1 -> {
 
             if (validarDatos()) {
-                horaCompleta = hora1 +" - "+ hora2;
 
+                horaCompleta = hora1.getText().toString() +" - "+ hora2.getText().toString();
                 sendDescripcionToActivity(descripcion.getText().toString());
                 sendHoraToActivity(horaCompleta);
                 sendPrecioToActivity(precio.getText().toString());

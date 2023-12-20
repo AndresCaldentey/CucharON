@@ -29,6 +29,7 @@ public class Navegacion extends AppCompatActivity {
     FragmentContainerView mainFragmentContainer;
     private List<Producto> listaProductos;
     CircleImageView imagenPerfil;
+
     List<Producto> allProductos;
 
     @Override

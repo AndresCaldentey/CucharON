@@ -39,6 +39,8 @@ public interface IService {
     void actualizarProducto(Producto p);
     void borrarProducto(Producto producto);
     List<Producto> getProductosSinVenderPorUser(Usuario user);
+    List<Producto> getProductoPorNombre(String nombre);
+    List<Producto> getProductosValorados(Usuario user);
 
     /*PERSISTENCIA CATEGORIA*/
     Categoria getCategoriaByName(String nombre);
@@ -87,4 +89,7 @@ public interface IService {
     /*GESTION DE IMAGENES*/
     String imagenToString(Bitmap bitmap);
     Bitmap pasarStringAImagen(String img64);
+
+    String valoracionAString(int valoracion);
+    void pulsarPerfil(Context context, Usuario user);
 }

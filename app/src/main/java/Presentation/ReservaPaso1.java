@@ -1,6 +1,10 @@
 package Presentation;
 
+import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -10,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.cucharon.Producto;
 import com.example.cucharon.R;
@@ -25,6 +30,7 @@ public class ReservaPaso1 extends AppCompatActivity {
     private int platoId;
 
 
+    @SuppressLint("ResourceAsColor")
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,8 +47,9 @@ public class ReservaPaso1 extends AppCompatActivity {
         TextView nombrePlato = findViewById(R.id.nombrePlatoReserva3);
         TextView precioPlato = findViewById(R.id.precioPlatoReserva3);
         CircleImageView imagenPlato = findViewById(R.id.imagenPlatoReserva3);
+        Button reservaB = findViewById(R.id.reservaB);
 
-        Usuario usuario = service.getLoggedUser();
+        Usuario usuario = producto.getUsuarioPublicador();
         nombreUser.setText(usuario.getNombre());
         valoracionUser.setText(usuario.getValoracion()+"");
         imagenUser.setImageBitmap(service.pasarStringAImagen(usuario.getFoto()) );
@@ -50,12 +57,62 @@ public class ReservaPaso1 extends AppCompatActivity {
         precioPlato.setText(producto.getPrecio() + "€");
         imagenPlato.setImageBitmap(service.pasarStringAImagen(producto.getImagen()) );
 
+        reservaB.setEnabled(!usuario.getEmail().equals(service.getLoggedUser().getEmail()));
+        reservaB.setTextColor(reservaB.isEnabled() ? R.color.blancoDis : R.color.negroDis);
+
     }
 
     public void reservarClick(View view){
         Intent intent = new Intent(this, ReservaPaso2.class);
         intent.putExtra("plato", platoId);
         startActivity(intent);
+    }
+
+    public void cerrarClick(View view){
+        finish();
+    }
+
+    public void abrirEnMapa(){
+        String label = producto.getDireccionRecogida();
+        String uri = "geo:" + producto.getDireccionLatitud() + "," + producto.getDireccionLongitud() + "?q=" +  producto.getDireccionLatitud() + "," + producto.getDireccionLongitud() + "(" + label + ")";
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+        intent.setPackage("com.google.android.apps.maps"); // Asegura que se abra en Google Maps
+
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        } else {
+            // Si Google Maps no está instalado, maneja la situación de alguna manera
+            Toast.makeText(this, "Google Maps no está instalado", Toast.LENGTH_SHORT).show();
+        }
+    }
+    public void mostrarAlertaConDosOpciones(View view) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("¿Quieres abrir esta dirección en google maps?");
+        builder.setMessage("Serás redirigido a otra aplicación");
+
+        // Configurar botón positivo (Sí)
+        builder.setPositiveButton("Sí", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                // Acciones al hacer clic en Sí
+                // Puedes agregar lógica adicional aquí si es necesario
+                abrirEnMapa();
+                dialog.dismiss(); // Cierra la alerta
+
+            }
+        });
+
+        // Configurar botón negativo (No)
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                // Acciones al hacer clic en No
+                // Puedes agregar lógica adicional aquí si es necesario
+                dialog.dismiss(); // Cierra la alerta
+            }
+        });
+
+        // Mostrar la alerta
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
 

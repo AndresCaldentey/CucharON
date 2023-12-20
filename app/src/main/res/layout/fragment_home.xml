@@ -56,8 +56,8 @@
             android:layout_marginEnd="19dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/nombrePerfilHome">
-            <HorizontalScrollView
 
+            <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
@@ -65,18 +65,19 @@
                 app:layout_constraintTop_toTopOf="parent"
 
                 android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
                 android:scrollbars="none"
                 >
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="horizontal"
                     >
 
                     <ToggleButton
                         android:id="@+id/mapaB"
-                        android:layout_width="170dp"
+                        android:layout_width="160dp"
                         android:layout_height="35dp"
                         android:layout_marginRight="20dp"
                         android:background="@drawable/boton_home_cercano"
@@ -90,7 +91,7 @@
 
                     <ToggleButton
                         android:id="@+id/masBaratoB"
-                        android:layout_width="170dp"
+                        android:layout_width="160dp"
                         android:layout_height="35dp"
                         android:textAppearance="@style/ManropeBold"
                         android:textSize="15sp"
@@ -103,7 +104,7 @@
 
                     <ToggleButton
                         android:id="@+id/masCaroB"
-                        android:layout_width="170dp"
+                        android:layout_width="160dp"
                         android:layout_height="35dp"
                         android:textAppearance="@style/ManropeBold"
                         android:textSize="15sp"
@@ -116,7 +117,7 @@
 
                     <ToggleButton
                         android:id="@+id/vendedorTopB"
-                        android:layout_width="170dp"
+                        android:layout_width="160dp"
                         android:layout_height="35dp"
                         android:textAppearance="@style/ManropeBold"
                         android:textSize="15sp"
@@ -132,14 +133,10 @@
         <TextView
             android:id="@+id/nombrePlatoLabel"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="80dp"
             android:layout_marginStart="19dp"
-
             android:includeFontPadding="false"
             android:text="Gyozas de proroporpaos perdura"
-            android:autoSizeTextType="uniform"
-            android:autoSizeMinTextSize="12sp"
-            android:autoSizeMaxTextSize="100sp"
             android:textAppearance="@style/ManropeBold"
             android:ellipsize="none"
             android:maxLines="2"
@@ -165,7 +162,6 @@
             android:id="@+id/abrirB"
             android:layout_width="75dp"
             android:layout_height="25dp"
-
             android:background="@drawable/boton_abrir_home"
             app:layout_constraintStart_toEndOf="@id/precioLabel"
             app:layout_constraintTop_toBottomOf="@+id/nombrePlatoLabel"

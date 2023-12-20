@@ -28,7 +28,7 @@ import Presentation.Adapters.AdaptadorPlato;
 
 public class VerBusqueda extends Fragment {
     private IService service;
-    private TextView textViewPais;
+    private TextView textViewPais, nombreBusqueda, paladarTv;
     private RecyclerView recyclerPlatos;
 
     public VerBusqueda() {}
@@ -40,6 +40,9 @@ public class VerBusqueda extends Fragment {
         service = Service.getService();
         recyclerPlatos = view.findViewById(R.id.recylerPlatosVerBusqueda);
         textViewPais = view.findViewById(R.id.paisVerBusqueda);
+        nombreBusqueda = view.findViewById(R.id.nombreBusqueda);
+        paladarTv = view.findViewById(R.id.paladar_tv);
+
         ImageView cerrar = view.findViewById(R.id.cerrarVerBusqueda);
 
         cerrar.setOnClickListener((view1) -> {
@@ -60,23 +63,31 @@ public class VerBusqueda extends Fragment {
             @Override
             public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
                 String categoria = result.getString("categoria");
-                textViewPais.setText(categoria+ " en tu");
-
-                List<Producto> platos = service.buscarPorCategoria(categoria);
+                String nomPlato = result.getString("nombre");
+                List<Producto> platos;
                 AdaptadorPlato.OnClickPerfilListener logicaClPerfil = new AdaptadorPlato.OnClickPerfilListener() {
                     @Override
                     public void click(Usuario usuario) {
-                        Intent intent = new Intent(getContext(), Perfil.class);
-                        intent.putExtra("usuario", usuario.getEmail());
-                        startActivity(intent);
+                        service.pulsarPerfil(getContext(), usuario);
                     }
                 };
+                if(nomPlato.equals(""))
+                {
+                    textViewPais.setText(categoria + " en tu");
+                    nombreBusqueda.setVisibility(View.GONE);
+                    platos = service.buscarPorCategoria(categoria);
+                }
+                else {
+                    nombreBusqueda.setText(nomPlato);
+                    textViewPais.setVisibility(View.GONE);
+                    paladarTv.setVisibility(View.GONE);
+                    platos = service.getProductoPorNombre(nomPlato);
+                }
                 AdaptadorPlato platosAdapter = new AdaptadorPlato(platos, getActivity(), logicaClPerfil);
                 recyclerPlatos.setLayoutManager(new GridLayoutManager(getContext(), 2));
                 recyclerPlatos.setAdapter(platosAdapter);
             }
         });
-
     }
 
     @Override
