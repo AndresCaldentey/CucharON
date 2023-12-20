@@ -31,16 +31,22 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 
 public class Home extends Fragment {
+    private IService service;
     private TextView nombrePerfil, precioPlato, valoracionPerfil, nombrePublicador;
     private TextView nombrePlato;
     private ViewPager2 platosSliderHome;
     private CircleImageView fotoPerfilPub;
     private ToggleButton btnMapa, btnMasBarato, btnMasCaro, btnVendedorTop;
-    private IService service;
     private List<Producto> productos;
+    private AdaptadorHome adaptadosPlatosHome;
     private List<ToggleButton> botones = new ArrayList<>();
 
     public Home() {}
+
+    public void setProductos(List<Producto> listaProductos) {
+        productos = listaProductos;
+        adaptadosPlatosHome.setProductos(listaProductos);
+    }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -66,7 +72,8 @@ public class Home extends Fragment {
                 productos = activityActual.getAllProductos();
             }
         }
-        platosSliderHome.setAdapter(new AdaptadorHome(productos, getActivity()) );
+        adaptadosPlatosHome = new AdaptadorHome(productos, getActivity());
+        platosSliderHome.setAdapter(adaptadosPlatosHome);
 
         //Codigo para hacer el slider con su animación de hacer los otros platos en chiquitito
         platosSliderHome.setClipToPadding(false);

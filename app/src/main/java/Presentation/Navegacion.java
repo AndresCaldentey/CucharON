@@ -13,7 +13,10 @@ import com.example.cucharon.Producto;
 import com.example.cucharon.R;
 import com.example.cucharon.Usuario;
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
+import com.j256.ormlite.stmt.PreparedQuery;
+import com.j256.ormlite.stmt.QueryBuilder;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import Negocio.Service;
@@ -24,6 +27,7 @@ public class Navegacion extends AppCompatActivity {
     private ChipNavigationBar barraNav;
     private int previousIndex;
     FragmentContainerView mainFragmentContainer;
+    private List<Producto> listaProductos;
     CircleImageView imagenPerfil;
 
     List<Producto> allProductos;
@@ -38,6 +42,18 @@ public class Navegacion extends AppCompatActivity {
         imagenPerfil = findViewById(R.id.imagen_perfil);
         Usuario loggedUser = servicio.getLoggedUser();
         if(loggedUser.getFoto() != null) imagenPerfil.setImageBitmap(servicio.pasarStringAImagen(loggedUser.getFoto()));
+
+        listaProductos = servicio.getPrimerosProductos();
+
+        //Hilo para recoger todos los productos de fondo
+        Thread hilo = new Thread(() ->
+        {
+            List<Producto> lproduct = servicio.getProductosSinComprar();
+            runOnUiThread(() -> setListaProductos(lproduct));
+        });
+        hilo.start();
+
+
         barraNav.setOnItemSelectedListener(new ChipNavigationBar.OnItemSelectedListener() {
             @Override
             public void onItemSelected(int i) {
@@ -67,9 +83,21 @@ public class Navegacion extends AppCompatActivity {
 
         });
         barraNav.setItemSelected(R.id.home, true);
-        allProductos = servicio.getAllProducto();
+
     }
-    public List<Producto> getAllProductos() { return allProductos; }
+
+    public List<Producto> getAllProductos() {
+        return listaProductos;
+    }
+
+    public void setListaProductos(List<Producto> lproductos) {
+        listaProductos = lproductos;
+        //Falta notificar al frgament si es home o examinar
+        if(mainFragmentContainer.getFragment() instanceof Home) {
+            Home home = (Home) mainFragmentContainer.getFragment();
+            home.setProductos(lproductos);
+        }
+    }
 
     public void hidePerfil() {
         imagenPerfil.setVisibility(View.GONE);
