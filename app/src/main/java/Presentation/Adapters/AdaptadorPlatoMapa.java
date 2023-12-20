@@ -87,7 +87,6 @@ public class AdaptadorPlatoMapa extends RecyclerView.Adapter<AdaptadorPlatoMapa.
                         Intent intent = new Intent(actividad, ReservaPaso1.class);
                         intent.putExtra("plato", plato.getIdProducto());
                         actividad.startActivity(intent);
-                        actividad.finish();
                 }
         }
 }
