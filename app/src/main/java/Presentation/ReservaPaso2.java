@@ -115,7 +115,9 @@ public class ReservaPaso2 extends AppCompatActivity {
 
                     //Reserva reserva = new Reserva(0, numCantidad, producto, horaRecodiga, Service.getService().getLoggedUser());
                     producto.setUsuarioComprador(service.getLoggedUser());
+                    producto.setHoraReserva(formadorDehora);
                     service.actualizarProducto(producto);
+
 
                 } else {
                     mostrarAlerta();
