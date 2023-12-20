@@ -1,5 +1,7 @@
 package Presentation;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -14,6 +16,8 @@ import com.example.cucharon.R;
 import com.example.cucharon.Reserva;
 import com.example.cucharon.Usuario;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import Negocio.IService;
@@ -23,7 +27,8 @@ import Negocio.Service;
 public class ReservaPaso2 extends AppCompatActivity {
     private IService service;
     private Producto producto;
-    private TextView cantidad, unidad, precio, valoracion, nombrePlato, nombreUsuario, direccion, rangoRecogida, disponibles;
+    private TextView cantidad, unidad, precio, valoracion, nombrePlato, nombreUsuario,
+            direccion, rangoRecogida, disponibles, horaRecogidaText, minutosRegogidaText;
     ImageView botonMas, botonMenos;
     int numCantidad = 1;
     Button botonReservar;
@@ -35,7 +40,7 @@ public class ReservaPaso2 extends AppCompatActivity {
         setContentView(R.layout.reserva_paso2);
         service = Service.getService();
         int platoId = getIntent().getIntExtra("plato", -1);
-        if(platoId == -1) finish();
+        if (platoId == -1) finish();
         producto = service.getProductoById(platoId);
         nombrePlato = findViewById(R.id.nomPlato);
         nombreUsuario = findViewById(R.id.usuarioText);
@@ -49,6 +54,9 @@ public class ReservaPaso2 extends AppCompatActivity {
         botonMenos = findViewById(R.id.botonMenos);
         botonReservar = findViewById(R.id.reservarbtn);
         disponibles = findViewById(R.id.unidDispTextView);
+        horaRecogidaText = findViewById(R.id.horaRecogidaText);
+        minutosRegogidaText = findViewById(R.id.minutosRecogidaText);
+
 
         Usuario publicador = producto.getUsuarioPublicador();
 
@@ -79,9 +87,9 @@ public class ReservaPaso2 extends AppCompatActivity {
         //valoracion.setText(valor);
 
         botonMenos.setOnClickListener(view1 -> {
-            if(numCantidad > 1){
+            if (numCantidad > 1) {
                 numCantidad -= 1;
-                cantidad.setText(numCantidad+ "");
+                cantidad.setText(numCantidad + "");
                 setUnidades();
             }
 
@@ -89,7 +97,7 @@ public class ReservaPaso2 extends AppCompatActivity {
         });
 
         botonMas.setOnClickListener(view12 -> {
-            if(numCantidad < producto.getNumRaciones()){
+            if (numCantidad < producto.getNumRaciones()) {
                 numCantidad += 1;
                 cantidad.setText(numCantidad + "");
                 setUnidades();
@@ -100,12 +108,40 @@ public class ReservaPaso2 extends AppCompatActivity {
 
         botonReservar.setOnClickListener(view13 -> {
 
-            Reserva reserva = new Reserva(0,numCantidad,producto,horaRecodiga, Service.getService().getLoggedUser());
+            String formadorDehora = horaRecogidaText.getText().toString() + ":" + minutosRegogidaText.getText().toString();
+
+            try {
+                if (estaEnRango(formadorDehora, producto.getHoraRecogida().toString())) {
+
+                    //Reserva reserva = new Reserva(0, numCantidad, producto, horaRecodiga, Service.getService().getLoggedUser());
+                    producto.setUsuarioComprador(service.getLoggedUser());
+                    service.actualizarProducto(producto);
+
+                } else {
+                    mostrarAlerta();
+                }
+            } catch (ParseException e) {
+                throw new RuntimeException(e);
+            }
+
 
         });
     }
 
+    public static boolean estaEnRango(String horaAComprobar, String rangoHoras) throws ParseException {
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
 
+        // Parsear las horas del rango
+        String[] partes = rangoHoras.split(" - ");
+        Date inicio = sdf.parse(partes[0]);
+        Date fin = sdf.parse(partes[1]);
+
+        // Parsear la hora a comprobar
+        Date horaComprobar = sdf.parse(horaAComprobar);
+
+        // Verificar si la hora a comprobar está en el rango
+        return horaComprobar.after(inicio) && horaComprobar.before(fin);
+    }
 
     private void setUnidades() {
         //Inicializa la cantidad y las unidades
@@ -114,6 +150,24 @@ public class ReservaPaso2 extends AppCompatActivity {
         } else {
             unidad.setText("Unidades");
         }
+    }
+
+    private void mostrarAlerta() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Error");
+        builder.setMessage("¡la hora no esta en el rango correcto!");
+
+        // Configurar botón positivo (Aceptar)
+        builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                // Acciones al hacer clic en Aceptar
+                dialog.dismiss(); // Cierra la alerta
+            }
+        });
+
+        // Mostrar la alerta
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
 }
