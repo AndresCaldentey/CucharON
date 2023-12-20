@@ -46,6 +46,7 @@ public class ReservaPaso1 extends AppCompatActivity {
         ImageView imagenUser = findViewById(R.id.fotoPerfilReserva3);
         TextView nombrePlato = findViewById(R.id.nombrePlatoReserva3);
         TextView precioPlato = findViewById(R.id.precioPlatoReserva3);
+        TextView direccionText = findViewById(R.id.direccionText);
         CircleImageView imagenPlato = findViewById(R.id.imagenPlatoReserva3);
         Button reservaB = findViewById(R.id.reservaB);
 
@@ -57,6 +58,7 @@ public class ReservaPaso1 extends AppCompatActivity {
         precioPlato.setText(producto.getPrecio() + " euros");
         imagenPlato.setImageBitmap(service.pasarStringAImagen(producto.getImagen()) );
         platoDesc.setText(producto.getContenido());
+        direccionText.setText(producto.getDireccionRecogida());
 
     }
 

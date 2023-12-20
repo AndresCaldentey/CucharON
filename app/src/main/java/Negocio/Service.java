@@ -89,7 +89,7 @@ public class Service implements IService{
     public List<Producto> getProductoPublicadoEnCurso() { return productoRepo.getProductoPublicadoEnCurso(loggedUser); }
     public List<Producto> getProductoPublicadoEntregado() { return productoRepo.getProductoPublicadoEntregado(loggedUser); }
     public List<Producto> getProductosPubPorUser(Usuario user) { return productoRepo.getProductosPorUsuario(user); }
-    public List<Producto> getProductosSinComprar(){ return productoRepo.getProductosSinComprador(); }
+    public List<Producto> getProductosSinComprar(){ return productoRepo.getProductosSinComprador(loggedUser); }
     public List<Producto> getAllProducto() { return productoRepo.obtenerTodos(); }
     public void actualizarProducto(Producto p) { productoRepo.actualizar(p);}
     public void borrarProducto(Producto producto) { productoRepo.delete(producto.getIdProducto());}

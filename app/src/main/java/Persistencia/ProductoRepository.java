@@ -231,12 +231,12 @@ public class ProductoRepository extends Repository<Producto>{
         return productos;
     }
 
-    public List<Producto> getProductosSinComprador(){
+    public List<Producto> getProductosSinComprador(Usuario user){
         List<Producto> listaProduct = new ArrayList<>();
 
         try {
             QueryBuilder<Producto, ?> queryBuilder = getDao().queryBuilder();
-            queryBuilder.where().isNull("usuarioComprador");
+            queryBuilder.where().isNull("usuarioComprador").and().ne("usuarioPublicador", user);
             PreparedQuery<Producto> preparedQuery = queryBuilder.prepare();
 
             // Ejecutar la consulta

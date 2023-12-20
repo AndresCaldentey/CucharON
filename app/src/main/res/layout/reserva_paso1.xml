@@ -37,6 +37,8 @@
             android:textAppearance="@style/ManropeSemi"
             android:text="Malíah "
             android:textSize="26sp"
+            android:onClick="clickPerfil"
+
             />
 
         <TextView
@@ -49,7 +51,8 @@
             android:layout_marginStart="10dp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toEndOf="@id/nombreUsuarioReserva3"
-            android:textSize="28sp" />
+            android:textSize="28sp"
+            android:onClick="clickPerfil"/>
 
         <TextView
             android:id="@+id/tvEstrella"
@@ -64,15 +67,23 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toEndOf="@id/valoracionReserva3"
             />
-        <ImageView
-            android:id="@+id/cerrarB"
-            android:layout_width="17dp"
-            android:layout_height="19dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginEnd="20dp"
+        <LinearLayout
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="10dp"
             app:layout_constraintEnd_toEndOf="parent"
+            android:gravity="center"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/cerrar" />
+            android:onClick="cerrarClick">
+            <ImageView
+                android:id="@+id/cerrarB"
+                android:layout_width="17dp"
+                android:layout_height="19dp"
+
+                app:srcCompat="@drawable/cerrar"
+                />
+        </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
     <ScrollView
         android:id="@+id/scrollLayout"
@@ -130,7 +141,7 @@
                 app:layout_constraintTop_toBottomOf="@id/imagenPlatoReserva3"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="15dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"/>
             <TextView
@@ -172,15 +183,16 @@
 
             <TextView
                 android:id="@+id/direccionText"
-                android:layout_width="99dp"
-                android:layout_height="80dp"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
 
-                android:layout_weight="1"
                 android:textAppearance="@style/ManropeRegular"
                 android:text="Calle Dr. Llunch, Nº23 Valencia"
                 android:textSize="16sp"
+                android:maxLines="5"
                 app:layout_constraintTop_toBottomOf="@id/paisText"
                 app:layout_constraintStart_toStartOf="parent"
+
                 android:layout_marginTop="10dp"
                 android:layout_marginStart="20dp"/>
 
@@ -192,7 +204,8 @@
                 app:layout_constraintTop_toBottomOf="@id/paisText"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginTop="10dp"
-                android:layout_marginEnd="20dp"/>
+                android:layout_marginEnd="20dp"
+                android:onClick="mostrarAlertaConDosOpciones"/>
 
 
 
