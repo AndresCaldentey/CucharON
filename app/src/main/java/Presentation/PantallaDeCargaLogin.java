@@ -15,6 +15,8 @@ import com.bumptech.glide.Glide;
 import com.example.cucharon.R;
 import com.example.cucharon.Usuario;
 
+import java.time.Instant;
+
 import Negocio.IService;
 import Negocio.Service;
 
@@ -32,10 +34,8 @@ public class PantallaDeCargaLogin extends AppCompatActivity {
         service = Service.getService();
         intent = getIntent();
         gifImagen = findViewById(R.id.gifFondo);
-        Glide.with(this)
-                .asGif()
-                .load(R.drawable.gift)
-                .into(gifImagen);
+
+        Glide.with(this).asGif().load(R.drawable.gift).into(gifImagen);
 
         // Aquí puedes realizar operaciones de inicialización como acceder a la base de datos
        Usuario usuario = service.getUsuarioByEmail(intent.getStringExtra("usuario"));

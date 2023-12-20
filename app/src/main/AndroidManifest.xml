@@ -76,6 +76,11 @@
             android:exported="true" />
         <activity
             android:name="Presentation.MainActivity"
+            android:screenOrientation="portrait"
+            android:exported="true" />
+        <activity
+            android:name="Presentation.PantalladaDeCargaInicio"
+            android:theme="@style/splashScreem"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

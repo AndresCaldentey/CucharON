@@ -6,6 +6,10 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
+import android.window.SplashScreen;
+
+import com.example.cucharon.R;
 
 import Negocio.IService;
 import Negocio.Service;
@@ -14,7 +18,9 @@ import Negocio.Service;
 public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
+
         IService service = Service.getService();
 
         //Comprueba el token de inicio de sesion

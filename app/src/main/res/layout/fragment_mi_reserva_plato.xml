@@ -10,177 +10,160 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/imageView50"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="34dp"
-            android:layout_marginTop="53dp"
-            android:src="@drawable/detalles_reserva"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/imageView51"
-            android:layout_width="340dp"
-            android:layout_height="196dp"
-            android:layout_marginTop="24dp"
-            android:cropToPadding="true"
-            android:src="@drawable/img_7"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.492"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView50"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <TextView
-            android:id="@+id/categoria1"
-            android:layout_width="163dp"
-            android:layout_height="35dp"
-            android:layout_marginTop="1dp"
-            android:background="@drawable/img_9"
-            android:fontFamily="@font/manrope"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:gravity="center"
-            android:text="TextView"
-            app:layout_constraintEnd_toStartOf="@+id/categoria2"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView51" />
-
-        <TextView
-            android:id="@+id/valorarPlato"
-            android:layout_width="163dp"
-            android:layout_height="25dp"
-            android:background="@drawable/img_9"
-            android:fontFamily="@font/manrope"
-            android:gravity="center"
-            android:text="Valorar plato"
-            android:textColor="#FE8A30"
+            android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.915"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/divider3"
-            app:layout_constraintVertical_bias="0.391" />
+            app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/categoria2"
-            android:layout_width="163dp"
-            android:layout_height="35dp"
-            android:layout_marginTop="1dp"
-            android:background="@drawable/boton_naranja"
-            android:fontFamily="@font/manrope"
-            android:gravity="center"
-            android:text="TextView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.854"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView51" />
+            <ImageView
+                android:id="@+id/imageView52"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="left"
+                android:layout_marginStart="10dp"
+                android:src="@drawable/cerrar" />
 
-        <ImageView
-            android:id="@+id/imageView52"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@drawable/cerrar"
-            tools:layout_editor_absoluteX="360dp"
-            tools:layout_editor_absoluteY="16dp" />
+            <ImageView
+                android:id="@+id/imageView50"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/detalles_reserva" />
 
-        <Negocio.CustomFontTextView
-            android:id="@+id/tituloDelPlato"
-            android:layout_width="344dp"
-            android:layout_height="135dp"
-            android:layout_marginTop="20dp"
-            android:fontFamily="@font/manrope"
-            android:paddingLeft="20dp"
-            android:text="Tortilla de patatas"
-            android:textAppearance="@style/ManropeBold"
-            android:textSize="48sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/categoria1" />
+            <ImageView
+                android:id="@+id/imageView51"
+                android:layout_width="340dp"
+                android:layout_height="196dp"
+                android:layout_marginTop="24dp"
+                android:cropToPadding="true"
+                android:src="@drawable/img_7" />
 
-        <TextView
-            android:id="@+id/raciones"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="29dp"
-            android:fontFamily="@font/manrope"
-            android:text="1 unidad"
-            android:textSize="15sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.098"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tituloDelPlato"
-            app:layout_constraintVertical_bias="0.03" />
+            <Negocio.CustomFontTextView
+                android:id="@+id/tituloDelPlato"
+                android:layout_width="344dp"
+                android:layout_height="135dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/manrope"
+                android:paddingLeft="20dp"
+                android:text="Tortilla de patatas"
+                android:textAppearance="@style/ManropeBold"
+                android:textSize="48sp" />
 
-        <TextView
-            android:id="@+id/direccion"
-            android:layout_width="230dp"
-            android:layout_height="19dp"
-            android:fontFamily="@font/manrope"
-            android:text="Calle Colón, 10, Valencia"
-            android:textSize="15sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.193"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/raciones"
-            app:layout_constraintVertical_bias="0.0" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/recogida"
-            android:layout_width="230dp"
-            android:layout_height="19dp"
-            android:fontFamily="@font/manrope"
-            android:text="11:00, 23/11  "
-            android:textSize="15sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.193"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/direccion"
-            app:layout_constraintVertical_bias="0.0" />
+                <TextView
+                    android:id="@+id/categoria1"
+                    android:layout_width="163dp"
+                    android:layout_height="35dp"
+                    android:layout_marginTop="1dp"
+                    android:background="@drawable/img_9"
+                    android:fontFamily="@font/manrope"
+                    android:gravity="center"
+                    android:text="TextView" />
 
-        <View
-            android:id="@+id/divider3"
-            android:layout_width="381dp"
-            android:layout_height="1dp"
-            android:background="?android:attr/listDivider"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.466"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/nombre_usu"
-            app:layout_constraintVertical_bias="0.084" />
+                <TextView
+                    android:id="@+id/categoria2"
+                    android:layout_width="163dp"
+                    android:layout_height="35dp"
+                    android:layout_marginStart="20dp"
+                    android:background="@drawable/boton_naranja"
+                    android:fontFamily="@font/manrope"
+                    android:gravity="center"
+                    android:text="TextView" />
+            </LinearLayout>
 
-        <TextView
-            android:id="@+id/nombre_usu"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="72dp"
-            android:fontFamily="@font/manrope"
-            android:text="Nombre usuario"
-            android:textAppearance="@style/ManropeBold"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.877"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/recogida" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="10dp"
+                android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/precio_plato1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/manrope"
-            android:text="Precio final:"
-            android:textAppearance="@style/ManropeBold"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.118"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/divider3"
-            app:layout_constraintVertical_bias="0.404" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/raciones"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/manrope"
+                        android:text="1 unidad"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/direccion"
+                        android:layout_width="match_parent"
+                        android:layout_height="19dp"
+                        android:fontFamily="@font/manrope"
+                        android:text="Calle Colón, 10, Valencia"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/recogida"
+                        android:layout_width="match_parent"
+                        android:layout_height="19dp"
+                        android:fontFamily="@font/manrope"
+                        android:text="11:00, 23/11  "
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/nombre_usu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/manrope"
+                    android:text="Nombre usuario"
+                    android:textAppearance="@style/ManropeBold"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/precio_plato1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/manrope"
+                    android:text="Precio final:"
+                    android:textAppearance="@style/ManropeBold"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/valorarPlato"
+                    android:layout_width="163dp"
+                    android:layout_height="35dp"
+                    android:background="@drawable/img_9"
+                    android:fontFamily="@font/manrope"
+                    android:gravity="center"
+                    android:text="Valorar plato"
+                    android:textColor="#FE8A30" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

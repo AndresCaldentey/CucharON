@@ -19,50 +19,17 @@ import android.widget.Toast;
 import com.example.cucharon.Producto;
 import com.example.cucharon.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link Mi_reserva_plato#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class Mi_reserva_plato extends Fragment {
+    private ImageView cerrar;
+    private TextView categoria1, categoria2, titulo, raciones, direccion, recogida, precio, nombre_usu, valorarPlato;
+    private Producto producto;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    public Mi_reserva_plato() { }
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-    ImageView cerrar;
-    TextView categoria1;
-    TextView categoria2;
-    TextView titulo;
-    TextView raciones;
-    TextView direccion;
-    TextView recogida;
-    TextView precio;
-    TextView nombre_usu;
-    Button valorarPlato;
-
-    public Mi_reserva_plato() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment mi_reserva_plato.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static Mi_reserva_plato newInstance(String param1, String param2) {
+    public static Mi_reserva_plato newInstance(Producto plato) {
         Mi_reserva_plato fragment = new Mi_reserva_plato();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putSerializable("plato", plato);
         fragment.setArguments(args);
         return fragment;
     }
@@ -71,8 +38,7 @@ public class Mi_reserva_plato extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            producto = (Producto) getArguments().getSerializable("plato");
         }
     }
 
@@ -96,17 +62,14 @@ public class Mi_reserva_plato extends Fragment {
         recogida = view.findViewById(R.id.recogida);
         valorarPlato = view.findViewById(R.id.valorarPlato);
 
-        valorarPlato.setOnClickListener((view1) -> { mostrarDialogoCalificacion(); });
-
-
-    }
-    public void ponerDatosProducto(Producto producto){
         titulo.setText(producto.getNombre());
-        precio.setText(producto.getPrecio().toString());
-        raciones.setText(producto.getNumRaciones());
+        precio.setText("Precio final: " + producto.getPrecio() + "€");
+        raciones.setText(producto.getNumRaciones()+"");
         direccion.setText(producto.getDireccionRecogida());
         recogida.setText(producto.getHoraRecogida());
-        
+        nombre_usu.setText(producto.getUsuarioPublicador().getNombre());
+
+        valorarPlato.setOnClickListener((view1) -> { mostrarDialogoCalificacion(); });
     }
 
     private void mostrarDialogoCalificacion() {
@@ -136,7 +99,6 @@ public class Mi_reserva_plato extends Fragment {
                 // Puedes hacer algo con la calificación aquí (guardarla, enviarla a un servidor, etc.)
                 Toast.makeText(getActivity(), "Calificación seleccionada: " + calificacion, Toast.LENGTH_SHORT).show();
 
-                // Cierra el diálogo
                 dialog.dismiss();
             }
         });

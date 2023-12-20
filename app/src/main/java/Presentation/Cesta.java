@@ -53,10 +53,10 @@ public class Cesta extends Fragment {
         platosPrevios = servicio.getProductoPublicadoEntregado();
 
         /*Inicializar los recyclerViews*/
-        adaptadorEnCurso = new AdaptadorReservasEnCurso(reservasEnCurso);
+        adaptadorEnCurso = new AdaptadorReservasEnCurso(reservasEnCurso, getActivity());
         recyclerViewEnCurso.setLayoutManager(new GridLayoutManager(this.getContext(), 1));
         recyclerViewEnCurso.setAdapter(adaptadorEnCurso);
-        adaptadorPrevias = new AdaptadorReservasPrevias(reservasPrevias);
+        adaptadorPrevias = new AdaptadorReservasPrevias(reservasPrevias, getActivity());
         recyclerViewPrevias.setLayoutManager(new GridLayoutManager(this.getContext(), 1));
         recyclerViewPrevias.setAdapter(adaptadorPrevias);
 
