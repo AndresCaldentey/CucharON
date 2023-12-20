@@ -7,6 +7,7 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -170,6 +171,9 @@ public class ReservaPaso2 extends AppCompatActivity {
         // Mostrar la alerta
         AlertDialog dialog = builder.create();
         dialog.show();
+    }
+    public void cerrarClick(View view){
+        finish();
     }
 
 }
