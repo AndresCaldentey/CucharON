@@ -29,8 +29,8 @@ public class Navegacion extends AppCompatActivity {
     FragmentContainerView mainFragmentContainer;
     private List<Producto> listaProductos;
     CircleImageView imagenPerfil;
-
     List<Producto> allProductos;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -112,7 +112,6 @@ public class Navegacion extends AppCompatActivity {
         String usuarioActual = servicio.getLoggedUser().getEmail();
         intent.putExtra("usuario", usuarioActual);
         startActivity(intent);
-
     }
 
     @Override

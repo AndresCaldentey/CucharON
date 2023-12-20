@@ -1,6 +1,7 @@
 package Presentation;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -108,7 +109,10 @@ public class Home extends Fragment {
         botones.add(btnMasCaro);
         botones.add(btnVendedorTop);
 
-        btnMapa.setOnClickListener((view1) -> { if(btnMapa.isChecked()) actualizarBotones(btnMapa); });
+        btnMapa.setOnClickListener((view1) -> {
+            if(btnMapa.isChecked()) actualizarBotones(btnMapa);
+            getParentFragmentManager().beginTransaction().replace(R.id.mainFragmentContainer, new HomeMapa()).commit();
+        });
 
         btnMasBarato.setOnClickListener((view1) -> { if(btnMasBarato.isChecked()) actualizarBotones(btnMasBarato); });
 
@@ -128,13 +132,9 @@ public class Home extends Fragment {
         Usuario publicador = producto.getUsuarioPublicador();
         nombrePerfil.setText(service.getLoggedUser().getNombre());
         precioPlato.setText(producto.getPrecio().toString() + " euros");
-        //int valoracion = publicador().getValoracion();
-        //String valoracionText = String.valueOf('*').repeat(valoracion);
-        //if(valoracion != null) valoracionPerfil.setText(valoracionText);
         nombrePublicador.setText(publicador.getNombre() + " " + publicador.getApellido());
 
         nombrePlato.setText(producto.getNombre());
-        //nombrePlatoLabel.setText("aaaaaaaaaaaaaaaaaaaaa \n patatas");
 
         if(publicador.getFoto() != null) fotoPerfilPub.setImageBitmap(service.pasarStringAImagen(publicador.getFoto()));
     }

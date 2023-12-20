@@ -47,30 +47,24 @@ public class Add_punto_encuentro extends Fragment implements OnMapReadyCallback 
     ImageView buscarButton;
     Button botonSubirPlato;
     String direccion;
+
     public Add_punto_encuentro() {
         // Required empty public constructor
     }
 
-
-
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-
         super.onViewCreated(view, savedInstanceState);
         SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.mapFragment);
-
 
         botonSubirPlato = view.findViewById(R.id.botonSubirPlato);
 
         botonSubirPlato.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 mostrarAlertaConDosOpciones();
-
             }
         });
-
 
         // Inicializa el mapa si aún no se ha inicializado
         if (mapFragment == null) {
@@ -88,8 +82,6 @@ public class Add_punto_encuentro extends Fragment implements OnMapReadyCallback 
                 buscarUbicacion();
             }
         });
-
-
 
     }
 
@@ -132,7 +124,6 @@ public class Add_punto_encuentro extends Fragment implements OnMapReadyCallback 
                         }
                     });
         }
-
 
     }
 

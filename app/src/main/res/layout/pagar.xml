@@ -231,7 +231,6 @@
             android:layout_width="93dp"
             android:layout_height="51dp"
             android:layout_weight="1"
-            android:onClick="sugerenciasOnClick"
             app:srcCompat="@drawable/lupa1" />
 
         <ImageView
@@ -253,7 +252,6 @@
             android:id="@+id/imageView9"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="perfilOnClick"
             app:srcCompat="@drawable/user" />
     </LinearLayout>
 
