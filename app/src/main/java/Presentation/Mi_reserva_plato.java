@@ -26,16 +26,19 @@ public class Mi_reserva_plato extends Fragment {
     private ImageView cerrar;
     private TextView categoria1, categoria2, titulo, raciones, direccion, recogida, precio, nombre_usu, valorarPlato;
     private Producto producto;
+    private int opcion;
     private CircleImageView fotoPlato;
+    public static final int TURESERVA = 0, TUPLATO = 1;
 
     Service servicio;
 
     public Mi_reserva_plato() { }
 
-    public static Mi_reserva_plato newInstance(Producto plato) {
+    public static Mi_reserva_plato newInstance(Producto plato, int opcion) {
         Mi_reserva_plato fragment = new Mi_reserva_plato();
         Bundle args = new Bundle();
         args.putSerializable("plato", plato);
+        args.putInt("opcion", opcion);
         fragment.setArguments(args);
         return fragment;
     }
@@ -45,6 +48,7 @@ public class Mi_reserva_plato extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             producto = (Producto) getArguments().getSerializable("plato");
+            opcion = getArguments().getInt("opcion");
         }
     }
 
@@ -60,7 +64,7 @@ public class Mi_reserva_plato extends Fragment {
         servicio = Service.getService();
         cerrar = view.findViewById(R.id.cerrarVerBusqueda);
         nombre_usu = view.findViewById(R.id.nombre_usu);
-        precio = view.findViewById(R.id.precio_plato1);
+        precio = view.findViewById(R.id.precio_plato2);
         titulo = view.findViewById(R.id.tituloDelPlato);
         raciones = view.findViewById(R.id.raciones);
         categoria1 = view.findViewById(R.id.categoria1);
@@ -70,15 +74,24 @@ public class Mi_reserva_plato extends Fragment {
         valorarPlato = view.findViewById(R.id.valorarPlato);
         fotoPlato = view.findViewById(R.id.fotoPlato);
 
+        ImageView detallesPlato = view.findViewById(R.id.detallesPlato);
+        ImageView detallesReserva = view.findViewById(R.id.detallesReserva);
+
         fotoPlato.setImageBitmap(servicio.pasarStringAImagen(producto.getImagen()));
 
         titulo.setText(producto.getNombre());
-        precio.setText("Precio final: " + producto.getPrecio() + "€");
+        precio.setText(producto.getPrecio() + "€");
         raciones.setText(producto.getNumRaciones()+"");
         direccion.setText(producto.getDireccionRecogida());
         recogida.setText(producto.getHoraRecogida());
         nombre_usu.setText(producto.getUsuarioPublicador().getNombre());
-
+        if(opcion == TUPLATO) {
+            valorarPlato.setVisibility(View.GONE);
+            detallesReserva.setVisibility(View.INVISIBLE);
+        }
+        if(opcion == TURESERVA){
+            //valorarReserva.setV
+        }
         valorarPlato.setOnClickListener((view1) -> { mostrarDialogoCalificacion(); });
     }
 

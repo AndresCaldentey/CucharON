@@ -21,6 +21,26 @@ public class ProductoCategoriaRepository extends Repository<ProductoCategoria>{
         conn = c;
     }
 
+    public List<ProductoCategoria> BuscarPorProducto(int productoId) {
+        Thread hilo = new Thread(() ->
+        {
+            try {
+                listaProductos = this.getDao().queryForEq("producto", productoId);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        });
+        hilo.start();
+
+        //Esperar al hilo
+        try {
+            hilo.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return listaProductos;
+    }
+
     public List<ProductoCategoria> BuscarPorCategoria(String categoria) {
 
 

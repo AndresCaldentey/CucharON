@@ -25,6 +25,7 @@ public class AdaptadorReservasPrevias extends RecyclerView.Adapter<AdaptadorRese
     private List<Producto> productos = new ArrayList<>();
     private IService servicio;
     private Activity actividad;
+    int opcion;
 
     public AdaptadorReservasPrevias(List<Producto> productos, Activity actividad) {
         this.productos = productos;
@@ -33,6 +34,7 @@ public class AdaptadorReservasPrevias extends RecyclerView.Adapter<AdaptadorRese
     }
 
     public void setProductos(List<Producto> productos) {this.productos = productos;}
+    public void setOpcion(int opcion) {this.opcion = opcion;}
 
     @NonNull
     @Override
@@ -66,7 +68,7 @@ public class AdaptadorReservasPrevias extends RecyclerView.Adapter<AdaptadorRese
                     //Se ha clickado
                     Navegacion navegacion = (Navegacion) actividad;
                     navegacion.getSupportFragmentManager().beginTransaction().replace(R.id.mainFragmentContainer,
-                            Mi_reserva_plato.newInstance(plato)).commit();
+                            Mi_reserva_plato.newInstance(plato, opcion)).commit();
                 }
             });
         }

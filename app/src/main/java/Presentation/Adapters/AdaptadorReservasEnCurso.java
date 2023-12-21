@@ -28,6 +28,7 @@ public class AdaptadorReservasEnCurso extends RecyclerView.Adapter<AdaptadorRese
     private IService servicio;
     private Activity activity;
 
+    int opcion;
     public AdaptadorReservasEnCurso(List<Producto> productos, Activity activity) {
         this.productos = productos;
         this.servicio = Service.getService();
@@ -35,6 +36,7 @@ public class AdaptadorReservasEnCurso extends RecyclerView.Adapter<AdaptadorRese
     }
 
     public void setProductos(List<Producto> productos) { this.productos = productos;}
+    public void setOpcion(int opcion) { this.opcion = opcion; }
 
     @NonNull
     @Override
@@ -58,6 +60,7 @@ public class AdaptadorReservasEnCurso extends RecyclerView.Adapter<AdaptadorRese
         TextView textViewNombrePlato, textViewNombreUsuario, textViewRecogida;
         Producto plato;
 
+
         public ReservasEnCursoHolder(@NonNull View itemView) {
             super(itemView);
             imagenPlato= itemView.findViewById(R.id.imagenReservaEnCurso);
@@ -70,7 +73,7 @@ public class AdaptadorReservasEnCurso extends RecyclerView.Adapter<AdaptadorRese
                     //Se ha clickado
                     Navegacion actividad = (Navegacion) activity;
                     actividad.getSupportFragmentManager().beginTransaction().replace(R.id.mainFragmentContainer,
-                            Mi_reserva_plato.newInstance(plato)).commit();
+                            Mi_reserva_plato.newInstance(plato, opcion)).commit();
                 }
             });
         }
