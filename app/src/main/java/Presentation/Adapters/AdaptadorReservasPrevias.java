@@ -81,7 +81,7 @@ public class AdaptadorReservasPrevias extends RecyclerView.Adapter<AdaptadorRese
             textViewNombrePlato.setText(producto.getNombre());
             textViewNombreUsuario.setText(producto.getUsuarioPublicador().getNombre());
             textViewPrecio.setText(producto.getPrecio()+"€");
-            imagenReservaPrevia.setImageBitmap(servicio.pasarStringAImagen(producto.getUsuarioComprador().getFoto()));
+            if(producto.getUsuarioComprador().getFoto() != null) { imagenReservaPrevia.setImageBitmap(servicio.pasarStringAImagen(producto.getUsuarioComprador().getFoto()));}
         }
     }
 
