@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
 import com.example.cucharon.Producto;
+import com.example.cucharon.ProductoCategoria;
 import com.example.cucharon.R;
 
 import java.sql.SQLException;
@@ -26,6 +27,7 @@ public class PantalladaDeCargaInicio extends AppCompatActivity {
     ImageView gifImagen;
     Service servicio;
     public static List<Producto> productos = new ArrayList<>();
+    public static List<ProductoCategoria> productoCategorias = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +68,6 @@ public class PantalladaDeCargaInicio extends AppCompatActivity {
             // Este método se ejecutará en el hilo principal después de que la carga haya terminado
             // Puedes continuar con el intent aquí o realizar cualquier otra acción necesaria
             PantalladaDeCargaInicio.productos = productos;  // Asigna la lista cargada
-
             Intent intent = new Intent(PantalladaDeCargaInicio.this, Navegacion.class);
             startActivity(intent);
             finish();
@@ -76,6 +77,7 @@ public class PantalladaDeCargaInicio extends AppCompatActivity {
     private List<Producto> cargarProductos() {
         // Realizar la carga de productos en segundo plano
         // Puedes realizar operaciones de base de datos directamente aquí
+        productoCategorias = servicio.getAllProductoCategoria();
         return servicio.getProductosSinComprar();
     }
 }
