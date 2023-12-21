@@ -172,8 +172,8 @@ public class Home extends Fragment {
         Usuario publicador = producto.getUsuarioPublicador();
         nombrePerfil.setText(service.getLoggedUser().getNombre());
         precioPlato.setText(producto.getPrecio().toString() + " euros");
-        //int valoracion = publicador().getValoracion();
-        //String valoracionText = String.valueOf('*').repeat(valoracion);
+        int valoracion = publicador.getValoracion();
+        valoracionPerfil.setText(service.valoracionAString(valoracion));
         //if(valoracion != null) valoracionPerfil.setText(valoracionText);
         nombrePublicador.setText(publicador.getNombre() + " " + publicador.getApellido());
 

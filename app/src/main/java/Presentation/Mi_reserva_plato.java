@@ -152,7 +152,8 @@ public class Mi_reserva_plato extends Fragment {
                 int calificacionInt = (int) calificacion;
                 producto.setValoracion(calificacionInt);
                 servicio.setValoracionProducto(producto, calificacionInt);
-
+                getParentFragmentManager().beginTransaction().replace(R.id.mainFragmentContainer,
+                        new Cesta()).commit();
                 dialog.dismiss();
             }
         });

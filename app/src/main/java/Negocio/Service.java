@@ -285,7 +285,7 @@ public class Service implements IService{
     public String valoracionAString(int valoracion) {
 
         String valoracionText = "";
-        if(valoracion == -1 ) return "S/V";
+        if(valoracion == -1 ) return "";
         for(int i = 0; i < valoracion; i++) valoracionText += "*";
         return valoracionText;
     }
