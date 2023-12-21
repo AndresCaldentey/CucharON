@@ -50,6 +50,8 @@ public class Producto implements Serializable {
     private int valoracion;
     @DatabaseField
     private String horaReserva;
+    @DatabaseField
+    private int racionesReservadas;
 
     public Producto() {
     }
@@ -74,6 +76,7 @@ public class Producto implements Serializable {
         this.entregado = false;
         this.valoracion = -1;
         this.horaReserva = null;
+        this.racionesReservadas = 0;
     }
 
     public int getIdProducto() {
@@ -211,7 +214,16 @@ public class Producto implements Serializable {
     public void setHoraReserva(String horaReserva) {
         this.horaReserva = horaReserva;
     }
-/*
+
+    public int getRacionesReservadas() {
+        return racionesReservadas;
+    }
+
+    public void setRacionesReservadas(int racionesReservadas) {
+        this.racionesReservadas = racionesReservadas;
+    }
+
+    /*
     public List<Ingrediente> getIngredientes() {
         return ingredientes;
     }

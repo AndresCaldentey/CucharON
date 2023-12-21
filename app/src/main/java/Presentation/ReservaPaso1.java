@@ -66,6 +66,7 @@ public class ReservaPaso1 extends AppCompatActivity {
         Intent intent = new Intent(this, ReservaPaso2.class);
         intent.putExtra("plato", platoId);
         startActivity(intent);
+        finish();
     }
 
     public void cerrarClick(View view){
