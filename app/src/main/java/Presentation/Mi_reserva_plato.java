@@ -83,11 +83,11 @@ public class Mi_reserva_plato extends Fragment {
         ImageView detallesReserva = view.findViewById(R.id.detallesReserva);
 
         for (Categoria c:productoCategorias) {
-                if(c.getEsPais()){
-                    categoria1.setText(c.getNombre());
-                }else {
-                    categoria2.setText(c.getNombre());
-                }
+            if(c.getEsPais()){
+                categoria1.setText(c.getNombre());
+            }else {
+                categoria2.setText(c.getNombre());
+            }
         }
 
         fotoPlato.setImageBitmap(servicio.pasarStringAImagen(producto.getImagen()));

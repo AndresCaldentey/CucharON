@@ -17,9 +17,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.cucharon.Producto;
+import com.example.cucharon.ProductoCategoria;
 import com.example.cucharon.R;
 import com.example.cucharon.Usuario;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import Negocio.IService;
@@ -30,6 +32,7 @@ public class VerBusqueda extends Fragment {
     private IService service;
     private TextView textViewPais, nombreBusqueda, paladarTv;
     private RecyclerView recyclerPlatos;
+    private List<ProductoCategoria> productoCategorias;
 
     public VerBusqueda() {}
 
@@ -64,7 +67,7 @@ public class VerBusqueda extends Fragment {
             public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
                 String categoria = result.getString("categoria");
                 String nomPlato = result.getString("nombre");
-                List<Producto> platos;
+                List<Producto> platos = new ArrayList<>();
                 AdaptadorPlato.OnClickPerfilListener logicaClPerfil = new AdaptadorPlato.OnClickPerfilListener() {
                     @Override
                     public void click(Usuario usuario) {
@@ -75,7 +78,16 @@ public class VerBusqueda extends Fragment {
                 {
                     textViewPais.setText(categoria + " en tu");
                     nombreBusqueda.setVisibility(View.GONE);
-                    platos = service.buscarPorCategoria(categoria);
+                    if(getActivity() != null) {
+                        if(getActivity() instanceof Navegacion) {
+                            Navegacion activityActual = (Navegacion) getActivity();
+                            productoCategorias = activityActual.getAllProductoCategoria();
+                        }
+                    }
+
+                    for(ProductoCategoria pc : productoCategorias) {
+                        if(pc.getCategoria().getNombre().equals(categoria)) { platos.add(pc.getProducto());}
+                    }
                 }
                 else {
                     nombreBusqueda.setText(nomPlato);

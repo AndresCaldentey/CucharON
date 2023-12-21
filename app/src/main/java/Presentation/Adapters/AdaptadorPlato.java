@@ -67,7 +67,7 @@ public class AdaptadorPlato extends RecyclerView.Adapter<AdaptadorPlato.Adaptado
         return df.format(numero);
     }
 
-    class AdaptadorPlatoHolder extends RecyclerView.ViewHolder {
+    class AdaptadorPlatoHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         //inicializar las variables :)
         TextView nombre, recogida, precio, puntuacionPerfil;
         ImageView imagen, fotoPerfil;
@@ -83,6 +83,7 @@ public class AdaptadorPlato extends RecyclerView.Adapter<AdaptadorPlato.Adaptado
             fotoPerfil = itemView.findViewById(R.id.fotoPerfilItemPlato);
             puntuacionPerfil = itemView.findViewById(R.id.puntuacionPerfil);
             layoutPerfil = itemView.findViewById(R.id.layoutPerfil);
+            itemView.setOnClickListener(this);
         }
 
         public void imprimir(int position) {
@@ -100,15 +101,24 @@ public class AdaptadorPlato extends RecyclerView.Adapter<AdaptadorPlato.Adaptado
                     logicaClickPerfil.click(plato.getUsuarioPublicador());
                 }
             });
-            imagen.setOnClickListener(new View.OnClickListener() {
+
+            /*imagen.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     pulsar();
                 }
-            });
+            });*/
 
         }
 
+        @Override
+        public void onClick(View view) {
+            //aquí se define el listener que espera al click de un plato.
+            Navegacion navegacion = (Navegacion) actividad;
+            Intent intent = new Intent(navegacion, ReservaPaso1.class);
+            intent.putExtra("plato", plato.getIdProducto());
+            actividad.startActivity(intent);
+        }
 
         private void pulsar(){
             Navegacion navegacion = (Navegacion) actividad;

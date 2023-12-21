@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.example.cucharon.Producto;
+import com.example.cucharon.ProductoCategoria;
 import com.example.cucharon.R;
 
 import java.util.List;
@@ -27,6 +28,7 @@ import Presentation.Adapters.Pais;
 public class Examinar extends Fragment {
     private Button btnProcedencia, btnSabor;
     private FragmentContainerView contenedorExaminar;
+    private List<ProductoCategoria> productoCategorias;
     EditText searchText;
     ImageView searchB;
 
@@ -40,6 +42,13 @@ public class Examinar extends Fragment {
         btnSabor = view.findViewById(R.id.saborB);
         searchText = view.findViewById(R.id.searchText);
         searchB = view.findViewById(R.id.searchB);
+
+        if(getActivity() != null) {
+            if(getActivity() instanceof Navegacion) {
+                Navegacion activityActual = (Navegacion) getActivity();
+                productoCategorias = activityActual.getAllProductoCategoria();
+            }
+        }
 
         searchB.setOnClickListener(new View.OnClickListener() {
             @Override

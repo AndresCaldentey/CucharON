@@ -23,7 +23,6 @@ import java.util.concurrent.CountDownLatch;
 import Negocio.Service;
 
 public class PantalladaDeCargaInicio extends AppCompatActivity {
-
     ImageView gifImagen;
     Service servicio;
     public static List<Producto> productos = new ArrayList<>();
@@ -38,12 +37,7 @@ public class PantalladaDeCargaInicio extends AppCompatActivity {
 
         Glide.with(this).asGif().load(R.drawable.gift).into(gifImagen);
 
-
-
         new CargaProductosTask().execute();
-
-
-
     }
 
     public class CargaProductosTask extends AsyncTask<Void, Void, List<Producto>> {
@@ -63,6 +57,7 @@ public class PantalladaDeCargaInicio extends AppCompatActivity {
             return cargarProductos();
         }
 
+
         @Override
         protected void onPostExecute(List<Producto> productos) {
             // Este método se ejecutará en el hilo principal después de que la carga haya terminado
@@ -70,6 +65,7 @@ public class PantalladaDeCargaInicio extends AppCompatActivity {
               // Asigna la lista cargada
 
             PantalladaDeCargaInicio.productos = productos;  // Asigna la lista cargada
+            //PantalladaDeCargaInicio.productoCategorias = servicio.getAllProductoCategoria();
             Intent intent = new Intent(PantalladaDeCargaInicio.this, Navegacion.class);
             startActivity(intent);
             finish();
@@ -79,7 +75,8 @@ public class PantalladaDeCargaInicio extends AppCompatActivity {
     private List<Producto> cargarProductos() {
         // Realizar la carga de productos en segundo plano
         // Puedes realizar operaciones de base de datos directamente aquí
-        productos = servicio.getPrimerosProductos();
+        productos = servicio.getProductosSinComprar();
+        productoCategorias = servicio.getAllProductoCategoria();
         return productos;
     }
 }

@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.FragmentContainerView;
 
 import com.example.cucharon.Producto;
+import com.example.cucharon.ProductoCategoria;
 import com.example.cucharon.R;
 import com.example.cucharon.Usuario;
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
@@ -28,8 +29,8 @@ public class Navegacion extends AppCompatActivity {
     private int previousIndex;
     FragmentContainerView mainFragmentContainer;
     private List<Producto> listaProductos;
+    private List<ProductoCategoria> listaProductoCategoria;
     CircleImageView imagenPerfil;
-
     List<Producto> allProductos;
     Usuario loggedUser;
 
@@ -39,33 +40,32 @@ public class Navegacion extends AppCompatActivity {
         loggedUser = servicio.getLoggedUser();
         if(loggedUser.getFoto() != null) imagenPerfil.setImageBitmap(servicio.pasarStringAImagen(loggedUser.getFoto()));
 
-
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.barra_navegacion);
-        servicio = Service.getService();
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+
+        servicio = Service.getService();
         barraNav = findViewById(R.id.barraNav);
         mainFragmentContainer = findViewById(R.id.mainFragmentContainer);
         imagenPerfil = findViewById(R.id.imagen_perfil);
 
-
         allProductos = PantalladaDeCargaInicio.productos;
+        listaProductoCategoria = PantalladaDeCargaInicio.productoCategorias;
 
-
-        listaProductos = servicio.getPrimerosProductos();
-        setListaProductos(listaProductos);
+        //listaProductos = servicio.getPrimerosProductos();
+        setListaProductos(allProductos);
 
         //Hilo para recoger todos los productos de fondo
-        Thread hilo = new Thread(() ->
+        /*Thread hilo = new Thread(() ->
         {
             List<Producto> lproduct = servicio.getProductosSinComprar();
             runOnUiThread(() -> setListaProductos(lproduct));
         });
-        hilo.start();
+        hilo.start();*/
 
 
         barraNav.setOnItemSelectedListener(new ChipNavigationBar.OnItemSelectedListener() {
@@ -102,6 +102,10 @@ public class Navegacion extends AppCompatActivity {
 
     public List<Producto> getAllProductos() {
         return listaProductos;
+    }
+
+    public List<ProductoCategoria> getAllProductoCategoria() {
+        return listaProductoCategoria;
     }
 
     public void setListaProductos(List<Producto> lproductos) {
