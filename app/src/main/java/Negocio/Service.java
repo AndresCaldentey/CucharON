@@ -79,6 +79,15 @@ public class Service implements IService{
     }
 
     /*PERSISTENCIA PRODUCTO*/
+    public void setValoracionProducto(Producto producto, int valoracion) {
+        Usuario userPub = producto.getUsuarioPublicador();
+        producto.setValoracion(valoracion);
+        userPub.setCantidadValoracion(userPub.getCantidadValoracion() + valoracion);
+        List<Producto> productosValorados = productoRepo.getProductosValorados(userPub);
+        userPub.setValoracion( userPub.getCantidadValoracion() / (productosValorados.size() + 1) );
+        productoRepo.actualizar(producto);
+        userRepo.actualizar(userPub);
+    }
     public Producto crearProducto(Producto producto) { productoRepo.guardar2(producto);
                                                         return producto;}
     public Producto getProductoById(int id) { return productoRepo.obtener(id); }
@@ -112,6 +121,16 @@ public class Service implements IService{
     /*PERSISTENCIA CATEGORIA*/
     public Categoria getCategoriaByName(String nombre) { return categoriaRepo.getCategoriaByName(nombre); }
     public List<Categoria> getAllCategorias() {return categoriaRepo.obtenerTodos();}
+
+    @Override
+    public List<Categoria> getCategoriasPorProducto(Producto producto) {
+         List<ProductoCategoria> prodcats = productoCategoriaRepo.BuscarPorProducto(producto.getIdProducto());
+         List<Categoria> result = new ArrayList<>();
+        for (ProductoCategoria p:prodcats) {
+            result.add(p.getCategoria());
+        }
+        return result;
+    }
 
 
     /*PERSISTENCIA PRODUCTO-CATEGORIA*/

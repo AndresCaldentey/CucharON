@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.cucharon.Categoria;
 import com.example.cucharon.Producto;
 import com.example.cucharon.ProductoCategoria;
 import com.example.cucharon.R;
@@ -42,7 +43,7 @@ public class ReservaPaso1 extends AppCompatActivity {
         platoId = getIntent().getIntExtra("plato", -1);
         if(platoId == -1) finish();
         producto = service.getProductoById(platoId);
-        List<ProductoCategoria> productoCategorias = PantalladaDeCargaInicio.productoCategorias;
+        List<Categoria> productoCategorias = service.getCategoriasPorProducto(producto);
 
         TextView platoDesc = findViewById(R.id.platoDesc);
         TextView nombreUser = findViewById(R.id.nombreUsuarioReserva3);
@@ -56,16 +57,15 @@ public class ReservaPaso1 extends AppCompatActivity {
         TextView sabor = findViewById(R.id.saborText);
         TextView pais = findViewById(R.id.paisText);
 
-        for (ProductoCategoria p:productoCategorias) {
-            if(p.getProducto().getIdProducto() == producto.getIdProducto()){
-                if(p.getCategoria().getEsPais()){
-                    pais.setText(p.getCategoria().getNombre());
-                }else {
-                    sabor.setText(p.getCategoria().getNombre());
-                }
+        for (Categoria c:productoCategorias) {
 
+            if(c.getEsPais()){
+                pais.setText(c.getNombre());
+            }else {
+                sabor.setText(c.getNombre());
             }
         }
+
 
         Usuario usuario = producto.getUsuarioPublicador();
         nombreUser.setText(usuario.getNombre());

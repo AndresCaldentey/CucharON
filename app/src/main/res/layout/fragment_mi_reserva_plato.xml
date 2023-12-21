@@ -12,7 +12,7 @@
 
 
         <ImageView
-            android:id="@+id/imageView52"
+            android:id="@+id/cerrarReserva"
             android:layout_width="24dp"
             android:layout_height="24dp"
             app:layout_constraintTop_toTopOf="parent"
@@ -58,12 +58,13 @@
         <TextView
             android:id="@+id/tituloDelPlato"
             android:layout_width="match_parent"
-            android:layout_height="135dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/manrope"
             android:text="Tortilla de patatas"
+            android:maxLines="3"
             android:textAppearance="@style/ManropeBold"
-            android:textSize="48sp"
+            android:textSize="24sp"
             app:layout_constraintTop_toBottomOf="@id/layoutCategorias"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -109,10 +110,10 @@
             android:textAppearance="@style/ManropeRegular"
             android:text="1 unidad"
             android:textSize="15sp"
-            app:layout_constraintTop_toBottomOf="@id/tituloDelPlato"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginBottom = "200dp"
             />
 
         <TextView

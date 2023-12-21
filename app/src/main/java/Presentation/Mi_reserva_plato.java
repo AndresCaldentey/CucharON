@@ -1,6 +1,8 @@
 package Presentation;
 
+import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -16,8 +18,13 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.cucharon.Categoria;
 import com.example.cucharon.Producto;
+import com.example.cucharon.ProductoCategoria;
 import com.example.cucharon.R;
+import com.example.cucharon.Usuario;
+
+import java.util.List;
 
 import Negocio.Service;
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -61,8 +68,15 @@ public class Mi_reserva_plato extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        if(getActivity() != null) {
+            if(getActivity() instanceof Navegacion) {
+               ((Navegacion) getActivity()).hidePerfil();
+            }
+        }
+
         servicio = Service.getService();
-        cerrar = view.findViewById(R.id.cerrarVerBusqueda);
+        List<Categoria> productoCategorias = servicio.getCategoriasPorProducto(producto);
+        cerrar = view.findViewById(R.id.cerrarReserva);
         nombre_usu = view.findViewById(R.id.nombre_usu);
         precio = view.findViewById(R.id.precio_plato2);
         titulo = view.findViewById(R.id.tituloDelPlato);
@@ -73,7 +87,14 @@ public class Mi_reserva_plato extends Fragment {
         recogida = view.findViewById(R.id.recogida);
         valorarPlato = view.findViewById(R.id.valorarPlato);
         fotoPlato = view.findViewById(R.id.fotoPlato);
+        for (Categoria c:productoCategorias) {
 
+                if(c.getEsPais()){
+                    categoria1.setText(c.getNombre());
+                }else {
+                    categoria2.setText(c.getNombre());
+                }
+        }
         ImageView detallesPlato = view.findViewById(R.id.detallesPlato);
         ImageView detallesReserva = view.findViewById(R.id.detallesReserva);
 
@@ -94,7 +115,15 @@ public class Mi_reserva_plato extends Fragment {
             detallesPlato.setVisibility(View.INVISIBLE);
             detallesReserva.setVisibility(View.VISIBLE);
         }
-        valorarPlato.setOnClickListener((view1) -> { mostrarDialogoCalificacion(); });
+        cerrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getParentFragmentManager().beginTransaction().replace(R.id.mainFragmentContainer,
+                        new Cesta()).commit();
+            }
+        });
+        if(producto.getValoracion() == -1) valorarPlato.setOnClickListener((view1) -> { mostrarDialogoCalificacion(); });
+
     }
 
     private void mostrarDialogoCalificacion() {
@@ -120,9 +149,9 @@ public class Mi_reserva_plato extends Fragment {
             public void onClick(View v) {
                 // Obtiene la calificación seleccionada
                 float calificacion = ratingBar.getRating();
-
-                // Puedes hacer algo con la calificación aquí (guardarla, enviarla a un servidor, etc.)
-                Toast.makeText(getActivity(), "Calificación seleccionada: " + calificacion, Toast.LENGTH_SHORT).show();
+                int calificacionInt = (int) calificacion;
+                producto.setValoracion(calificacionInt);
+                servicio.setValoracionProducto(producto, calificacionInt);
 
                 dialog.dismiss();
             }

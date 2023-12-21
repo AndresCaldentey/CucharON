@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
@@ -39,6 +40,11 @@ public class Cesta extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        if(getActivity() != null) {
+            if(getActivity() instanceof Navegacion) {
+                ((Navegacion) getActivity()).showPerfil();
+            }
+        }
 
         servicio = Service.getService();
         RecyclerView recyclerViewEnCurso = view.findViewById(R.id.recyclerEnCursoCesto);
@@ -54,23 +60,26 @@ public class Cesta extends Fragment {
 
         /*Inicializar los recyclerViews*/
         adaptadorEnCurso = new AdaptadorReservasEnCurso(reservasEnCurso, getActivity());
-        recyclerViewEnCurso.setLayoutManager(new GridLayoutManager(this.getContext(), 1));
+        LinearLayoutManager llm = new LinearLayoutManager(getContext());
+        llm.setOrientation(LinearLayoutManager.HORIZONTAL);
+        recyclerViewEnCurso.setLayoutManager(llm);
         recyclerViewEnCurso.setAdapter(adaptadorEnCurso);
         adaptadorPrevias = new AdaptadorReservasPrevias(reservasPrevias, getActivity());
-        recyclerViewPrevias.setLayoutManager(new GridLayoutManager(this.getContext(), 1));
+        LinearLayoutManager llm2 = new LinearLayoutManager(getContext());
+        recyclerViewPrevias.setLayoutManager(llm2);
         recyclerViewPrevias.setAdapter(adaptadorPrevias);
 
         /*Los listeners que cambian las listas*/
         btnReservas.setOnClickListener((view1) -> {
-            botonSeleccionado(btnReservas, btnPlatos, reservasEnCurso, reservasPrevias);
+            botonSeleccionado(btnReservas, btnPlatos, reservasEnCurso, reservasPrevias, Mi_reserva_plato.TURESERVA);
         });
 
         btnPlatos.setOnClickListener((view1) -> {
-            botonSeleccionado(btnPlatos, btnReservas, platosEnCurso, platosPrevios);
+            botonSeleccionado(btnPlatos, btnReservas, platosEnCurso, platosPrevios, Mi_reserva_plato.TUPLATO);
         });
     }
 
-    private void botonSeleccionado(Button boton, Button btnADesactivar, List<Producto> enCurso, List<Producto> previa) {
+    private void botonSeleccionado(Button boton, Button btnADesactivar, List<Producto> enCurso, List<Producto> previa, int opcion) {
         Drawable botonPulsado = ResourcesCompat.getDrawable(getResources(), R.drawable.boton_naranja, null);
         Drawable botonSinPulsar = ResourcesCompat.getDrawable(getResources(), R.drawable.boton_verde_borde, null);
 
@@ -78,8 +87,10 @@ public class Cesta extends Fragment {
         boton.setBackground(botonPulsado);
 
         adaptadorEnCurso.setProductos(enCurso);
+        adaptadorEnCurso.setOpcion(opcion);
         adaptadorEnCurso.notifyDataSetChanged();
         adaptadorPrevias.setProductos(previa);
+        adaptadorPrevias.setOpcion(opcion);
         adaptadorPrevias.notifyDataSetChanged();
     }
 

@@ -47,6 +47,7 @@ public interface IService {
     List<Categoria> getAllCategorias();
 
     /*PERSISTENCIA PRODUCTO-CATEGORIA*/
+    List<Categoria> getCategoriasPorProducto(Producto producto);
     void guardarProductoCategoria(ProductoCategoria productoCategoria);
     List<ProductoCategoria> getAllProductoCategoria();
     List<Producto> buscarPorCategoria(String categoria);

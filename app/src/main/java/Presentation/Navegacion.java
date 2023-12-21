@@ -133,6 +133,9 @@ public class Navegacion extends AppCompatActivity {
         if(mainFragmentContainer.getFragment() instanceof VerBusqueda) {
             getSupportFragmentManager().beginTransaction().replace(R.id.mainFragmentContainer, new Examinar()).commit();
             showPerfil();
+        }if(mainFragmentContainer.getFragment() instanceof Mi_reserva_plato) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.mainFragmentContainer, new Cesta()).commit();
+            showPerfil();
         } else if(mainFragmentContainer.getFragment() instanceof HomeMapa) {
             getSupportFragmentManager().beginTransaction().replace(R.id.mainFragmentContainer, new Home()).commit();
             showPerfil();
