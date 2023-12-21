@@ -20,6 +20,7 @@ import Negocio.IService;
 import Negocio.Service;
 import Presentation.Mi_reserva_plato;
 import Presentation.Navegacion;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class AdaptadorReservasPrevias extends RecyclerView.Adapter<AdaptadorReservasPrevias.PreviasHolder> {
     private List<Producto> productos = new ArrayList<>();
@@ -56,12 +57,15 @@ public class AdaptadorReservasPrevias extends RecyclerView.Adapter<AdaptadorRese
     public class PreviasHolder extends RecyclerView.ViewHolder {
         TextView textViewNombrePlato, textViewNombreUsuario, textViewPrecio;
         Producto plato;
+        CircleImageView imagenReservaPrevia;
 
         public PreviasHolder(@NonNull View itemView) {
             super(itemView);
-            textViewNombrePlato= itemView.findViewById(R.id.nombreReservaEnCurso);
-            textViewNombreUsuario = itemView.findViewById(R.id.nombreUsuarioReservaEnCurso);
-            textViewPrecio = itemView.findViewById(R.id.recogidaReservaEnCurso);
+
+            textViewNombrePlato= itemView.findViewById(R.id.nombrePlatoReservaPrevia);
+            textViewNombreUsuario = itemView.findViewById(R.id.nombreReservaPrevia);
+            textViewPrecio = itemView.findViewById(R.id.precioReservaPrevia);
+            imagenReservaPrevia = itemView.findViewById(R.id.imagenReservaPrevia);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -77,6 +81,7 @@ public class AdaptadorReservasPrevias extends RecyclerView.Adapter<AdaptadorRese
             textViewNombrePlato.setText(producto.getNombre());
             textViewNombreUsuario.setText(producto.getUsuarioPublicador().getNombre());
             textViewPrecio.setText(producto.getPrecio()+"€");
+            imagenReservaPrevia.setImageBitmap(servicio.pasarStringAImagen(producto.getUsuarioComprador().getFoto()));
         }
     }
 
