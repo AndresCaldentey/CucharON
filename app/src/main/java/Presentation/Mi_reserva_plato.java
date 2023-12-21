@@ -101,8 +101,9 @@ public class Mi_reserva_plato extends Fragment {
         fotoPlato.setImageBitmap(servicio.pasarStringAImagen(producto.getImagen()));
 
         titulo.setText(producto.getNombre());
-        precio.setText(producto.getPrecio() + "€");
-        raciones.setText(producto.getNumRaciones()+"");
+        double precioTotal = producto.getPrecio() * producto.getRacionesReservadas();
+        precio.setText(precioTotal + "€");
+        raciones.setText(producto.getRacionesReservadas()+"");
         direccion.setText(producto.getDireccionRecogida());
         recogida.setText(producto.getHoraRecogida());
         nombre_usu.setText(producto.getUsuarioPublicador().getNombre());
