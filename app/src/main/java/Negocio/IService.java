@@ -37,6 +37,7 @@ public interface IService {
     List<Producto> getProductoPublicadoEntregado();
     List<Producto> getAllProducto();
     void actualizarProducto(Producto p);
+    void setValoracionProducto(Producto producto, int valoracion);
     void borrarProducto(Producto producto);
     List<Producto> getProductosSinVenderPorUser(Usuario user);
     List<Producto> getProductoPorNombre(String nombre);

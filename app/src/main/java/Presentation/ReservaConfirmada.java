@@ -9,8 +9,7 @@ import android.widget.ImageView;
 import com.example.cucharon.R;
 
 public class ReservaConfirmada extends AppCompatActivity {
-
-    ImageView cerrar;
+    private ImageView cerrar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,12 +17,9 @@ public class ReservaConfirmada extends AppCompatActivity {
         setContentView(R.layout.reserva_confirmada);
 
         cerrar = findViewById(R.id.cerrar);
-
-
     }
 
     public void cerrar (View view){
-
         finish();
     }
 }
