@@ -38,6 +38,8 @@ public class Navegacion extends AppCompatActivity {
         super.onStart();
         loggedUser = servicio.getLoggedUser();
         if(loggedUser.getFoto() != null) imagenPerfil.setImageBitmap(servicio.pasarStringAImagen(loggedUser.getFoto()));
+
+
     }
 
     @Override

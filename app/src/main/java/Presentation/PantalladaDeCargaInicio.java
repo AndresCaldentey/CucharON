@@ -1,6 +1,8 @@
 package Presentation;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -34,26 +36,46 @@ public class PantalladaDeCargaInicio extends AppCompatActivity {
 
         Glide.with(this).asGif().load(R.drawable.gift).into(gifImagen);
 
-        new CargaProductosTask().execute();
+
+
+            new CargaProductosTask().execute();
+
+
 
     }
 
     public class CargaProductosTask extends AsyncTask<Void, Void, List<Producto>> {
 
+        private String correo;
+
         @Override
         protected List<Producto> doInBackground(Void... voids) {
-            // Realiza la carga de productos en segundo plano
-            return servicio.getProductosSinComprar();
+            // Obtener el correo electrónico de SharedPreferences
+            SharedPreferences sharedPreferences = getSharedPreferences("MiAppPref", Context.MODE_PRIVATE);
+            correo = sharedPreferences.getString("token", "");
+
+            // Setear el usuario logueado
+            servicio.setLoggedUser(servicio.getUsuarioByEmail(correo));
+
+            // Realizar la carga de productos en segundo plano
+            return cargarProductos();
         }
 
         @Override
         protected void onPostExecute(List<Producto> productos) {
             // Este método se ejecutará en el hilo principal después de que la carga haya terminado
             // Puedes continuar con el intent aquí o realizar cualquier otra acción necesaria
-            PantalladaDeCargaInicio.this.productos = productos;  // Asigna la lista cargada
-            Intent intent = new Intent(PantalladaDeCargaInicio.this, MainActivity.class);
+            PantalladaDeCargaInicio.productos = productos;  // Asigna la lista cargada
+
+            Intent intent = new Intent(PantalladaDeCargaInicio.this, Navegacion.class);
             startActivity(intent);
             finish();
         }
+    }
+
+    private List<Producto> cargarProductos() {
+        // Realizar la carga de productos en segundo plano
+        // Puedes realizar operaciones de base de datos directamente aquí
+        return servicio.getProductosSinComprar();
     }
 }

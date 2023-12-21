@@ -232,7 +232,7 @@ public class ProductoRepository extends Repository<Producto>{
     }
 
     public List<Producto> getProductosSinComprador(Usuario user){
-        List<Producto> listaProduct = new ArrayList<>();
+       // List<Producto> listaProduct = new ArrayList<>();
 
         try {
             QueryBuilder<Producto, ?> queryBuilder = getDao().queryBuilder();
@@ -240,13 +240,15 @@ public class ProductoRepository extends Repository<Producto>{
             PreparedQuery<Producto> preparedQuery = queryBuilder.prepare();
 
             // Ejecutar la consulta
-            listaProduct = getDao().query(preparedQuery);
+            listaProductos = getDao().query(preparedQuery);
+
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return listaProduct;
+
+        return listaProductos;
     }
     public List<Producto> getProductosSinVenderPorUser(Usuario usuario){
 
