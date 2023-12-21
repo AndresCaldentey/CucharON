@@ -280,14 +280,14 @@ public class ProductoRepository extends Repository<Producto>{
         return productos;
     }
 
-    public List<Producto> getPrimerosProductos(){
+    public List<Producto> getPrimerosProductos(Usuario user){
         listaProductos = new ArrayList<>();
 
         Thread hilo = new Thread(() ->
         {
             try {
                 QueryBuilder<Producto, ?> queryBuilder = getDao().queryBuilder().limit(5L);
-                queryBuilder.where().isNull("usuarioComprador");
+                queryBuilder.where().isNull("usuarioComprador").and().ne("usuarioPublicador", user);
                 PreparedQuery<Producto> preparedQuery = queryBuilder.prepare();
 
                 // Ejecutar la consulta

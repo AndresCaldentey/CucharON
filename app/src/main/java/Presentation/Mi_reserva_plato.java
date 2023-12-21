@@ -88,9 +88,11 @@ public class Mi_reserva_plato extends Fragment {
         if(opcion == TUPLATO) {
             valorarPlato.setVisibility(View.GONE);
             detallesReserva.setVisibility(View.INVISIBLE);
+            detallesPlato.setVisibility(View.VISIBLE);
         }
         if(opcion == TURESERVA){
-            //valorarReserva.setV
+            detallesPlato.setVisibility(View.INVISIBLE);
+            detallesReserva.setVisibility(View.VISIBLE);
         }
         valorarPlato.setOnClickListener((view1) -> { mostrarDialogoCalificacion(); });
     }

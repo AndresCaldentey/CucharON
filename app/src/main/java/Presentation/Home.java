@@ -58,6 +58,15 @@ public class Home extends Fragment {
 
     public void setProductos(List<Producto> listaProductos) {
         productos = listaProductos;
+        if(adaptadosPlatosHome == null) {
+            if(getActivity() != null) {
+                if(getActivity() instanceof Navegacion) {
+                    Navegacion activityActual = (Navegacion) getActivity();
+                    productos = activityActual.getAllProductos();
+                }
+            }
+            adaptadosPlatosHome = new AdaptadorHome(productos, getActivity());
+        }
         adaptadosPlatosHome.setProductos(listaProductos);
     }
 

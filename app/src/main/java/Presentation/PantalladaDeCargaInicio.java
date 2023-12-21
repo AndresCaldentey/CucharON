@@ -38,7 +38,7 @@ public class PantalladaDeCargaInicio extends AppCompatActivity {
 
 
 
-            new CargaProductosTask().execute();
+        new CargaProductosTask().execute();
 
 
 
@@ -65,7 +65,7 @@ public class PantalladaDeCargaInicio extends AppCompatActivity {
         protected void onPostExecute(List<Producto> productos) {
             // Este método se ejecutará en el hilo principal después de que la carga haya terminado
             // Puedes continuar con el intent aquí o realizar cualquier otra acción necesaria
-            PantalladaDeCargaInicio.productos = productos;  // Asigna la lista cargada
+              // Asigna la lista cargada
 
             Intent intent = new Intent(PantalladaDeCargaInicio.this, Navegacion.class);
             startActivity(intent);
@@ -76,6 +76,7 @@ public class PantalladaDeCargaInicio extends AppCompatActivity {
     private List<Producto> cargarProductos() {
         // Realizar la carga de productos en segundo plano
         // Puedes realizar operaciones de base de datos directamente aquí
-        return servicio.getProductosSinComprar();
+        productos = servicio.getPrimerosProductos();
+        return productos;
     }
 }

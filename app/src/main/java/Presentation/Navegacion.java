@@ -54,17 +54,18 @@ public class Navegacion extends AppCompatActivity {
 
 
         allProductos = PantalladaDeCargaInicio.productos;
-        setListaProductos(allProductos);
 
-        //listaProductos = servicio.getPrimerosProductos();
+
+        listaProductos = servicio.getPrimerosProductos();
+        setListaProductos(listaProductos);
 
         //Hilo para recoger todos los productos de fondo
-        /*Thread hilo = new Thread(() ->
+        Thread hilo = new Thread(() ->
         {
             List<Producto> lproduct = servicio.getProductosSinComprar();
             runOnUiThread(() -> setListaProductos(lproduct));
         });
-        hilo.start();*/
+        hilo.start();
 
 
         barraNav.setOnItemSelectedListener(new ChipNavigationBar.OnItemSelectedListener() {

@@ -32,6 +32,7 @@ public class AdaptadorHome extends RecyclerView.Adapter<AdaptadorHome.HomeViewHo
     }
 
     public void setProductos(List<Producto> productos) {
+        if(productos == null) return;
         this.productos = productos;
         notifyDataSetChanged();
     }
