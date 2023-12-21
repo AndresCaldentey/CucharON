@@ -2,6 +2,7 @@ package Presentation;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -116,10 +117,12 @@ public class ReservaPaso2 extends AppCompatActivity {
 
                     //Reserva reserva = new Reserva(0, numCantidad, producto, horaRecodiga, Service.getService().getLoggedUser());
                     producto.setUsuarioComprador(service.getLoggedUser());
+                    producto.setRacionesReservadas(numCantidad);
                     producto.setHoraReserva(formadorDehora);
                     service.actualizarProducto(producto);
-
-
+                    Intent intent = new Intent(ReservaPaso2.this, ReservaConfirmada.class);
+                    startActivity(intent);
+                    finish();
                 } else {
                     mostrarAlerta();
                 }
@@ -172,7 +175,8 @@ public class ReservaPaso2 extends AppCompatActivity {
         AlertDialog dialog = builder.create();
         dialog.show();
     }
-    public void cerrarClick(View view){
+
+    public void cerrarClick(View view) {
         finish();
     }
 
